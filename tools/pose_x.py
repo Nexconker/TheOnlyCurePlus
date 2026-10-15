@@ -124,6 +124,25 @@ def posed_body(sex, masks, W):
     verts = skin(np.array(body["verts"], float), weights, body["offsets"], W)
     return {"v": verts, "f": mesh["f"], "uv": mesh["uv"], "tex": mesh["tex"]}
 
+def posed_body_texel(sex, masks, W, shirt=True):
+    """Cuerpo como lo dibuja el juego con máscaras: todas las caras, y el alfa de la textura = máscaras de las partes
+    visibles (texel a texel, no por caras). shirt: pinta de rojo el pecho y la cintura, como una camiseta de textura."""
+    from PIL import Image
+    body = BA.load_body(sex)
+    keep = np.array([f for f in body["faces"] if not BA.face_is_hidden(body, f)], int)
+    tex = Image.open(os.path.join(RC.PZ, "textures", "Body", ("MaleBody01" if sex == "Male" else "FemaleBody01") + ".png")).convert("RGBA")
+    a = np.array(tex)
+    hidden = np.zeros(a.shape[:2], bool)
+    for i in masks: hidden |= RC.mask_alpha(i) > 0
+    if shirt:
+        for n in ("Chest", "Waist"):
+            mk = np.array(Image.open(os.path.join(RC.PZ, "textures", "Body", "Masks", n + ".png")).convert("RGBA").split()[3]) > 0
+            a[mk, :3] = (a[mk, :3] * np.array([0.55, 0.12, 0.12])).astype(np.uint8) + np.array([70, 0, 0], np.uint8)
+    a[..., 3] = np.where(hidden, 0, 255)
+    weights = [sorted(w.items(), key=lambda t: -t[1])[:4] for w in body["weights"]]
+    verts = skin(np.array(body["verts"], float), weights, body["offsets"], W)
+    return {"v": verts, "f": keep, "uv": body["uvs"], "tex": Image.fromarray(a), "alpha": True}
+
 def posed_x(path, tex, W):
     m = pzx.read_mesh(find_mesh(pzx.parse(path)))
     verts = np.array(m["verts"], float); faces = np.array([list(f) for f in m["faces"]], int); uv = np.array(m["uvs"], float)
@@ -141,7 +160,7 @@ def export(name, meshes):
         if not isinstance(tex, str):
             p = os.path.join(OUT, "%s_tex%d.png" % (name, i)); tex.save(p); tex = p
         out.append({"verts": np.asarray(m["v"], float).round(5).tolist(), "faces": np.asarray(m["f"], int).tolist(),
-                    "uvs": np.asarray(m["uv"], float).round(5).tolist(), "tex": tex})
+                    "uvs": np.asarray(m["uv"], float).round(5).tolist(), "tex": tex, "alpha": bool(m.get("alpha"))})
     json.dump(out, open(os.path.join(OUT, name + ".json"), "w")); print("scene", name, len(out), "mallas")
 
 if __name__ == "__main__":

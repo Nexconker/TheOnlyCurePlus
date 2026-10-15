@@ -262,6 +262,9 @@ def build_stump_textures():
             for lvl in range(1, 4):
                 src = Image.open(os.path.join(bodydir, "M_ZedBody%02d_level%d.png" % (z, lvl))).convert("RGBA")
                 paint_disc(src, "zombie", z * 10 + lvl).save(out("textures", "Amputations", "Zombie", part, "z_skin%02d_l%d.png" % (z, lvl)))
+    # las de LowerLeg también las usan los muñones de brazo: alfa en la costura del hombro (make_arm_stumps.seam_alpha)
+    import make_arm_stumps
+    make_arm_stumps.seam_alpha()
 
 # ------------------------------------------------------------------ geometría procedural
 

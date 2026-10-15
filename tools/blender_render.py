@@ -27,7 +27,7 @@ except Exception: pass
 scene.view_settings.view_transform = "Filmic" if "Filmic" in [i.identifier for i in bpy.types.ColorManagedViewSettings.bl_rna.properties["view_transform"].enum_items] else scene.view_settings.view_transform
 scene.view_settings.look = "None"
 
-def material(texpath, name):
+def material(texpath, name, alpha=False):
     mat = bpy.data.materials.new(name); mat.use_nodes = True
     nt = mat.node_tree; bsdf = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED")
     tex = nt.nodes.new("ShaderNodeTexImage")
@@ -38,6 +38,12 @@ def material(texpath, name):
     if "metal" in texpath.lower() or "hook" in texpath.lower() or "normalArm" in texpath or "medical" in texpath.lower():
         bsdf.inputs["Metallic"].default_value = 0.35; bsdf.inputs["Roughness"].default_value = 0.4
     mat.blend_method = "OPAQUE" if hasattr(mat, "blend_method") else None
+    if alpha:   # como el juego: el alfa de la textura recorta (máscaras del cuerpo, costura de los muñones)
+        gt = nt.nodes.new("ShaderNodeMath"); gt.operation = "GREATER_THAN"; gt.inputs[1].default_value = 0.5
+        nt.links.new(tex.outputs["Alpha"], gt.inputs[0]); nt.links.new(gt.outputs[0], bsdf.inputs["Alpha"])
+        if hasattr(mat, "use_transparent_shadow"): mat.use_transparent_shadow = True   # sin esto el muñón, pegado a la piel, la sombrea de negro
+        if hasattr(mat, "surface_render_method"): mat.surface_render_method = "DITHERED"
+        else: mat.blend_method = "CLIP"
     return mat
 
 KEEP_WINDING = False
@@ -56,7 +62,8 @@ def add_mesh(entry, name, offset=(0, 0, 0), rotz=0.0):
     for p in me.polygons: p.use_smooth = True
     ob = bpy.data.objects.new(name, me); scene.collection.objects.link(ob)
     ob.location = Vector(offset); ob.rotation_euler = (0, 0, math.radians(rotz))
-    ob.data.materials.append(material(entry["tex"], name + "_mat"))
+    ob.data.materials.append(material(entry["tex"], name + "_mat", entry.get("alpha", False)))
+    if entry.get("alpha") and hasattr(ob, "visible_shadow"): ob.visible_shadow = False   # pegado a la piel: EEVEE la ennegrece
     return ob
 
 def lights():
@@ -158,7 +165,13 @@ for _n in ("cmp_wrist", "cmp_fore", "cmp_upper"):
 JOBS["hook_front"] = ([("cmp_hook", 0, 0)], 6, 180, 3.4, (-1.9, 0.0, 4.0))
 JOBS["hook_side"] = ([("cmp_hook", 0, 0)], 6, 265, 3.4, (-1.9, 0.0, 4.0))
 JOBS["hook_up_front"] = ([("upper_hookArm", 0, 0)], 6, 180, 3.4, (-1.9, 0.0, 4.0))
-CULL = {"stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f",
+for _n in ("seam_fa_f", "seam_fa_m", "seam_ua_f", "seam_hand_f", "seam_body_f"):
+    JOBS[_n] = ([(_n, 0, 0)], 22, 200, 2.6, (-1.3, 0.0, 6.9))
+    JOBS[_n + "_back"] = ([(_n, 0, 0)], 22, 330, 2.6, (-1.3, 0.0, 6.9))
+JOBS["seam_hand_f_wrist"] = ([("seam_hand_f", 0, 0)], 15, 200, 2.4, (-3.4, 0.0, 6.2))
+CULL = {"seam_fa_f", "seam_fa_m", "seam_ua_f", "seam_hand_f", "seam_body_f", "seam_fa_f_back", "seam_fa_m_back", "seam_ua_f_back",
+        "seam_hand_f_back", "seam_body_f_back", "seam_hand_f_wrist",
+        "stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f",
         "stump_hand_back", "stump_fa_back", "stump_ua_back", "stump_fa_mech_back", "stump_ua_f_back",
         "ankle_peg", "ankle_mech", "ankle_med", "iso_ankle_peg", "iso_ankle_mech", "iso_calf_peg", "iso_calf_mech"}     # como el juego: sin caras traseras (se ve a través de un hueco)
 ONLY = set(argv[3].split(",")) if len(argv) > 3 else None     # p. ej. saw_walk,saw_close

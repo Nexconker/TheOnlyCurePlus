@@ -40,3 +40,23 @@ for nm, part, masks, model, tex in (("cmp_wrist", "Hand", [6], "normalArmWrist_R
                                     ("cmp_peg_w", "Hand", [6], "pegArmWrist_R_M", "pegArm")):
     P.export(nm, [P.posed_body("Male", masks, W), stump(part, prost=True),
                   P.posed_x(os.path.join(MOD, "models_X", "Prosthesis", model + ".X"), os.path.join(MOD, "textures", "Prosthesis", tex + ".png"), W)])
+# costura del hombro como la dibuja el juego (2026-10-14: "se corta un poco"): cuerpo enmascarado texel a texel con una
+# camiseta roja pintada, y el muñón con el alfa de su textura. Render: ... blender_render.py -- out/scene out/preview/seam 700 seam_fa_f,...
+def seam_stump(part, sex, prost=False):
+    tex = os.path.join(MOD, "textures", "Amputations", "Human", "LowerLeg", "skinF01_b.png" if sex == "Female" else "skin01_b.png")
+    name = "ArmStumpProst" if prost else "ArmStump"
+    m = P.posed_x(os.path.join(MOD, "models_X", "Amputation", "%s_Right_%s_%s.X" % (name, part, sex)), tex, W); m["alpha"] = True
+    # medio milímetro hacia dentro: EEVEE no resuelve dos superficies con alfa en el mismo plano (pinta negro). En el
+    # juego comparten profundidad y el cuerpo va primero: el resultado es el mismo salvo en la franja de 1 texel.
+    import numpy as np
+    v = np.asarray(m["v"], float); n = np.zeros_like(v)
+    for a, b, c in m["f"]:
+        fn = np.cross(v[b] - v[a], v[c] - v[a]); n[a] += fn; n[b] += fn; n[c] += fn
+    n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+    m["v"] = v - n * 0.0005
+    return m
+P.export("seam_fa_f", [P.posed_body_texel("Female", [5, 6], W), seam_stump("ForeArm", "Female")])
+P.export("seam_fa_m", [P.posed_body_texel("Male", [5, 6], W), seam_stump("ForeArm", "Male")])
+P.export("seam_ua_f", [P.posed_body_texel("Female", [5, 6], W), seam_stump("UpperArm", "Female")])
+P.export("seam_hand_f", [P.posed_body_texel("Female", [6], W), seam_stump("Hand", "Female")])
+P.export("seam_body_f", [P.posed_body_texel("Female", [5, 6], W)])

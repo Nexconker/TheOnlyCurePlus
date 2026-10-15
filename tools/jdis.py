@@ -54,5 +54,9 @@ for desc, attr in codes:
         elif op in JMP or 0x9f <= op <= 0xa4:
             off = struct.unpack(">h", code[q+1:q+3])[0]; print("%4d %s -> %d" % (q, JMP.get(op, "if_icmp"), q + off)); q += 3
         elif op in RET: print("%4d %s" % (q, RET[op])); q += 1
+        elif 0x2a <= op <= 0x2d: print("%4d aload_%d" % (q, op - 0x2a)); q += 1
+        elif op == 0x19: print("%4d aload %d" % (q, code[q + 1])); q += 2
+        elif 0x4b <= op <= 0x4e: print("%4d astore_%d" % (q, op - 0x4b)); q += 1
+        elif op == 0x3a: print("%4d astore %d" % (q, code[q + 1])); q += 2
         elif op == 0xaa or op == 0xab: print("%4d switch (parada)" % q); break
         else: q += LEN.get(op, 1)

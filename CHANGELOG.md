@@ -39,6 +39,16 @@
 - Changed: the hook curves inwards, towards the body (palm side).
 - New sandbox options: `SleepingPillAnesthesia` (max share of sleeping pills in the anaesthesia, default 30, was 50)
   and `SelfAmputationHigh` (operate on your own upper arm or thigh, off by default, extra fail and faint risk).
+- Fixed: arm prostheses lost most of their socket and shell when the legs were amputated (62 % of the chainsaw arm,
+  23-48 % of the others). The game applies the body masks of every clothing item worn above (the leg stumps hide the
+  legs) to the textures of the items below, as if they were laid out like the body. Prostheses and tourniquets have
+  their own texture atlas, so they now declare `<m_MasksFolder>none</m_MasksFolder>`, like vanilla bags and belts.
+- Fixed: a see-through gap at the shoulder seam of arm stumps. The game hides the arm skin texel by texel and the
+  stump took a face only if its centre was hidden, so about 20 half-hidden faces were drawn by neither. Stumps now
+  take every face with a hidden texel, and the stump textures are transparent where the body still shows (a shirt
+  painted on the body stays visible up to the mask edge).
+- Changed: amputee trait icons redrawn in the vanilla style (outlined pixel art, shirt or shorts, bandaged stump)
+  instead of flat red silhouettes and plain bars (`tools/make_trait_icons.py`).
 
 ## 3.0.1
 

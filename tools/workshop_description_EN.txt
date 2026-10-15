@@ -60,7 +60,8 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]New: Ash-style chainsaw arm, and prostheses above the elbow for every arm tier.
 [*]Fixed: dark stripe around the shoulder (arm stumps are now cut from the body), skin poking through arm prostheses, wrong stump texture on zombies.
 [*]Fixed: Bandits console errors, glass and cuts coming back in multiplayer, leg amputee traits unable to move (they start with a crutch; one leg without a crutch crawls), prostheses that would not go on a right stump.
-[*]Changed: arm prostheses sized like the real arm, new mechanical and medical hands, the hook curves inwards.
+[*]Fixed: arm prostheses losing parts with amputated legs, and a see-through gap at the shoulder of arm stumps.
+[*]Changed: arm prostheses sized like the real arm, new mechanical and medical hands, the hook curves inwards, amputee trait icons in the vanilla style.
 [*]New sandbox options: sleeping pills as anaesthesia (30 by default), self-amputation above the elbow and knee.
 [/list]
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].

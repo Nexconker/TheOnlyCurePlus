@@ -11,7 +11,7 @@ def existing_guid(path):
         if m: return m.group(1)
     return str(uuid.uuid4())
 
-def write(name, male, female, textures, masks=(), static=False, alt=None):
+def write(name, male, female, textures, masks=(), static=False, alt=None, own_atlas=False):
     path = os.path.join(CI, name + ".xml")
     guid = existing_guid(path)
     L = ['<?xml version="1.0" encoding="utf-8"?>', "<clothingItem>",
@@ -22,6 +22,11 @@ def write(name, male, female, textures, masks=(), static=False, alt=None):
     L += [
          "    <m_GUID>%s</m_GUID>" % guid, "    <m_Static>%s</m_Static>" % ("true" if static else "false"),
          "    <m_AllowRandomHue>false</m_AllowRandomHue>", "    <m_AllowRandomTint>false</m_AllowRandomTint>"]
+    if own_atlas:
+        # el juego aplica a cada prenda las máscaras de las que van por encima (ModelInstanceTextureCreator), pensadas
+        # para texturas con el UV del cuerpo. En un atlas propio recortan trozos al azar: con los muñones de pierna
+        # puestos (sus máscaras de pierna) la prótesis de brazo perdía el encaje. "none" = como mochilas y cinturones.
+        L.append("    <m_MasksFolder>none</m_MasksFolder>")
     for m in masks: L.append("    <m_Masks>%d</m_Masks>" % m)
     for t in textures: L.append("    <textureChoices>%s</textureChoices>" % t)
     L.append("</clothingItem>")
@@ -76,8 +81,15 @@ for side in ("L", "R"):
         for lvl in levels:
             item = "Prost_%s%s_%s" % (tier, lvl, side)
             write(item, P("Prosthesis", "%s%s_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%s_%s_F" % (model, lvl, side)), [P("Prosthesis", model)],
-                  alt=(P("Prosthesis", "%s%sUnder_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%sUnder_%s_F" % (model, lvl, side))))
-    write("Surg_Leg_Tourniquet_%s" % side, P("Surgery", "TourniquetLeg_%s_M" % side), P("Surgery", "TourniquetLeg_%s_F" % side), [P("Surgery", "tourniquetLeg")])
+                  alt=(P("Prosthesis", "%s%sUnder_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%sUnder_%s_F" % (model, lvl, side))), own_atlas=True)
+    write("Surg_Leg_Tourniquet_%s" % side, P("Surgery", "TourniquetLeg_%s_M" % side), P("Surgery", "TourniquetLeg_%s_F" % side), [P("Surgery", "tourniquetLeg")], own_atlas=True)
+    # torniquete de brazo: el del TOC original (también atlas propio), sólo se le añade la carpeta de máscaras
+    tq = os.path.join(CI, "Surg_Arm_Tourniquet_%s.xml" % side)
+    if os.path.exists(tq):
+        t = open(tq, encoding="utf-8").read()
+        if "<m_MasksFolder>" not in t:
+            t = t.replace("    <textureChoices>", "    <m_MasksFolder>none</m_MasksFolder>\n    <textureChoices>", 1)
+            open(tq, "w", encoding="utf-8", newline="\n").write(t)
 
 rows = []
 for f in sorted(os.listdir(CI)):

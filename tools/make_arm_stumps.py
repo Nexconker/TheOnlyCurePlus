@@ -21,14 +21,30 @@ import render_combos as RC
 ARM_CUTS = {"Hand": 0.385, "ForeArm": 0.25, "UpperArm": 0.155}
 MASKS = {"Hand": {"L": (4,), "R": (6,)}, "ForeArm": {"L": (3, 4), "R": (5, 6)}, "UpperArm": {"L": (3, 4), "R": (5, 6)}}
 
+def tri_texels(uvs):
+    """Texeles (256x256, como las máscaras) que cubre un triángulo en UV, bordes incluidos."""
+    from PIL import Image, ImageDraw
+    im = Image.new("L", (256, 256), 0)
+    ImageDraw.Draw(im).polygon([(float(u * 255), float(v * 255)) for u, v in uvs], fill=255, outline=255)
+    return np.array(im) > 0
+
+def hidden_zone(masks, grow=1):
+    """Lo que el juego deja sin piel: la máscara se aplica TEXEL a texel (alfa de la textura del cuerpo), no por caras.
+    Se ensancha 1 texel para que muñón y cuerpo se solapen en la costura en vez de dejar una rendija."""
+    from scipy.ndimage import binary_dilation
+    z = np.zeros((256, 256), bool)
+    for i in masks: z |= RC.mask_alpha(i) > 0
+    return binary_dilation(z, iterations=grow) if grow else z
+
 def hidden_faces(body, masks):
-    """Caras que el juego deja de dibujar con esas máscaras (mismo criterio que render_combos.body_mesh)."""
-    UV = body["uvs"]; ms = [RC.mask_alpha(i) for i in masks]; out = []
+    """Caras con ALGÚN texel oculto por esas máscaras. Antes se miraba sólo el centro de la cara: en la costura del
+    hombro unas 20 caras quedaban medio ocultas por el juego y fuera del muñón, y se veía el suelo a través
+    (2026-10-14: "se corta un poco"). La parte de esas caras que el cuerpo sí dibuja va transparente en la textura del
+    muñón (seam_alpha)."""
+    UV = body["uvs"]; zone = hidden_zone(masks); out = []
     for f in body["faces"]:
         if BA.face_is_hidden(body, f): continue
-        c = UV[list(f)].mean(0)
-        px, py = int(np.clip(c[0] * 255, 0, 255)), int(np.clip(c[1] * 255, 0, 255))
-        if any(m[py, px] > 0 for m in ms): out.append(f)
+        if (tri_texels(UV[list(f)]) & zone).any(): out.append(f)
     return out
 
 def body_normals(sex):
@@ -137,6 +153,53 @@ def build():
                 report.append((name, len(nv), len(nf), len(edge)))
     for r in report: print("%-34s %4d verts %4d tris, borde %d" % r)
 
+# ---------------- alfa de la costura en las texturas de muñón
+# Las caras del borde (parte oculta, parte visible en el cuerpo) van enteras en el muñón; en su zona de la textura el
+# alfa es la máscara: el muñón pinta sólo donde el cuerpo ya no pinta, y donde sigue el cuerpo se ve el cuerpo (y la
+# camiseta pintada sobre él). Las texturas son las de la carpeta LowerLeg, compartidas con las piernas: sólo se tocan
+# los texeles de esos triángulos, que están en la zona del brazo.
+STUMP_TEX_DIRS = [("Human", "LowerLeg"), ("Zombie", "LowerLeg")]
+
+def seam_alpha(verbose=True):
+    import glob
+    from PIL import Image
+    import json
+    fit = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "fit.json"), encoding="utf-8"))
+    need_on = np.zeros((256, 256), bool); need_off = np.zeros((256, 256), bool)
+    for sex in ("Male", "Female"):
+        body = BA.load_body(sex); UV = body["uvs"]; X = body["verts"][:, 0]
+        stumps = [(MASKS[p][s], s, c) for p, c in ARM_CUTS.items() for s in ("L", "R")]
+        stumps += [(PROST_MASKS[s], s, prost_cut(fit["bodies"][sex]["arms"][s], p)) for p in ("ForeArm", "UpperArm") for s in ("L", "R")]
+        for masks, side, cut in stumps:
+            zone = hidden_zone(masks)
+            for f in hidden_faces(body, masks):
+                xs = X[list(f)]
+                if not ((xs < cut).any() if side == "L" else (xs > -cut).any()): continue    # recortada por el corte
+                t = tri_texels(UV[list(f)])
+                if (t & ~zone).any():                         # cara de borde
+                    need_on |= t & zone; need_off |= t & ~zone
+                else:
+                    need_on |= t
+    # los muñones de pierna usan las mismas texturas: sus caras (y un texel alrededor, por el filtrado) siempre opacas
+    import pzx
+    from scipy.ndimage import binary_dilation
+    legs = np.zeros((256, 256), bool)
+    for p in glob.glob(os.path.join(BA.out("models_X", "Amputation", "x"), os.pardir, "Amputation_*.X")):
+        m = pzx.read_mesh(BA.find_mesh(pzx.parse(p))); uv = np.array(m["uvs"], float)
+        for f in m["faces"]: legs |= tri_texels(uv[list(f)])
+    need_on |= binary_dilation(legs, iterations=1)
+    off = need_off & ~need_on                                 # en caso de duda, opaco: mejor solape que agujero
+    x, y, w, h = BA.PATCH
+    assert not off[y:y + h, x:x + w].any(), "la costura toca la zona de la herida"
+    n = 0
+    for kind, part in STUMP_TEX_DIRS:
+        for p in sorted(glob.glob(os.path.join(BA.out("textures", "Amputations", kind, part), "*.png"))):
+            im = Image.open(p).convert("RGBA"); a = np.array(im)
+            a[..., 3][off] = 0
+            Image.fromarray(a).save(p); n += 1
+    if verbose: print("alfa de costura: %d texeles transparentes, %d en conflicto (quedan opacos), %d texturas" % (off.sum(), (need_off & need_on).sum(), n))
+
 if __name__ == "__main__":
     build()
     build_prost_variants()
+    seam_alpha()
