@@ -27,7 +27,11 @@
 - New: above-elbow prostheses (level suffix `Upper`, e.g. `TOC.Prost_NormalArmUpper_L`) for every arm tier and the
   chainsaw arm. Upper-arm socket and elbow hinge on `Bip01_X_UpperArm`, prosthetic forearm on the forearm bone so it
   bends with the animations (`blender_build.build_upper_section`, fit data in `export_fit.upper_arm`).
-- Changed: mechanical and medical hands remodelled (hand-shaped palm, thicker fingers, light steel / light polymer).
+- Changed: mechanical and medical hands remodelled (hand-shaped palm, thicker fingers, light steel / light polymer)
+  and sized like the vanilla hand with fingers (0.13 x 0.079 x 0.054): before they were 30 % shorter and thinner.
+- Changed: arm prostheses no longer look bigger than the healthy arm. Shells that replace the limb match its size
+  (`ARM_SHELL`), sockets keep 2.5 mm over the skin (`ARM_CL`) with tight subdivision, arm fit rings use a +-7 mm
+  band instead of +-14 mm (sockets flared at the elbow and wrist). Measure with `tools/diag_arm_size.py`.
 - New sandbox options: `SleepingPillAnesthesia` (max share of sleeping pills in the anaesthesia, default 30, was 50)
   and `SelfAmputationHigh` (operate on your own upper arm or thigh, off by default, extra fail and faint risk).
 

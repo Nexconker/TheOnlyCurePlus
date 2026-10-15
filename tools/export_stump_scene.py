@@ -32,3 +32,9 @@ for tier, tex in (("pegArm", "pegArm"), ("hookArm", "hookArm"), ("normalArm", "n
         P.export(nm, [P.posed_body("Male", [5, 6], WW),
                       P.posed_x(os.path.join(MOD, "models_X", "Amputation", "ArmStump_Right_UpperArm_Male.X"), TEX, WW),
                       P.posed_x(os.path.join(MOD, "models_X", "Prosthesis", "%sUpper_R_M.X" % tier), os.path.join(MOD, "textures", "Prosthesis", tex + ".png"), WW)])
+# comparación de grosor con el brazo sano (2026-10-14: "el brazo protésico se ve más grande que el normal")
+for nm, part, masks, model, tex in (("cmp_wrist", "Hand", [6], "normalArmWrist_R_M", "normalArm"), ("cmp_fore", "ForeArm", [5, 6], "normalArm_R_M", "normalArm"),
+                                    ("cmp_upper", "UpperArm", [5, 6], "normalArmUpper_R_M", "normalArm"), ("cmp_hook", "ForeArm", [5, 6], "hookArm_R_M", "hookArm"),
+                                    ("cmp_peg_w", "Hand", [6], "pegArmWrist_R_M", "pegArm")):
+    P.export(nm, [P.posed_body("Male", masks, W), stump(part),
+                  P.posed_x(os.path.join(MOD, "models_X", "Prosthesis", model + ".X"), os.path.join(MOD, "textures", "Prosthesis", tex + ".png"), W)])

@@ -71,6 +71,7 @@ def chainsaw_local():
             "length": float(((V[used] - base) @ b).max())}
 
 # ------------------------------------------------------------------ brazo superior (prótesis por encima del codo, 3.1.0)
+ARM_RING_BAND = 0.007        # franja a lo largo del brazo que entra en cada anillo de ajuste (ver comentario abajo)
 UPPER_STUMP_CUT = 0.155      # |x| del corte del muñón de brazo (make_arm_stumps.ARM_CUTS["UpperArm"])
 
 def upper_arm(body, side):
@@ -85,7 +86,7 @@ def upper_arm(body, side):
     rings = {}
     t = 0.0
     while t <= L + 1e-6:
-        ring = BA.axis_ring(body, bones, side, so, axis, down, front, t, 0.0)
+        ring = BA.axis_ring(body, bones, side, so, axis, down, front, t, 0.0, band=ARM_RING_BAND)
         R = np.array(ring)
         du, dv = (R - so) @ down, (R - so) @ front
         c = so + axis * t + down * ((du.min() + du.max()) / 2) + front * ((dv.min() + dv.max()) / 2)
@@ -118,7 +119,9 @@ for sex in ("Male", "Female"):
         arings = {}
         t = -0.02
         while t <= 0.1601:
-            ring = BA.axis_ring(body, bones, side, o, axis, down, front, t, 0.0)
+            # franja ±7 mm (no los ±14 mm por defecto): junto a codo y muñeca la franja ancha inflaba el anillo y los
+            # encajes se abrían como un cubo (2026-10-14, "el brazo protésico se ve más grande que el normal")
+            ring = BA.axis_ring(body, bones, side, o, axis, down, front, t, 0.0, band=ARM_RING_BAND)
             R = np.array(ring)
             # centro en coordenadas (t, down, front)
             du, dv = (R - o) @ down, (R - o) @ front
