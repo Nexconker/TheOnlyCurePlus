@@ -1,5 +1,6 @@
 require("TOC/Debug")
 local StaticData = require("TOC/StaticData")
+local CutLimbHeal = require("TOC/Plus/CutLimbHeal")
 --------------------------------------------
 -- On-demand sanitizer for #279. There is deliberately NO global sweep here: the
 -- server never enumerates players (see review notes). Detection runs on each
@@ -15,8 +16,8 @@ local StaticData = require("TOC/StaticData")
 -- persists on a limb that no longer exists while CutLimbInteractionHandler:isValid
 -- correctly refuses to re-cut the same limbName.
 --
--- This clears bite/infection state on cut limbs using the same syncBodyPart
--- primitive AmputationHandler already relies on.
+-- This clears every injury on cut limbs (TOC/Plus/CutLimbHeal, the same list as the client) using the same
+-- syncBodyPart primitive AmputationHandler already relies on.
 --
 -- TODO(playtest): confirm no interference with healInfection's <20 curability
 -- window and with ignored-part (Torso_Upper etc.) infections, which must NOT be
@@ -24,7 +25,7 @@ local StaticData = require("TOC/StaticData")
 ---@class ServerDamageSanitizer
 local ServerDamageSanitizer = {}
 
----Clear bite/infection state on the cut limbs of one player. Idempotent:
+---Clear every injury on the cut limbs of one player. Idempotent:
 ---re-running on clean state is a cheap no-op loop, safe under double execution
 ---(e.g. listen-server host) and repeated client requests.
 ---@param playerObj IsoPlayer
@@ -46,13 +47,11 @@ function ServerDamageSanitizer.SanitizePlayer(playerObj)
         if dcInst:getIsCut(limbName) then
             local bptEnum = StaticData.LIMBS_TO_BODYLOCS_IND_BPT[limbName]
             local part = bptEnum and bd:getBodyPart(bptEnum) or nil
-            if part and (part:bitten() or part:IsInfected()) then
-                TOC_DEBUG.print("ServerDamageSanitizer: clearing bite on missing limb - " .. limbName)
-                part:SetBitten(false)
-                if part.setBiteTime then part:setBiteTime(0) end
-                part:SetInfected(false)
-                if part.setInfected then part:setInfected(false) end
-                if part.setInfectionTime then part:setInfectionTime(0) end
+            if part and CutLimbHeal.HasAnything(part) then
+                -- the SAME list the client clears (glass, cuts, bullets, burns too): if the server kept any of it,
+                -- its next body-damage push brought the wound back on the client, in a loop
+                TOC_DEBUG.print("ServerDamageSanitizer: clearing injuries on missing limb - " .. limbName)
+                CutLimbHeal.Clear(part)
                 syncBodyPart(part, 0xFFFFFFFFFFF)
                 dcInst:setIsInfected(limbName, false)
             elseif part and dcInst:getIsInfected(limbName) and not part:HasInjury() then

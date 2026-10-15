@@ -1,4 +1,5 @@
 [h1]The Only Cure+ · Field Surgery[/h1]
+[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381
 [i]A bite is not the end. A saw, a steady hand and a bit of luck can still save you. Then you learn to live with what is left.[/i]
 
 A complete fork of ZioPao's [b]The Only Cure[/b] for [b]Build 42[/b], rebuilt around three ideas: surgery should be a decision with real risk, the body you keep should matter, and prostheses should look like they belong on the character.
@@ -36,8 +37,8 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 [h2]✚ Legs, crutches and crawling[/h2]
 [list]
 [*]Legs can be amputated at the foot, the calf or the thigh.
-[*]One leg missing: you need a [b]crutch[/b] (craftable) or a prosthesis. On a crutch you limp, you cannot run, and your stamina drains.
-[*]Both legs missing with no prosthesis: you [b]crawl[/b], on the ground, slowly. Zombies do not care that you are down there.
+[*]One leg missing: without a [b]crutch[/b] (craftable) or a prosthesis you can only crawl. On a crutch you limp, you cannot run, and your stamina drains. Leg amputee traits start with a crutch.
+[*]Both legs missing with no prosthesis: you [b]crawl[/b], on the ground, slowly. Zombies will still find you down there.
 [*][b]Crawler zombies[/b]: hit a zombie's leg hard enough and it drops and crawls after you (sandbox option).
 [*]Severed limbs are items. Drop them, carry them, or do not ask.
 [/list]
@@ -57,6 +58,10 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [b]3.1.0[/b]
 [list]
 [*]New: Ash-style chainsaw arm (right arm), with its own models for hand and forearm amputations, petrol tank, pull-start, synthesized engine sounds and noise that draws zombies.
+[*]Fixed: console errors with [b]Bandits[/b] (its NPCs fire the equip events; they were treated as players).
+[*]Fixed: glass shards and cuts on an amputated limb kept coming back in multiplayer, and healing a stump could add a burn.
+[*]Fixed: characters created with a leg amputee trait could not move. They now start with a crutch, and one leg without a crutch crawls instead of freezing.
+[*]Fixed: prostheses from recipes and loot are left-side items and could not be worn on a right stump. They now go on the amputated side by themselves.
 [/list]
 [b]3.0.1[/b]
 [list]

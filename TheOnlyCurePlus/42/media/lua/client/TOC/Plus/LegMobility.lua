@@ -1,6 +1,6 @@
 -- TOC+ LegMobility: what a leg amputee can do. Runs for the local player only.
---  NONE   -> a leg is missing and there is no crutch / prosthesis: cannot move
---  CRAWL  -> both legs missing and no prosthesis: crawls on the ground (animation variable TOC_Crawl
+--  NONE   -> no longer produced (kept for API users): a missing leg without crutch now crawls
+--  CRAWL  -> a leg missing with no crutch, or both legs with no prosthesis: crawls on the ground (animation variable TOC_Crawl
 --            selects the zombie crawler clips added in media/AnimSets/player/*/TOC_Crawl*.xml)
 --  CRUTCH -> crutch in a hand: walk only, no running, stamina drains while moving
 --  PEG    -> peg leg: run but never sprint
@@ -18,6 +18,7 @@ LegMobility.CRAWL_VARS = { "TOC_Crawl", "TOC_Crawl2", "TOC_Crawl3", "TOC_Crawl4"
 LegMobility.tick = 0
 LegMobility.lastHint = 0
 LegMobility.current = StaticData.MOBILITY.FULL
+LegMobility.oneLeg = false     -- crawling with one leg left: the hint asks for a crutch
 
 local CRUTCH_TYPE = "TOC.Crutch"
 
@@ -35,6 +36,7 @@ function LegMobility.Evaluate(player)
     local dc = DataController.GetReady(player:getUsername())
     if not dc or not dc:getIsAnyLimbCut() then return StaticData.MOBILITY.FULL end
     local missing, pegs = 0, 0
+    LegMobility.oneLeg = false
     for _, side in ipairs(StaticData.SIDES_STR) do
         if dc:getIsCut("Foot_" .. side) then
             local t = dc:getProstType("Bottom_" .. side)
@@ -49,7 +51,11 @@ function LegMobility.Evaluate(player)
     end
     if missing >= 2 then return StaticData.MOBILITY.CRAWL end
     if missing == 1 then
-        return LegMobility.HasCrutch(player) and StaticData.MOBILITY.CRUTCH or StaticData.MOBILITY.NONE
+        if LegMobility.HasCrutch(player) then return StaticData.MOBILITY.CRUTCH end
+        -- one leg and nothing to lean on: crawl. It used to be NONE (frozen in place), and a character created with
+        -- a leg amputee trait had no way to move at all.
+        LegMobility.oneLeg = true
+        return StaticData.MOBILITY.CRAWL
     end
     if pegs > 0 then return StaticData.MOBILITY.PEG end
     return StaticData.MOBILITY.FULL
@@ -114,7 +120,7 @@ function LegMobility.Apply(player)
         local now = getTimestampMs and getTimestampMs() or 0
         if not inVehicle and now - LegMobility.lastHint > 20000 then
             LegMobility.lastHint = now
-            Messages.Say(player, getText("IGUI_TOC_Crawling"), true)
+            Messages.Say(player, getText(LegMobility.oneLeg and "IGUI_TOC_NeedCrutch" or "IGUI_TOC_Crawling"), true)
         end
     elseif m == StaticData.MOBILITY.NONE then
         setBlocked(player, not inVehicle)
@@ -162,7 +168,7 @@ function LegMobility.Reset(player)
 end
 
 local function OnPlayerUpdate(player)
-    if not player or not player:isLocalPlayer() then return end
+    if not player or not instanceof(player, "IsoPlayer") or not player:isLocalPlayer() then return end
     LegMobility.tick = LegMobility.tick + 1
     if LegMobility.tick % 10 ~= 0 then return end
     local ok, err = pcall(LegMobility.Apply, player)

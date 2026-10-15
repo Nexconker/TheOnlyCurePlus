@@ -1,4 +1,5 @@
 [h1]The Only Cure+ · Cirugía de campo[/h1]
+[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381
 [i]Un mordisco no es el final. Una sierra, pulso y algo de suerte todavía pueden salvarte. Después aprendes a vivir con lo que queda.[/i]
 
 Fork completo de [b]The Only Cure[/b] de ZioPao para [b]Build 42[/b], reconstruido sobre tres ideas: operar debe ser una decisión con riesgo real, el cuerpo que te queda debe importar, y las prótesis deben parecer parte del personaje.
@@ -36,8 +37,8 @@ Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites
 [h2]✚ Piernas, muletas y arrastre[/h2]
 [list]
 [*]Las piernas se amputan por el pie, la pantorrilla o el muslo.
-[*]Sin una pierna necesitas [b]muleta[/b] (fabricable) o prótesis. Con muleta cojeas, no puedes correr y la resistencia se gasta.
-[*]Sin las dos piernas y sin prótesis te [b]arrastras[/b] por el suelo, despacio. A los zombis les da igual que estés ahí abajo.
+[*]Sin una pierna, sin [b]muleta[/b] (fabricable) ni prótesis solo puedes arrastrarte. Con muleta cojeas, no puedes correr y la resistencia se gasta. Los rasgos de amputado de pierna empiezan con muleta.
+[*]Sin las dos piernas y sin prótesis te [b]arrastras[/b] por el suelo, despacio. Los zombis te encontrarán igual ahí abajo.
 [*][b]Zombis rastreros[/b]: golpea fuerte la pierna de un zombi y caerá para arrastrarse tras de ti (opción de sandbox).
 [*]Las extremidades cortadas son ítems. Suéltalas, cárgalas, o no preguntes.
 [/list]
@@ -57,6 +58,10 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [b]3.1.0[/b]
 [list]
 [*]Nuevo: brazo motosierra estilo Ash (brazo derecho), con modelos propios para amputación de mano y de antebrazo, depósito de gasolina, arranque por tirón, sonidos de motor sintetizados y ruido que atrae zombis.
+[*]Corregido: errores en consola con [b]Bandits[/b] (sus NPC lanzan los eventos de equipar y se trataban como jugadores).
+[*]Corregido: en multijugador los cristales y cortes de un miembro amputado volvían a aparecer, y curar un muñón podía añadir una quemadura.
+[*]Corregido: los personajes creados con un rasgo de amputado de pierna no podían moverse. Ahora empiezan con muleta, y con una pierna y sin muleta se arrastran en vez de quedarse quietos.
+[*]Corregido: las prótesis de recetas y botín son del lado izquierdo y no se podían poner en un muñón derecho. Ahora se colocan solas en el lado amputado.
 [/list]
 [b]3.0.1[/b]
 [list]

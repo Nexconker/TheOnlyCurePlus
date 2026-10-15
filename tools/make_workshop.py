@@ -53,9 +53,9 @@ EN = {
     "ALCANCE EN CASILLAS": "REACH IN TILES",
     "SIN PIERNAS": "NO LEGS?", "ARRÁSTRATE": "THEN CRAWL",
     "Sin las dos piernas y sin prótesis, el personaje se arrastra por el suelo.": "With both legs gone and no prosthesis, the character crawls on the ground.",
-    "A los zombis les da igual que estés ahí abajo.": "Zombies do not care that you are down there.",
+    "Los zombis te encontrarán igual ahí abajo.": "Zombies will still find you down there.",
     "Animación del rastrero en todos los estados": "Crawler animation in every state", "Ni correr ni esprintar": "No running, no sprinting",
-    "Con una pierna: muleta y cojera": "One leg: crutch and a limp", "Una prótesis te devuelve a pie": "A prosthesis puts you back on your feet",
+    "Con una pierna: muleta o arrastrarse": "One leg: crutch, or crawl", "Una prótesis te devuelve a pie": "A prosthesis puts you back on your feet",
 }
 def tr(text):
     return EN.get(text, text) if LANG == "en" else text
@@ -311,10 +311,10 @@ def make_crawl_card(w=1600, h=900):
     d.text((40, 130), "ARRÁSTRATE", font=font(F_TITLE, 96), fill=RED)
     d.rectangle((40, 236, 560, 243), fill=RED)
     d.text((40, 262), "Sin las dos piernas y sin prótesis, el personaje se arrastra por el suelo.", font=font(F_BODY, 32), fill=(215, 210, 200))
-    d.text((40, 304), "A los zombis les da igual que estés ahí abajo.", font=font(F_BODY, 32), fill=GREY)
+    d.text((40, 304), "Los zombis te encontrarán igual ahí abajo.", font=font(F_BODY, 32), fill=GREY)
     d.rectangle((0, h - 100, w, h), fill=(0, 0, 0, 170))
     fb = font(F_BODY, 26); x = 40; yy = h - 86
-    for b in ("Animación del rastrero en todos los estados", "Ni correr ni esprintar", "Con una pierna: muleta y cojera", "Una prótesis te devuelve a pie"):
+    for b in ("Animación del rastrero en todos los estados", "Ni correr ni esprintar", "Con una pierna: muleta o arrastrarse", "Una prótesis te devuelve a pie"):
         tw = d.textlength(b, font=fb)
         if x + tw + 30 > w - 40: x = 40; yy += 34
         d.rectangle((x, yy + 8, x + 10, yy + 18), fill=RED); d.text((x + 20, yy), b, font=fb, fill=(220, 215, 205)); x += tw + 60

@@ -93,6 +93,12 @@ CHECKS = {
                                            "getScriptItem"],
     "zombie/entity/components/fluids/FluidContainer": ["contains", "getAmount", "adjustAmount"],
     "zombie/scripting/objects/Item": ["getDisplayName", "containsWeaponCategory"],
+    # 3.1.0: limpieza de miembros amputados compartida cliente/servidor (TOC/Plus/CutLimbHeal) y muleta inicial
+    "zombie/characters/BodyDamage/BodyPart#heal": ["HasInjury", "haveGlass", "bitten", "IsInfected", "setFractureTime", "setScratched",
+                                                   "setScratchTime", "setBleeding", "setBleedingTime", "SetBitten", "setBiteTime", "SetInfected",
+                                                   "setInfectedWound", "setWoundInfectionLevel", "setCut", "setCutTime", "setDeepWounded",
+                                                   "setDeepWoundTime", "setHaveBullet", "setHaveGlass", "setSplint", "setBurnTime", "setNeedBurnWash"],
+    "zombie/inventory/ItemContainer#trait": ["containsTypeRecurse"],
 }
 bad = 0
 for key, ms in CHECKS.items():

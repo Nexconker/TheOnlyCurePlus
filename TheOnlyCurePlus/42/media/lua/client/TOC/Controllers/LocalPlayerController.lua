@@ -71,28 +71,10 @@ end
 ----------------------------------------------------------
 --* Health *--
 
----Clear every injury on a body part that no longer exists
+---Clear every injury on a body part that no longer exists (same list as the server sanitizer: TOC/Plus/CutLimbHeal)
 ---@param bodyPart BodyPart
 function LocalPlayerController.HealArea(bodyPart)
-    pcall(function()
-        bodyPart:setFractureTime(0)
-        bodyPart:setScratched(false, true)
-        bodyPart:setScratchTime(0)
-        bodyPart:setBleeding(false)
-        bodyPart:setBleedingTime(0)
-        bodyPart:SetBitten(false)
-        bodyPart:setBiteTime(0)
-        bodyPart:SetInfected(false)
-        bodyPart:setInfectedWound(false)
-        bodyPart:setCut(false)
-        bodyPart:setCutTime(0)
-        bodyPart:setDeepWounded(false)
-        bodyPart:setDeepWoundTime(0)
-        bodyPart:setHaveBullet(false, 0)
-        bodyPart:setHaveGlass(false)
-        bodyPart:setSplint(false, 0)
-        bodyPart:setBurned(false)
-    end)
+    require("TOC/Plus/CutLimbHeal").Clear(bodyPart)
 end
 
 ---@param bodyDamage BodyDamage
@@ -200,7 +182,7 @@ function LocalPlayerController.PollCutLimbsForBites(character)
         if dcInst:getIsCut(limbName) then
             local bptEnum = StaticData.LIMBS_TO_BODYLOCS_IND_BPT[limbName]
             local bodyPart = bptEnum and bd:getBodyPart(bptEnum) or nil
-            if bodyPart and (bodyPart:bitten() or bodyPart:IsInfected() or bodyPart:HasInjury()) then
+            if bodyPart and require("TOC/Plus/CutLimbHeal").HasAnything(bodyPart) then
                 LocalPlayerController.HealArea(bodyPart)
                 if isClient() then
                     local lastReq = LocalPlayerController.sanitizeLastRequestTick[limbName] or -LocalPlayerController.sanitizeRequestCooldown

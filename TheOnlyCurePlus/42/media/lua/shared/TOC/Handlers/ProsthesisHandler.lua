@@ -41,14 +41,33 @@ function ProsthesisHandler.GetTier(fullType)
     return StaticData.GetProsthesisTier(fullType)
 end
 
----Can the LOCAL player wear this prosthesis? Needs an amputation on that side, in that group,
----and not the highest part of the group (upper arm / upper leg: nothing to strap it to).
+---Recipes and loot give the LEFT variant. If that side has no amputation in this group but the other side does,
+---the prosthesis goes on the other side (same tier and level): the player does not have to find the
+---"install on the right" option. Tiers that exist on one side only (chainsaw arm) are never flipped.
+---@param username string
+---@param fullType string
+---@return string fullType
+function ProsthesisHandler.ResolveSide(username, fullType)
+    local tier = ProsthesisHandler.GetTier(fullType)
+    if not tier then return fullType end
+    local side = CommonMethods.GetSide(fullType)
+    local other = side == "L" and "R" or "L"
+    local highest = CachedDataHandler.GetHighestAmputatedLimbs(username)
+    if not highest or highest[tier.group .. "_" .. side] or not highest[tier.group .. "_" .. other] then return fullType end
+    local flipped = string.gsub(fullType, "_" .. side .. "$", "_" .. other)
+    if flipped ~= fullType and getScriptManager():FindItem(flipped) then return flipped end
+    return fullType
+end
+
+---Can the LOCAL player wear this prosthesis? Needs an amputation on that side (or on the other side, see
+---ResolveSide), in that group, and not the highest part of the group (upper arm / upper leg: nothing to strap it to).
 ---@param fullType string
 ---@param player IsoPlayer?
 ---@return boolean
 function ProsthesisHandler.CheckIfEquippable(fullType, player)
     player = player or getPlayer()
     if not player then return false end
+    fullType = ProsthesisHandler.ResolveSide(player:getUsername(), fullType)
     local side = CommonMethods.GetSide(fullType)
     local tier = ProsthesisHandler.GetTier(fullType)
     if not tier then return false end
@@ -68,6 +87,7 @@ end
 function ProsthesisHandler.GetFittedType(username, fullType)
     local tier = ProsthesisHandler.GetTier(fullType)
     if not tier then return fullType end
+    fullType = ProsthesisHandler.ResolveSide(username, fullType)
     local side = CommonMethods.GetSide(fullType)
     local highest = CachedDataHandler.GetHighestAmputatedLimbs(username)
     local hal = highest and highest[tier.group .. "_" .. side]

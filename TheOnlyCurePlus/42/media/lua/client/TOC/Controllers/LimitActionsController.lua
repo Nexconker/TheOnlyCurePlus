@@ -142,7 +142,8 @@ end
 ---@param item InventoryItem
 ---@param primary boolean
 local function GuardEquip(player, item, primary)
-    if not player or not item or not player:isLocalPlayer() then return end
+    -- other mods fire this event for NPCs too (Bandits: its bandits are IsoZombie, without isLocalPlayer)
+    if not player or not item or not instanceof(player, "IsoPlayer") or not player:isLocalPlayer() then return end
     local dcInst = DataController.GetReady(player:getUsername())
     if not dcInst or not dcInst:getIsAnyLimbCut() then return end
     local side = primary and "R" or "L"

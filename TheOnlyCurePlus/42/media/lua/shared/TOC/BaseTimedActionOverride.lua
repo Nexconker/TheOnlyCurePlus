@@ -70,6 +70,7 @@ local og_ISBaseTimedAction_perform = ISBaseTimedAction.perform
 function ISBaseTimedAction:perform()
     og_ISBaseTimedAction_perform(self)
     if isServer() or not self.character or self.skipTOC then return end
+    if not instanceof(self.character, "IsoPlayer") then return end     -- NPC mods (Bandits) run actions on IsoZombie
     if isClient() and not self.character:isLocalPlayer() then return end
     local username = self.character:getUsername()
     local dcInst = DataController.GetReady(username)

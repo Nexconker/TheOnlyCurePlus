@@ -195,6 +195,14 @@ function ServerRelayCommands.RelayApplyTraitAmputation(playerObj, args)
     dcInst:apply(playerObj)
     local ItemsController = require("TOC/Controllers/ItemsController")
     ItemsController.Player.OverrideAmputationItemVisuals(playerObj, args.limbName, true)
+    -- a character who starts without a leg starts with a crutch (without one they can only crawl)
+    if string.find(args.limbName, "Leg_", 1, true) or string.find(args.limbName, "Foot_", 1, true) then
+        local inv = playerObj:getInventory()
+        if not inv:containsTypeRecurse("TOC.Crutch") then
+            local crutch = inv:AddItem("TOC.Crutch")
+            if crutch and isServer() and sendAddItemToContainer then sendAddItemToContainer(inv, crutch) end
+        end
+    end
 end
 
 --* PROSTHESES *--

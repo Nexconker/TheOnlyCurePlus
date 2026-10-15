@@ -10,6 +10,15 @@
   data, refuel from any petrol container, noise that draws zombies. Off, it is a heavy club.
 - Synthesized engine sounds (`tools/make_chainsaw_sounds.py`); recipe at Welding 5 / Mechanics 4; repairs; icon;
   text in the 10 languages.
+- Fixed: console errors with Bandits. Its NPCs (IsoZombie) fire `OnEquipPrimary/Secondary` and `GuardEquip` called
+  `isLocalPlayer()` on them; every hook that takes a character now checks `instanceof(x, "IsoPlayer")` first.
+- Fixed: glass shards and cuts on an amputated limb came back in multiplayer. The client cleaned them but the server
+  sanitizer only cleared bites, so the server pushed the wound back. Both now use `TOC/Plus/CutLimbHeal`. Also
+  removed `setBurned(false)`: in Build 42 `setBurned()` takes no argument and rolls a new burn.
+- Fixed: a character created with a leg amputee trait could not move. Leg traits now give a crutch, and one leg
+  without a crutch crawls instead of freezing in place.
+- Fixed: prostheses from recipes and loot are left-side items and could not be worn on a right stump. They now go on
+  the amputated side automatically (`ProsthesisHandler.ResolveSide`).
 
 ## 3.0.1
 

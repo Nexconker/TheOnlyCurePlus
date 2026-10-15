@@ -11,7 +11,7 @@ local PROFESSIONS = { "doctor", "nurse", "veterinarian", "paramedic", "medic", "
 
 ---@param player IsoPlayer
 function Knowledge.GrantProfession(player)
-    if not player or not player:isLocalPlayer() then return end
+    if not player or not instanceof(player, "IsoPlayer") or not player:isLocalPlayer() then return end
     if SurgeryPlan.KnowsSurgery(player) then return end
     local desc = player:getDescriptor()
     if not desc then return end
