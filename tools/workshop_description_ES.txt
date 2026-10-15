@@ -78,3 +78,8 @@ Activa [b]solo uno[/b] de The Only Cure o The Only Cure+: comparten ítems y dat
 [h2]Créditos[/h2]
 Mod original: [b]ZioPao[/b] y colaboradores de The Only Cure (GPL-3.0). Código de ubicaciones de cuerpo: RabenRabo. Este fork mantiene la licencia: GPL-3.0, código incluido.
 Reporta fallos en [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (o aquí) con tu console.txt y una captura. ¿Una prótesis atraviesa algo? Dime cuál y con qué prenda.
+
+[h2]Apoyo[/h2]
+The Only Cure+ es gratis y lo seguirá siendo. Si te gusta y quieres ayudar, puedes invitarme a un café en Ko-fi:
+[url=https://ko-fi.com/nexconker][img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/kofi_banner.png[/img][/url]
+[url=https://ko-fi.com/nexconker]ko-fi.com/nexconker[/url]
