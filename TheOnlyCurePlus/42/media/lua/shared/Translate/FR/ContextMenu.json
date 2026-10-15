@@ -28,5 +28,10 @@
     "ContextMenu_Limb_UpperLeg_R": "Cuisse droite",
     "ContextMenu_PutTourniquetLegLeft": "Mettre un garrot sur la jambe gauche",
     "ContextMenu_PutTourniquetLegRight": "Mettre un garrot sur la jambe droite",
-    "ContextMenu_TOC_ExamineWound": "Examiner la plaie"
+    "ContextMenu_TOC_ExamineWound": "Examiner la plaie",
+    "ContextMenu_TOC_SawMenu": "Bras tronçonneuse (essence %1)",
+    "ContextMenu_TOC_SawStart": "Tirer le lanceur",
+    "ContextMenu_TOC_SawStop": "Couper le moteur",
+    "ContextMenu_TOC_SawRefuel": "Faire le plein avec %1",
+    "ContextMenu_TOC_SawNoPetrol": "Faire le plein (pas d'essence dans l'inventaire)"
 }

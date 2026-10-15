@@ -74,6 +74,37 @@ module TOC
 		}
 	}
 
+	/* Ash-style chainsaw arm (right arm only: the game's chainsaw animations are right-handed).
+	   Engine parts = the motor, a hand saw gives up its teeth for the chain. Starts with an empty tank. */
+	craftRecipe Craft_Prosthetic_ChainsawArm
+	{
+		timedAction = Welding,
+		Time = 400,
+		Tags = InHandCraft;Welding,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:5;Mechanics:4,
+		xpAward = MetalWelding:60;Mechanics:40,
+		inputs
+		{
+			item 4 [Base.EngineParts],
+			item 2 [Base.SmallSheetMetal],
+			item 1 [Base.MetalPipe],
+			item 6 [Base.Screws],
+			item 1 [Base.Saw;Base.GardenSaw;Base.SmallSaw;Base.CrudeSaw],
+			item 2 [Base.LeatherStrips;Base.LeatherStripsDirty],
+			item 4 [Base.BlowTorch] flags[DontRecordInput],
+			item 3 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:weldingmask] mode:keep,
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:wrench] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_ChainsawArm_R,
+		}
+	}
+
 	/************* Prosthetic legs (TOC+) *******************/
 	craftRecipe Craft_Prosthetic_PegLeg
 	{

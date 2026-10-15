@@ -96,5 +96,13 @@
     "IGUI_TOC_HP_Botched": "Tentativo di amputazione fallito",
     "IGUI_TOC_HP_Diag_infected": "Esaminata: infetta (%1 h fa)",
     "IGUI_TOC_HP_Diag_clean": "Esaminata: pulita (%1 h fa)",
-    "IGUI_TOC_HP_Diag_unsure": "Esaminata: incerta (%1 h fa)"
+    "IGUI_TOC_HP_Diag_unsure": "Esaminata: incerta (%1 h fa)",
+    "IGUI_TOC_SawStarted": "La motosega ruggisce.",
+    "IGUI_TOC_SawSputters": "Scoppietta e si spegne. Tira ancora.",
+    "IGUI_TOC_SawNoFuel": "Il serbatoio è vuoto: rifornisci di benzina.",
+    "IGUI_TOC_SawStalled": "La motosega resta a secco e si spegne.",
+    "IGUI_TOC_SawRunning": "Prima spegni il motore.",
+    "IGUI_TOC_SawFull": "Il serbatoio è pieno.",
+    "IGUI_TOC_SawArmBusy": "La tua mano destra è una motosega.",
+    "IGUI_TOC_SawRefueling": "Rifornimento"
 }

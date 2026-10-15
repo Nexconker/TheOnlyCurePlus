@@ -1,0 +1,27 @@
+{
+  "ContextMenu.json": {
+    "ContextMenu_TOC_SawMenu": "Chainsaw arm (fuel %1)",
+    "ContextMenu_TOC_SawStart": "Pull the starter cord",
+    "ContextMenu_TOC_SawStop": "Stop the engine",
+    "ContextMenu_TOC_SawRefuel": "Refuel from %1",
+    "ContextMenu_TOC_SawNoPetrol": "Refuel (no petrol in your inventory)"
+  },
+  "IG_UI.json": {
+    "IGUI_TOC_SawStarted": "The chainsaw roars to life.",
+    "IGUI_TOC_SawSputters": "It sputters and dies. Pull again.",
+    "IGUI_TOC_SawNoFuel": "The tank is empty: refuel it with petrol.",
+    "IGUI_TOC_SawStalled": "The chainsaw runs dry and stalls.",
+    "IGUI_TOC_SawRunning": "Stop the engine first.",
+    "IGUI_TOC_SawFull": "The tank is full.",
+    "IGUI_TOC_SawArmBusy": "Your right hand is a chainsaw.",
+    "IGUI_TOC_SawRefueling": "Refueling"
+  },
+  "Recipes.json": {
+    "Recipe_Craft_Prosthetic_ChainsawArm": "Build Chainsaw Arm"
+  },
+  "ItemName.json": {
+    "TOC.Prost_ChainsawArm_R": "Chainsaw Arm",
+    "TOC.Prost_ChainsawArmWrist_R": "Chainsaw Arm",
+    "TOC.MountedChainsaw": "Mounted Chainsaw"
+  }
+}

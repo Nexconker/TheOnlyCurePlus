@@ -49,6 +49,14 @@
         <guid>7951a0fb-188e-4d7b-9f1c-9e1e60d2607c</guid>
     </files>
     <files>
+        <path>media/clothing/clothingItems/Prost_ChainsawArmWrist_R.xml</path>
+        <guid>b76e1cb6-8e96-4830-9952-6f9ae6e200ba</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_ChainsawArm_R.xml</path>
+        <guid>baeedae5-1fbf-4f45-ac74-804a0af7f863</guid>
+    </files>
+    <files>
         <path>media/clothing/clothingItems/Prost_HookArmWrist_L.xml</path>
         <guid>61b0ce95-a922-43c1-8b30-ac8c78ac41a7</guid>
     </files>

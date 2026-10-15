@@ -1,0 +1,59 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+
+	/* Mounted chainsaw (TOC+), Ash style. Never crafted or looted: lua/client/TOC/Plus/ChainsawArm.lua creates it while
+	   the chainsaw arm prosthesis (Prost_ChainsawArm_R) is worn, keeps it in the right hand and removes it when the
+	   arm comes off. The visible saw is part of the prosthesis model (rigid on the forearm, bar in line with it);
+	   this item only carries the combat stats and uses one-handed animations, so the left hand stays free.
+	   Stats below = engine running; with the engine off ChainsawArm.lua turns it into a heavy club.
+	   It never breaks: wear goes to the prosthesis. */
+	item MountedChainsaw
+	{
+		DisplayCategory = Prosthesis,
+		ItemType = base:weapon,
+		Weight = 0.1,
+		Icon = ChainsawArm,
+		BaseSpeed = 0.95,
+		BreakSound = AxeBreak,
+		Categories = base:axe,
+		ConditionLowerChanceOneIn = 1000000,
+		ConditionMax = 100,
+		CritDmgMultiplier = 3.0,
+		CriticalChance = 30.0,
+		DamageCategory = Slash,
+		DamageMakeHole = true,
+		DoorDamage = 40,
+		DoorHitSound = TOC_ChainsawCut,
+		DropSound = AxeDrop,
+		HitAngleMod = -30.0,
+		HitFloorSound = TOC_ChainsawCut,
+		HitSound = TOC_ChainsawCut,
+		KnockBackOnNoDeath = false,
+		KnockdownMod = 1.0,
+		MaxDamage = 3.4,
+		MaxHitcount = 3,
+		MaxRange = 1.25,
+		MinAngle = 0.7,
+		MinDamage = 2.2,
+		MinRange = 0.61,
+		MinimumSwingtime = 3.5,
+		PushBackMod = 0.2,
+		SplatBloodOnNoDeath = true,
+		SplatNumber = 6,
+		SplatSize = 6,
+		SubCategory = Swinging,
+		SwingAmountBeforeImpact = 0.002,
+		SwingAnim = Bat,
+		SwingSound = TOC_ChainsawRev,
+		Swingtime = 3.5,
+		TreeDamage = 60,
+		WeaponLength = 0.42,
+		WeaponSprite = TOC_Invisible,
+		WorldStaticModel = prostheticArmChainsaw,
+		Tags = base:choptree;base:cutplant,
+	}
+}

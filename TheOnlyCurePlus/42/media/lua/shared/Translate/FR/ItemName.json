@@ -58,5 +58,8 @@
     "TOC.Prost_MedicalLegAnkle_L": "Prothèse de jambe médicale",
     "TOC.Prost_MedicalLegAnkle_R": "Prothèse de jambe médicale",
     "TOC.Prost_MedicalLegThigh_L": "Prothèse de jambe médicale",
-    "TOC.Prost_MedicalLegThigh_R": "Prothèse de jambe médicale"
+    "TOC.Prost_MedicalLegThigh_R": "Prothèse de jambe médicale",
+    "TOC.Prost_ChainsawArm_R": "Bras tronçonneuse",
+    "TOC.Prost_ChainsawArmWrist_R": "Bras tronçonneuse",
+    "TOC.MountedChainsaw": "Tronçonneuse montée"
 }

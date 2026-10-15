@@ -8,7 +8,12 @@
   "ContextMenu_Limb_UpperLeg_R": "Coscia Destra",
   "ContextMenu_PutTourniquetLegLeft": "Metti laccio emostatico sulla gamba sinistra",
   "ContextMenu_PutTourniquetLegRight": "Metti laccio emostatico sulla gamba destra",
-  "ContextMenu_TOC_ExamineWound": "Esamina ferita"
+  "ContextMenu_TOC_ExamineWound": "Esamina ferita",
+  "ContextMenu_TOC_SawMenu": "Braccio motosega (benzina %1)",
+  "ContextMenu_TOC_SawStart": "Tira la corda d'avviamento",
+  "ContextMenu_TOC_SawStop": "Spegni il motore",
+  "ContextMenu_TOC_SawRefuel": "Fai rifornimento da %1",
+  "ContextMenu_TOC_SawNoPetrol": "Fai rifornimento (niente benzina nell'inventario)"
  },
  "IG_UI.json": {
   "IGUI_TOC_SW_Title": "Amputazione: %1",
@@ -89,7 +94,15 @@
   "IGUI_TOC_HP_Botched": "Tentativo di amputazione fallito",
   "IGUI_TOC_HP_Diag_infected": "Esaminata: infetta (%1 h fa)",
   "IGUI_TOC_HP_Diag_clean": "Esaminata: pulita (%1 h fa)",
-  "IGUI_TOC_HP_Diag_unsure": "Esaminata: incerta (%1 h fa)"
+  "IGUI_TOC_HP_Diag_unsure": "Esaminata: incerta (%1 h fa)",
+  "IGUI_TOC_SawStarted": "La motosega ruggisce.",
+  "IGUI_TOC_SawSputters": "Scoppietta e si spegne. Tira ancora.",
+  "IGUI_TOC_SawNoFuel": "Il serbatoio è vuoto: rifornisci di benzina.",
+  "IGUI_TOC_SawStalled": "La motosega resta a secco e si spegne.",
+  "IGUI_TOC_SawRunning": "Prima spegni il motore.",
+  "IGUI_TOC_SawFull": "Il serbatoio è pieno.",
+  "IGUI_TOC_SawArmBusy": "La tua mano destra è una motosega.",
+  "IGUI_TOC_SawRefueling": "Rifornimento"
  },
  "ItemName.json": {
   "TOC.Surg_Leg_Tourniquet_L": "Laccio emostatico per gamba",
@@ -113,7 +126,10 @@
   "TOC.Amputation_UpperArm_L": "Moncone",
   "TOC.Amputation_Foot_L": "Moncone",
   "TOC.Amputation_LowerLeg_L": "Moncone",
-  "TOC.Amputation_UpperLeg_L": "Moncone"
+  "TOC.Amputation_UpperLeg_L": "Moncone",
+  "TOC.Prost_ChainsawArm_R": "Braccio motosega",
+  "TOC.Prost_ChainsawArmWrist_R": "Braccio motosega",
+  "TOC.MountedChainsaw": "Motosega montata"
  },
  "Recipes.json": {
   "Recipe_Craft_Prosthetic_Arm": "Costruisci braccio meccanico",
@@ -123,7 +139,8 @@
   "Recipe_Craft_Prosthetic_MechLeg": "Costruisci gamba meccanica",
   "Recipe_Craft_Crutch": "Fabbrica stampella",
   "Recipe_FieldSurgery": "Assembla kit chirurgico da campo",
-  "Recipe_Disassemble_SurgicalKit": "Disfa kit chirurgico da campo"
+  "Recipe_Disassemble_SurgicalKit": "Disfa kit chirurgico da campo",
+  "Recipe_Craft_Prosthetic_ChainsawArm": "Costruisci braccio motosega"
  },
  "Sandbox.json": {
   "Sandbox_TOC_XPMultiplierSide_L": "Moltiplicatore XP lato sinistro",

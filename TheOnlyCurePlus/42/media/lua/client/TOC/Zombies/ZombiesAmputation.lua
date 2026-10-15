@@ -80,6 +80,8 @@ local function OnHitZombie(zombie, wielder, bodyPartType, weapon)
     if not script or not script.containsWeaponCategory or not WeaponCategory then return end
     local ok = script:containsWeaponCategory(WeaponCategory.AXE) or script:containsWeaponCategory(WeaponCategory.LONG_BLADE)
     if not ok then return end
+    -- the chainsaw arm only cuts limbs off with the engine running (off it is a club)
+    if weapon:getFullType() == "TOC.MountedChainsaw" and not require("TOC/Plus/ChainsawArm").IsRunning(wielder) then return end
 
     local limbName = bodyPartType and StaticData.BODYLOCS_TO_LIMBS_IND_STR[BodyPartType.ToString(bodyPartType)] or nil
     if not limbName then return end

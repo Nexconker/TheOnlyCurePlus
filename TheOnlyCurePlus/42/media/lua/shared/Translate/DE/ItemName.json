@@ -58,5 +58,8 @@
     "TOC.Prost_MedicalLegAnkle_L": "Medizinische Beinprothese",
     "TOC.Prost_MedicalLegAnkle_R": "Medizinische Beinprothese",
     "TOC.Prost_MedicalLegThigh_L": "Medizinische Beinprothese",
-    "TOC.Prost_MedicalLegThigh_R": "Medizinische Beinprothese"
+    "TOC.Prost_MedicalLegThigh_R": "Medizinische Beinprothese",
+    "TOC.Prost_ChainsawArm_R": "Kettensägenarm",
+    "TOC.Prost_ChainsawArmWrist_R": "Kettensägenarm",
+    "TOC.MountedChainsaw": "Montierte Kettensäge"
 }

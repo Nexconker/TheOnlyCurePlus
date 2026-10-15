@@ -363,6 +363,44 @@ module TOC
 		WorldStaticModel = prostheticArmMedical,
 	}
 
+	item Prost_ChainsawArm_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_ChainsawArm_R,
+		BodyLocation = toc:armprost_r,
+		Weight = 4.5,
+		CombatSpeedModifier = 0.9,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 30,
+		ConditionLowerChanceOneIn = 40,
+		Icon = ChainsawArm,
+		WorldStaticModel = prostheticArmChainsaw,
+	}
+
+	item Prost_ChainsawArmWrist_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_ChainsawArmWrist_R,
+		BodyLocation = toc:armprost_r,
+		Weight = 4.5,
+		CombatSpeedModifier = 0.9,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 30,
+		ConditionLowerChanceOneIn = 40,
+		Icon = ChainsawArm,
+		WorldStaticModel = prostheticArmChainsaw,
+	}
+
 	item Prost_PegLeg_L
 	{
 		ItemType = base:clothing,

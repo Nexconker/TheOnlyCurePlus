@@ -8,7 +8,12 @@
   "ContextMenu_Limb_UpperLeg_R": "Sağ Üst Bacak",
   "ContextMenu_PutTourniquetLegLeft": "Sol bacağa turnike tak",
   "ContextMenu_PutTourniquetLegRight": "Sağ bacağa turnike tak",
-  "ContextMenu_TOC_ExamineWound": "Yarayı İncele"
+  "ContextMenu_TOC_ExamineWound": "Yarayı İncele",
+  "ContextMenu_TOC_SawMenu": "Testere kol (yakıt %1)",
+  "ContextMenu_TOC_SawStart": "Marş ipini çek",
+  "ContextMenu_TOC_SawStop": "Motoru durdur",
+  "ContextMenu_TOC_SawRefuel": "Yakıt doldur: %1",
+  "ContextMenu_TOC_SawNoPetrol": "Yakıt doldur (envanterde benzin yok)"
  },
  "IG_UI.json": {
   "IGUI_TOC_SW_Title": "Amputasyon: %1",
@@ -89,7 +94,15 @@
   "IGUI_TOC_HP_Botched": "Başarısız amputasyon girişimi",
   "IGUI_TOC_HP_Diag_infected": "İncelendi: enfekte (%1 sa önce)",
   "IGUI_TOC_HP_Diag_clean": "İncelendi: temiz (%1 sa önce)",
-  "IGUI_TOC_HP_Diag_unsure": "İncelendi: belirsiz (%1 sa önce)"
+  "IGUI_TOC_HP_Diag_unsure": "İncelendi: belirsiz (%1 sa önce)",
+  "IGUI_TOC_SawStarted": "Motorlu testere kükreyerek çalıştı.",
+  "IGUI_TOC_SawSputters": "Öksürüp stop etti. Tekrar çek.",
+  "IGUI_TOC_SawNoFuel": "Depo boş: benzin doldur.",
+  "IGUI_TOC_SawStalled": "Testerenin yakıtı bitti ve stop etti.",
+  "IGUI_TOC_SawRunning": "Önce motoru durdur.",
+  "IGUI_TOC_SawFull": "Depo dolu.",
+  "IGUI_TOC_SawArmBusy": "Sağ elin bir motorlu testere.",
+  "IGUI_TOC_SawRefueling": "Yakıt dolduruluyor"
  },
  "ItemName.json": {
   "TOC.Surg_Leg_Tourniquet_L": "Bacak Turnikesi",
@@ -113,7 +126,10 @@
   "TOC.Amputation_UpperArm_L": "Güdük",
   "TOC.Amputation_Foot_L": "Güdük",
   "TOC.Amputation_LowerLeg_L": "Güdük",
-  "TOC.Amputation_UpperLeg_L": "Güdük"
+  "TOC.Amputation_UpperLeg_L": "Güdük",
+  "TOC.Prost_ChainsawArm_R": "Testere Kol",
+  "TOC.Prost_ChainsawArmWrist_R": "Testere Kol",
+  "TOC.MountedChainsaw": "Takılı Motorlu Testere"
  },
  "Recipes.json": {
   "Recipe_Craft_Prosthetic_Arm": "Mekanik Kol Yap",
@@ -123,7 +139,8 @@
   "Recipe_Craft_Prosthetic_MechLeg": "Mekanik Bacak Yap",
   "Recipe_Craft_Crutch": "Koltuk Değneği Yap",
   "Recipe_FieldSurgery": "Saha Cerrahi Kiti Hazırla",
-  "Recipe_Disassemble_SurgicalKit": "Saha Cerrahi Kitini Boşalt"
+  "Recipe_Disassemble_SurgicalKit": "Saha Cerrahi Kitini Boşalt",
+  "Recipe_Craft_Prosthetic_ChainsawArm": "Testere Kol Yap"
  },
  "Sandbox.json": {
   "Sandbox_TOC_XPMultiplierSide_L": "Sol Taraf XP Çarpanı",

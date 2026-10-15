@@ -28,5 +28,10 @@
     "ContextMenu_Limb_UpperLeg_R": "오른 허벅지",
     "ContextMenu_PutTourniquetLegLeft": "왼다리에 지혈대 착용",
     "ContextMenu_PutTourniquetLegRight": "오른다리에 지혈대 착용",
-    "ContextMenu_TOC_ExamineWound": "상처 살펴보기"
+    "ContextMenu_TOC_ExamineWound": "상처 살펴보기",
+    "ContextMenu_TOC_SawMenu": "전기톱 팔 (연료 %1)",
+    "ContextMenu_TOC_SawStart": "시동줄 당기기",
+    "ContextMenu_TOC_SawStop": "엔진 끄기",
+    "ContextMenu_TOC_SawRefuel": "%1(으)로 연료 넣기",
+    "ContextMenu_TOC_SawNoPetrol": "연료 넣기 (인벤토리에 휘발유 없음)"
 }

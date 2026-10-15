@@ -58,5 +58,8 @@
     "TOC.Prost_MedicalLegAnkle_L": "Медицинский протез ноги",
     "TOC.Prost_MedicalLegAnkle_R": "Медицинский протез ноги",
     "TOC.Prost_MedicalLegThigh_L": "Медицинский протез ноги",
-    "TOC.Prost_MedicalLegThigh_R": "Медицинский протез ноги"
+    "TOC.Prost_MedicalLegThigh_R": "Медицинский протез ноги",
+    "TOC.Prost_ChainsawArm_R": "Рука-бензопила",
+    "TOC.Prost_ChainsawArmWrist_R": "Рука-бензопила",
+    "TOC.MountedChainsaw": "Закреплённая бензопила"
 }

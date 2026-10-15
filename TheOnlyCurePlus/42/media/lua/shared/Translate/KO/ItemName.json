@@ -58,5 +58,8 @@
     "TOC.Prost_MedicalLegAnkle_L": "의료용 의족",
     "TOC.Prost_MedicalLegAnkle_R": "의료용 의족",
     "TOC.Prost_MedicalLegThigh_L": "의료용 의족",
-    "TOC.Prost_MedicalLegThigh_R": "의료용 의족"
+    "TOC.Prost_MedicalLegThigh_R": "의료용 의족",
+    "TOC.Prost_ChainsawArm_R": "전기톱 팔",
+    "TOC.Prost_ChainsawArmWrist_R": "전기톱 팔",
+    "TOC.MountedChainsaw": "장착된 전기톱"
 }

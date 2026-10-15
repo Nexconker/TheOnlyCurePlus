@@ -96,5 +96,13 @@
     "IGUI_TOC_HP_Botched": "Nieudana próba amputacji",
     "IGUI_TOC_HP_Diag_infected": "Zbadano: zakażona (%1 h temu)",
     "IGUI_TOC_HP_Diag_clean": "Zbadano: czysta (%1 h temu)",
-    "IGUI_TOC_HP_Diag_unsure": "Zbadano: wynik niepewny (%1 h temu)"
+    "IGUI_TOC_HP_Diag_unsure": "Zbadano: wynik niepewny (%1 h temu)",
+    "IGUI_TOC_SawStarted": "Piła ryczy, budząc się do życia.",
+    "IGUI_TOC_SawSputters": "Krztusi się i gaśnie. Pociągnij jeszcze raz.",
+    "IGUI_TOC_SawNoFuel": "Bak jest pusty: zatankuj benzynę.",
+    "IGUI_TOC_SawStalled": "Pile skończyło się paliwo i zgasła.",
+    "IGUI_TOC_SawRunning": "Najpierw wyłącz silnik.",
+    "IGUI_TOC_SawFull": "Bak jest pełny.",
+    "IGUI_TOC_SawArmBusy": "Twoja prawa ręka to piła łańcuchowa.",
+    "IGUI_TOC_SawRefueling": "Tankowanie"
 }

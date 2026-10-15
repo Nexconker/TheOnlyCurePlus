@@ -46,9 +46,12 @@ for part in ("Foot", "LowerLeg", "UpperLeg"):
 
 # prótesis: tier x nivel de amputación (mismo nombre de ítem con sufijo Wrist / Ankle / Thigh)
 PROST = {"PegArm": ("pegArm", ["", "Wrist"]), "HookArm": ("hookArm", ["", "Wrist"]), "NormalArm": ("normalArm", ["", "Wrist"]), "MedicalArm": ("medicalArm", ["", "Wrist"]),
-         "PegLeg": ("pegLeg", ["", "Ankle", "Thigh"]), "MechLeg": ("mechLeg", ["", "Ankle", "Thigh"]), "MedicalLeg": ("medicalLeg", ["", "Ankle", "Thigh"])}
+         "PegLeg": ("pegLeg", ["", "Ankle", "Thigh"]), "MechLeg": ("mechLeg", ["", "Ankle", "Thigh"]), "MedicalLeg": ("medicalLeg", ["", "Ankle", "Thigh"]),
+         "ChainsawArm": ("chainsawArm", ["", "Wrist"])}
+ONE_SIDE = {"ChainsawArm": "R"}      # brazo motosierra: sólo derecho
 for side in ("L", "R"):
     for tier, (model, levels) in PROST.items():
+        if ONE_SIDE.get(tier, side) != side: continue
         for lvl in levels:
             item = "Prost_%s%s_%s" % (tier, lvl, side)
             write(item, P("Prosthesis", "%s%s_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%s_%s_F" % (model, lvl, side)), [P("Prosthesis", model)],

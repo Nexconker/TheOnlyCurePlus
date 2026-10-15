@@ -87,4 +87,72 @@ module base {
           volume = 0.9,
         }
     }
+
+    /* TOC+ chainsaw arm (synthesized two-stroke engine, tools/make_chainsaw_sounds.py). With the engine off the
+       mounted chainsaw uses the vanilla EngineMaulSwing / EngineMaulHit. */
+    sound TOC_ChainsawIdle {
+        category = Item,
+        loop = true,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ChainsawIdle.wav,
+          distanceMax = 40,
+          volume = 0.7,
+        }
+    }
+
+    sound TOC_ChainsawRev {
+        category = Item,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ChainsawRev.wav,
+          distanceMax = 50,
+          volume = 1.0,
+        }
+    }
+
+    sound TOC_ChainsawCut {
+        category = Item,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ChainsawCut.wav,
+          distanceMax = 50,
+          volume = 1.0,
+        }
+    }
+
+    sound TOC_ChainsawStart {
+        category = Item,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ChainsawStart.wav,
+          distanceMax = 50,
+          volume = 1.0,
+        }
+    }
+
+    sound TOC_ChainsawPull {
+        category = Item,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ChainsawPull.wav,
+          distanceMax = 25,
+          volume = 0.9,
+        }
+    }
+
+    sound TOC_ChainsawStop {
+        category = Item,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ChainsawStop.wav,
+          distanceMax = 30,
+          volume = 0.8,
+        }
+    }
 }

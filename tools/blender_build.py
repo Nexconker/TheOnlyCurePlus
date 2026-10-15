@@ -37,6 +37,8 @@ BANDS = {
     "peg":  {"socket": (0.0, 0.25), "strap": (0.26, 0.29), "wood": (0.3, 0.9), "rubber": (0.92, 1.0)},
     "metal": {"socket": (0.0, 0.2), "shell": (0.2, 0.86), "dark": (0.86, 1.0)},
     "hook": {"socket": (0.0, 0.25), "strap": (0.26, 0.29), "steel": (0.3, 0.6), "dark": (0.6, 0.84), "rubber": (0.86, 0.94), "polished": (0.94, 1.0)},
+    # brazo motosierra: atlas 128x512, v 0..0.75 = chainsaw.png x3 (malla vanilla), v 0.75..1 = estas bandas
+    "saw": {"socket": (0.75, 0.80), "strap": (0.805, 0.815), "steel": (0.82, 0.89), "dark": (0.89, 0.95), "rubber": (0.95, 0.97), "polished": (0.97, 1.0)},
 }
 
 # ------------------------------------------------------------------ escena
@@ -49,6 +51,7 @@ class Builder:
     """Acumula las piezas de un modelo."""
     def __init__(self, name, tex):
         self.name, self.tex, self.parts = name, tex, []
+        self.raw = []       # mallas ya terminadas (coordenadas del juego) que se exportan tal cual: la motosierra vanilla
         self.coll = bpy.data.collections.new(name); ROOT.children.link(self.coll)
     def band(self, key): return BANDS[self.tex][key]
     def _obj(self, name, data, bone, band, axis):
@@ -413,6 +416,118 @@ def build_mech_arm(B, arm, level, medical):
     B.cyl("wristunit", tuple(s), tuple(s + ax * 0.012), (0.012, 0.018), (0.012, 0.019), bone, B.band("dark"), segs=16, bevel=0.002, ref=tuple(dn))
     hand(B, s + ax * 0.012, arm, bone, B.band("dark"), medical)
 
+def build_saw_arm(B, arm, level, saw):
+    """Brazo motosierra como el de Ash (Evil Dead 2): la motosierra vanilla sin asas con la espada como prolongación
+    del antebrazo, unida por un acople mecánico (abrazadera con orejeta y perno, vástago, dos pletinas laterales
+    atornilladas, piñón y placa de montaje). Todo rígido al hueso del antebrazo (como la mano mecánica).
+    Por nivel de amputación:
+      - Wrist (falta la mano): el antebrazo está entero -> brazal de cuero con dos férulas de acero y copa en la muñeca.
+      - ForeArm (falta medio antebrazo): encaje de cuero en el muñón y carcasa de acero que sustituye lo que falta."""
+    o, ax, dn, fr = arm_frame(arm); bone = arm["bones"]["forearm"]
+    cl = 0.0048
+    side = -dn                               # con el brazo colgando: -dn = hacia fuera, dn = hacia el cuerpo
+    def rivet(name, p, r=0.003): B.sphere(name, tuple(p), r, bone, B.band("polished"), segs=8)
+    def surf(t, d, extra, clr=cl):
+        r = [Vector(p) for p in arm_ring(arm, t, clr)]
+        c = sum(r, Vector()) / len(r)
+        return max(r, key=lambda p: (p - c).dot(d)) + d * extra
+    def hexbolt(name, p, axis, r=0.0042, hgt=0.003):
+        axis = norm(Vector(axis))
+        B.cyl(name, tuple(p), tuple(p + axis * hgt), r, r, bone, B.band("polished"), segs=6, bevel=0.0007,
+              ref=tuple(ax if abs(axis.dot(ax)) < 0.9 else fr))
+    # ---------------- parte del antebrazo según el nivel
+    if level == "Wrist":
+        ts = [0.03, 0.045, 0.06, 0.075, 0.09, 0.105, 0.118]
+        B.loft("bracer", smooth_rings([arm_ring(arm, t, cl) for t in ts]), bone, B.band("socket"), subsurf=1)
+        B.loft("rim", smooth_rings([arm_ring(arm, 0.026, cl + 0.003), arm_ring(arm, 0.03, cl + 0.005), arm_ring(arm, 0.038, cl + 0.004),
+                                   arm_ring(arm, 0.042, cl + 0.001)]), bone, B.band("dark"), subsurf=1)
+        arm_straps(B, arm, (0.052, 0.09), cl, bone)
+        for k, d in enumerate((fr, -fr)):        # férulas de acero delante y detrás del antebrazo
+            pts = [tuple(surf(t, d, 0.004)) for t in (0.036, 0.075, 0.112)]
+            B.curve("splint%d" % k, pts, [0.0032] * 3, bone, B.band("dark"), res=2)
+            rivet("splintrivet%da" % k, Vector(pts[0]) + d * 0.002); rivet("splintrivet%db" % k, Vector(pts[-1]) + d * 0.002)
+        cup = [arm_ring(arm, t, cl + e) for t, e in ((0.112, 0.0), (0.122, 0.0015), (0.134, 0.003), (0.142, 0.0035))]
+        B.loft("cup", smooth_rings(cup), bone, B.band("steel"), subsurf=1)
+        t_end = 0.142; end_cl = cl + 0.0035
+    else:
+        ts = [-0.015, 0.0, 0.015, 0.03, 0.045]
+        B.loft("socket", smooth_rings([arm_ring(arm, t, cl) for t in ts]), bone, B.band("socket"), subsurf=1)
+        B.loft("rim", smooth_rings([arm_ring(arm, -0.019, cl + 0.004), arm_ring(arm, -0.015, cl + 0.006), arm_ring(arm, -0.003, cl + 0.005),
+                                   arm_ring(arm, 0.001, cl + 0.001)]), bone, B.band("dark"), subsurf=1)
+        arm_straps(B, arm, (0.005, 0.034), cl, bone)
+        # carcasa de acero que sustituye la parte del antebrazo que falta (algo más fina que el brazo)
+        shell = [arm_ring(arm, t, e) for t, e in ((0.043, cl + 0.002), (0.055, 0.0), (0.075, -0.002), (0.095, -0.003), (0.112, -0.002), (0.12, -0.001))]
+        B.loft("shell", smooth_rings(shell), bone, B.band("steel"), subsurf=1)
+        B.loft("band", [arm_ring(arm, 0.043, cl + 0.0035), arm_ring(arm, 0.05, cl + 0.0035)], bone, B.band("dark"), subsurf=1)
+        for k, d in enumerate((fr, -fr)):        # nervios con remaches a lo largo de la carcasa
+            pts = [tuple(surf(t, d, 0.0025, -0.002)) for t in (0.056, 0.078, 0.1, 0.116)]
+            B.curve("rib%d" % k, pts, [0.003] * 4, bone, B.band("dark"), res=2)
+            for j, pp in enumerate(pts[::3]): rivet("ribrivet%d%d" % (k, j), Vector(pp) + d * 0.0022, 0.0026)
+        t_end = 0.12; end_cl = -0.001
+    # ---------------- acople
+    end = [Vector(p) for p in arm_ring(arm, t_end, end_cl)]
+    c_end = sum(end, Vector()) / len(end)
+    e_dn = max(abs((p - c_end).dot(dn)) for p in end) + 0.004
+    e_fr = max(abs((p - c_end).dot(fr)) for p in end) + 0.004
+    ho, hn = saw["body_half"]
+    L = 0.052                                # del extremo del antebrazo a la cara de la placa
+    # abrazadera (collar elíptico ajustado al extremo) con orejeta delante y perno pasante
+    B.cyl("collar", tuple(c_end - ax * 0.004), tuple(c_end + ax * 0.012), (e_dn, e_fr), (e_dn, e_fr), bone, B.band("dark"), segs=20, bevel=0.0018, ref=tuple(dn))
+    lug_c = c_end + ax * 0.004 + fr * (e_fr + 0.005)
+    for k, sg in enumerate((-1, 1)):
+        B.box("lug%d" % k, lug_c + dn * (sg * 0.0048), (0.0065, 0.0016, 0.0062), (tuple(ax), tuple(dn), tuple(fr)), bone, B.band("dark"), bevel=0.0008)
+    B.cyl("clampbolt", tuple(lug_c - dn * 0.011), tuple(lug_c + dn * 0.011), 0.0022, 0.0022, bone, B.band("polished"), segs=8, ref=tuple(ax))
+    hexbolt("nut0", lug_c + dn * 0.0064, dn, 0.0040, 0.0032); hexbolt("nut1", lug_c - dn * 0.0064, -dn, 0.0040, 0.0032)
+    # placa de montaje: rectángulo redondeado del tamaño del motor, biselada
+    def rr(center, a_, b_, e=4.0, n=24):
+        pts = []
+        for k in range(n):
+            th = 2 * math.pi * k / n; c_, s_ = math.cos(th), math.sin(th)
+            r = 1.0 / ((abs(c_) ** e + abs(s_) ** e) ** (1.0 / e))
+            pts.append(tuple(center + dn * (a_ * r * c_) + fr * (b_ * r * s_)))
+        return pts
+    P_top, P_bot = c_end + ax * (L - 0.009), c_end + ax * L
+    # la placa se hunde en la cara superior biselada del motor (sin holgura entre ambos)
+    B.loft("plate", [rr(P_top, ho * 0.96, hn * 0.96), rr(P_bot, ho * 0.96, hn * 0.96)], bone, B.band("dark"), subsurf=0, bevel=0.0025)
+    # vástago central
+    B.cyl("stem", tuple(c_end + ax * 0.011), tuple(P_top + ax * 0.001), 0.0125, 0.0155, bone, B.band("steel"), segs=16, bevel=0.0015, ref=tuple(dn))
+    B.cyl("stemring", tuple(P_top - ax * 0.008), tuple(P_top), 0.0185, 0.021, bone, B.band("dark"), segs=16, bevel=0.0015, ref=tuple(dn))
+    # pletinas laterales: del collar a la placa, abiertas hacia fuera, con tornillos hexagonales en los extremos
+    for k, sg in enumerate((1, -1)):
+        A = c_end + ax * 0.003 + dn * sg * (e_dn + 0.0032)
+        Bp = P_top + dn * sg * (ho * 0.78)
+        w = norm(Bp - A); u = fr; v = norm(w.cross(u))
+        if v.dot(dn * sg) < 0: v = -v
+        B.box("bar%d" % k, (A + Bp) / 2, (0.0115, 0.0026, (Bp - A).length / 2 + 0.003), (tuple(u), tuple(v), tuple(w)), bone, B.band("steel"), bevel=0.0012)
+        hexbolt("hexA%d" % k, A + v * 0.0024, v); hexbolt("hexB%d" % k, Bp + v * 0.0024 - w * 0.004, v)
+        if sg < 0:
+            # piñón sobre la pletina exterior, como el de la figura
+            gc = (A + Bp) / 2 + v * 0.0026
+            B.cyl("gear", tuple(gc), tuple(gc + v * 0.0045), 0.0125, 0.0125, bone, B.band("dark"), segs=12, ref=tuple(w))
+            for j in range(10):
+                an = 2 * math.pi * j / 10; rd = w * math.cos(an) + u * math.sin(an)
+                B.box("tooth%d" % j, gc + v * 0.00225 + rd * 0.0145, (0.0026, 0.002, 0.00225), (tuple(rd), tuple(v.cross(rd)), tuple(v)), bone, B.band("dark"))
+            B.sphere("hub", tuple(gc + v * 0.005), 0.0042, bone, B.band("polished"), segs=8)
+    # manguera de gasolina: del antebrazo, por delante, hasta el borde de la placa
+    h = norm(side * 0.45 + fr * 0.9)
+    t_h = 0.07 if level == "Wrist" else 0.025
+    p_plate = P_top + h * (max(ho, hn) * 0.92) - ax * 0.002
+    B.curve("hose", [tuple(surf(t_h, h, 0.0045)), tuple(surf(t_end - 0.012, h, 0.006, end_cl)),
+                     tuple(c_end + ax * (L * 0.45) + h * (max(e_dn, e_fr) + 0.012)), tuple(p_plate)], [0.0042] * 4, bone, B.band("rubber"), res=3)
+    # motosierra: base del motor sobre la placa, espada (b) por el eje del antebrazo, o -> dn, n -> +-fr
+    sb, so, sn, base = Vector(saw["b"]), Vector(saw["o"]), Vector(saw["n"]), Vector(saw["base"])
+    det_l = sb.dot(so.cross(sn)); det_w = ax.dot(dn.cross(fr))
+    fr_s = fr if (det_l > 0) == (det_w > 0) else -fr
+    S0 = P_bot - ax * 0.012
+    def place(p):
+        d = Vector(p) - base
+        return S0 + ax * d.dot(sb) + dn * d.dot(so) + fr_s * d.dot(sn)
+    def turn(nv):
+        nv = Vector(nv)
+        return norm(ax * nv.dot(sb) + dn * nv.dot(so) + fr_s * nv.dot(sn))
+    B.raw.append({"verts": [tuple(place(p)) for p in saw["verts"]], "normals": [tuple(turn(n)) for n in saw["normals"]],
+                  "uvs": saw["uvs"], "faces": saw["faces"], "bone": bone, "name": "saw"})
+
 # ------------------------------------------------------------------ exportación
 def export_builder(B, path):
     dg = bpy.context.evaluated_depsgraph_get()
@@ -478,6 +593,11 @@ def export_builder(B, path):
         for fi, f in enumerate(faces):
             F.append([remap[(f[0], fi)], remap[(f[1], fi)], remap[(f[2], fi)]])
         bm.free(); ev.to_mesh_clear()
+    for r in B.raw:
+        base = len(V)
+        V += [[round(x, 5) for x in v] for v in r["verts"]]; N += [[round(x, 4) for x in n] for n in r["normals"]]
+        UV += [[round(x, 5) for x in t] for t in r["uvs"]]; W += [r["bone"]] * len(r["verts"])
+        F += [[base + i for i in f] for f in r["faces"]]
     json.dump({"verts": V, "normals": N, "uvs": UV, "faces": F, "bones": W}, open(path, "w"))
     return len(V), len(F)
 
@@ -489,9 +609,12 @@ ARM_TIERS = {"pegArm": ("peg", lambda B, arm, lv: build_peg_arm(B, arm, lv)),
              "hookArm": ("hook", lambda B, arm, lv: build_hook_arm(B, arm, lv)),
              "normalArm": ("metal", lambda B, arm, lv: build_mech_arm(B, arm, lv, False)),
              "medicalArm": ("metal", lambda B, arm, lv: build_mech_arm(B, arm, lv, True))}
+# sólo brazo derecho: las animaciones de motosierra del juego son diestras (Bip01_Prop1 = mano derecha)
+SAW_TIERS = {"chainsawArm": ("saw", lambda B, arm, lv, saw: build_saw_arm(B, arm, lv, saw))}
 
 LEG_UNDER = ("foot", "sole", "pylon", "ferrule", "peg_")
-ARM_UNDER = ("wrist", "shaft", "band", "prong", "wristunit", "palm", "finger", "tip", "knuckle", "joint", "thumb", "rod", "knob")
+ARM_UNDER = ("wrist", "shaft", "band", "prong", "wristunit", "palm", "finger", "tip", "knuckle", "joint", "thumb", "rod", "knob",
+             "cup", "collar", "lug", "clampbolt", "nut", "plate", "stem", "bar", "hex", "gear", "tooth", "hub")
 report = []
 col_x = 0.0
 for sex, body in fit["bodies"].items():
@@ -502,6 +625,10 @@ for sex, body in fit["bodies"].items():
             for lv in fit["leg_levels"]: jobs.append((tier, lv, tex, fn, body["legs"][side]))
         for tier, (tex, fn) in ARM_TIERS.items():
             for lv in fit["arm_levels"]: jobs.append((tier, lv, tex, fn, body["arms"][side]))
+        if side == "R":
+            for tier, (tex, fn) in SAW_TIERS.items():
+                for lv in fit["arm_levels"]:
+                    jobs.append((tier, lv, tex, (lambda f, sw: (lambda B, arm, l: f(B, arm, l, sw)))(fn, fit["saw"]), body["arms"][side]))
         for tier, lv, tex, fn, data in jobs:
             name = "%s%s_%s_%s" % (tier, lv, side, sx)
             if FILTER and FILTER not in name: continue
@@ -512,7 +639,7 @@ for sex, body in fit["bodies"].items():
             # variante bajo la ropa (modelo alternativo del juego): sólo lo que asoma por el bajo del
             # pantalón (pie, pilón, contera, pata) o por el puño de la manga (dispositivo terminal)
             keep = LEG_UNDER if tier in LEG_TIERS else ARM_UNDER
-            full_parts = B.parts
+            full_parts = B.parts      # B.raw (la motosierra) asoma siempre: va también en la variante bajo la ropa
             B.parts = [ob for ob in full_parts if any(ob.name.split(".", 1)[1].startswith(k) for k in keep)]
             uname = "%s%sUnder_%s_%s" % (tier, lv, side, sx)
             if B.parts:

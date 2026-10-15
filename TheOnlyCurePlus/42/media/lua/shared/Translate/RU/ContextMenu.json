@@ -28,5 +28,10 @@
     "ContextMenu_Limb_UpperLeg_R": "Правое бедро",
     "ContextMenu_PutTourniquetLegLeft": "Наложить жгут на левую ногу",
     "ContextMenu_PutTourniquetLegRight": "Наложить жгут на правую ногу",
-    "ContextMenu_TOC_ExamineWound": "Осмотреть рану"
+    "ContextMenu_TOC_ExamineWound": "Осмотреть рану",
+    "ContextMenu_TOC_SawMenu": "Рука-бензопила (топливо %1)",
+    "ContextMenu_TOC_SawStart": "Дёрнуть шнур стартера",
+    "ContextMenu_TOC_SawStop": "Заглушить двигатель",
+    "ContextMenu_TOC_SawRefuel": "Заправить из: %1",
+    "ContextMenu_TOC_SawNoPetrol": "Заправить (нет бензина в инвентаре)"
 }

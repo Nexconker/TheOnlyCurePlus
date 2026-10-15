@@ -24,6 +24,15 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 [*]They wear out with use. At 0 condition they fall off. Repair with wood glue, duct tape, welding rods or screws. The [b]Prosthesis Familiarity[/b] skill speeds you up over time.
 [/list]
 
+[h2]✚ Groovy: the chainsaw arm[/h2]
+[list]
+[*]Right arm only, Ash style: the motor bolted to the stump, the bar in line with the forearm. A leather bracer with steel splints if you lost the hand, a socket and steel shell if you lost the forearm.
+[*]Craft it with Welding 5 and Mechanics 4 (engine parts, sheet metal, a saw for the teeth). It comes with an empty tank.
+[*]Right-click: [b]pull the starter cord[/b] (Mechanics helps), [b]stop the engine[/b], [b]refuel[/b] from any petrol can. Half a litre lasts about two in-game hours idling.
+[*]Running, it cuts through zombies and limbs, and every zombie in the area hears it. Off, it is a heavy club.
+[*]Your left hand stays free: keep a shotgun in it.
+[/list]
+
 [h2]✚ Legs, crutches and crawling[/h2]
 [list]
 [*]Legs can be amputated at the foot, the calf or the thigh.
@@ -45,6 +54,10 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Translations of the new text were machine-assisted: corrections are welcome in the comments.
 
 [h2]Changelog[/h2]
+[b]3.1.0[/b]
+[list]
+[*]New: Ash-style chainsaw arm (right arm), with its own models for hand and forearm amputations, petrol tank, pull-start, synthesized engine sounds and noise that draws zombies.
+[/list]
 [b]3.0.1[/b]
 [list]
 [*]Fixed: invisible arm or leg when wearing shirts, long johns, skinny jeans or long dresses. Those are body textures, not meshes; prostheses are now only trimmed under real clothing meshes (jackets, sweaters, trousers, suits).

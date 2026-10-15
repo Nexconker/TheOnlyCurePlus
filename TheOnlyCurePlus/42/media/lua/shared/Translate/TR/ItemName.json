@@ -58,5 +58,8 @@
     "TOC.Prost_MedicalLegAnkle_L": "Tıbbi Protez Bacak",
     "TOC.Prost_MedicalLegAnkle_R": "Tıbbi Protez Bacak",
     "TOC.Prost_MedicalLegThigh_L": "Tıbbi Protez Bacak",
-    "TOC.Prost_MedicalLegThigh_R": "Tıbbi Protez Bacak"
+    "TOC.Prost_MedicalLegThigh_R": "Tıbbi Protez Bacak",
+    "TOC.Prost_ChainsawArm_R": "Testere Kol",
+    "TOC.Prost_ChainsawArmWrist_R": "Testere Kol",
+    "TOC.MountedChainsaw": "Takılı Motorlu Testere"
 }

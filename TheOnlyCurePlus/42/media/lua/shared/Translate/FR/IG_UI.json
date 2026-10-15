@@ -96,5 +96,13 @@
     "IGUI_TOC_HP_Botched": "Tentative d'amputation ratée",
     "IGUI_TOC_HP_Diag_infected": "Examinée : infectée (il y a %1 h)",
     "IGUI_TOC_HP_Diag_clean": "Examinée : saine (il y a %1 h)",
-    "IGUI_TOC_HP_Diag_unsure": "Examinée : incertain (il y a %1 h)"
+    "IGUI_TOC_HP_Diag_unsure": "Examinée : incertain (il y a %1 h)",
+    "IGUI_TOC_SawStarted": "La tronçonneuse rugit.",
+    "IGUI_TOC_SawSputters": "Elle toussote et cale. Tirez encore.",
+    "IGUI_TOC_SawNoFuel": "Le réservoir est vide : remettez de l'essence.",
+    "IGUI_TOC_SawStalled": "La tronçonneuse tombe à sec et cale.",
+    "IGUI_TOC_SawRunning": "Coupez d'abord le moteur.",
+    "IGUI_TOC_SawFull": "Le réservoir est plein.",
+    "IGUI_TOC_SawArmBusy": "Votre main droite est une tronçonneuse.",
+    "IGUI_TOC_SawRefueling": "Plein d'essence"
 }

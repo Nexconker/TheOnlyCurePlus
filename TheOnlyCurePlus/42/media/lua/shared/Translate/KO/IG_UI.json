@@ -96,5 +96,13 @@
     "IGUI_TOC_HP_Botched": "실패한 절단 시도",
     "IGUI_TOC_HP_Diag_infected": "진찰: 감염 (%1시간 전)",
     "IGUI_TOC_HP_Diag_clean": "진찰: 깨끗함 (%1시간 전)",
-    "IGUI_TOC_HP_Diag_unsure": "진찰: 불확실 (%1시간 전)"
+    "IGUI_TOC_HP_Diag_unsure": "진찰: 불확실 (%1시간 전)",
+    "IGUI_TOC_SawStarted": "전기톱이 굉음을 내며 깨어난다.",
+    "IGUI_TOC_SawSputters": "털털거리다 꺼졌다. 다시 당기자.",
+    "IGUI_TOC_SawNoFuel": "연료통이 비었다: 휘발유를 넣어야 한다.",
+    "IGUI_TOC_SawStalled": "전기톱의 연료가 떨어져 멈췄다.",
+    "IGUI_TOC_SawRunning": "먼저 엔진을 꺼야 한다.",
+    "IGUI_TOC_SawFull": "연료통이 가득 찼다.",
+    "IGUI_TOC_SawArmBusy": "오른손은 전기톱이다.",
+    "IGUI_TOC_SawRefueling": "연료 넣는 중"
 }

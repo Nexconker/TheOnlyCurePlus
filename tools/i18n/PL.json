@@ -8,7 +8,12 @@
   "ContextMenu_Limb_UpperLeg_R": "Prawe udo",
   "ContextMenu_PutTourniquetLegLeft": "Załóż opaskę uciskową na lewą nogę",
   "ContextMenu_PutTourniquetLegRight": "Załóż opaskę uciskową na prawą nogę",
-  "ContextMenu_TOC_ExamineWound": "Zbadaj ranę"
+  "ContextMenu_TOC_ExamineWound": "Zbadaj ranę",
+  "ContextMenu_TOC_SawMenu": "Ramię piła łańcuchowa (paliwo %1)",
+  "ContextMenu_TOC_SawStart": "Pociągnij linkę rozrusznika",
+  "ContextMenu_TOC_SawStop": "Wyłącz silnik",
+  "ContextMenu_TOC_SawRefuel": "Zatankuj z: %1",
+  "ContextMenu_TOC_SawNoPetrol": "Zatankuj (brak benzyny w ekwipunku)"
  },
  "IG_UI.json": {
   "IGUI_TOC_SW_Title": "Amputacja: %1",
@@ -89,7 +94,15 @@
   "IGUI_TOC_HP_Botched": "Nieudana próba amputacji",
   "IGUI_TOC_HP_Diag_infected": "Zbadano: zakażona (%1 h temu)",
   "IGUI_TOC_HP_Diag_clean": "Zbadano: czysta (%1 h temu)",
-  "IGUI_TOC_HP_Diag_unsure": "Zbadano: wynik niepewny (%1 h temu)"
+  "IGUI_TOC_HP_Diag_unsure": "Zbadano: wynik niepewny (%1 h temu)",
+  "IGUI_TOC_SawStarted": "Piła ryczy, budząc się do życia.",
+  "IGUI_TOC_SawSputters": "Krztusi się i gaśnie. Pociągnij jeszcze raz.",
+  "IGUI_TOC_SawNoFuel": "Bak jest pusty: zatankuj benzynę.",
+  "IGUI_TOC_SawStalled": "Pile skończyło się paliwo i zgasła.",
+  "IGUI_TOC_SawRunning": "Najpierw wyłącz silnik.",
+  "IGUI_TOC_SawFull": "Bak jest pełny.",
+  "IGUI_TOC_SawArmBusy": "Twoja prawa ręka to piła łańcuchowa.",
+  "IGUI_TOC_SawRefueling": "Tankowanie"
  },
  "ItemName.json": {
   "TOC.Surg_Leg_Tourniquet_L": "Opaska uciskowa na nogę",
@@ -113,7 +126,10 @@
   "TOC.Amputation_UpperArm_L": "Kikut",
   "TOC.Amputation_Foot_L": "Kikut",
   "TOC.Amputation_LowerLeg_L": "Kikut",
-  "TOC.Amputation_UpperLeg_L": "Kikut"
+  "TOC.Amputation_UpperLeg_L": "Kikut",
+  "TOC.Prost_ChainsawArm_R": "Ramię z piłą łańcuchową",
+  "TOC.Prost_ChainsawArmWrist_R": "Ramię z piłą łańcuchową",
+  "TOC.MountedChainsaw": "Zamontowana piła łańcuchowa"
  },
  "Recipes.json": {
   "Recipe_Craft_Prosthetic_Arm": "Zbuduj mechaniczną rękę",
@@ -123,7 +139,8 @@
   "Recipe_Craft_Prosthetic_MechLeg": "Zbuduj mechaniczną nogę",
   "Recipe_Craft_Crutch": "Zrób kulę ortopedyczną",
   "Recipe_FieldSurgery": "Złóż polowy zestaw chirurgiczny",
-  "Recipe_Disassemble_SurgicalKit": "Rozpakuj polowy zestaw chirurgiczny"
+  "Recipe_Disassemble_SurgicalKit": "Rozpakuj polowy zestaw chirurgiczny",
+  "Recipe_Craft_Prosthetic_ChainsawArm": "Zbuduj ramię z piłą łańcuchową"
  },
  "Sandbox.json": {
   "Sandbox_TOC_XPMultiplierSide_L": "Mnożnik PD lewej strony",

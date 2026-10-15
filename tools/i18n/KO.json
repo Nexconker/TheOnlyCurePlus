@@ -8,7 +8,12 @@
   "ContextMenu_Limb_UpperLeg_R": "오른 허벅지",
   "ContextMenu_PutTourniquetLegLeft": "왼다리에 지혈대 착용",
   "ContextMenu_PutTourniquetLegRight": "오른다리에 지혈대 착용",
-  "ContextMenu_TOC_ExamineWound": "상처 살펴보기"
+  "ContextMenu_TOC_ExamineWound": "상처 살펴보기",
+  "ContextMenu_TOC_SawMenu": "전기톱 팔 (연료 %1)",
+  "ContextMenu_TOC_SawStart": "시동줄 당기기",
+  "ContextMenu_TOC_SawStop": "엔진 끄기",
+  "ContextMenu_TOC_SawRefuel": "%1(으)로 연료 넣기",
+  "ContextMenu_TOC_SawNoPetrol": "연료 넣기 (인벤토리에 휘발유 없음)"
  },
  "IG_UI.json": {
   "IGUI_TOC_SW_Title": "절단: %1",
@@ -89,7 +94,15 @@
   "IGUI_TOC_HP_Botched": "실패한 절단 시도",
   "IGUI_TOC_HP_Diag_infected": "진찰: 감염 (%1시간 전)",
   "IGUI_TOC_HP_Diag_clean": "진찰: 깨끗함 (%1시간 전)",
-  "IGUI_TOC_HP_Diag_unsure": "진찰: 불확실 (%1시간 전)"
+  "IGUI_TOC_HP_Diag_unsure": "진찰: 불확실 (%1시간 전)",
+  "IGUI_TOC_SawStarted": "전기톱이 굉음을 내며 깨어난다.",
+  "IGUI_TOC_SawSputters": "털털거리다 꺼졌다. 다시 당기자.",
+  "IGUI_TOC_SawNoFuel": "연료통이 비었다: 휘발유를 넣어야 한다.",
+  "IGUI_TOC_SawStalled": "전기톱의 연료가 떨어져 멈췄다.",
+  "IGUI_TOC_SawRunning": "먼저 엔진을 꺼야 한다.",
+  "IGUI_TOC_SawFull": "연료통이 가득 찼다.",
+  "IGUI_TOC_SawArmBusy": "오른손은 전기톱이다.",
+  "IGUI_TOC_SawRefueling": "연료 넣는 중"
  },
  "ItemName.json": {
   "TOC.Surg_Leg_Tourniquet_L": "다리 지혈대",
@@ -113,7 +126,10 @@
   "TOC.Amputation_UpperArm_L": "절단 부위",
   "TOC.Amputation_Foot_L": "절단 부위",
   "TOC.Amputation_LowerLeg_L": "절단 부위",
-  "TOC.Amputation_UpperLeg_L": "절단 부위"
+  "TOC.Amputation_UpperLeg_L": "절단 부위",
+  "TOC.Prost_ChainsawArm_R": "전기톱 팔",
+  "TOC.Prost_ChainsawArmWrist_R": "전기톱 팔",
+  "TOC.MountedChainsaw": "장착된 전기톱"
  },
  "Recipes.json": {
   "Recipe_Craft_Prosthetic_Arm": "기계식 의수 제작",
@@ -123,7 +139,8 @@
   "Recipe_Craft_Prosthetic_MechLeg": "기계식 의족 제작",
   "Recipe_Craft_Crutch": "목발 만들기",
   "Recipe_FieldSurgery": "야전 수술 키트 조립",
-  "Recipe_Disassemble_SurgicalKit": "야전 수술 키트 풀기"
+  "Recipe_Disassemble_SurgicalKit": "야전 수술 키트 풀기",
+  "Recipe_Craft_Prosthetic_ChainsawArm": "전기톱 팔 만들기"
  },
  "Sandbox.json": {
   "Sandbox_TOC_XPMultiplierSide_L": "왼쪽 경험치 배율",

@@ -58,5 +58,8 @@
     "TOC.Prost_MedicalLegAnkle_L": "Medical Prosthetic Leg",
     "TOC.Prost_MedicalLegAnkle_R": "Medical Prosthetic Leg",
     "TOC.Prost_MedicalLegThigh_L": "Medical Prosthetic Leg",
-    "TOC.Prost_MedicalLegThigh_R": "Medical Prosthetic Leg"
+    "TOC.Prost_MedicalLegThigh_R": "Medical Prosthetic Leg",
+    "TOC.Prost_ChainsawArm_R": "Chainsaw Arm",
+    "TOC.Prost_ChainsawArmWrist_R": "Chainsaw Arm",
+    "TOC.MountedChainsaw": "Mounted Chainsaw"
 }

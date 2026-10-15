@@ -8,7 +8,12 @@
   "ContextMenu_Limb_UpperLeg_R": "Праве Стегно",
   "ContextMenu_PutTourniquetLegLeft": "Накласти джгут на ліву ногу",
   "ContextMenu_PutTourniquetLegRight": "Накласти джгут на праву ногу",
-  "ContextMenu_TOC_ExamineWound": "Оглянути рану"
+  "ContextMenu_TOC_ExamineWound": "Оглянути рану",
+  "ContextMenu_TOC_SawMenu": "Рука-бензопила (пальне %1)",
+  "ContextMenu_TOC_SawStart": "Смикнути шнур стартера",
+  "ContextMenu_TOC_SawStop": "Заглушити двигун",
+  "ContextMenu_TOC_SawRefuel": "Заправити з: %1",
+  "ContextMenu_TOC_SawNoPetrol": "Заправити (немає бензину в інвентарі)"
  },
  "IG_UI.json": {
   "IGUI_TOC_SW_Title": "Ампутація: %1",
@@ -89,7 +94,15 @@
   "IGUI_TOC_HP_Botched": "Невдала спроба ампутації",
   "IGUI_TOC_HP_Diag_infected": "Оглянуто: заражена (%1 год тому)",
   "IGUI_TOC_HP_Diag_clean": "Оглянуто: чиста (%1 год тому)",
-  "IGUI_TOC_HP_Diag_unsure": "Оглянуто: неясно (%1 год тому)"
+  "IGUI_TOC_HP_Diag_unsure": "Оглянуто: неясно (%1 год тому)",
+  "IGUI_TOC_SawStarted": "Бензопила з ревом оживає.",
+  "IGUI_TOC_SawSputters": "Чхає і глухне. Смикни ще раз.",
+  "IGUI_TOC_SawNoFuel": "Бак порожній: залий бензин.",
+  "IGUI_TOC_SawStalled": "У бензопили скінчилося пальне, і вона заглухла.",
+  "IGUI_TOC_SawRunning": "Спершу заглуши двигун.",
+  "IGUI_TOC_SawFull": "Бак повний.",
+  "IGUI_TOC_SawArmBusy": "Твоя права рука — бензопила.",
+  "IGUI_TOC_SawRefueling": "Заправка"
  },
  "ItemName.json": {
   "TOC.Surg_Leg_Tourniquet_L": "Джгут для ноги",
@@ -113,7 +126,10 @@
   "TOC.Amputation_UpperArm_L": "Кукса",
   "TOC.Amputation_Foot_L": "Кукса",
   "TOC.Amputation_LowerLeg_L": "Кукса",
-  "TOC.Amputation_UpperLeg_L": "Кукса"
+  "TOC.Amputation_UpperLeg_L": "Кукса",
+  "TOC.Prost_ChainsawArm_R": "Рука-бензопила",
+  "TOC.Prost_ChainsawArmWrist_R": "Рука-бензопила",
+  "TOC.MountedChainsaw": "Закріплена бензопила"
  },
  "Recipes.json": {
   "Recipe_Craft_Prosthetic_Arm": "Створити Механічну Руку",
@@ -123,7 +139,8 @@
   "Recipe_Craft_Prosthetic_MechLeg": "Створити Механічну Ногу",
   "Recipe_Craft_Crutch": "Зробити милицю",
   "Recipe_FieldSurgery": "Зібрати набір польового хірурга",
-  "Recipe_Disassemble_SurgicalKit": "Розпакувати набір польового хірурга"
+  "Recipe_Disassemble_SurgicalKit": "Розпакувати набір польового хірурга",
+  "Recipe_Craft_Prosthetic_ChainsawArm": "Зібрати руку-бензопилу"
  },
  "Sandbox.json": {
   "Sandbox_TOC_XPMultiplierSide_L": "Множник досвіду лівої сторони",

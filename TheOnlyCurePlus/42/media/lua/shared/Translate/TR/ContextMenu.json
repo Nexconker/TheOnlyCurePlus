@@ -28,5 +28,10 @@
     "ContextMenu_Limb_UpperLeg_R": "Sağ Üst Bacak",
     "ContextMenu_PutTourniquetLegLeft": "Sol bacağa turnike tak",
     "ContextMenu_PutTourniquetLegRight": "Sağ bacağa turnike tak",
-    "ContextMenu_TOC_ExamineWound": "Yarayı İncele"
+    "ContextMenu_TOC_ExamineWound": "Yarayı İncele",
+    "ContextMenu_TOC_SawMenu": "Testere kol (yakıt %1)",
+    "ContextMenu_TOC_SawStart": "Marş ipini çek",
+    "ContextMenu_TOC_SawStop": "Motoru durdur",
+    "ContextMenu_TOC_SawRefuel": "Yakıt doldur: %1",
+    "ContextMenu_TOC_SawNoPetrol": "Yakıt doldur (envanterde benzin yok)"
 }

@@ -8,7 +8,12 @@
   "ContextMenu_Limb_UpperLeg_R": "Cuisse droite",
   "ContextMenu_PutTourniquetLegLeft": "Mettre un garrot sur la jambe gauche",
   "ContextMenu_PutTourniquetLegRight": "Mettre un garrot sur la jambe droite",
-  "ContextMenu_TOC_ExamineWound": "Examiner la plaie"
+  "ContextMenu_TOC_ExamineWound": "Examiner la plaie",
+  "ContextMenu_TOC_SawMenu": "Bras tronçonneuse (essence %1)",
+  "ContextMenu_TOC_SawStart": "Tirer le lanceur",
+  "ContextMenu_TOC_SawStop": "Couper le moteur",
+  "ContextMenu_TOC_SawRefuel": "Faire le plein avec %1",
+  "ContextMenu_TOC_SawNoPetrol": "Faire le plein (pas d'essence dans l'inventaire)"
  },
  "IG_UI.json": {
   "IGUI_TOC_SW_Title": "Amputation : %1",
@@ -89,7 +94,15 @@
   "IGUI_TOC_HP_Botched": "Tentative d'amputation ratée",
   "IGUI_TOC_HP_Diag_infected": "Examinée : infectée (il y a %1 h)",
   "IGUI_TOC_HP_Diag_clean": "Examinée : saine (il y a %1 h)",
-  "IGUI_TOC_HP_Diag_unsure": "Examinée : incertain (il y a %1 h)"
+  "IGUI_TOC_HP_Diag_unsure": "Examinée : incertain (il y a %1 h)",
+  "IGUI_TOC_SawStarted": "La tronçonneuse rugit.",
+  "IGUI_TOC_SawSputters": "Elle toussote et cale. Tirez encore.",
+  "IGUI_TOC_SawNoFuel": "Le réservoir est vide : remettez de l'essence.",
+  "IGUI_TOC_SawStalled": "La tronçonneuse tombe à sec et cale.",
+  "IGUI_TOC_SawRunning": "Coupez d'abord le moteur.",
+  "IGUI_TOC_SawFull": "Le réservoir est plein.",
+  "IGUI_TOC_SawArmBusy": "Votre main droite est une tronçonneuse.",
+  "IGUI_TOC_SawRefueling": "Plein d'essence"
  },
  "ItemName.json": {
   "TOC.Surg_Leg_Tourniquet_L": "Garrot de jambe",
@@ -113,7 +126,10 @@
   "TOC.Amputation_UpperArm_L": "Moignon",
   "TOC.Amputation_Foot_L": "Moignon",
   "TOC.Amputation_LowerLeg_L": "Moignon",
-  "TOC.Amputation_UpperLeg_L": "Moignon"
+  "TOC.Amputation_UpperLeg_L": "Moignon",
+  "TOC.Prost_ChainsawArm_R": "Bras tronçonneuse",
+  "TOC.Prost_ChainsawArmWrist_R": "Bras tronçonneuse",
+  "TOC.MountedChainsaw": "Tronçonneuse montée"
  },
  "Recipes.json": {
   "Recipe_Craft_Prosthetic_Arm": "Fabriquer un bras mécanique",
@@ -123,7 +139,8 @@
   "Recipe_Craft_Prosthetic_MechLeg": "Fabriquer une jambe mécanique",
   "Recipe_Craft_Crutch": "Fabriquer une béquille",
   "Recipe_FieldSurgery": "Assembler une trousse de chirurgie de terrain",
-  "Recipe_Disassemble_SurgicalKit": "Déballer la trousse de chirurgie de terrain"
+  "Recipe_Disassemble_SurgicalKit": "Déballer la trousse de chirurgie de terrain",
+  "Recipe_Craft_Prosthetic_ChainsawArm": "Fabriquer un bras tronçonneuse"
  },
  "Sandbox.json": {
   "Sandbox_TOC_XPMultiplierSide_L": "Multiplicateur d'EXP du côté gauche",

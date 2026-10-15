@@ -79,9 +79,24 @@ CHECKS = {
     "zombie/core/skinnedmodel/visual/HumanVisual": ["getSkinTexture"],
     "zombie/core/skinnedmodel/visual/ItemVisual": ["setTextureChoice"],
     "zombie/characters/WornItems/BodyLocationGroup": ["setAltModel", "isAltModel", "isHideModel"],
+    # brazo motosierra (TOC/Plus/ChainsawArm.lua, TOC/TimedActions/ChainsawActions.lua)
+    "zombie/inventory/types/HandWeapon#saw": ["setMinDamage", "setMaxDamage", "setCriticalChance", "setMaxHitCount", "setDoorDamage", "setTreeDamage",
+                                              "setSwingSound", "setZombieHitSound", "setDoorHitSound", "setHitFloorSound", "getConditionMax"],
+    "zombie/characters/IsoPlayer#saw": ["getPlayerNum", "getWornItems", "isDead", "isAsleep", "isAiming", "getInventory", "getPrimaryHandItem",
+                                        "getSecondaryHandItem", "removeFromHands", "playSound", "stopOrTriggerSound", "getUsername", "getPerkLevel",
+                                        "setMetabolicTarget", "SetVariable", "isTimedActionInstant", "getX", "getY", "getZ"],
+    "zombie/characters/WornItems/WornItems": ["size", "get"],
+    "zombie/characters/WornItems/WornItem": ["getItem"],
+    "zombie/characters/BaseCharacterSoundEmitter": ["isPlaying"],
+    "zombie/inventory/ItemContainer": ["getFirstTypeRecurse", "getFirstEvalRecurse", "containsRecursive", "AddItem", "Remove"],
+    "zombie/inventory/InventoryItem#saw": ["getModData", "getID", "setName", "getContainer", "getFluidContainer", "setJobType", "setJobDelta",
+                                           "getScriptItem"],
+    "zombie/entity/components/fluids/FluidContainer": ["contains", "getAmount", "adjustAmount"],
+    "zombie/scripting/objects/Item": ["getDisplayName", "containsWeaponCategory"],
 }
 bad = 0
-for cls, ms in CHECKS.items():
+for key, ms in CHECKS.items():
+    cls = key.split("#")[0]          # "clase#grupo": la misma clase en otro bloque de comprobaciones
     if parse_class(cls) is None:
         print("NO EXISTE LA CLASE", cls); bad += 1; continue
     for m in ms:

@@ -24,6 +24,15 @@ Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites
 [*]Se desgastan con el uso. A condición 0 se caen. Se reparan con cola de madera, cinta, varillas de soldar o tornillos. La habilidad [b]Familiaridad con prótesis[/b] te hace más rápido con el tiempo.
 [/list]
 
+[h2]✚ Groovy: el brazo motosierra[/h2]
+[list]
+[*]Solo brazo derecho, estilo Ash: el motor atornillado al muñón y la espada en línea con el antebrazo. Brazal de cuero con férulas de acero si perdiste la mano, encaje y carcasa de acero si perdiste el antebrazo.
+[*]Se fabrica con Soldadura 5 y Mecánica 4 (piezas de motor, chapa y una sierra para los dientes). Sale con el depósito vacío.
+[*]Clic derecho: [b]tirar del arrancador[/b] (la Mecánica ayuda), [b]apagar el motor[/b] y [b]echar gasolina[/b] de cualquier bidón. Medio litro dura unas dos horas de juego al ralentí.
+[*]En marcha corta zombis y extremidades, y lo oye todo zombi de la zona. Apagada es un garrote pesado.
+[*]La mano izquierda queda libre: lleva una escopeta en ella.
+[/list]
+
 [h2]✚ Piernas, muletas y arrastre[/h2]
 [list]
 [*]Las piernas se amputan por el pie, la pantorrilla o el muslo.
@@ -45,6 +54,10 @@ Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites
 English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Las traducciones del texto nuevo son asistidas por máquina: se agradecen correcciones en los comentarios.
 
 [h2]Cambios[/h2]
+[b]3.1.0[/b]
+[list]
+[*]Nuevo: brazo motosierra estilo Ash (brazo derecho), con modelos propios para amputación de mano y de antebrazo, depósito de gasolina, arranque por tirón, sonidos de motor sintetizados y ruido que atrae zombis.
+[/list]
 [b]3.0.1[/b]
 [list]
 [*]Corregido: brazo o pierna invisible con camisas, mallas largas, vaqueros ajustados o vestidos largos. Son texturas del cuerpo, no mallas; las prótesis ahora solo se recortan bajo prendas con malla (chaquetas, jerséis, pantalones, trajes).

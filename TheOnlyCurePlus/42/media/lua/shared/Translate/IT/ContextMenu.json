@@ -28,5 +28,10 @@
     "ContextMenu_Limb_UpperLeg_R": "Coscia Destra",
     "ContextMenu_PutTourniquetLegLeft": "Metti laccio emostatico sulla gamba sinistra",
     "ContextMenu_PutTourniquetLegRight": "Metti laccio emostatico sulla gamba destra",
-    "ContextMenu_TOC_ExamineWound": "Esamina ferita"
+    "ContextMenu_TOC_ExamineWound": "Esamina ferita",
+    "ContextMenu_TOC_SawMenu": "Braccio motosega (benzina %1)",
+    "ContextMenu_TOC_SawStart": "Tira la corda d'avviamento",
+    "ContextMenu_TOC_SawStop": "Spegni il motore",
+    "ContextMenu_TOC_SawRefuel": "Fai rifornimento da %1",
+    "ContextMenu_TOC_SawNoPetrol": "Fai rifornimento (niente benzina nell'inventario)"
 }

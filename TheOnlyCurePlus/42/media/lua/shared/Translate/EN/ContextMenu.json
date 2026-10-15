@@ -28,5 +28,10 @@
     "ContextMenu_TOC_ExamineWound": "Examine Wound",
     "ContextMenu_Admin_TOC": "TOC",
     "ContextMenu_Admin_ResetTOC": "Reset Amputations",
-    "ContextMenu_Admin_ForceAmputation": "Force Amputation"
+    "ContextMenu_Admin_ForceAmputation": "Force Amputation",
+    "ContextMenu_TOC_SawMenu": "Chainsaw arm (fuel %1)",
+    "ContextMenu_TOC_SawStart": "Pull the starter cord",
+    "ContextMenu_TOC_SawStop": "Stop the engine",
+    "ContextMenu_TOC_SawRefuel": "Refuel from %1",
+    "ContextMenu_TOC_SawNoPetrol": "Refuel (no petrol in your inventory)"
 }

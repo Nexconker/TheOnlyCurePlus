@@ -2,7 +2,7 @@
 
 A Build 42 fork of ZioPao's **The Only Cure** for Project Zomboid: staged field surgery with real risk,
 a visible infection window, sepsis and convalescence, prostheses that fit the stump and wear out, leg
-amputations with crutches and crawling, crawler zombies and severed limbs as items.
+amputations with crutches and crawling, an Ash-style chainsaw arm, crawler zombies and severed limbs as items.
 
 - **Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=3818733381
 - **Workshop ID:** `3818733381`

@@ -125,8 +125,18 @@ JOBS = {
     "prop_hook": ([("hook_ground", 0, 0)], 40, 150, None, None),
     "prop_mechleg": ([("mechleg_ground", 0, 0)], 40, 150, None, None),
     "prop_leg": ([("severed_leg", 0, 0)], 40, 150, None, None),
+    "saw_idle": ([("saw_idle", 0, 0)], 6, 190, None, None),
+    "saw_walk": ([("saw_walk", 0, 0)], 8, 225, None, None),
+    "saw_attack": ([("saw_attack", 0, 0)], 10, 200, None, None),
+    "saw_idle_fa": ([("saw_idle_fa", 0, 0)], 6, 190, None, None),
+    "saw_close": ([("saw_idle", 0, 0)], 12, 215, 3.0, (-2.2, 0.0, 4.2)),
+    "saw_close_fa": ([("saw_idle_fa", 0, 0)], 12, 215, 3.0, (-2.2, 0.0, 4.2)),
+    "saw_close2": ([("saw_idle", 0, 0)], 14, 290, 3.0, (-2.2, 0.0, 4.2)),
+    "saw_idle_f": ([("saw_idle_f", 0, 0)], 8, 150, None, None),
 }
+ONLY = set(argv[3].split(",")) if len(argv) > 3 else None     # p. ej. saw_walk,saw_close
 for name, (parts, elev, azim, zoom, focus) in JOBS.items():
+    if ONLY and name not in ONLY: continue
     clear(); objs = []
     for js, ox, rz in parts:
         for i, entry in enumerate(json.load(open(os.path.join(SRC, js + ".json")))):

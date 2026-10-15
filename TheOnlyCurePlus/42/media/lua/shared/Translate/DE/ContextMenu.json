@@ -28,5 +28,10 @@
     "ContextMenu_Limb_UpperLeg_R": "Rechter Oberschenkel",
     "ContextMenu_PutTourniquetLegLeft": "Lege das Tourniquet am linken Bein an",
     "ContextMenu_PutTourniquetLegRight": "Lege das Tourniquet am rechten Bein an",
-    "ContextMenu_TOC_ExamineWound": "Wunde untersuchen"
+    "ContextMenu_TOC_ExamineWound": "Wunde untersuchen",
+    "ContextMenu_TOC_SawMenu": "Kettensägenarm (Benzin %1)",
+    "ContextMenu_TOC_SawStart": "Am Starterseil ziehen",
+    "ContextMenu_TOC_SawStop": "Motor abstellen",
+    "ContextMenu_TOC_SawRefuel": "Aus %1 nachtanken",
+    "ContextMenu_TOC_SawNoPetrol": "Nachtanken (kein Benzin im Inventar)"
 }

@@ -28,5 +28,10 @@
     "ContextMenu_Limb_UpperLeg_R": "Prawe udo",
     "ContextMenu_PutTourniquetLegLeft": "Załóż opaskę uciskową na lewą nogę",
     "ContextMenu_PutTourniquetLegRight": "Załóż opaskę uciskową na prawą nogę",
-    "ContextMenu_TOC_ExamineWound": "Zbadaj ranę"
+    "ContextMenu_TOC_ExamineWound": "Zbadaj ranę",
+    "ContextMenu_TOC_SawMenu": "Ramię piła łańcuchowa (paliwo %1)",
+    "ContextMenu_TOC_SawStart": "Pociągnij linkę rozrusznika",
+    "ContextMenu_TOC_SawStop": "Wyłącz silnik",
+    "ContextMenu_TOC_SawRefuel": "Zatankuj z: %1",
+    "ContextMenu_TOC_SawNoPetrol": "Zatankuj (brak benzyny w ekwipunku)"
 }

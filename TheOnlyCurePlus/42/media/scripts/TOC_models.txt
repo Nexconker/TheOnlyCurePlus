@@ -92,6 +92,19 @@ module Base
 		texture = Weapons/crutch,
 	}
 
+    /* chainsaw arm (Ash style): the visible saw is part of the worn prosthesis, rigid on the forearm with the bar
+       in line with it. TOC.MountedChainsaw, the weapon held while it is worn, is drawn with an invisible model. */
+    model prostheticArmChainsaw
+	{
+		mesh = Prosthesis/chainsawArm_Ground,
+		texture = Prosthesis/chainsawArm,
+	}
+    model TOC_Invisible
+	{
+		mesh = Weapons/TOC_Invisible,
+		texture = Prosthesis/chainsawArm,
+	}
+
     /* severed limbs on the floor */
     model SeveredHand
 	{

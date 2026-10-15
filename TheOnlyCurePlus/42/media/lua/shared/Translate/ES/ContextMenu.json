@@ -28,5 +28,10 @@
     "ContextMenu_TOC_ExamineWound": "Examinar la herida",
     "ContextMenu_Admin_TOC": "TOC",
     "ContextMenu_Admin_ResetTOC": "Reiniciar amputaciones",
-    "ContextMenu_Admin_ForceAmputation": "Forzar amputación"
+    "ContextMenu_Admin_ForceAmputation": "Forzar amputación",
+    "ContextMenu_TOC_SawMenu": "Brazo motosierra (gasolina %1)",
+    "ContextMenu_TOC_SawStart": "Tirar del arrancador",
+    "ContextMenu_TOC_SawStop": "Apagar el motor",
+    "ContextMenu_TOC_SawRefuel": "Echar gasolina de %1",
+    "ContextMenu_TOC_SawNoPetrol": "Echar gasolina (no llevas gasolina)"
 }

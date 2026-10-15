@@ -96,5 +96,13 @@
     "IGUI_TOC_HP_Botched": "Başarısız amputasyon girişimi",
     "IGUI_TOC_HP_Diag_infected": "İncelendi: enfekte (%1 sa önce)",
     "IGUI_TOC_HP_Diag_clean": "İncelendi: temiz (%1 sa önce)",
-    "IGUI_TOC_HP_Diag_unsure": "İncelendi: belirsiz (%1 sa önce)"
+    "IGUI_TOC_HP_Diag_unsure": "İncelendi: belirsiz (%1 sa önce)",
+    "IGUI_TOC_SawStarted": "Motorlu testere kükreyerek çalıştı.",
+    "IGUI_TOC_SawSputters": "Öksürüp stop etti. Tekrar çek.",
+    "IGUI_TOC_SawNoFuel": "Depo boş: benzin doldur.",
+    "IGUI_TOC_SawStalled": "Testerenin yakıtı bitti ve stop etti.",
+    "IGUI_TOC_SawRunning": "Önce motoru durdur.",
+    "IGUI_TOC_SawFull": "Depo dolu.",
+    "IGUI_TOC_SawArmBusy": "Sağ elin bir motorlu testere.",
+    "IGUI_TOC_SawRefueling": "Yakıt dolduruluyor"
 }

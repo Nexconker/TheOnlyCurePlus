@@ -15,6 +15,61 @@ def ring_with_center(ring):
     c = [(R[:, 0].min() + R[:, 0].max()) / 2, float(R[0, 1]), (R[:, 2].min() + R[:, 2].max()) / 2]
     return {"c": [round(float(x), 5) for x in c], "pts": [[round(float(x), 5) for x in p] for p in R]}
 
+# ------------------------------------------------------------------ motosierra (brazo tipo Ash)
+# Como la de Ash (Evil Dead 2): el motor pegado al muñón y la espada como prolongación del antebrazo. Se usa la
+# malla vanilla Chainsaw.X (sin ítem en 42.21) SIN sus asas: de sus 4 piezas se quedan el cuerpo y la espada.
+# Aquí sólo se mide en sus coordenadas; blender_build.py la coloca en cada brazo (rígida al antebrazo).
+# Textura: atlas 128x512 = chainsaw.png x3 (sus UV llegan a v=2.12, la hoja repite) en v 0..0.75 y las bandas
+# de la prótesis en v 0.75..1 (BANDS["saw"] de blender_build).
+SAW_X = r"D:\SteamLibrary\steamapps\common\ProjectZomboid\media\models_X\Chainsaw.X"
+SAW_TILES = 3
+SAW_VSCALE = 0.75 / SAW_TILES
+
+def chainsaw_local():
+    import pzx
+    from render_icons import find_mesh
+    m = pzx.read_mesh(find_mesh(pzx.parse(SAW_X)))
+    V = np.array(m["verts"], float); Nn = np.array(m["normals"], float); F = np.array([list(f) for f in m["faces"]], int)
+    uv = np.array(m["uvs"], float)
+    # piezas conexas (vértices partidos unidos por posición)
+    par = list(range(len(V)))
+    def find(a):
+        while par[a] != a: par[a] = par[par[a]]; a = par[a]
+        return a
+    pos = {}
+    for i, v in enumerate(V): pos.setdefault(tuple(np.round(v, 4)), []).append(i)
+    for g in pos.values():
+        for i in g[1:]: par[find(i)] = find(g[0])
+    for t in F: par[find(t[1])] = find(t[0]); par[find(t[2])] = find(t[0])
+    comps = {}
+    for fi, t in enumerate(F): comps.setdefault(find(t[0]), []).append(fi)
+    parts = {}
+    for fl in comps.values():
+        p = V[np.unique(F[fl])]; ext = p.max(0) - p.min(0)
+        if ext[1] > 0.25: parts["bar"] = fl                          # espada: la más larga en Y
+        elif ext[0] < 0.03 and p[:, 1].min() < 0.0: parts["rear"] = fl  # asa trasera (fuera)
+        elif len(fl) == max(len(x) for x in comps.values()): parts["loop"] = fl  # arco delantero (fuera)
+        else: parts["body"] = fl
+    assert set(parts) == {"bar", "rear", "loop", "body"}, parts.keys()
+    keep = sorted(parts["body"] + parts["bar"])
+    used = np.unique(F[keep]); remap = {int(o): i for i, o in enumerate(used)}
+    Fk = [[remap[int(i)] for i in F[fi]] for fi in keep]
+    # ejes de la sierra: b = espada (hacia la punta), n = normal de la espada (su eje fino), o = b x n
+    pb = V[np.unique(F[parts["bar"]])]
+    c = pb.mean(0); _, _, vt = np.linalg.svd(pb - c); b = vt[0] * np.sign(vt[0][1])
+    n = vt[2] - b * vt[2].dot(b); n /= np.linalg.norm(n)
+    o = np.cross(b, n)
+    body = V[np.unique(F[parts["body"]])]; cb = body.mean(0)
+    if (c - cb).dot(o) < 0: o, n = -o, -n                              # o: del cuerpo hacia la espada
+    base = cb + b * ((body - cb) @ b).min()                             # base del motor, centrada
+    uv = uv[used]
+    uv[:, 0] = np.clip(uv[:, 0], 0.0, 1.0)
+    uv[:, 1] = np.clip(uv[:, 1], 0.0, SAW_TILES) * SAW_VSCALE
+    return {"verts": V[used].round(5).tolist(), "normals": Nn[used].round(4).tolist(), "uvs": uv.round(5).tolist(), "faces": Fk,
+            "b": b.round(5).tolist(), "o": o.round(5).tolist(), "n": n.round(5).tolist(), "base": base.round(5).tolist(),
+            "body_half": [float(((body - cb) @ o).max()), float(((body - cb) @ n).max())], "bar_offset": float((c - cb).dot(o)),
+            "length": float(((V[used] - base) @ b).max())}
+
 spec = {"units": "PZ (0.57 u/m), Y arriba, frente -Z", "leg_cuts": BA.LEG_CUTS, "leg_levels": BA.LEG_LEVELS, "arm_levels": BA.ARM_LEVELS, "bodies": {}}
 for sex in ("Male", "Female"):
     body = BA.load_body(sex)
@@ -51,6 +106,7 @@ for sex in ("Male", "Female"):
         B["arms"][side] = {"o": [float(x) for x in o], "axis": [float(x) for x in axis], "down": [float(x) for x in down], "front": [float(x) for x in front], "forearm_len": float(L),
                            "rings": arings, "hand": hand, "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2]}}
     spec["bodies"][sex] = B
+spec["saw"] = chainsaw_local()
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 json.dump(spec, open(OUT, "w", encoding="utf-8"), indent=0)
 print("fit:", OUT, os.path.getsize(OUT) // 1024, "KB")

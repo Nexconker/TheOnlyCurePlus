@@ -96,5 +96,13 @@
     "IGUI_TOC_HP_Botched": "Missglückter Amputationsversuch",
     "IGUI_TOC_HP_Diag_infected": "Untersucht: infiziert (vor %1 Std.)",
     "IGUI_TOC_HP_Diag_clean": "Untersucht: sauber (vor %1 Std.)",
-    "IGUI_TOC_HP_Diag_unsure": "Untersucht: unklar (vor %1 Std.)"
+    "IGUI_TOC_HP_Diag_unsure": "Untersucht: unklar (vor %1 Std.)",
+    "IGUI_TOC_SawStarted": "Die Kettensäge heult auf.",
+    "IGUI_TOC_SawSputters": "Sie stottert und geht aus. Nochmal ziehen.",
+    "IGUI_TOC_SawNoFuel": "Der Tank ist leer: mit Benzin nachfüllen.",
+    "IGUI_TOC_SawStalled": "Der Kettensäge geht das Benzin aus und sie bleibt stehen.",
+    "IGUI_TOC_SawRunning": "Erst den Motor abstellen.",
+    "IGUI_TOC_SawFull": "Der Tank ist voll.",
+    "IGUI_TOC_SawArmBusy": "Deine rechte Hand ist eine Kettensäge.",
+    "IGUI_TOC_SawRefueling": "Tanke nach"
 }

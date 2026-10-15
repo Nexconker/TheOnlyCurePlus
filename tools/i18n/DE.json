@@ -8,7 +8,12 @@
   "ContextMenu_Limb_UpperLeg_R": "Rechter Oberschenkel",
   "ContextMenu_PutTourniquetLegLeft": "Lege das Tourniquet am linken Bein an",
   "ContextMenu_PutTourniquetLegRight": "Lege das Tourniquet am rechten Bein an",
-  "ContextMenu_TOC_ExamineWound": "Wunde untersuchen"
+  "ContextMenu_TOC_ExamineWound": "Wunde untersuchen",
+  "ContextMenu_TOC_SawMenu": "Kettensägenarm (Benzin %1)",
+  "ContextMenu_TOC_SawStart": "Am Starterseil ziehen",
+  "ContextMenu_TOC_SawStop": "Motor abstellen",
+  "ContextMenu_TOC_SawRefuel": "Aus %1 nachtanken",
+  "ContextMenu_TOC_SawNoPetrol": "Nachtanken (kein Benzin im Inventar)"
  },
  "IG_UI.json": {
   "IGUI_TOC_SW_Title": "Amputation: %1",
@@ -89,7 +94,15 @@
   "IGUI_TOC_HP_Botched": "Missglückter Amputationsversuch",
   "IGUI_TOC_HP_Diag_infected": "Untersucht: infiziert (vor %1 Std.)",
   "IGUI_TOC_HP_Diag_clean": "Untersucht: sauber (vor %1 Std.)",
-  "IGUI_TOC_HP_Diag_unsure": "Untersucht: unklar (vor %1 Std.)"
+  "IGUI_TOC_HP_Diag_unsure": "Untersucht: unklar (vor %1 Std.)",
+  "IGUI_TOC_SawStarted": "Die Kettensäge heult auf.",
+  "IGUI_TOC_SawSputters": "Sie stottert und geht aus. Nochmal ziehen.",
+  "IGUI_TOC_SawNoFuel": "Der Tank ist leer: mit Benzin nachfüllen.",
+  "IGUI_TOC_SawStalled": "Der Kettensäge geht das Benzin aus und sie bleibt stehen.",
+  "IGUI_TOC_SawRunning": "Erst den Motor abstellen.",
+  "IGUI_TOC_SawFull": "Der Tank ist voll.",
+  "IGUI_TOC_SawArmBusy": "Deine rechte Hand ist eine Kettensäge.",
+  "IGUI_TOC_SawRefueling": "Tanke nach"
  },
  "ItemName.json": {
   "TOC.Surg_Leg_Tourniquet_L": "Bein-Tourniquet",
@@ -113,7 +126,10 @@
   "TOC.Amputation_UpperArm_L": "Stumpf",
   "TOC.Amputation_Foot_L": "Stumpf",
   "TOC.Amputation_LowerLeg_L": "Stumpf",
-  "TOC.Amputation_UpperLeg_L": "Stumpf"
+  "TOC.Amputation_UpperLeg_L": "Stumpf",
+  "TOC.Prost_ChainsawArm_R": "Kettensägenarm",
+  "TOC.Prost_ChainsawArmWrist_R": "Kettensägenarm",
+  "TOC.MountedChainsaw": "Montierte Kettensäge"
  },
  "Recipes.json": {
   "Recipe_Craft_Prosthetic_Arm": "Baue mechanischen Arm",
@@ -123,7 +139,8 @@
   "Recipe_Craft_Prosthetic_MechLeg": "Baue mechanisches Bein",
   "Recipe_Craft_Crutch": "Baue Krücke",
   "Recipe_FieldSurgery": "Feldchirurgie-Set zusammenstellen",
-  "Recipe_Disassemble_SurgicalKit": "Feldchirurgie-Set auspacken"
+  "Recipe_Disassemble_SurgicalKit": "Feldchirurgie-Set auspacken",
+  "Recipe_Craft_Prosthetic_ChainsawArm": "Kettensägenarm bauen"
  },
  "Sandbox.json": {
   "Sandbox_TOC_XPMultiplierSide_L": "XP-Multiplikator linke Seite",

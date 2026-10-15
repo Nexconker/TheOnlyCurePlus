@@ -1,10 +1,10 @@
 name=The Only Cure+ (Field Surgery)
 poster=poster.png
 icon=icon.png
-description=Fork of ZioPao's The Only Cure for Build 42. Staged field surgery with real risk, visible infection window and diagnosis, sepsis and convalescence, prosthesis tiers that wear out and fit the stump (foot, calf or thigh; hand or forearm), leg amputations with crutches, crawling and above-knee prostheses, crawler zombies, severed limbs as items. Enable only one of The Only Cure / The Only Cure+.
+description=Fork of ZioPao's The Only Cure for Build 42. Staged field surgery with real risk, visible infection window and diagnosis, sepsis and convalescence, prosthesis tiers that wear out and fit the stump (foot, calf or thigh; hand or forearm), leg amputations with crutches, crawling and above-knee prostheses, an Ash-style chainsaw arm, crawler zombies, severed limbs as items. Enable only one of The Only Cure / The Only Cure+.
 id=TheOnlyCurePlus
 url=https://github.com/ZioPao/The-Only-Cure
-modversion=3.0.1
+modversion=3.1.0
 versionMin=42.20
 loadModAfter=\FancyHandwork,\BrutalHandwork,\TwoWeaponsOnBackRework
 incompatible=\TheOnlyCure,\BB_FirstAidOverhaul

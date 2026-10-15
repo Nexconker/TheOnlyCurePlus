@@ -96,5 +96,13 @@
     "IGUI_TOC_HP_Botched": "Невдала спроба ампутації",
     "IGUI_TOC_HP_Diag_infected": "Оглянуто: заражена (%1 год тому)",
     "IGUI_TOC_HP_Diag_clean": "Оглянуто: чиста (%1 год тому)",
-    "IGUI_TOC_HP_Diag_unsure": "Оглянуто: неясно (%1 год тому)"
+    "IGUI_TOC_HP_Diag_unsure": "Оглянуто: неясно (%1 год тому)",
+    "IGUI_TOC_SawStarted": "Бензопила з ревом оживає.",
+    "IGUI_TOC_SawSputters": "Чхає і глухне. Смикни ще раз.",
+    "IGUI_TOC_SawNoFuel": "Бак порожній: залий бензин.",
+    "IGUI_TOC_SawStalled": "У бензопили скінчилося пальне, і вона заглухла.",
+    "IGUI_TOC_SawRunning": "Спершу заглуши двигун.",
+    "IGUI_TOC_SawFull": "Бак повний.",
+    "IGUI_TOC_SawArmBusy": "Твоя права рука — бензопила.",
+    "IGUI_TOC_SawRefueling": "Заправка"
 }

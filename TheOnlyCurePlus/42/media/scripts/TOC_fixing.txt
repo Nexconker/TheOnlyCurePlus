@@ -101,6 +101,20 @@ module TOC
 		Fixer = Base.DuctTape=3; Mechanics=3,
 		Fixer = Base.Screws=4; Mechanics=2,
 	}
+	fixing Fix TOC Prost_ChainsawArm_R
+	{
+		Require = TOC.Prost_ChainsawArm_R,
+		Fixer = Base.EngineParts=2; Mechanics=3,
+		Fixer = Base.WeldingRods=2; MetalWelding=4,
+		Fixer = Base.DuctTape=4,
+	}
+	fixing Fix TOC Prost_ChainsawArmWrist_R
+	{
+		Require = TOC.Prost_ChainsawArmWrist_R,
+		Fixer = Base.EngineParts=2; Mechanics=3,
+		Fixer = Base.WeldingRods=2; MetalWelding=4,
+		Fixer = Base.DuctTape=4,
+	}
 	fixing Fix TOC Prost_PegLeg_L
 	{
 		Require = TOC.Prost_PegLeg_L,

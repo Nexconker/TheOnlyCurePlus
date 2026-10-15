@@ -22,7 +22,7 @@ local StaticData = {}
 ---Mod name, used to setup Global Mod Data and various stuff. Kept as "TOC" so that
 ---saves made with the original mod keep working after switching to TOC+.
 StaticData.MOD_NAME = "TOC"
-StaticData.PLUS_VERSION = "3.0.0"
+StaticData.PLUS_VERSION = "3.1.0"
 
 StaticData.COMPAT_42 = luautils.stringStarts(getGameVersion(), "42")
 
@@ -258,6 +258,8 @@ StaticData.PROSTHESIS_TIERS = {
     Prost_HookArm    = { tier = 2, group = "Top",    timeBonus = 1, twoHanded = false, combatMod = 0.90, wearPerAction = 0.6, hookLike = true },
     Prost_NormalArm  = { tier = 3, group = "Top",    timeBonus = 2, twoHanded = true,  combatMod = 0.95, wearPerAction = 0.4 },
     Prost_MedicalArm = { tier = 4, group = "Top",    timeBonus = 4, twoHanded = true,  combatMod = 1.00, wearPerAction = 0.2 },
+    -- Ash-style chainsaw arm (right only): the right hand is the saw (TOC.MountedChainsaw), see TOC/Plus/ChainsawArm
+    Prost_ChainsawArm = { tier = 3, group = "Top",   timeBonus = 0, twoHanded = false, combatMod = 0.90, wearPerAction = 0.6, hookLike = true, chainsaw = true },
     Prost_PegLeg     = { tier = 1, group = "Bottom", timeBonus = 0, sprint = false, run = true,  wearPerAction = 0.8 },
     Prost_MechLeg    = { tier = 3, group = "Bottom", timeBonus = 2, sprint = true,  run = true,  wearPerAction = 0.4 },
     Prost_MedicalLeg = { tier = 4, group = "Bottom", timeBonus = 4, sprint = true,  run = true,  wearPerAction = 0.2 },

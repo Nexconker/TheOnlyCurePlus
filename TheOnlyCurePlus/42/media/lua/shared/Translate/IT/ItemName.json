@@ -58,5 +58,8 @@
     "TOC.Prost_MedicalLegAnkle_L": "Gamba prostetica medica",
     "TOC.Prost_MedicalLegAnkle_R": "Gamba prostetica medica",
     "TOC.Prost_MedicalLegThigh_L": "Gamba prostetica medica",
-    "TOC.Prost_MedicalLegThigh_R": "Gamba prostetica medica"
+    "TOC.Prost_MedicalLegThigh_R": "Gamba prostetica medica",
+    "TOC.Prost_ChainsawArm_R": "Braccio motosega",
+    "TOC.Prost_ChainsawArmWrist_R": "Braccio motosega",
+    "TOC.MountedChainsaw": "Motosega montata"
 }
