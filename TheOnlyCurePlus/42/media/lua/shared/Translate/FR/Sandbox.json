@@ -35,5 +35,9 @@
     "Sandbox_TOC_CarryPenalty": "Pénalité de poids transportable sans main",
     "Sandbox_TOC_ProsthesisWear": "Usure des prothèses",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Chaque action use la prothèse ; réparez-la avec de la colle, du ruban adhésif, des baguettes de soudure ou des vis avant qu'elle ne casse.",
-    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Les zombies qui perdent une jambe deviennent rampants"
+    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Les zombies qui perdent une jambe deviennent rampants",
+    "Sandbox_TOC_SleepingPillAnesthesia": "Somnifères comme anesthésie",
+    "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Part maximale des somnifères dans l'anesthésie pendant une opération, en pourcentage (0 = ils ne comptent pas). Les antidouleurs comptent jusqu'à 60 et l'alcool jusqu'à 50.",
+    "Sandbox_TOC_SelfAmputationHigh": "Auto-amputation au-dessus du coude et du genou",
+    "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permet de se couper soi-même le bras ou la cuisse. Bien plus de risques d'échouer ou de s'évanouir en cours de route."
 }

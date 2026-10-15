@@ -172,7 +172,11 @@
   "Sandbox_TOC_CarryPenalty": "Tragegewicht-Malus ohne Hand",
   "Sandbox_TOC_ProsthesisWear": "Prothesen nutzen sich ab",
   "Sandbox_TOC_ProsthesisWear_tooltip": "Jede Aktion nutzt die Prothese ab; repariere sie mit Kleber, Klebeband, Schweißstäben oder Schrauben, bevor sie kaputtgeht.",
-  "Sandbox_TOC_ZombieCrawlerOnLegHit": "Zombies, die ein Bein verlieren, werden zu Kriechern"
+  "Sandbox_TOC_ZombieCrawlerOnLegHit": "Zombies, die ein Bein verlieren, werden zu Kriechern",
+  "Sandbox_TOC_SleepingPillAnesthesia": "Schlaftabletten als Betäubung",
+  "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Wie stark Schlaftabletten bei einer Operation als Betäubung zählen, in Prozent (0 = gar nicht). Schmerzmittel zählen bis 60, Alkohol bis 50.",
+  "Sandbox_TOC_SelfAmputationHigh": "Selbstamputation oberhalb von Ellbogen und Knie",
+  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Erlaubt es, sich selbst den Oberarm oder Oberschenkel abzutrennen. Deutlich höheres Risiko zu scheitern oder mittendrin ohnmächtig zu werden."
  },
  "Tooltip.json": {
   "Tooltip_TOC_NoData": "Medizinische Daten noch nicht geladen",

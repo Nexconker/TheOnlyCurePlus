@@ -1,37 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
 <clothingItem>
-    <m_MaleModel>Amputation\Amputation_Right_Hand_Male</m_MaleModel>
-    <m_FemaleModel>Amputation\Amputation_Right_Hand_Female</m_FemaleModel>
+    <m_MaleModel>Amputation\ArmStump_Right_Hand_Male</m_MaleModel>
+    <m_FemaleModel>Amputation\ArmStump_Right_Hand_Female</m_FemaleModel>
     <m_GUID>f114e53a-b92e-4639-8d8c-2b43ab981885</m_GUID>
     <m_Static>false</m_Static>
     <m_AllowRandomHue>false</m_AllowRandomHue>
     <m_AllowRandomTint>false</m_AllowRandomTint>
     <m_Masks>6</m_Masks>
-    <!-- <m_MasksFolder>none</m_MasksFolder> -->
-    
-    <!-- HUMAN -->
-    <textureChoices>Amputations\Human\Hand\skin01_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin02_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin03_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin04_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin05_b</textureChoices>
-
-    <textureChoices>Amputations\Human\Hand\skin01_hairy_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin02_hairy_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin03_hairy_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin04_hairy_b</textureChoices>
-    <textureChoices>Amputations\Human\Hand\skin05_hairy_b</textureChoices>
-
-    <!-- HUMAN AFTER CICATRIZATION -->
-
-    <textureChoices>Body\MaleBody01</textureChoices>
-    <textureChoices>Body\MaleBody02</textureChoices>
-    <textureChoices>Body\MaleBody03</textureChoices>
-    <textureChoices>Body\MaleBody04</textureChoices>
-    <textureChoices>Body\MaleBody05</textureChoices>
-
-    <textureChoices>Body\MaleBody01a</textureChoices>
-    <textureChoices>Body\MaleBody02a</textureChoices>
-    <textureChoices>Body\MaleBody03a</textureChoices>
-    <textureChoices>Body\MaleBody04</textureChoices>
-    <textureChoices>Body\MaleBody05a</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin01_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin02_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin03_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin04_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin05_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin01_hairy_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin02_hairy_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin03_hairy_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin04_hairy_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin05_hairy_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin01_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin02_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin03_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin04_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin05_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin01_hairy_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin02_hairy_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin03_hairy_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin04_hairy_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skin05_hairy_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF01_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF02_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF03_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF04_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF05_b</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF01_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF02_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF03_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF04_c</textureChoices>
+    <textureChoices>Amputations\Human\LowerLeg\skinF05_c</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin01_l1</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin01_l2</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin01_l3</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin02_l1</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin02_l2</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin02_l3</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin03_l1</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin03_l2</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin03_l3</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin04_l1</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin04_l2</textureChoices>
+    <textureChoices>Amputations\Zombie\LowerLeg\z_skin04_l3</textureChoices>
 </clothingItem>

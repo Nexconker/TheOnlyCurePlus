@@ -42,6 +42,7 @@ function LocalPlayerController.InitializePlayer(isForced)
         LocalPlayerController.ManageTraits()
         LocalPlayerController.ApplyCarryPenalty()
         LocalPlayerController.EnsureStumpItems()
+        LocalPlayerController.RefreshStumpVisuals()
     end)
 
     if isForced then
@@ -302,6 +303,27 @@ function LocalPlayerController.HandleSetCicatrization(dcInst, playerObj, limbNam
     else
         local ItemsController = require("TOC/Controllers/ItemsController")
         ItemsController.Player.OverrideAmputationItemVisuals(playerObj, limbName, true)
+    end
+end
+
+---3.1.0: arm stumps are now made from the body and women get their own textures on arms too. The texture index lives
+---in the worn stump item, so saves from before keep the old one until it is set again: do it once on load.
+function LocalPlayerController.RefreshStumpVisuals()
+    local pl = getPlayer()
+    if not pl then return end
+    local dcInst = DataController.GetReady(pl:getUsername())
+    if not dcInst or not dcInst:getIsAnyLimbCut() then return end
+    local highest = CachedDataHandler.GetHighestAmputatedLimbs(pl:getUsername())
+    if not highest then return end
+    for _, limbName in pairs(highest) do
+        local cic = dcInst:getIsCicatrized(limbName)
+        if isClient() then
+            sendClientCommand(CommandsData.modules.TOC_ITEMS, "OverrideAmputationItemVisuals",
+                {patientNum = pl:getOnlineID(), limbName = limbName, isCicatrized = cic})
+        else
+            local ItemsController = require("TOC/Controllers/ItemsController")
+            pcall(ItemsController.Player.OverrideAmputationItemVisuals, pl, limbName, cic)
+        end
     end
 end
 

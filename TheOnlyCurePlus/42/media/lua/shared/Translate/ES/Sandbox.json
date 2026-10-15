@@ -35,5 +35,9 @@
     "Sandbox_TOC_CarryPenalty": "Penalización de carga sin una mano",
     "Sandbox_TOC_ProsthesisWear": "Las prótesis se desgastan",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Cada acción desgasta la prótesis; repárala con pegamento, cinta, varillas de soldar o tornillos antes de que se rompa.",
-    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Los zombis que pierden una pierna se vuelven rastreros"
+    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Los zombis que pierden una pierna se vuelven rastreros",
+    "Sandbox_TOC_SleepingPillAnesthesia": "Somníferos como anestesia",
+    "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Cuánto pueden contar los somníferos como anestesia al operar, en porcentaje (0 = no cuentan). Los analgésicos cuentan hasta 60 y el alcohol hasta 50.",
+    "Sandbox_TOC_SelfAmputationHigh": "Amputarse uno mismo por encima del codo y la rodilla",
+    "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permite cortarse uno mismo el brazo o el muslo. Mucho más probable fallar o desmayarse a mitad."
 }

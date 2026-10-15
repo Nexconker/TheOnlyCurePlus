@@ -21,10 +21,10 @@ function ItemsController.Player.GetAmputationTexturesIndex(playerObj, isCicatriz
     local isHairy = textureString:sub(-1) == "a"
     local matchedIndex = tonumber(textureString:match("%d%d")) or 1
     if matchedIndex < 1 or matchedIndex > 5 then matchedIndex = 1 end
-    -- piernas (TOC+): el cuerpo femenino tiene su propio mapeado, así que sus texturas van aparte
-    -- (índices 20..29: 5 sangrantes + 5 cicatrizadas); los brazos del TOC original siguen con las masculinas
+    -- el cuerpo femenino tiene su propio mapeado, así que sus texturas van aparte (índices 20..29: 5 sangrantes +
+    -- 5 cicatrizadas). Desde 3.1.0 también en los brazos: sus muñones son copias del cuerpo como los de pierna.
     local isFemaleBody = string.find(textureString, "Female") ~= nil
-    if isFemaleBody and StaticData.IsLegLimb(limbName or "") then
+    if isFemaleBody then
         return 20 + (matchedIndex - 1) + (isCicatrized and 5 or 0)
     end
     if isHairy then matchedIndex = matchedIndex + 5 end

@@ -35,5 +35,9 @@
     "Sandbox_TOC_CarryPenalty": "Penalità al peso trasportabile senza una mano",
     "Sandbox_TOC_ProsthesisWear": "Usura delle protesi",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Ogni azione usura la protesi; riparala con colla, nastro, bacchette per saldatura o viti prima che si rompa.",
-    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Gli zombi che perdono una gamba strisciano"
+    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Gli zombi che perdono una gamba strisciano",
+    "Sandbox_TOC_SleepingPillAnesthesia": "Sonniferi come anestesia",
+    "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Quanto possono contare i sonniferi come anestesia durante un'operazione, in percentuale (0 = non contano). Gli antidolorifici contano fino a 60 e l'alcol fino a 50.",
+    "Sandbox_TOC_SelfAmputationHigh": "Autoamputazione sopra il gomito e il ginocchio",
+    "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permette di amputarsi da soli il braccio o la coscia. Molto più probabile fallire o svenire a metà."
 }

@@ -35,5 +35,9 @@
     "Sandbox_TOC_CarryPenalty": "손이 없을 때 소지 무게 페널티",
     "Sandbox_TOC_ProsthesisWear": "의수족 마모",
     "Sandbox_TOC_ProsthesisWear_tooltip": "모든 행동이 의수족을 마모시킵니다. 부서지기 전에 접착제, 테이프, 용접봉, 나사못으로 수리하세요.",
-    "Sandbox_TOC_ZombieCrawlerOnLegHit": "다리를 잃은 좀비는 기어다니는 좀비가 됨"
+    "Sandbox_TOC_ZombieCrawlerOnLegHit": "다리를 잃은 좀비는 기어다니는 좀비가 됨",
+    "Sandbox_TOC_SleepingPillAnesthesia": "수면제를 마취로 사용",
+    "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "수술 중 수면제가 마취로 인정되는 최대 비율(퍼센트, 0 = 인정 안 됨). 진통제는 60, 알코올은 50까지 인정된다.",
+    "Sandbox_TOC_SelfAmputationHigh": "팔꿈치·무릎 위 자가 절단",
+    "Sandbox_TOC_SelfAmputationHigh_tooltip": "생존자가 스스로 위팔이나 허벅지를 절단할 수 있다. 실패하거나 도중에 기절할 확률이 훨씬 높다."
 }

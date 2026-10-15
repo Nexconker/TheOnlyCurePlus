@@ -172,7 +172,11 @@
   "Sandbox_TOC_CarryPenalty": "Штраф к переносимому весу без руки",
   "Sandbox_TOC_ProsthesisWear": "Износ протезов",
   "Sandbox_TOC_ProsthesisWear_tooltip": "Каждое действие изнашивает протез; чините его клеем, изолентой, присадочными прутками или винтами, пока он не сломался.",
-  "Sandbox_TOC_ZombieCrawlerOnLegHit": "Зомби, потерявшие ногу, становятся ползунами"
+  "Sandbox_TOC_ZombieCrawlerOnLegHit": "Зомби, потерявшие ногу, становятся ползунами",
+  "Sandbox_TOC_SleepingPillAnesthesia": "Снотворное как анестезия",
+  "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Насколько снотворное может засчитываться как анестезия при операции, в процентах (0 = не засчитывается). Обезболивающее засчитывается до 60, алкоголь до 50.",
+  "Sandbox_TOC_SelfAmputationHigh": "Самоампутация выше локтя и колена",
+  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Позволяет выжившему самому отрезать себе плечо или бедро. Гораздо выше шанс провала или обморока посреди операции."
  },
  "Tooltip.json": {
   "Tooltip_TOC_NoData": "Медицинские данные ещё не загружены",

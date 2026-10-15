@@ -1,5 +1,5 @@
 [h1]The Only Cure+ · Cirugía de campo[/h1]
-[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381
+[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381 · [b]Fallos:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
 [i]Un mordisco no es el final. Una sierra, pulso y algo de suerte todavía pueden salvarte. Después aprendes a vivir con lo que queda.[/i]
 
 Fork completo de [b]The Only Cure[/b] de ZioPao para [b]Build 42[/b], reconstruido sobre tres ideas: operar debe ser una decisión con riesgo real, el cuerpo que te queda debe importar, y las prótesis deben parecer parte del personaje.
@@ -62,6 +62,9 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Corregido: en multijugador los cristales y cortes de un miembro amputado volvían a aparecer, y curar un muñón podía añadir una quemadura.
 [*]Corregido: los personajes creados con un rasgo de amputado de pierna no podían moverse. Ahora empiezan con muleta, y con una pierna y sin muleta se arrastran en vez de quedarse quietos.
 [*]Corregido: las prótesis de recetas y botín son del lado izquierdo y no se podían poner en un muñón derecho. Ahora se colocan solas en el lado amputado.
+[*]Corregido: una raya oscura alrededor del hombro tras amputar un brazo. Los muñones de brazo ahora se recortan del propio cuerpo (misma malla, normales y textura de piel), y las mujeres tienen sus propias texturas de muñón en los brazos.
+[*]Corregido: los zombis con un brazo amputado usaban una textura de muñón equivocada o inexistente.
+[*]Nuevas opciones de sandbox: cuánto cuentan los somníferos como anestesia (ahora 30 por defecto, antes 50) y amputarse uno mismo por encima del codo y la rodilla (desactivada por defecto, mucho más arriesgada).
 [/list]
 [b]3.0.1[/b]
 [list]
@@ -74,7 +77,13 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 
 [h2]Compatibilidad[/h2]
 Activa [b]solo uno[/b] de The Only Cure o The Only Cure+: comparten ítems y datos de partida. No compatible con BB First Aid Overhaul. Fancy Handwork y Brutal Handwork no tienen versión para Build 42; sus ganchos siguen ahí y no hacen nada sin ellos.
+[list]
+[*]Funciona según los jugadores: Wounds Overhaul, AHS, Viewpoint y modpacks grandes en SP y MP. Bandits funciona desde la 3.1.0.
+[*]Los reemplazos de cuerpo como TombBody funcionan, pero las prótesis están ajustadas al cuerpo vanilla y lo atravesarán.
+[*]Sin probar: Casualties Undead, Project Remnant y los forks de Build 42 de Fancy/Brutal Handwork.
+[*]Se puede añadir a una partida empezada, también en multijugador (reinicia el servidor).
+[/list]
 
 [h2]Créditos[/h2]
 Mod original: [b]ZioPao[/b] y colaboradores de The Only Cure (GPL-3.0). Código de ubicaciones de cuerpo: RabenRabo. Este fork mantiene la licencia: GPL-3.0, código incluido.
-Reporta fallos con tu console.txt y una captura. ¿Una prótesis atraviesa algo? Dime cuál y con qué prenda.
+Reporta fallos en [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (o aquí) con tu console.txt y una captura. ¿Una prótesis atraviesa algo? Dime cuál y con qué prenda.

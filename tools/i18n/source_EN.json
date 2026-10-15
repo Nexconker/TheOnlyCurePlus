@@ -172,7 +172,11 @@
     "Sandbox_TOC_CarryPenalty": "Carry weight penalty without a hand",
     "Sandbox_TOC_ProsthesisWear": "Prostheses wear out",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Every action wears the prosthesis; repair it with glue, tape, welding rods or screws before it breaks.",
-    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Zombies that lose a leg become crawlers"
+    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Zombies that lose a leg become crawlers",
+    "Sandbox_TOC_SleepingPillAnesthesia": "Sleeping pills as anaesthesia",
+    "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "How much sleeping pills can count towards anaesthesia during surgery, in percent (0 = they do not count). Painkillers count up to 60 and alcohol up to 50.",
+    "Sandbox_TOC_SelfAmputationHigh": "Self-amputation above the elbow and knee",
+    "Sandbox_TOC_SelfAmputationHigh_tooltip": "Lets a survivor cut off their own upper arm or thigh. Much more likely to fail or to faint halfway."
   },
   "Tooltip.json": {
     "Tooltip_TOC_NoData": "Medical data not loaded yet",

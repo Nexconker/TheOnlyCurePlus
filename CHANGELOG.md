@@ -19,6 +19,13 @@
   without a crutch crawls instead of freezing in place.
 - Fixed: prostheses from recipes and loot are left-side items and could not be worn on a right stump. They now go on
   the amputated side automatically (`ProsthesisHandler.ResolveSide`).
+- Fixed: a dark stripe around the shoulder after an arm amputation. The arm mask hides everything from the neck to
+  the hand, and the original FBX stumps rebuilt the shoulder with their own mesh and normals. Arm stumps are now cut
+  from the vanilla body (`tools/make_arm_stumps.py`): exactly the faces the mask hides, with the body's normals and
+  the same body-copy textures as the leg stumps. Women get their own stump textures on arms. Old FBX stumps removed.
+- Fixed: zombie arm stumps asked for texture 30+ in a list of 32 entries. Arms now use the 42-entry list of the legs.
+- New sandbox options: `SleepingPillAnesthesia` (max share of sleeping pills in the anaesthesia, default 30, was 50)
+  and `SelfAmputationHigh` (operate on your own upper arm or thigh, off by default, extra fail and faint risk).
 
 ## 3.0.1
 

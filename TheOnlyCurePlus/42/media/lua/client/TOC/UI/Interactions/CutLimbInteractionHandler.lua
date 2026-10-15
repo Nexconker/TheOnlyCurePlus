@@ -31,7 +31,7 @@ local function CanOffer(surgeon, patient, limbName)
     if dc:getIsCut(limbName) then return false, nil end
     if StaticData.IsLegLimb(limbName) and not sv("EnableLegAmputations", true) then return false, nil end
     local part = string.match(limbName, "^(%a+)_")
-    if surgeon == patient and StaticData.NO_SELF_SURGERY_PARTS_IND_STR[part] then
+    if surgeon == patient and StaticData.NO_SELF_SURGERY_PARTS_IND_STR[part] and not sv("SelfAmputationHigh", false) then
         return false, "Tooltip_TOC_CantSelfHigh"
     end
     return true, nil

@@ -101,15 +101,16 @@ def combos(sex):
     S = {"Male": "Male", "Female": "Female"}[sex]
     fb = lambda rel, tex: ("fbx", os.path.join(UP, rel), os.path.join(TX, tex))
     xx = lambda rel, tex: ("x", os.path.join(UP, rel), os.path.join(TX, tex))
-    armtex = lambda part: os.path.join("Amputations", "Human", part, "skin01_b.png")
+    # muñones de brazo hechos del cuerpo (make_arm_stumps.py, 3.1.0) con las texturas compartidas de pierna
+    armtex = lambda part: os.path.join("Amputations", "Human", "LowerLeg", "skin01_b.png" if sex == "Male" else "skinF01_b.png")
     C = []
     # brazos (lado izquierdo). masks: 3 LeftArm, 4 LeftHand
-    C.append(("Mano izq. amputada", [4], [fb("Amputation/Amputation_Left_Hand_%s.fbx" % S, armtex("Hand"))]))
-    C.append(("Antebrazo izq. amputado", [3, 4], [fb("Amputation/Amputation_Left_LowerArm_%s.fbx" % S, armtex("Forearm"))]))
-    C.append(("Brazo izq. amputado", [3, 4], [fb("Amputation/Amputation_Left_UpperArm_%s.fbx" % S, armtex("Upperarm"))]))
+    C.append(("Mano izq. amputada", [4], [xx("Amputation/ArmStump_Left_Hand_%s.X" % S, armtex("Hand"))]))
+    C.append(("Antebrazo izq. amputado", [3, 4], [xx("Amputation/ArmStump_Left_ForeArm_%s.X" % S, armtex("Forearm"))]))
+    C.append(("Brazo izq. amputado", [3, 4], [xx("Amputation/ArmStump_Left_UpperArm_%s.X" % S, armtex("Upperarm"))]))
     for lbl, nm, tex in (("brazo de madera", "pegArm", "pegArm"), ("gancho", "hookArm", "hookArm"), ("brazo mecanico", "normalArm", "normalArm"), ("brazo medico", "medicalArm", "medicalArm")):
-        C.append(("Antebrazo + " + lbl, [3, 4], [fb("Amputation/Amputation_Left_LowerArm_%s.fbx" % S, armtex("Forearm")), xx("Prosthesis/%s_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
-        C.append(("Mano izq. + " + lbl, [4], [fb("Amputation/Amputation_Left_Hand_%s.fbx" % S, armtex("Hand")), xx("Prosthesis/%sWrist_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
+        C.append(("Antebrazo + " + lbl, [3, 4], [xx("Amputation/ArmStump_Left_ForeArm_%s.X" % S, armtex("Forearm")), xx("Prosthesis/%s_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
+        C.append(("Mano izq. + " + lbl, [4], [xx("Amputation/ArmStump_Left_Hand_%s.X" % S, armtex("Hand")), xx("Prosthesis/%sWrist_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
     C.append(("Torniquete de brazo", [], [fb("Surgery/Tourniquet_Left.fbx", "Surgery/tourniquet.png")]))
     # piernas (lado izquierdo). masks: 7 LeftLeg, 8 LeftFoot
     C.append(("Pie izq. amputado", [8], [xx("Amputation/Amputation_Left_Foot_%s.X" % S, "Amputations/Human/Foot/skin01_b.png")]))

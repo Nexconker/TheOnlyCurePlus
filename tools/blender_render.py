@@ -40,6 +40,7 @@ def material(texpath, name):
     mat.blend_method = "OPAQUE" if hasattr(mat, "blend_method") else None
     return mat
 
+KEEP_WINDING = False
 def add_mesh(entry, name, offset=(0, 0, 0), rotz=0.0):
     me = bpy.data.meshes.new(name)
     verts = [bl(v) for v in entry["verts"]]
@@ -50,7 +51,8 @@ def add_mesh(entry, name, offset=(0, 0, 0), rotz=0.0):
         for li in poly.loop_indices:
             vi = me.loops[li].vertex_index
             uv.data[li].uv = (uvs[vi][0], 1.0 - uvs[vi][1])
-    bm = bmesh.new(); bm.from_mesh(me); bmesh.ops.recalc_face_normals(bm, faces=bm.faces); bm.to_mesh(me); bm.free()
+    if not KEEP_WINDING:   # con culling (como el juego) se respeta el orden de vértices del archivo
+        bm = bmesh.new(); bm.from_mesh(me); bmesh.ops.recalc_face_normals(bm, faces=bm.faces); bm.to_mesh(me); bm.free()
     for p in me.polygons: p.use_smooth = True
     ob = bpy.data.objects.new(name, me); scene.collection.objects.link(ob)
     ob.location = Vector(offset); ob.rotation_euler = (0, 0, math.radians(rotz))
@@ -133,13 +135,30 @@ JOBS = {
     "saw_close_fa": ([("saw_idle_fa", 0, 0)], 12, 215, 3.0, (-2.2, 0.0, 4.2)),
     "saw_close2": ([("saw_idle", 0, 0)], 14, 290, 3.0, (-2.2, 0.0, 4.2)),
     "saw_idle_f": ([("saw_idle_f", 0, 0)], 8, 150, None, None),
+    "ankle_peg": ([("ankle_peg", 0, 0)], 12, 160, 2.4, (0.9, -0.3, 0.9)),
+    "ankle_mech": ([("ankle_mech", 0, 0)], 12, 160, 2.4, (0.9, -0.3, 0.9)),
+    "ankle_med": ([("ankle_med", 0, 0)], 12, 160, 2.4, (0.9, -0.3, 0.9)),
+    "iso_ankle_peg": ([("ankle_peg", 0, 0)], 38, 200, 2.6, (0.9, -0.3, 0.9)),
+    "iso_ankle_mech": ([("ankle_mech", 0, 0)], 38, 200, 2.6, (0.9, -0.3, 0.9)),
+    "iso_calf_peg": ([("calf_peg", 0, 0)], 38, 200, 2.6, (0.9, -0.3, 0.9)),
+    "iso_calf_mech": ([("calf_mech", 0, 0)], 38, 200, 2.6, (0.9, -0.3, 0.9)),
 }
+for _n in ("stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f"):
+    JOBS[_n] = ([(_n, 0, 0)], 10, 205, 3.2, (-2.0, 0.0, 6.6))
+    JOBS[_n + "_back"] = ([(_n, 0, 0)], 10, 320, 3.2, (-2.0, 0.0, 6.6))
+CULL = {"stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f",
+        "stump_hand_back", "stump_fa_back", "stump_ua_back", "stump_fa_mech_back", "stump_ua_f_back",
+        "ankle_peg", "ankle_mech", "ankle_med", "iso_ankle_peg", "iso_ankle_mech", "iso_calf_peg", "iso_calf_mech"}     # como el juego: sin caras traseras (se ve a través de un hueco)
 ONLY = set(argv[3].split(",")) if len(argv) > 3 else None     # p. ej. saw_walk,saw_close
 for name, (parts, elev, azim, zoom, focus) in JOBS.items():
     if ONLY and name not in ONLY: continue
     clear(); objs = []
+    KEEP_WINDING = name in CULL
     for js, ox, rz in parts:
         for i, entry in enumerate(json.load(open(os.path.join(SRC, js + ".json")))):
             objs.append(add_mesh(entry, "%s_%d" % (js, i), (ox, 0, 0), rz))
+    if name in CULL:
+        for ob in objs:
+            for m in ob.data.materials: m.use_backface_culling = True
     render(name, objs, elev, azim, zoom=zoom, focus=focus)
 print("RENDER DONE")

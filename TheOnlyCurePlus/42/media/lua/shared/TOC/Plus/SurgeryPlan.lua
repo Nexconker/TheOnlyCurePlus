@@ -76,8 +76,10 @@ function SurgeryPlan.GetAnesthesia(patient)
     if ok and meds then level = level + clamp(meds / 100, 0, 0.6) end
     local ok2, intox = pcall(function() return patient:getStats():get(CharacterStat.INTOXICATION) end)
     if ok2 and intox then level = level + clamp(intox / 100, 0, 0.5) end
+    -- sleeping pills: at most SleepingPillAnesthesia % (sandbox, default 30; 0 = they do not count). Was a flat 50.
+    local pillCap = ((SandboxVars.TOC and SandboxVars.TOC.SleepingPillAnesthesia) or 30) / 100
     local ok3, pills = pcall(function() return patient:getSleepingTabletEffect() end)
-    if ok3 and pills then level = level + clamp(pills / 100, 0, 0.5) end
+    if ok3 and pills and pillCap > 0 then level = level + clamp(pills / 100, 0, pillCap) end
     return clamp(level, 0, 1)
 end
 
@@ -93,6 +95,8 @@ function SurgeryPlan.Gather(surgeon, patient, limbName, toolItem)
     plan.limbName = limbName
     plan.isLeg = StaticData.IsLegLimb(limbName)
     plan.selfOp = (surgeon == patient)
+    -- above the elbow / knee on yourself: only with the sandbox option SelfAmputationHigh, and much riskier
+    plan.selfHigh = plan.selfOp and StaticData.NO_SELF_SURGERY_PARTS_IND_STR[string.match(limbName, "^(%a+)_") or ""] == true
     plan.toolItem = toolItem or FindBestOfTypes(inv, StaticData.SAWS_TYPES)
     plan.toolType = plan.toolItem and plan.toolItem:getFullType() or nil
     plan.toolTier = plan.toolType and StaticData.SAWS_TYPES[plan.toolType] or nil
@@ -142,6 +146,7 @@ function SurgeryPlan.Risk(plan)
     if plan.knows then fail = fail - 0.08 end
     fail = fail - plan.doctorLevel * 0.025
     if plan.selfOp then fail = fail + 0.12 end
+    if plan.selfHigh then fail = fail + 0.15 end
     if plan.surgeonOneHanded then fail = fail + 0.10 end
     fail = fail + plan.fatigue * 0.15 + plan.panic * 0.15 + plan.drunk * 0.20
     if plan.hemophobic then fail = fail + 0.10 end
@@ -155,8 +160,9 @@ function SurgeryPlan.Risk(plan)
     r.noiseRadius = math.floor(screamRadius * r.painLevel)
     local faint = 0.25 * r.painLevel
     if plan.selfOp then faint = faint + 0.12 * r.painLevel end
+    if plan.selfHigh then faint = faint + 0.15 * r.painLevel end
     if plan.hasTourniquet then faint = faint * 0.8 end
-    r.faintChance = clamp(faint, 0, 0.6)
+    r.faintChance = clamp(faint, 0, plan.selfHigh and 0.75 or 0.6)
 
     -- consequences of a clean surgery
     r.cicMult = plan.toolTier == 0 and 0.85 or 1.0

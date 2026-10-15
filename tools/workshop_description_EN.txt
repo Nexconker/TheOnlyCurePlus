@@ -1,5 +1,5 @@
 [h1]The Only Cure+ · Field Surgery[/h1]
-[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381
+[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381 · [b]Bug reports:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
 [i]A bite is not the end. A saw, a steady hand and a bit of luck can still save you. Then you learn to live with what is left.[/i]
 
 A complete fork of ZioPao's [b]The Only Cure[/b] for [b]Build 42[/b], rebuilt around three ideas: surgery should be a decision with real risk, the body you keep should matter, and prostheses should look like they belong on the character.
@@ -62,6 +62,9 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Fixed: glass shards and cuts on an amputated limb kept coming back in multiplayer, and healing a stump could add a burn.
 [*]Fixed: characters created with a leg amputee trait could not move. They now start with a crutch, and one leg without a crutch crawls instead of freezing.
 [*]Fixed: prostheses from recipes and loot are left-side items and could not be worn on a right stump. They now go on the amputated side by themselves.
+[*]Fixed: a dark stripe around the shoulder after an arm amputation. Arm stumps are now cut from the body itself (same mesh, normals and skin texture), and women get their own stump textures on the arms.
+[*]Fixed: zombies with an amputated arm used a wrong or missing stump texture.
+[*]New sandbox options: how much sleeping pills count as anaesthesia (now 30 by default, was 50), and self-amputation above the elbow and knee (off by default, much riskier).
 [/list]
 [b]3.0.1[/b]
 [list]
@@ -74,7 +77,13 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 
 [h2]Compatibility[/h2]
 Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version; their hooks are left in place and do nothing without them.
+[list]
+[*]Reported working by players: Wounds Overhaul, AHS, Viewpoint, and large modpacks in SP and MP. Bandits works since 3.1.0.
+[*]Body replacers such as TombBody work, but prostheses are fitted to the vanilla body and will clip on a different one.
+[*]Untested: Casualties Undead, Project Remnant, the Build 42 forks of Fancy/Brutal Handwork.
+[*]Safe to add to an existing save, also in multiplayer (restart the server).
+[/list]
 
 [h2]Credits[/h2]
 Original mod: [b]ZioPao[/b] and contributors of The Only Cure (GPL-3.0). Body-location code: RabenRabo. This fork keeps the license: GPL-3.0, source included.
-Report bugs with your console.txt and a screenshot. Found a prosthesis clipping through something? Tell me which one and which clothing.
+Report bugs on [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (or here) with your console.txt and a screenshot. Found a prosthesis clipping through something? Tell me which one and which clothing.

@@ -35,5 +35,9 @@
     "Sandbox_TOC_CarryPenalty": "Eli olmayınca taşıma ağırlığı cezası",
     "Sandbox_TOC_ProsthesisWear": "Protezler yıpranır",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Her eylem protezi yıpratır; kırılmadan önce yapıştırıcı, koli bandı, kaynak elektrodu ya da vidayla onar.",
-    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Bacağını kaybeden zombiler sürüngene dönüşür"
+    "Sandbox_TOC_ZombieCrawlerOnLegHit": "Bacağını kaybeden zombiler sürüngene dönüşür",
+    "Sandbox_TOC_SleepingPillAnesthesia": "Uyku hapı anestezi olarak",
+    "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Ameliyatta uyku haplarının anesteziye en fazla ne kadar sayılacağı, yüzde olarak (0 = sayılmaz). Ağrı kesiciler 60'a, alkol 50'ye kadar sayılır.",
+    "Sandbox_TOC_SelfAmputationHigh": "Dirsek ve diz üstünden kendi kendine ampütasyon",
+    "Sandbox_TOC_SelfAmputationHigh_tooltip": "Hayatta kalanın kendi üst kolunu veya uyluğunu kesmesine izin verir. Başarısız olma ya da yarıda bayılma olasılığı çok daha yüksektir."
 }
