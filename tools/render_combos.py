@@ -109,7 +109,9 @@ def combos(sex):
     C.append(("Antebrazo izq. amputado", [3, 4], [xx("Amputation/ArmStump_Left_ForeArm_%s.X" % S, armtex("Forearm"))]))
     C.append(("Brazo izq. amputado", [3, 4], [xx("Amputation/ArmStump_Left_UpperArm_%s.X" % S, armtex("Upperarm"))]))
     for lbl, nm, tex in (("brazo de madera", "pegArm", "pegArm"), ("gancho", "hookArm", "hookArm"), ("brazo mecanico", "normalArm", "normalArm"), ("brazo medico", "medicalArm", "medicalArm")):
-        C.append(("Antebrazo + " + lbl, [3, 4], [xx("Amputation/ArmStump_Left_ForeArm_%s.X" % S, armtex("Forearm")), xx("Prosthesis/%s_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
+        # con prótesis el juego usa el muñón recortado bajo el encaje (modelo alternativo, 3.1.0)
+        C.append(("Antebrazo + " + lbl, [3, 4], [xx("Amputation/ArmStumpProst_Left_ForeArm_%s.X" % S, armtex("Forearm")), xx("Prosthesis/%s_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
+        C.append(("Brazo + " + lbl, [3, 4], [xx("Amputation/ArmStumpProst_Left_UpperArm_%s.X" % S, armtex("Upperarm")), xx("Prosthesis/%sUpper_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
         C.append(("Mano izq. + " + lbl, [4], [xx("Amputation/ArmStump_Left_Hand_%s.X" % S, armtex("Hand")), xx("Prosthesis/%sWrist_L_%s.X" % (nm, sx), "Prosthesis/%s.png" % tex)]))
     C.append(("Torniquete de brazo", [], [fb("Surgery/Tourniquet_Left.fbx", "Surgery/tourniquet.png")]))
     # piernas (lado izquierdo). masks: 7 LeftLeg, 8 LeftFoot

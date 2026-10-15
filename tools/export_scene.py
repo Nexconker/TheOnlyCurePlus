@@ -53,7 +53,7 @@ scenes = {
     "legs_medical": character("Female", "Pie izq. + pierna medica"),
     "arms_peg": character("Male", "Antebrazo + brazo de madera"),
     "arms_hook": character("Female", "Antebrazo + gancho"),
-    "arms_mech": character("Male", "Antebrazo + brazo mecanico"),
+    "arms_mech": character("Male", "Brazo + brazo mecanico"),          # 3.1.0: el nivel nuevo, por encima del codo
     "arms_medical": character("Female", "Mano izq. + brazo medico"),
     "stumps": multi("Male", ["Pantorrilla izq. amputada", "Antebrazo izq. amputado"]),
 }

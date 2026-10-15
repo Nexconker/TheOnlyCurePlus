@@ -14,19 +14,20 @@ WS = r"C:\Users\nexco\Zomboid\Workshop\TheOnlyCurePlus"
 
 DESC_EN = open(os.path.join(HERE, "workshop_description_EN.txt"), encoding="utf-8").read()
 
-# 1. póster e icono del mod
-shutil.copy(os.path.join(W, "poster.png"), os.path.join(MOD, "42", "poster.png"))
-shutil.copy(os.path.join(W, "icon.png"), os.path.join(MOD, "42", "icon.png"))
-shutil.copy(os.path.join(W, "poster.png"), os.path.join(MOD, "poster.png"))
-shutil.copy(os.path.join(W, "icon.png"), os.path.join(MOD, "icon.png"))
+# 1. póster e icono del mod (versión en inglés: el Workshop va sólo en inglés)
+WI = os.path.join(W, "en") if os.path.exists(os.path.join(W, "en", "poster.png")) else W
+shutil.copy(os.path.join(WI, "poster.png"), os.path.join(MOD, "42", "poster.png"))
+shutil.copy(os.path.join(WI, "icon.png"), os.path.join(MOD, "42", "icon.png"))
+shutil.copy(os.path.join(WI, "poster.png"), os.path.join(MOD, "poster.png"))
+shutil.copy(os.path.join(WI, "icon.png"), os.path.join(MOD, "icon.png"))
 
 # 2. mod.info (42 y raíz si existe)
 INFO = """name=The Only Cure+ (Field Surgery)
 poster=poster.png
 icon=icon.png
-description=Fork of ZioPao's The Only Cure for Build 42. Staged field surgery with real risk, visible infection window and diagnosis, sepsis and convalescence, prosthesis tiers that wear out and fit the stump (foot, calf or thigh; hand or forearm), leg amputations with crutches, crawling and above-knee prostheses, crawler zombies, severed limbs as items. Enable only one of The Only Cure / The Only Cure+.
+description=Fork of ZioPao's The Only Cure for Build 42. Staged field surgery with real risk, visible infection window and diagnosis, sepsis and convalescence, prosthesis tiers that wear out and fit the stump (foot, calf or thigh; hand, forearm or upper arm), leg amputations with crutches, crawling and above-knee prostheses, an Ash-style chainsaw arm, crawler zombies, severed limbs as items. Enable only one of The Only Cure / The Only Cure+.
 id=TheOnlyCurePlus
-url=https://github.com/ZioPao/The-Only-Cure
+url=https://github.com/Nexconker/TheOnlyCurePlus
 modversion=3.1.0
 versionMin=42.20
 loadModAfter=\\FancyHandwork,\\BrutalHandwork,\\TwoWeaponsOnBackRework
@@ -60,8 +61,9 @@ lines = ["version=1"] + (["id=" + item_id] if item_id else []) + ["title=The Onl
 # descripción larga con cirílico/coreano devolvió result=2. La completa se pega a mano en la web de Steam
 # (tools/workshop_description_EN.txt).
 SHORT = ["The Only Cure+ (Field Surgery) for Build 42: staged field surgery, infection and sepsis,",
-         "prostheses that fit the stump, legs, crutches and crawling, crawler zombies. SP and MP.",
-         "Full description, changelog and languages on the Steam page."]
+         "prostheses that fit the stump (now above the elbow too), an Ash-style chainsaw arm,",
+         "legs, crutches and crawling, crawler zombies. SP and MP.",
+         "Full description, changelog and languages on the Steam page. Bugs: github.com/Nexconker/TheOnlyCurePlus"]
 for ln in SHORT:
     assert all(ord(c) < 128 for c in ln)
     lines.append("description=" + ln)

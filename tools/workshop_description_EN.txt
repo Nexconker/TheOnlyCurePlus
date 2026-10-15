@@ -57,27 +57,13 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [h2]Changelog[/h2]
 [b]3.1.0[/b]
 [list]
-[*]New: Ash-style chainsaw arm (right arm), with its own models for hand and forearm amputations, petrol tank, pull-start, synthesized engine sounds and noise that draws zombies.
-[*]Fixed: console errors with [b]Bandits[/b] (its NPCs fire the equip events; they were treated as players).
-[*]Fixed: glass shards and cuts on an amputated limb kept coming back in multiplayer, and healing a stump could add a burn.
-[*]Fixed: characters created with a leg amputee trait could not move. They now start with a crutch, and one leg without a crutch crawls instead of freezing.
-[*]Fixed: prostheses from recipes and loot are left-side items and could not be worn on a right stump. They now go on the amputated side by themselves.
-[*]Fixed: a dark stripe around the shoulder after an arm amputation. Arm stumps are now cut from the body itself (same mesh, normals and skin texture), and women get their own stump textures on the arms.
-[*]Fixed: zombies with an amputated arm used a wrong or missing stump texture.
-[*]New: prostheses above the elbow. Every arm tier, the chainsaw arm included, now fits an upper-arm stump: socket on the stump, elbow hinge, and a prosthetic forearm that bends with the animations.
-[*]Fixed: skin poking through arm prostheses. With a prosthesis on, the stump inside the socket is removed.
-[*]Changed: the hook now curves inwards, towards the body.
-[*]Changed: the mechanical and medical hands were remodelled to sit better next to the game's hands (hand-shaped palm, thicker fingers; light steel and light polymer instead of black).
-[*]New sandbox options: how much sleeping pills count as anaesthesia (now 30 by default, was 50), and self-amputation above the elbow and knee (off by default, much riskier).
+[*]New: Ash-style chainsaw arm, and prostheses above the elbow for every arm tier.
+[*]Fixed: dark stripe around the shoulder (arm stumps are now cut from the body), skin poking through arm prostheses, wrong stump texture on zombies.
+[*]Fixed: Bandits console errors, glass and cuts coming back in multiplayer, leg amputee traits unable to move (they start with a crutch; one leg without a crutch crawls), prostheses that would not go on a right stump.
+[*]Changed: arm prostheses sized like the real arm, new mechanical and medical hands, the hook curves inwards.
+[*]New sandbox options: sleeping pills as anaesthesia (30 by default), self-amputation above the elbow and knee.
 [/list]
-[b]3.0.1[/b]
-[list]
-[*]Fixed: invisible arm or leg when wearing shirts, long johns, skinny jeans or long dresses. Those are body textures, not meshes; prostheses are now only trimmed under real clothing meshes (jackets, sweaters, trousers, suits).
-[*]Fixed: doctors and nurses did not start with field surgery knowledge (console error in Knowledge.lua).
-[*]Fixed: console error when right-clicking a stove or fireplace (cauterize menu).
-[*]Fixed: zombie limb amputations never triggered (Build 42 weapon category check).
-[*]All text translated to the 10 supported languages.
-[/list]
+Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]
 Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version; their hooks are left in place and do nothing without them.
