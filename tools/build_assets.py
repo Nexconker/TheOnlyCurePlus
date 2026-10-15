@@ -26,6 +26,20 @@ for k, v in list(TEMPLATE.items()):
 PATCH = (116, 200, 24, 24)          # zona libre de la textura del cuerpo donde va la herida del muñón
 CAP_C = ((PATCH[0] + 12) / 256.0, (PATCH[1] + 12) / 256.0)
 CAP_R = 10.0 / 256.0
+# 3.1.0: la herida de los muñones que se visten va DENTRO de la mano / el pie de su lado. El juego aplica a cada prenda
+# las máscaras de las que van encima, y la zona libre de PATCH cae en las máscaras de pierna (y un 19 % en ninguna): con
+# cualquier chaqueta encima se perdía un 19 % del disco, y con las dos piernas amputadas la tapa izquierda perdía el 69 %
+# (el muñón derecho va encima). La mano / el pie del mismo lado sólo se ocultan cuando algo tapa ese miembro entero.
+# Centros (en texeles) en zonas que ningún muñón usa, con sitio para el disco de radio 10 (ver make_arm_stumps.seam_alpha).
+# PATCH sigue pintándose: lo usan los miembros cercenados del suelo (modelos estáticos, sin máscaras).
+CAPS = {("Hand", "L"): (230, 140), ("Hand", "R"): (17, 141), ("Foot", "L"): (171, 26), ("Foot", "R"): (85, 27)}
+
+def cap_for(limb, side):
+    cx, cy = CAPS[(limb, side)]
+    return (cx / 256.0, cy / 256.0), CAP_R
+
+def wound_patches():
+    return [PATCH] + [(cx - 12, cy - 12, 24, 24) for cx, cy in CAPS.values()]
 
 def out(*p):
     path = os.path.join(MOD, *p)
@@ -147,9 +161,10 @@ def clip_mesh(body, faces, cut_y, keep_above):
             if len(cuts) == 2: edge_pts.append(tuple(cuts))
     return np.array(nv), np.array(nuv), nw, nf, edge_pts
 
-def add_cap(nv, nuv, nw, nf, edge_pts, normal_down):
-    """Tapa en abanico sobre el borde del corte (usa el centroide del lazo)."""
+def add_cap(nv, nuv, nw, nf, edge_pts, normal_down, cap=None):
+    """Tapa en abanico sobre el borde del corte (usa el centroide del lazo). cap = (centro UV, radio UV) de la herida."""
     if not edge_pts: return nv, nuv, nw, nf
+    cap_c, cap_r = cap or (CAP_C, CAP_R)
     nv = list(map(np.array, nv)); nuv = list(map(np.array, nuv)); nf = list(nf)
     pts = sorted({p for e in edge_pts for p in e})
     center = np.mean([nv[p] for p in pts], axis=0)
@@ -160,13 +175,13 @@ def add_cap(nv, nuv, nw, nf, edge_pts, normal_down):
     for p in pts:
         dx, dz = (nv[p][0] - center[0]) / rmax, (nv[p][2] - center[2]) / rmax
         cap_idx[p] = len(nv)
-        nv.append(nv[p].copy()); nuv.append(np.array([CAP_C[0] + dx * CAP_R, CAP_C[1] + dz * CAP_R])); nw.append(dict(nw[p]))
+        nv.append(nv[p].copy()); nuv.append(np.array([cap_c[0] + dx * cap_r, cap_c[1] + dz * cap_r])); nw.append(dict(nw[p]))
     ci = len(nv)
     wsum = {}
     for p in pts:
         for b, w in nw[p].items(): wsum[b] = wsum.get(b, 0) + w
     tot = sum(wsum.values()) or 1
-    nv.append(center + np.array([0, -0.004 if normal_down else 0.004, 0])); nuv.append(np.array(CAP_C)); nw.append({b: w / tot for b, w in wsum.items()})
+    nv.append(center + np.array([0, -0.004 if normal_down else 0.004, 0])); nuv.append(np.array(cap_c)); nw.append({b: w / tot for b, w in wsum.items()})
     for a, b in edge_pts:
         # orientar: la normal de la tapa debe mirar hacia abajo (normal_down) = -Y
         tri = (ci, cap_idx[a], cap_idx[b])
@@ -200,7 +215,7 @@ def build_leg_stumps():
                 bones = LEG_BONES[side] if part != "Foot" else [LEG_BONES[side][2], LEG_BONES[side][3]]
                 faces = limb_faces(body, bones)
                 nv, nuv, nw, nf, edge = clip_mesh(body, faces, cut, keep_above=True)
-                nv, nuv, nw, nf = add_cap(nv, nuv, nw, nf, edge, normal_down=True)
+                nv, nuv, nw, nf = add_cap(nv, nuv, nw, nf, edge, normal_down=True, cap=cap_for("Foot", side))
                 name = "Amputation_%s_%s_%s" % (SIDE_NAME[side], part, sex)
                 tex = "Amputations/Human/%s/skin01_b" % part
                 r = write_skinned(out("models_X", "Amputation", name + ".X"), name, tex, sex, body, nv, nuv, nw, nf)
@@ -216,7 +231,12 @@ def skin_sample(img, part):
     return reg.getpixel((0, 0))
 
 def paint_disc(img, kind, seed=0):
-    x, y, w, h = PATCH
+    """La herida en todas las zonas de tapa (PATCH y las de mano / pie de cada lado), igual en todas."""
+    for box in wound_patches(): paint_disc_at(img, kind, seed, box)
+    return img
+
+def paint_disc_at(img, kind, seed, box):
+    x, y, w, h = box
     rng = random.Random(seed)
     d = ImageDraw.Draw(img, "RGBA")
     cx, cy = x + w / 2, y + h / 2

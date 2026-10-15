@@ -21,8 +21,10 @@ local function copyBodyLocationProperties(oldGroup, oldLocID, newGroup)
 	end
 end
 
-local function addBodyLocationsAt(groupName, locationList)
+-- TOC+: moved = ubicaciones vanilla que se recrean en otra posición (aparecen en locationList con su nueva referencia)
+local function addBodyLocationsAt(groupName, locationList, moved)
 	local results = {}
+	moved = moved or {}
 
 	-- get list (!!actually a view!!) of all groups and copy to array (BodyLocations.reset() will also clear the view)
 	local allGroupsList = BodyLocations.getAllGroups()
@@ -54,7 +56,9 @@ local function addBodyLocationsAt(groupName, locationList)
 				end
 			end
 
-			newGroup:getOrCreateLocation(oldLocID)
+			if not (oldGroup:getId() == groupName and moved[tostring(oldLocID)]) then
+				newGroup:getOrCreateLocation(oldLocID)
+			end
 
 			for _, locDef in ipairs(locationList) do
 				if oldGroup:getId() == groupName then
@@ -79,16 +83,57 @@ local function addBodyLocationsAt(groupName, locationList)
 	return results
 end
 
-local names = {
-    "toc:Arm_L", "toc:Arm_R", "toc:ArmProst_L", "toc:ArmProst_R", "toc:ArmAccessory_L", "toc:ArmAccessory_R",
-    "toc:Leg_L", "toc:Leg_R", "toc:LegProst_L", "toc:LegProst_R", "toc:LegAccessory_L", "toc:LegAccessory_R",
-}
-local defs = {}
-for _, n in ipairs(names) do
-    table.insert(defs, {name = n, reference = ItemBodyLocation.FULL_TOP, before = false})
+-- TOC+ 3.1.0: POSICIÓN de las ubicaciones. El juego aplica las máscaras de cada prenda a la textura de las que van
+-- DEBAJO (ModelInstanceTextureCreator). Antes todo iba tras FULL_TOP, encima de casi toda la ropa: las máscaras de los
+-- muñones se comían la pernera de los vaqueros y la manga de las chaquetas, y la prótesis (en modelo "bajo la ropa")
+-- quedaba con la espinilla / el antebrazo invisibles. Ahora los muñones van por encima de la ropa PINTADA sobre el
+-- cuerpo (camisetas, mallas, calcetines, faldas y vestidos de textura: tienen que quedar enmascaradas o repintarían el
+-- miembro que falta) y por debajo de la ropa de MALLA que los cubre (vaqueros, jerséis, chaquetas, monos).
+--   piernas: tras LONG_DRESS (la última textura de pierna), y PANTS (malla) se mueve justo detrás de ellas;
+--   brazos: tras VEST_TEXTURE (la última textura con manga), antes de JERSEY / SWEATER / JACKET.
+-- Si falta alguna referencia (otra versión del juego), todo vuelve a FULL_TOP como antes.
+local LEG_NAMES = { "toc:Leg_L", "toc:Leg_R", "toc:LegProst_L", "toc:LegProst_R", "toc:LegAccessory_L", "toc:LegAccessory_R" }
+local ARM_NAMES = { "toc:Arm_L", "toc:Arm_R", "toc:ArmProst_L", "toc:ArmProst_R", "toc:ArmAccessory_L", "toc:ArmAccessory_R" }
+local names = {}
+for _, n in ipairs(ARM_NAMES) do table.insert(names, n) end
+for _, n in ipairs(LEG_NAMES) do table.insert(names, n) end
+
+local function hasLocation(groupName, loc)
+    if not loc then return false end
+    local ok, found = pcall(function()
+        local g = BodyLocations.getGroup(groupName)
+        for k = 0, g:size() - 1 do
+            if g:getLocationByIndex(k):getId() == loc then return true end
+        end
+        return false
+    end)
+    return ok and found
 end
 
-local results = addBodyLocationsAt("Human", defs)
+local BLV = ItemBodyLocation
+local defs, moved = {}, {}
+local legRef = hasLocation("Human", BLV.LONG_DRESS) and hasLocation("Human", BLV.PANTS) and BLV.LONG_DRESS or nil
+local armRef = hasLocation("Human", BLV.VEST_TEXTURE) and BLV.VEST_TEXTURE or nil
+for _, n in ipairs(LEG_NAMES) do table.insert(defs, {name = n, reference = legRef or BLV.FULL_TOP, before = false}) end
+if legRef then
+    table.insert(defs, {name = BLV.PANTS, reference = legRef, before = false})
+    moved[tostring(BLV.PANTS)] = true
+end
+for _, n in ipairs(ARM_NAMES) do table.insert(defs, {name = n, reference = armRef or BLV.FULL_TOP, before = false}) end
+
+local results = addBodyLocationsAt("Human", defs, moved)
+
+-- red de seguridad: una ubicación que no se creara dejaría el ítem imposible de vestir
+pcall(function()
+    local group = BodyLocations.getGroup("Human")
+    for _, n in ipairs(names) do
+        if not results[n] then
+            results[n] = group:getOrCreateLocation(ItemBodyLocation.get(ResourceLocation.of(n)))
+            print("TOC+ BodyLocations: " .. n .. " creada al final (no se encontró su referencia)")
+        end
+    end
+    if legRef and not hasLocation("Human", BLV.PANTS) then group:getOrCreateLocation(BLV.PANTS) end
+end)
 
 for _, n in ipairs(names) do
     if results[n] then results[n]:setMultiItem(false) end
@@ -116,7 +161,7 @@ local BL = ItemBodyLocation
 -- con ellas el modelo recortado dejaba el miembro vacío ("brazo invisible con camisa").
 altModels({ BL.PANTS, BL.PANTS_EXTRA, BL.BOILERSUIT, BL.FULL_SUIT, BL.FULL_SUIT_HEAD, BL.BATH_ROBE, BL.FULL_ROBE },
           { "toc:LegProst_L", "toc:LegProst_R" })
-altModels({ BL.JACKET_SUIT, BL.JACKET, BL.JACKET_DOWN, BL.SWEATER, BL.SWEATER_HAT, BL.JACKET_BULKY, BL.JACKET_HAT, BL.JACKET_HAT_BULKY, BL.BOILERSUIT, BL.FULL_SUIT_HEAD, BL.FULL_SUIT, BL.BATH_ROBE, BL.FULL_ROBE },
+altModels({ BL.JERSEY, BL.JACKET_SUIT, BL.JACKET, BL.JACKET_DOWN, BL.SWEATER, BL.SWEATER_HAT, BL.JACKET_BULKY, BL.JACKET_HAT, BL.JACKET_HAT_BULKY, BL.BOILERSUIT, BL.FULL_SUIT_HEAD, BL.FULL_SUIT, BL.BATH_ROBE, BL.FULL_ROBE },
           { "toc:ArmProst_L", "toc:ArmProst_R" })
 
 -- 3.1.0: con una prótesis de brazo puesta, el muñón (antebrazo / brazo) usa su modelo alternativo: el brazo cortado

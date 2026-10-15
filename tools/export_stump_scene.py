@@ -11,9 +11,24 @@ TEX = os.path.join(MOD, "textures", "Amputations", "Human", "LowerLeg", "skin01_
 clip = P.load_clip(os.path.join(P.ANIMS, "Bob", "Bob_Idle.X"))
 W = P.worlds_at(clip, 0, False)
 def stump(part, sex="Male", WW=None, prost=False):
-    """prost: el modelo alternativo que el juego usa con una prótesis puesta (antebrazo y brazo: recortado bajo el encaje)."""
+    """prost: el modelo alternativo que el juego usa con una prótesis puesta (antebrazo y brazo: recortado bajo el encaje).
+    Con el alfa de la textura (costura) y medio milímetro hacia dentro, como en seam_stump."""
     name = "ArmStumpProst" if prost and part != "Hand" else "ArmStump"
-    return P.posed_x(os.path.join(MOD, "models_X", "Amputation", "%s_Right_%s_%s.X" % (name, part, sex)), TEX, WW if WW is not None else W)
+    m = P.posed_x(os.path.join(MOD, "models_X", "Amputation", "%s_Right_%s_%s.X" % (name, part, sex)), TEX, WW if WW is not None else W)
+    return _inward(m)
+
+def _inward(m):
+    import numpy as np
+    m["alpha"] = True
+    v = np.asarray(m["v"], float); n = np.zeros_like(v)
+    for a, b, c in m["f"]:
+        fn = np.cross(v[b] - v[a], v[c] - v[a]); n[a] += fn; n[b] += fn; n[c] += fn
+    n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+    m["v"] = v - n * 0.0005
+    return m
+
+_posed_body = P.posed_body
+P.posed_body = lambda sex, masks, WW: P.posed_body_texel(sex, masks, WW, shirt=False)   # el cuerpo enmascarado por texel
 P.export("stump_hand", [P.posed_body("Male", [6], W), stump("Hand")])
 P.export("stump_fa", [P.posed_body("Male", [5, 6], W), stump("ForeArm")])
 P.export("stump_ua", [P.posed_body("Male", [5, 6], W), stump("UpperArm")])
@@ -60,3 +75,7 @@ P.export("seam_fa_m", [P.posed_body_texel("Male", [5, 6], W), seam_stump("ForeAr
 P.export("seam_ua_f", [P.posed_body_texel("Female", [5, 6], W), seam_stump("UpperArm", "Female")])
 P.export("seam_hand_f", [P.posed_body_texel("Female", [6], W), seam_stump("Hand", "Female")])
 P.export("seam_body_f", [P.posed_body_texel("Female", [5, 6], W)])
+# tapa del muñón de pierna con la herida en la zona del pie (3.1.0)
+_legtex = os.path.join(MOD, "textures", "Amputations", "Human", "LowerLeg", "skinF01_b.png")
+_leg = P.posed_x(os.path.join(MOD, "models_X", "Amputation", "Amputation_Left_LowerLeg_Female.X"), _legtex, W); _leg["alpha"] = True
+P.export("seam_leg_f", [P.posed_body_texel("Female", [7, 8], W), _leg])

@@ -47,6 +47,16 @@
   stump took a face only if its centre was hidden, so about 20 half-hidden faces were drawn by neither. Stumps now
   take every face with a hidden texel, and the stump textures are transparent where the body still shows (a shirt
   painted on the body stays visible up to the mask edge).
+- Fixed: trousers lost the leg from mid-thigh down over a leg stump (and jackets the sleeve and shoulder over an
+  arm stump), and a prosthesis under them showed only its foot or hand with nothing above. All TOC locations sat
+  after `FULL_TOP`, above almost all clothing, so the stump masks were applied to the clothes. Stumps and
+  prostheses now sit above the clothing painted on the body (shirts, long johns, socks, texture skirts and dresses,
+  which must stay masked) and below the mesh clothing that covers them: legs after `LONG_DRESS` with vanilla `PANTS`
+  moved right after them, arms after `VEST_TEXTURE` (before jerseys, sweaters and jackets). Jerseys now also use
+  the "under the sleeve" arm prosthesis model.
+- Fixed: the wound on the end of a stump lost 19 % of its disc under any clothing with masks, and 69 % on the left
+  leg when both legs were amputated. The wound texture sat in a free UV area partly inside the leg masks; each stump
+  cap now maps to a spot inside the hand or foot of its own side, which is only hidden when that limb is covered.
 - Changed: amputee trait icons redrawn in the vanilla style (outlined pixel art, shirt or shorts, bandaged stump)
   instead of flat red silhouettes and plain bars (`tools/make_trait_icons.py`).
 

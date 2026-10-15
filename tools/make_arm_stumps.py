@@ -118,7 +118,7 @@ def build_prost_variants():
                 tmp = dict(body); tmp["verts"] = body["verts"][:, [1, 0, 2]].copy()
                 nv, nuv, nw, nf, edge = BA.clip_mesh(tmp, faces, cut if side == "L" else -cut, keep_above=(side == "R"))
                 n_cap_from = len(nv)
-                nv, nuv, nw, nf = BA.add_cap(nv, nuv, nw, nf, edge, normal_down=(side == "L"))
+                nv, nuv, nw, nf = BA.add_cap(nv, nuv, nw, nf, edge, normal_down=(side == "L"), cap=BA.cap_for("Hand", side))
                 nv = np.asarray(nv)[:, [1, 0, 2]].copy()
                 bv, bn = BODY_N[sex]
                 name = "ArmStumpProst_%s_%s_%s" % (BA.SIDE_NAME[side], part, sex)
@@ -143,7 +143,7 @@ def build():
                 n_cap_from = len(nv)                          # add_cap añade la tapa al final
                 # tapa hacia fuera del cuerpo (+X a la izquierda, -X a la derecha). add_cap orienta en el espacio
                 # intercambiado, que es un reflejo: hay que pedirle la orientación contraria
-                nv, nuv, nw, nf = BA.add_cap(nv, nuv, nw, nf, edge, normal_down=(side == "L"))
+                nv, nuv, nw, nf = BA.add_cap(nv, nuv, nw, nf, edge, normal_down=(side == "L"), cap=BA.cap_for("Hand", side))
                 nv = np.asarray(nv)[:, [1, 0, 2]].copy()
                 name = "ArmStump_%s_%s_%s" % (BA.SIDE_NAME[side], part, sex)
                 bv, bn = BODY_N[sex]
@@ -189,8 +189,8 @@ def seam_alpha(verbose=True):
         for f in m["faces"]: legs |= tri_texels(uv[list(f)])
     need_on |= binary_dilation(legs, iterations=1)
     off = need_off & ~need_on                                 # en caso de duda, opaco: mejor solape que agujero
-    x, y, w, h = BA.PATCH
-    assert not off[y:y + h, x:x + w].any(), "la costura toca la zona de la herida"
+    for x, y, w, h in BA.wound_patches():
+        assert not off[y:y + h, x:x + w].any(), "la costura toca una zona de herida"
     n = 0
     for kind, part in STUMP_TEX_DIRS:
         for p in sorted(glob.glob(os.path.join(BA.out("textures", "Amputations", kind, part), "*.png"))):
