@@ -32,6 +32,11 @@
 - Changed: arm prostheses no longer look bigger than the healthy arm. Shells that replace the limb match its size
   (`ARM_SHELL`), sockets keep 2.5 mm over the skin (`ARM_CL`) with tight subdivision, arm fit rings use a +-7 mm
   band instead of +-14 mm (sockets flared at the elbow and wrist). Measure with `tools/diag_arm_size.py`.
+- Fixed: skin showing through arm prostheses. While an arm prosthesis is worn, forearm and upper-arm stumps switch
+  to an alternative model cut 5 mm under the socket rim (`setAltModel(toc:ArmProst_X, toc:Arm_X)`), so there is no
+  skin inside the socket to poke out in any animation. Hand amputations keep the body forearm (long-sleeve shirts
+  are painted on it) and get 1.5 mm more room at the wrist end of the cuff.
+- Changed: the hook curves inwards, towards the body (palm side).
 - New sandbox options: `SleepingPillAnesthesia` (max share of sleeping pills in the anaesthesia, default 30, was 50)
   and `SelfAmputationHigh` (operate on your own upper arm or thigh, off by default, extra fail and faint risk).
 

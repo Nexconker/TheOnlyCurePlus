@@ -65,6 +65,8 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Corregido: una raya oscura alrededor del hombro tras amputar un brazo. Los muñones de brazo ahora se recortan del propio cuerpo (misma malla, normales y textura de piel), y las mujeres tienen sus propias texturas de muñón en los brazos.
 [*]Corregido: los zombis con un brazo amputado usaban una textura de muñón equivocada o inexistente.
 [*]Nuevo: prótesis por encima del codo. Todos los tipos de brazo, el brazo motosierra incluido, encajan ahora en un muñón de brazo: encaje sobre el muñón, bisagra de codo y antebrazo protésico que se dobla con las animaciones.
+[*]Corregido: la piel que asomaba a través de las prótesis de brazo. Con la prótesis puesta, el muñón de dentro del encaje desaparece.
+[*]Cambiado: el gancho ahora se curva hacia dentro, hacia el cuerpo.
 [*]Cambiado: las manos mecánica y médica están remodeladas para encajar mejor con las manos del juego (palma con forma de mano, dedos más gruesos; acero claro y polímero claro en vez de negro).
 [*]Nuevas opciones de sandbox: cuánto cuentan los somníferos como anestesia (ahora 30 por defecto, antes 50) y amputarse uno mismo por encima del codo y la rodilla (desactivada por defecto, mucho más arriesgada).
 [/list]

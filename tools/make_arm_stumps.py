@@ -71,6 +71,46 @@ def write(path, name, texture, sex, body, verts, uvs, weights, faces, normals):
     return pzx.write_skinned_x(BA.TEMPLATE[sex], path, name, texture, [BA.v3(v) for v in verts], [BA.v3(n) for n in normals],
                                [(float(u), float(v)) for u, v in uvs], [tuple(int(i) for i in f) for f in faces], wl, body["offsets"])
 
+# ---------------- variantes "con prótesis" (modelo alternativo del muñón mientras se lleva una prótesis de brazo)
+# La prótesis oculta el brazo entero del cuerpo (máscaras de brazo y mano) y el muñón pasa a este modelo: el brazo
+# del cuerpo cortado 5 mm por DEBAJO del borde del encaje. Dentro del encaje no hay piel que pueda asomar en ninguna
+# animación (2026-10-14: "hay algo de piel que se cuela en las prótesis").
+PROST_MASKS = {"L": (3, 4), "R": (5, 6)}
+TORSO_MAX_X = 0.136          # bajo la axila hay caras del torso dentro de la máscara hasta |x| = 0.134
+
+def prost_cut(fit_arm, part):
+    """|x| del corte bajo el borde del encaje de cada nivel (mismos t que blender_build)."""
+    import numpy as np
+    o, ax = np.array(fit_arm["o"]), np.array(fit_arm["axis"])
+    if part == "Hand": return abs(o[0] + ax[0] * 0.075)               # brazal desde t = 0.07
+    if part == "ForeArm": return abs(o[0] + ax[0] * (-0.010))         # encaje desde t = -0.015 (sobre el codo)
+    up = fit_arm["upper"]; uo, uax = np.array(up["o"]), np.array(up["axis"])
+    t0 = max(0.012, up["t_cut"] - 0.035)                               # build_upper_section: encaje desde t0
+    return max(abs(uo[0] + uax[0] * (t0 + 0.005)), TORSO_MAX_X)
+
+def build_prost_variants():
+    import json
+    fit = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "fit.json"), encoding="utf-8"))
+    BODY_N = {sx: body_normals(sx) for sx in ("Male", "Female")}
+    report = []
+    for sex in ("Male", "Female"):
+        body = BA.load_body(sex)
+        for side in ("L", "R"):
+            faces = hidden_faces(body, PROST_MASKS[side])
+            for part in ("ForeArm", "UpperArm"):        # mano: sin variante (el antebrazo del cuerpo sigue visible)
+                cut = prost_cut(fit["bodies"][sex]["arms"][side], part)
+                tmp = dict(body); tmp["verts"] = body["verts"][:, [1, 0, 2]].copy()
+                nv, nuv, nw, nf, edge = BA.clip_mesh(tmp, faces, cut if side == "L" else -cut, keep_above=(side == "R"))
+                n_cap_from = len(nv)
+                nv, nuv, nw, nf = BA.add_cap(nv, nuv, nw, nf, edge, normal_down=(side == "L"))
+                nv = np.asarray(nv)[:, [1, 0, 2]].copy()
+                bv, bn = BODY_N[sex]
+                name = "ArmStumpProst_%s_%s_%s" % (BA.SIDE_NAME[side], part, sex)
+                write(BA.out("models_X", "Amputation", name + ".X"), name, "Amputations/Human/LowerLeg/skin01_b",
+                      sex, body, nv, nuv, nw, nf, seam_normals(nv, nf, n_cap_from, bv, bn))
+                report.append((name, cut, len(nv), len(nf)))
+    for r in report: print("%-38s corte |x| %.3f  %4d verts %4d tris" % r)
+
 def build():
     report = []
     BODY_N = {sx: body_normals(sx) for sx in ("Male", "Female")}
@@ -99,3 +139,4 @@ def build():
 
 if __name__ == "__main__":
     build()
+    build_prost_variants()

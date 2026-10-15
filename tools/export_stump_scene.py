@@ -10,8 +10,10 @@ MOD = P.RC.MOD
 TEX = os.path.join(MOD, "textures", "Amputations", "Human", "LowerLeg", "skin01_b.png")
 clip = P.load_clip(os.path.join(P.ANIMS, "Bob", "Bob_Idle.X"))
 W = P.worlds_at(clip, 0, False)
-def stump(part, sex="Male"):
-    return P.posed_x(os.path.join(MOD, "models_X", "Amputation", "ArmStump_Right_%s_%s.X" % (part, sex)), TEX, W)
+def stump(part, sex="Male", WW=None, prost=False):
+    """prost: el modelo alternativo que el juego usa con una prótesis puesta (antebrazo y brazo: recortado bajo el encaje)."""
+    name = "ArmStumpProst" if prost and part != "Hand" else "ArmStump"
+    return P.posed_x(os.path.join(MOD, "models_X", "Amputation", "%s_Right_%s_%s.X" % (name, part, sex)), TEX, WW if WW is not None else W)
 P.export("stump_hand", [P.posed_body("Male", [6], W), stump("Hand")])
 P.export("stump_fa", [P.posed_body("Male", [5, 6], W), stump("ForeArm")])
 P.export("stump_ua", [P.posed_body("Male", [5, 6], W), stump("UpperArm")])
@@ -21,7 +23,7 @@ P.export("stump_ua_f", [P.posed_body("Female", [5, 6], W), stump("UpperArm", "Fe
 # manos mecánica y médica (comentario de la ronda 2: "desentonan con las manos del juego")
 for tier, tex in (("normalArm", "normalArm"), ("medicalArm", "medicalArm")):
     for lvl, part, masks in (("Wrist", "Hand", [6]), ("", "ForeArm", [5, 6])):
-        P.export("hand_%s%s" % (tier, lvl), [P.posed_body("Male", masks, W), stump(part),
+        P.export("hand_%s%s" % (tier, lvl), [P.posed_body("Male", masks, W), stump(part, prost=True),
                  P.posed_x(os.path.join(MOD, "models_X", "Prosthesis", "%s%s_R_M.X" % (tier, lvl)), os.path.join(MOD, "textures", "Prosthesis", tex + ".png"), W)])
 # prótesis por encima del codo (nivel Upper, 3.1.0): reposo y golpe (codo doblado)
 atk = P.load_clip(os.path.join(P.ANIMS, "Bob", "Bob_Attack1Hand01_Hit.X"))
@@ -30,11 +32,11 @@ Wa = P.worlds_at(atk, 0.35 * Ta, False)
 for tier, tex in (("pegArm", "pegArm"), ("hookArm", "hookArm"), ("normalArm", "normalArm"), ("medicalArm", "medicalArm"), ("chainsawArm", "chainsawArm")):
     for nm, WW in (("upper_%s" % tier, W), ("upperatk_%s" % tier, Wa)):
         P.export(nm, [P.posed_body("Male", [5, 6], WW),
-                      P.posed_x(os.path.join(MOD, "models_X", "Amputation", "ArmStump_Right_UpperArm_Male.X"), TEX, WW),
+                      stump("UpperArm", WW=WW, prost=True),
                       P.posed_x(os.path.join(MOD, "models_X", "Prosthesis", "%sUpper_R_M.X" % tier), os.path.join(MOD, "textures", "Prosthesis", tex + ".png"), WW)])
 # comparación de grosor con el brazo sano (2026-10-14: "el brazo protésico se ve más grande que el normal")
 for nm, part, masks, model, tex in (("cmp_wrist", "Hand", [6], "normalArmWrist_R_M", "normalArm"), ("cmp_fore", "ForeArm", [5, 6], "normalArm_R_M", "normalArm"),
                                     ("cmp_upper", "UpperArm", [5, 6], "normalArmUpper_R_M", "normalArm"), ("cmp_hook", "ForeArm", [5, 6], "hookArm_R_M", "hookArm"),
                                     ("cmp_peg_w", "Hand", [6], "pegArmWrist_R_M", "pegArm")):
-    P.export(nm, [P.posed_body("Male", masks, W), stump(part),
+    P.export(nm, [P.posed_body("Male", masks, W), stump(part, prost=True),
                   P.posed_x(os.path.join(MOD, "models_X", "Prosthesis", model + ".X"), os.path.join(MOD, "textures", "Prosthesis", tex + ".png"), W)])

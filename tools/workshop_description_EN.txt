@@ -65,6 +65,8 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Fixed: a dark stripe around the shoulder after an arm amputation. Arm stumps are now cut from the body itself (same mesh, normals and skin texture), and women get their own stump textures on the arms.
 [*]Fixed: zombies with an amputated arm used a wrong or missing stump texture.
 [*]New: prostheses above the elbow. Every arm tier, the chainsaw arm included, now fits an upper-arm stump: socket on the stump, elbow hinge, and a prosthetic forearm that bends with the animations.
+[*]Fixed: skin poking through arm prostheses. With a prosthesis on, the stump inside the socket is removed.
+[*]Changed: the hook now curves inwards, towards the body.
 [*]Changed: the mechanical and medical hands were remodelled to sit better next to the game's hands (hand-shaped palm, thicker fingers; light steel and light polymer instead of black).
 [*]New sandbox options: how much sleeping pills count as anaesthesia (now 30 by default, was 50), and self-amputation above the elbow and knee (off by default, much riskier).
 [/list]

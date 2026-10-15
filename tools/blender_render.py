@@ -155,6 +155,9 @@ for _n in ("cmp_wrist", "cmp_fore", "cmp_upper", "cmp_hook", "cmp_peg_w"):
     JOBS[_n] = ([(_n, 0, 0)], 4, 180, 7.0, (0.0, 0.0, 6.0))
 for _n in ("cmp_wrist", "cmp_fore", "cmp_upper"):
     JOBS[_n + "_side"] = ([(_n, 0, 0)], 6, 250, 4.2, (-1.8, 0.0, 4.6))
+JOBS["hook_front"] = ([("cmp_hook", 0, 0)], 6, 180, 3.4, (-1.9, 0.0, 4.0))
+JOBS["hook_side"] = ([("cmp_hook", 0, 0)], 6, 265, 3.4, (-1.9, 0.0, 4.0))
+JOBS["hook_up_front"] = ([("upper_hookArm", 0, 0)], 6, 180, 3.4, (-1.9, 0.0, 4.0))
 CULL = {"stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f",
         "stump_hand_back", "stump_fa_back", "stump_ua_back", "stump_fa_mech_back", "stump_ua_f_back",
         "ankle_peg", "ankle_mech", "ankle_med", "iso_ankle_peg", "iso_ankle_mech", "iso_calf_peg", "iso_calf_mech"}     # como el juego: sin caras traseras (se ve a través de un hueco)

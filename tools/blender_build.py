@@ -366,7 +366,8 @@ def arm_socket(B, arm, level, bone, band_socket, band_shell, clearance=ARM_CL, s
     if level == "Wrist":
         ts = [0.07, 0.0775, 0.085, 0.0925, 0.10, 0.1075, 0.115, 0.1225, 0.13, 0.136, 0.142]   # anillos densos: sin subdivisión
         # sin subdivisión: el anillo de 24 lados ya abraza la sección real; la subdivisión añadía +3.5 % y 1.5 mm
-        B.loft("cuff", smooth_rings([arm_ring(arm, t, clearance) for t in ts], 2), bone, band_socket, subsurf=1, tight=True)
+        # +1.5 mm en el tramo final: ahí la piel de la muñeca, pesada en parte a la mano, se mueve al girar
+        B.loft("cuff", smooth_rings([arm_ring(arm, t, clearance + (0.0015 if t >= 0.115 else 0.0)) for t in ts], 2), bone, band_socket, subsurf=1, tight=True)
         rim = smooth_rings([arm_ring(arm, 0.066, clearance + 0.0015), arm_ring(arm, 0.07, clearance + 0.003), arm_ring(arm, 0.082, clearance + 0.0025), arm_ring(arm, 0.086, clearance + 0.0005)])
         B.loft("rim", rim, bone, band_socket, subsurf=1)
         # anillo de cierre con la sección de la MUÑECA desplazada (en t = 0.154 el cuerpo ya es la palma, ancha y plana,
@@ -477,13 +478,15 @@ def build_hook_arm(B, arm, level):
     base = sh + ax * 0.03
     B.cyl("band", tuple(base - ax * 0.005), tuple(base + ax * 0.005), 0.0125, 0.0125, bone, B.band("rubber"), segs=14, bevel=0.003)
     R = 0.031
+    # el gancho se curva hacia +dn (lado de la palma): con el brazo colgando mira hacia dentro, hacia el cuerpo
+    # (petición del usuario, 2026-10-14; antes se curvaba hacia delante). Las dos puntas, separadas delante/detrás.
     for i, off in enumerate((-0.0075, 0.0075)):
-        c = base + fr * R + dn * off
+        c = base + dn * R + fr * off
         pts, rr = [], []
         n = 9
         for k in range(n):
             th = math.radians(165.0) * k / (n - 1)
-            pts.append(tuple(c + ax * (R * math.sin(th)) - fr * (R * math.cos(th))))
+            pts.append(tuple(c + ax * (R * math.sin(th)) - dn * (R * math.cos(th))))
             rr.append(0.0058 - 0.0028 * k / (n - 1))
         B.curve("prong%d" % i, pts, rr, bone, B.band("polished"), res=3)
         B.sphere("prongtip%d" % i, pts[-1], rr[-1], bone, B.band("polished"), segs=8)

@@ -56,8 +56,14 @@ for part in ("Foot", "LowerLeg", "UpperLeg"):
 ARM_MASKS = {"Hand": {"L": (4,), "R": (6,)}, "ForeArm": {"L": (3, 4), "R": (5, 6)}, "UpperArm": {"L": (3, 4), "R": (5, 6)}}
 for part in ("Hand", "ForeArm", "UpperArm"):
     for side in ("L", "R"):
+        # alternativo = con prótesis puesta (BodyLocations: setAltModel(ArmProst, Arm)): el brazo cortado bajo el borde
+        # del encaje, sin piel dentro que pueda asomar (tools/make_arm_stumps.py: build_prost_variants)
+        # (sólo antebrazo y brazo: ahí la amputación ya oculta el brazo entero. En la mano el antebrazo es el del cuerpo y
+        # tiene que seguir visible: las camisas de manga larga son textura pintada sobre él)
+        alt = None if part == "Hand" else (P("Amputation", "ArmStumpProst_%s_%s_Male" % (SIDE[side], part)),
+                                           P("Amputation", "ArmStumpProst_%s_%s_Female" % (SIDE[side], part)))
         write("Amputation_%s_%s" % (part, side), P("Amputation", "ArmStump_%s_%s_Male" % (SIDE[side], part)),
-              P("Amputation", "ArmStump_%s_%s_Female" % (SIDE[side], part)), stump_textures("LowerLeg"), ARM_MASKS[part][side])
+              P("Amputation", "ArmStump_%s_%s_Female" % (SIDE[side], part)), stump_textures("LowerLeg"), ARM_MASKS[part][side], alt=alt)
 
 # prótesis: tier x nivel de amputación (mismo nombre de ítem con sufijo Wrist / Ankle / Thigh)
 PROST = {"PegArm": ("pegArm", ["", "Wrist", "Upper"]), "HookArm": ("hookArm", ["", "Wrist", "Upper"]), "NormalArm": ("normalArm", ["", "Wrist", "Upper"]), "MedicalArm": ("medicalArm", ["", "Wrist", "Upper"]),

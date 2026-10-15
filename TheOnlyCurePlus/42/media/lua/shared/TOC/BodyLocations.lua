@@ -118,3 +118,13 @@ altModels({ BL.PANTS, BL.PANTS_EXTRA, BL.BOILERSUIT, BL.FULL_SUIT, BL.FULL_SUIT_
           { "toc:LegProst_L", "toc:LegProst_R" })
 altModels({ BL.JACKET_SUIT, BL.JACKET, BL.JACKET_DOWN, BL.SWEATER, BL.SWEATER_HAT, BL.JACKET_BULKY, BL.JACKET_HAT, BL.JACKET_HAT_BULKY, BL.BOILERSUIT, BL.FULL_SUIT_HEAD, BL.FULL_SUIT, BL.BATH_ROBE, BL.FULL_ROBE },
           { "toc:ArmProst_L", "toc:ArmProst_R" })
+
+-- 3.1.0: con una prótesis de brazo puesta, el muñón (antebrazo / brazo) usa su modelo alternativo: el brazo cortado
+-- bajo el borde del encaje, sin piel dentro que pueda asomar al moverse (tools/make_arm_stumps.py).
+pcall(function()
+    local group = BodyLocations.getGroup("Human")
+    for _, side in ipairs({ "L", "R" }) do
+        local prost, stump = results["toc:ArmProst_" .. side], results["toc:Arm_" .. side]
+        if prost and stump then group:setAltModel(prost:getId(), stump:getId()) end
+    end
+end)
