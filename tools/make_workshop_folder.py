@@ -60,10 +60,12 @@ lines = ["version=1"] + (["id=" + item_id] if item_id else []) + ["title=The Onl
 # Descripción CORTA y sólo ASCII: el subidor del juego la reenvía a Steam en cada actualización y la
 # descripción larga con cirílico/coreano devolvió result=2. La completa se pega a mano en la web de Steam
 # (tools/workshop_description_EN.txt).
+# SIN enlaces: con "github.com/..." aquí Steam devolvió result=2 al confirmar la 3.1.0 (el contenido ya se había subido
+# entero). El enlace va en la descripción larga, que se pega en la web.
 SHORT = ["The Only Cure+ (Field Surgery) for Build 42: staged field surgery, infection and sepsis,",
          "prostheses that fit the stump (now above the elbow too), an Ash-style chainsaw arm,",
          "legs, crutches and crawling, crawler zombies. SP and MP.",
-         "Full description, changelog and languages on the Steam page. Bugs: github.com/Nexconker/TheOnlyCurePlus"]
+         "Full description, changelog and languages on the Steam page."]
 for ln in SHORT:
     assert all(ord(c) < 128 for c in ln)
     lines.append("description=" + ln)
