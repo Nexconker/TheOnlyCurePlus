@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "Gamba prostetica medica",
     "TOC.Prost_ChainsawArm_R": "Braccio motosega",
     "TOC.Prost_ChainsawArmWrist_R": "Braccio motosega",
-    "TOC.MountedChainsaw": "Motosega montata"
+    "TOC.MountedChainsaw": "Motosega montata",
+    "TOC.Prost_PegArmUpper_L": "Braccio di legno",
+    "TOC.Prost_PegArmUpper_R": "Braccio di legno",
+    "TOC.Prost_HookArmUpper_L": "Braccio prostetico - Uncino",
+    "TOC.Prost_HookArmUpper_R": "Braccio prostetico - Uncino",
+    "TOC.Prost_NormalArmUpper_L": "Braccio Prostetico",
+    "TOC.Prost_NormalArmUpper_R": "Braccio Prostetico",
+    "TOC.Prost_MedicalArmUpper_L": "Braccio prostetico medico",
+    "TOC.Prost_MedicalArmUpper_R": "Braccio prostetico medico",
+    "TOC.Prost_ChainsawArmUpper_R": "Braccio motosega"
 }

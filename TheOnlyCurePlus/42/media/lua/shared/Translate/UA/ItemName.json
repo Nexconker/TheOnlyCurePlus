@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "Медичний Протез Ноги",
     "TOC.Prost_ChainsawArm_R": "Рука-бензопила",
     "TOC.Prost_ChainsawArmWrist_R": "Рука-бензопила",
-    "TOC.MountedChainsaw": "Закріплена бензопила"
+    "TOC.MountedChainsaw": "Закріплена бензопила",
+    "TOC.Prost_PegArmUpper_L": "Дерев'яна Рука",
+    "TOC.Prost_PegArmUpper_R": "Дерев'яна Рука",
+    "TOC.Prost_HookArmUpper_L": "Протез Руки - Гак",
+    "TOC.Prost_HookArmUpper_R": "Протез Руки - Гак",
+    "TOC.Prost_NormalArmUpper_L": "Протез Руки",
+    "TOC.Prost_NormalArmUpper_R": "Протез Руки",
+    "TOC.Prost_MedicalArmUpper_L": "Медичний Протез Руки",
+    "TOC.Prost_MedicalArmUpper_R": "Медичний Протез Руки",
+    "TOC.Prost_ChainsawArmUpper_R": "Рука-бензопила"
 }

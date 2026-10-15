@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\chainsawArmUpper_R_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\chainsawArmUpper_R_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\chainsawArmUpperUnder_R_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\chainsawArmUpperUnder_R_F</m_AltFemaleModel>
+    <m_GUID>3154da49-321a-4781-9e16-e3a980980a82</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Prosthesis\chainsawArm</textureChoices>
+</clothingItem>

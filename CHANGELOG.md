@@ -24,6 +24,10 @@
   from the vanilla body (`tools/make_arm_stumps.py`): exactly the faces the mask hides, with the body's normals and
   the same body-copy textures as the leg stumps. Women get their own stump textures on arms. Old FBX stumps removed.
 - Fixed: zombie arm stumps asked for texture 30+ in a list of 32 entries. Arms now use the 42-entry list of the legs.
+- New: above-elbow prostheses (level suffix `Upper`, e.g. `TOC.Prost_NormalArmUpper_L`) for every arm tier and the
+  chainsaw arm. Upper-arm socket and elbow hinge on `Bip01_X_UpperArm`, prosthetic forearm on the forearm bone so it
+  bends with the animations (`blender_build.build_upper_section`, fit data in `export_fit.upper_arm`).
+- Changed: mechanical and medical hands remodelled (hand-shaped palm, thicker fingers, light steel / light polymer).
 - New sandbox options: `SleepingPillAnesthesia` (max share of sleeping pills in the anaesthesia, default 30, was 50)
   and `SelfAmputationHigh` (operate on your own upper arm or thigh, off by default, extra fail and faint risk).
 

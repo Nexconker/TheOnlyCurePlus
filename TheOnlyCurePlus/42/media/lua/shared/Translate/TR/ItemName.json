@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "Tıbbi Protez Bacak",
     "TOC.Prost_ChainsawArm_R": "Testere Kol",
     "TOC.Prost_ChainsawArmWrist_R": "Testere Kol",
-    "TOC.MountedChainsaw": "Takılı Motorlu Testere"
+    "TOC.MountedChainsaw": "Takılı Motorlu Testere",
+    "TOC.Prost_PegArmUpper_L": "Tahta Kol",
+    "TOC.Prost_PegArmUpper_R": "Tahta Kol",
+    "TOC.Prost_HookArmUpper_L": "Protez Kol - Kanca",
+    "TOC.Prost_HookArmUpper_R": "Protez Kol - Kanca",
+    "TOC.Prost_NormalArmUpper_L": "Protez Kol",
+    "TOC.Prost_NormalArmUpper_R": "Protez Kol",
+    "TOC.Prost_MedicalArmUpper_L": "Tıbbi Protez Kol",
+    "TOC.Prost_MedicalArmUpper_R": "Tıbbi Protez Kol",
+    "TOC.Prost_ChainsawArmUpper_R": "Testere Kol"
 }

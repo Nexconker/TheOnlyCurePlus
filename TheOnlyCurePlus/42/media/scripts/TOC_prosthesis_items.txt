@@ -99,6 +99,50 @@ module TOC
 		WorldStaticModel = prostheticArmPeg,
 	}
 
+	item Prost_PegArmUpper_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_PegArmUpper_L,
+		ClothingItemExtra = Prost_PegArmUpper_R,
+		ClothingItemExtraOption = InstallProstRight,
+		clothingExtraSubmenu = InstallProstLeft,
+		BodyLocation = toc:armprost_l,
+		Weight = 1.0,
+		CombatSpeedModifier = 0.8,
+		BloodLocation = UpperArms;LowerArms,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 15,
+		ConditionLowerChanceOneIn = 20,
+		Icon = PegArm,
+		WorldStaticModel = prostheticArmPeg,
+	}
+
+	item Prost_PegArmUpper_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_PegArmUpper_R,
+		ClothingItemExtra = Prost_PegArmUpper_L,
+		ClothingItemExtraOption = InstallProstLeft,
+		clothingExtraSubmenu = InstallProstRight,
+		BodyLocation = toc:armprost_r,
+		Weight = 1.0,
+		CombatSpeedModifier = 0.8,
+		BloodLocation = UpperArms;LowerArms,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 15,
+		ConditionLowerChanceOneIn = 20,
+		Icon = PegArm,
+		WorldStaticModel = prostheticArmPeg,
+	}
+
 	item Prost_HookArm_L
 	{
 		ItemType = base:clothing,
@@ -171,6 +215,50 @@ module TOC
 		DisplayCategory = Prosthesis,
 		ClothingItem = Prost_HookArmWrist_R,
 		ClothingItemExtra = Prost_HookArmWrist_L,
+		ClothingItemExtraOption = InstallProstLeft,
+		clothingExtraSubmenu = InstallProstRight,
+		BodyLocation = toc:armprost_r,
+		Weight = 1.5,
+		CombatSpeedModifier = 0.9,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 20,
+		ConditionLowerChanceOneIn = 30,
+		Icon = HookArm,
+		WorldStaticModel = prostheticArmHook,
+	}
+
+	item Prost_HookArmUpper_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_HookArmUpper_L,
+		ClothingItemExtra = Prost_HookArmUpper_R,
+		ClothingItemExtraOption = InstallProstRight,
+		clothingExtraSubmenu = InstallProstLeft,
+		BodyLocation = toc:armprost_l,
+		Weight = 1.5,
+		CombatSpeedModifier = 0.9,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 20,
+		ConditionLowerChanceOneIn = 30,
+		Icon = HookArm,
+		WorldStaticModel = prostheticArmHook,
+	}
+
+	item Prost_HookArmUpper_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_HookArmUpper_R,
+		ClothingItemExtra = Prost_HookArmUpper_L,
 		ClothingItemExtraOption = InstallProstLeft,
 		clothingExtraSubmenu = InstallProstRight,
 		BodyLocation = toc:armprost_r,
@@ -275,6 +363,50 @@ module TOC
 		WorldStaticModel = prostheticArm,
 	}
 
+	item Prost_NormalArmUpper_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_NormalArmUpper_L,
+		ClothingItemExtra = Prost_NormalArmUpper_R,
+		ClothingItemExtraOption = InstallProstRight,
+		clothingExtraSubmenu = InstallProstLeft,
+		BodyLocation = toc:armprost_l,
+		Weight = 2,
+		CombatSpeedModifier = 0.95,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 30,
+		ConditionLowerChanceOneIn = 40,
+		Icon = MechArm,
+		WorldStaticModel = prostheticArm,
+	}
+
+	item Prost_NormalArmUpper_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_NormalArmUpper_R,
+		ClothingItemExtra = Prost_NormalArmUpper_L,
+		ClothingItemExtraOption = InstallProstLeft,
+		clothingExtraSubmenu = InstallProstRight,
+		BodyLocation = toc:armprost_r,
+		Weight = 2,
+		CombatSpeedModifier = 0.95,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 30,
+		ConditionLowerChanceOneIn = 40,
+		Icon = MechArm,
+		WorldStaticModel = prostheticArm,
+	}
+
 	item Prost_MedicalArm_L
 	{
 		ItemType = base:clothing,
@@ -363,6 +495,50 @@ module TOC
 		WorldStaticModel = prostheticArmMedical,
 	}
 
+	item Prost_MedicalArmUpper_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_MedicalArmUpper_L,
+		ClothingItemExtra = Prost_MedicalArmUpper_R,
+		ClothingItemExtraOption = InstallProstRight,
+		clothingExtraSubmenu = InstallProstLeft,
+		BodyLocation = toc:armprost_l,
+		Weight = 1.2,
+		CombatSpeedModifier = 1.0,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 40,
+		ConditionLowerChanceOneIn = 60,
+		Icon = MedicalArm,
+		WorldStaticModel = prostheticArmMedical,
+	}
+
+	item Prost_MedicalArmUpper_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_MedicalArmUpper_R,
+		ClothingItemExtra = Prost_MedicalArmUpper_L,
+		ClothingItemExtraOption = InstallProstLeft,
+		clothingExtraSubmenu = InstallProstRight,
+		BodyLocation = toc:armprost_r,
+		Weight = 1.2,
+		CombatSpeedModifier = 1.0,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 40,
+		ConditionLowerChanceOneIn = 60,
+		Icon = MedicalArm,
+		WorldStaticModel = prostheticArmMedical,
+	}
+
 	item Prost_ChainsawArm_R
 	{
 		ItemType = base:clothing,
@@ -387,6 +563,25 @@ module TOC
 		ItemType = base:clothing,
 		DisplayCategory = Prosthesis,
 		ClothingItem = Prost_ChainsawArmWrist_R,
+		BodyLocation = toc:armprost_r,
+		Weight = 4.5,
+		CombatSpeedModifier = 0.9,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 30,
+		ConditionLowerChanceOneIn = 40,
+		Icon = ChainsawArm,
+		WorldStaticModel = prostheticArmChainsaw,
+	}
+
+	item Prost_ChainsawArmUpper_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_ChainsawArmUpper_R,
 		BodyLocation = toc:armprost_r,
 		Weight = 4.5,
 		CombatSpeedModifier = 0.9,

@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "의료용 의족",
     "TOC.Prost_ChainsawArm_R": "전기톱 팔",
     "TOC.Prost_ChainsawArmWrist_R": "전기톱 팔",
-    "TOC.MountedChainsaw": "장착된 전기톱"
+    "TOC.MountedChainsaw": "장착된 전기톱",
+    "TOC.Prost_PegArmUpper_L": "나무 의수",
+    "TOC.Prost_PegArmUpper_R": "나무 의수",
+    "TOC.Prost_HookArmUpper_L": "의수 - 후크",
+    "TOC.Prost_HookArmUpper_R": "의수 - 후크",
+    "TOC.Prost_NormalArmUpper_L": "의수",
+    "TOC.Prost_NormalArmUpper_R": "의수",
+    "TOC.Prost_MedicalArmUpper_L": "의료용 의수",
+    "TOC.Prost_MedicalArmUpper_R": "의료용 의수",
+    "TOC.Prost_ChainsawArmUpper_R": "전기톱 팔"
 }

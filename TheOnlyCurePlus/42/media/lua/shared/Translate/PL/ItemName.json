@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "Medyczna proteza nogi",
     "TOC.Prost_ChainsawArm_R": "Ramię z piłą łańcuchową",
     "TOC.Prost_ChainsawArmWrist_R": "Ramię z piłą łańcuchową",
-    "TOC.MountedChainsaw": "Zamontowana piła łańcuchowa"
+    "TOC.MountedChainsaw": "Zamontowana piła łańcuchowa",
+    "TOC.Prost_PegArmUpper_L": "Drewniana ręka",
+    "TOC.Prost_PegArmUpper_R": "Drewniana ręka",
+    "TOC.Prost_HookArmUpper_L": "Proteza ręki - Hak",
+    "TOC.Prost_HookArmUpper_R": "Proteza ręki - Hak",
+    "TOC.Prost_NormalArmUpper_L": "Proteza ręki",
+    "TOC.Prost_NormalArmUpper_R": "Proteza ręki",
+    "TOC.Prost_MedicalArmUpper_L": "Medyczna proteza ręki",
+    "TOC.Prost_MedicalArmUpper_R": "Medyczna proteza ręki",
+    "TOC.Prost_ChainsawArmUpper_R": "Ramię z piłą łańcuchową"
 }

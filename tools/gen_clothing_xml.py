@@ -60,9 +60,9 @@ for part in ("Hand", "ForeArm", "UpperArm"):
               P("Amputation", "ArmStump_%s_%s_Female" % (SIDE[side], part)), stump_textures("LowerLeg"), ARM_MASKS[part][side])
 
 # prótesis: tier x nivel de amputación (mismo nombre de ítem con sufijo Wrist / Ankle / Thigh)
-PROST = {"PegArm": ("pegArm", ["", "Wrist"]), "HookArm": ("hookArm", ["", "Wrist"]), "NormalArm": ("normalArm", ["", "Wrist"]), "MedicalArm": ("medicalArm", ["", "Wrist"]),
+PROST = {"PegArm": ("pegArm", ["", "Wrist", "Upper"]), "HookArm": ("hookArm", ["", "Wrist", "Upper"]), "NormalArm": ("normalArm", ["", "Wrist", "Upper"]), "MedicalArm": ("medicalArm", ["", "Wrist", "Upper"]),
          "PegLeg": ("pegLeg", ["", "Ankle", "Thigh"]), "MechLeg": ("mechLeg", ["", "Ankle", "Thigh"]), "MedicalLeg": ("medicalLeg", ["", "Ankle", "Thigh"]),
-         "ChainsawArm": ("chainsawArm", ["", "Wrist"])}
+         "ChainsawArm": ("chainsawArm", ["", "Wrist", "Upper"])}
 ONE_SIDE = {"ChainsawArm": "R"}      # brazo motosierra: sólo derecho
 for side in ("L", "R"):
     for tier, (model, levels) in PROST.items():

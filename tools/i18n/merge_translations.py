@@ -10,7 +10,7 @@ T = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media\lua\shared\Translate"
 src = json.load(open(os.path.join(HERE, "source_EN.json"), encoding="utf-8"))
 load = lambda p: json.loads(open(p, encoding="utf-8-sig").read()) if os.path.exists(p) else {}
 en = {os.path.basename(f): load(f) for f in glob.glob(os.path.join(T, "EN", "*.json"))}
-VAR = re.compile(r"^TOC\.Prost_(\w+?)(Wrist|Ankle|Thigh)?_([LR])$")
+VAR = re.compile(r"^TOC\.Prost_(\w+?)(Wrist|Upper|Ankle|Thigh)?_([LR])$")
 PH = re.compile(r"%\d")
 
 langs = sys.argv[1:] or sorted(os.path.splitext(f)[0] for f in os.listdir(HERE) if re.fullmatch(r"[A-Z]{2}\.json", f) and f != "EN.json")

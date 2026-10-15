@@ -70,7 +70,33 @@ def chainsaw_local():
             "body_half": [float(((body - cb) @ o).max()), float(((body - cb) @ n).max())], "bar_offset": float((c - cb).dot(o)),
             "length": float(((V[used] - base) @ b).max())}
 
-spec = {"units": "PZ (0.57 u/m), Y arriba, frente -Z", "leg_cuts": BA.LEG_CUTS, "leg_levels": BA.LEG_LEVELS, "arm_levels": BA.ARM_LEVELS, "bodies": {}}
+# ------------------------------------------------------------------ brazo superior (prótesis por encima del codo, 3.1.0)
+UPPER_STUMP_CUT = 0.155      # |x| del corte del muñón de brazo (make_arm_stumps.ARM_CUTS["UpperArm"])
+
+def upper_arm(body, side):
+    """Marco hombro -> codo y anillos reales del brazo superior cada 5 mm (t = distancia desde el hombro)."""
+    so, _, _, _ = BA.bone_frame(body["offsets"], "Bip01_%s_UpperArm" % side)
+    eo, _, _, _ = BA.bone_frame(body["offsets"], "Bip01_%s_Forearm" % side)
+    axis = eo - so; L = float(np.linalg.norm(axis)); axis = axis / L
+    down = np.array([0.0, -1.0, 0.0]); down = down - axis * (down @ axis); down = down / np.linalg.norm(down)
+    front = np.cross(down, axis); front = front / np.linalg.norm(front)
+    if front[2] > 0: front = -front
+    bones = ["Bip01_%s_UpperArm" % side]
+    rings = {}
+    t = 0.0
+    while t <= L + 1e-6:
+        ring = BA.axis_ring(body, bones, side, so, axis, down, front, t, 0.0)
+        R = np.array(ring)
+        du, dv = (R - so) @ down, (R - so) @ front
+        c = so + axis * t + down * ((du.min() + du.max()) / 2) + front * ((dv.min() + dv.max()) / 2)
+        rings["%.3f" % t] = {"c": [round(float(x), 5) for x in c], "pts": [[round(float(x), 5) for x in p] for p in R]}
+        t += 0.005
+    # t del corte del muñón a lo largo del eje (el corte es un plano |x| = UPPER_STUMP_CUT)
+    t_cut = (UPPER_STUMP_CUT - abs(so[0])) / max(abs(axis[0]), 1e-6)
+    return {"o": [float(x) for x in so], "axis": [float(x) for x in axis], "down": [float(x) for x in down], "front": [float(x) for x in front],
+            "len": L, "t_cut": float(t_cut), "rings": rings, "bone": bones[0]}
+
+spec = {"units": "PZ (0.57 u/m), Y arriba, frente -Z", "leg_cuts": BA.LEG_CUTS, "leg_levels": BA.LEG_LEVELS, "arm_levels": dict(BA.ARM_LEVELS, Upper="UpperArm"), "bodies": {}}
 for sex in ("Male", "Female"):
     body = BA.load_body(sex)
     V = body["verts"]; W = body["weights"]
@@ -104,7 +130,8 @@ for sex in ("Male", "Female"):
         ht, hd, hf = (hp - o) @ axis, (hp - o) @ down, (hp - o) @ front
         hand = {"t": [float(ht.min()), float(ht.max())], "down": [float(hd.min()), float(hd.max())], "front": [float(hf.min()), float(hf.max())]}
         B["arms"][side] = {"o": [float(x) for x in o], "axis": [float(x) for x in axis], "down": [float(x) for x in down], "front": [float(x) for x in front], "forearm_len": float(L),
-                           "rings": arings, "hand": hand, "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2]}}
+                           "rings": arings, "hand": hand, "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2]},
+                           "upper": upper_arm(body, side)}
     spec["bodies"][sex] = B
 spec["saw"] = chainsaw_local()
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

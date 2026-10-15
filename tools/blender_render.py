@@ -146,6 +146,11 @@ JOBS = {
 for _n in ("stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f"):
     JOBS[_n] = ([(_n, 0, 0)], 10, 205, 3.2, (-2.0, 0.0, 6.6))
     JOBS[_n + "_back"] = ([(_n, 0, 0)], 10, 320, 3.2, (-2.0, 0.0, 6.6))
+for _n in ("hand_normalArmWrist", "hand_normalArm", "hand_medicalArmWrist", "hand_medicalArm"):
+    JOBS[_n] = ([(_n, 0, 0)], 10, 215, 2.2, (-2.3, 0.2, 4.2))
+for _t in ("pegArm", "hookArm", "normalArm", "medicalArm", "chainsawArm"):
+    JOBS["upper_" + _t] = ([("upper_" + _t, 0, 0)], 10, 210, None, None)
+    JOBS["upperatk_" + _t] = ([("upperatk_" + _t, 0, 0)], 12, 215, None, None)
 CULL = {"stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f",
         "stump_hand_back", "stump_fa_back", "stump_ua_back", "stump_fa_mech_back", "stump_ua_f_back",
         "ankle_peg", "ankle_mech", "ankle_med", "iso_ankle_peg", "iso_ankle_mech", "iso_calf_peg", "iso_calf_mech"}     # como el juego: sin caras traseras (se ve a través de un hueco)

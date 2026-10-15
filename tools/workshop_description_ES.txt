@@ -21,7 +21,7 @@ Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites
 [*][b]Pata de palo[/b] (Carpintería 3) · [b]Pierna mecánica[/b] (Soldadura 4) · [b]Pierna médica[/b] (botín de hospital)
 [*]Madera y gancho no sujetan armas a dos manos ni nada que exija dedos. La pata de palo nunca esprinta. El material médico no penaliza.
 [*]Cada prótesis está modelada sobre las secciones reales del cuerpo: los encajes abrazan el muñón, sin atravesar nada, y caben bajo pantalones y mangas.
-[*]El mismo ítem se adapta al muñón: sin pie, un manguito de tobillo; sin pantorrilla, un encaje bajo la rodilla; sin muslo, una pierna completa con rodilla articulada. Manos y antebrazos igual.
+[*]El mismo ítem se adapta al muñón: sin pie, un manguito de tobillo; sin pantorrilla, un encaje bajo la rodilla; sin muslo, una pierna completa con rodilla articulada. Los brazos igual: sin mano, un manguito de muñeca; sin antebrazo, un encaje bajo el codo; sin brazo, un brazo completo con bisagra de codo.
 [*]Se desgastan con el uso. A condición 0 se caen. Se reparan con cola de madera, cinta, varillas de soldar o tornillos. La habilidad [b]Familiaridad con prótesis[/b] te hace más rápido con el tiempo.
 [/list]
 
@@ -64,6 +64,8 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Corregido: las prótesis de recetas y botín son del lado izquierdo y no se podían poner en un muñón derecho. Ahora se colocan solas en el lado amputado.
 [*]Corregido: una raya oscura alrededor del hombro tras amputar un brazo. Los muñones de brazo ahora se recortan del propio cuerpo (misma malla, normales y textura de piel), y las mujeres tienen sus propias texturas de muñón en los brazos.
 [*]Corregido: los zombis con un brazo amputado usaban una textura de muñón equivocada o inexistente.
+[*]Nuevo: prótesis por encima del codo. Todos los tipos de brazo, el brazo motosierra incluido, encajan ahora en un muñón de brazo: encaje sobre el muñón, bisagra de codo y antebrazo protésico que se dobla con las animaciones.
+[*]Cambiado: las manos mecánica y médica están remodeladas para encajar mejor con las manos del juego (palma con forma de mano, dedos más gruesos; acero claro y polímero claro en vez de negro).
 [*]Nuevas opciones de sandbox: cuánto cuentan los somníferos como anestesia (ahora 30 por defecto, antes 50) y amputarse uno mismo por encima del codo y la rodilla (desactivada por defecto, mucho más arriesgada).
 [/list]
 [b]3.0.1[/b]

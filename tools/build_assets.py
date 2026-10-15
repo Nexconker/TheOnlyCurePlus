@@ -902,13 +902,15 @@ def tex_wood_leather(path, seed=1):
     d.rectangle((0, 118, 128, 128), fill=(40, 40, 40, 255))        # goma/punta
     img.save(path)
 
-def tex_metal(path, seed=2, dark=False):
+def tex_metal(path, seed=2, dark=False, foot=None):
+    """foot: color de la banda inferior (v 0.86..1, "dark" en blender_build). El brazo médico la pinta de polímero
+    claro para la mano (3.1.0); el resto la deja oscura."""
     base = (40, 42, 46) if dark else (150, 152, 158)
     img = noise_img((128, 128), base, 6, seed)
     d = ImageDraw.Draw(img)
     for i in range(0, 128, 16): d.line((0, i, 128, i), fill=tuple(max(0, c - 25) for c in base) + (255,))
     d.rectangle((0, 0, 128, 26), fill=(60, 62, 66, 255))           # encaje negro
-    d.rectangle((0, 110, 128, 128), fill=(35, 35, 38, 255))        # pie
+    d.rectangle((0, 110, 128, 128), fill=foot or (35, 35, 38, 255))        # pie (o mano del brazo médico)
     if dark:
         for i in range(0, 128, 4): d.line((i, 26, i + 2, 110), fill=(55, 58, 64, 255))   # trama de carbono
         d.rectangle((0, 20, 128, 24), fill=(220, 220, 220, 255))
@@ -1124,7 +1126,7 @@ def build_textures():
     tex_metal(out("textures", "Prosthesis", "medicalLeg.png"), 3, True)
     tex_hook(out("textures", "Prosthesis", "hookArm.png"))
     tex_metal(out("textures", "Prosthesis", "normalArm.png"), 4, False)
-    tex_metal(out("textures", "Prosthesis", "medicalArm.png"), 5, True)
+    tex_metal(out("textures", "Prosthesis", "medicalArm.png"), 5, True, foot=(196, 190, 180, 255))
     tex_tourniquet_leg(out("textures", "Surgery", "tourniquetLeg.png"))
     tex_crutch(out("textures", "Weapons", "crutch.png"))
     tex_bonesaw(out("textures", "Weapons", "bonesaw.png"))

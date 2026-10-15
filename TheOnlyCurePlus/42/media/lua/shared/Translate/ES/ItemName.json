@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "Prótesis de pierna médica",
     "TOC.Prost_ChainsawArm_R": "Brazo motosierra",
     "TOC.Prost_ChainsawArmWrist_R": "Brazo motosierra",
-    "TOC.MountedChainsaw": "Motosierra montada"
+    "TOC.MountedChainsaw": "Motosierra montada",
+    "TOC.Prost_PegArmUpper_L": "Brazo de madera",
+    "TOC.Prost_PegArmUpper_R": "Brazo de madera",
+    "TOC.Prost_HookArmUpper_L": "Prótesis de brazo - Gancho",
+    "TOC.Prost_HookArmUpper_R": "Prótesis de brazo - Gancho",
+    "TOC.Prost_NormalArmUpper_L": "Brazo mecánico",
+    "TOC.Prost_NormalArmUpper_R": "Brazo mecánico",
+    "TOC.Prost_MedicalArmUpper_L": "Prótesis de brazo médica",
+    "TOC.Prost_MedicalArmUpper_R": "Prótesis de brazo médica",
+    "TOC.Prost_ChainsawArmUpper_R": "Brazo motosierra"
 }

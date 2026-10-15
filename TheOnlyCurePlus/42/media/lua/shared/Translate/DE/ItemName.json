@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "Medizinische Beinprothese",
     "TOC.Prost_ChainsawArm_R": "Kettensägenarm",
     "TOC.Prost_ChainsawArmWrist_R": "Kettensägenarm",
-    "TOC.MountedChainsaw": "Montierte Kettensäge"
+    "TOC.MountedChainsaw": "Montierte Kettensäge",
+    "TOC.Prost_PegArmUpper_L": "Holzarm",
+    "TOC.Prost_PegArmUpper_R": "Holzarm",
+    "TOC.Prost_HookArmUpper_L": "Linke Armprothese - Haken",
+    "TOC.Prost_HookArmUpper_R": "Rechte Armprothese - Haken",
+    "TOC.Prost_NormalArmUpper_L": "Armprothese Links",
+    "TOC.Prost_NormalArmUpper_R": "Armprothese Rechts",
+    "TOC.Prost_MedicalArmUpper_L": "Medizinische Armprothese",
+    "TOC.Prost_MedicalArmUpper_R": "Medizinische Armprothese",
+    "TOC.Prost_ChainsawArmUpper_R": "Kettensägenarm"
 }

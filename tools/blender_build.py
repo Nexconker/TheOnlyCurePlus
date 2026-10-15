@@ -165,6 +165,54 @@ def arm_ring(arm, t, clearance):
     # llevar al t exacto
     return [tuple(Vector(p) + ax * (t - (Vector(p) - o).dot(ax))) for p in out]
 
+def upper_ring(arm, t, clearance):
+    """Anillo del brazo superior a distancia t del hombro (3.1.0, prótesis por encima del codo)."""
+    up = arm["upper"]
+    t = max(0.0, min(t, up["len"]))
+    key = "%.3f" % (round(t / 0.005) * 0.005)
+    if key not in up["rings"]: key = max(up["rings"], key=lambda k: -abs(float(k) - t))
+    out = offset_ring(up["rings"][key], clearance)
+    o, ax = Vector(up["o"]), Vector(up["axis"])
+    return [tuple(Vector(q) + ax * (t - (Vector(q) - o).dot(ax))) for q in out]
+
+UPPER_STYLE = {   # banda por textura: encaje, carcasa, correa (o None), pasador, tapas
+    "peg": ("socket", "wood", "strap", "rubber", "rubber"),
+    "hook": ("socket", "steel", "strap", "dark", "polished"),
+    "metal": ("socket", "shell", None, "dark", "dark"),
+    "saw": ("socket", "steel", "strap", "dark", "polished"),
+}
+
+def build_upper_section(B, arm):
+    """Encaje sobre el muñón del brazo, carcasa hasta el codo con la forma del brazo y bisagra de codo. Todo en el
+    hueso del brazo; el antebrazo protésico (hueso del antebrazo) gira en la bisagra con las animaciones."""
+    up = arm["upper"]; bone = up["bone"]
+    uo, uax, udn, ufr = Vector(up["o"]), Vector(up["axis"]), Vector(up["down"]), Vector(up["front"])
+    L, tc = up["len"], up["t_cut"]
+    b_sock, b_shell, b_strap, b_pin, b_cap = UPPER_STYLE[B.tex]
+    cl = 0.0048
+    t0 = max(0.012, tc - 0.035)
+    B.loft("usocket", smooth_rings([upper_ring(arm, t, cl) for t in (t0, t0 + 0.012, t0 + 0.024, tc, tc + 0.012)]), bone, B.band(b_sock), subsurf=1)
+    B.loft("urim", smooth_rings([upper_ring(arm, t0 - 0.004, cl + 0.003), upper_ring(arm, t0, cl + 0.005), upper_ring(arm, t0 + 0.008, cl + 0.004),
+                                upper_ring(arm, t0 + 0.012, cl + 0.001)]), bone, B.band(b_pin), subsurf=1)
+    ts = [tc + 0.012, tc + 0.03, tc + 0.05, L - 0.03, L - 0.014]
+    ts = sorted({round(t, 4) for t in ts if tc + 0.01 <= t <= L - 0.01})
+    B.loft("ushell", smooth_rings([upper_ring(arm, t, cl - 0.002) for t in ts]), bone, B.band(b_shell), subsurf=1)
+    if b_strap:
+        for i, t in enumerate((t0 + 0.012, tc - 0.004)):
+            B.loft("ustrap%d" % i, [upper_ring(arm, t - 0.005, cl + 0.003), upper_ring(arm, t + 0.005, cl + 0.003)], bone, B.band(b_strap), subsurf=1)
+    # bisagra: el codo flexiona alrededor del eje "abajo" del marco (vertical en la pose de reposo, palmas abajo)
+    elbow = Vector(arm["o"])
+    ring = [Vector(q) for q in upper_ring(arm, L - 0.006, cl)]
+    c = sum(ring, Vector()) / len(ring)
+    half = max(abs((q - c).dot(udn)) for q in ring) + 0.003
+    B.cyl("upin", tuple(elbow - udn * half), tuple(elbow + udn * half), 0.0085, 0.0085, bone, B.band(b_pin), segs=14, bevel=0.0012, ref=tuple(uax))
+    for k, sg in enumerate((-1, 1)):
+        cc = elbow + udn * sg * half
+        B.cyl("ucap%d" % k, tuple(cc - udn * sg * 0.002), tuple(cc + udn * sg * 0.003), 0.0135, 0.0125, bone, B.band(b_cap), segs=14, bevel=0.0012, ref=tuple(uax))
+        # pletina de la bisagra hacia el brazo
+        q0 = cc - uax * 0.004; q1 = cc - uax * 0.032
+        B.box("uplate%d" % k, (q0 + q1) / 2, (0.0022, 0.009, (q1 - q0).length / 2), (tuple(udn), tuple(ufr), tuple(uax)), bone, B.band(b_pin), bevel=0.0008)
+
 def smooth_rings(rings, passes=1):
     """Evita escalones entre anillos consecutivos (radio por sector, nunca reduce)."""
     R = [[Vector(p) for p in r] for r in rings]
@@ -317,6 +365,11 @@ def arm_socket(B, arm, level, bone, band_socket, band_shell, clearance=0.0045, s
         B.loft("rim", rim, bone, band_socket, subsurf=1)
         B.loft("collar", [arm_ring(arm, 0.142, clearance - 0.004), arm_ring(arm, 0.154, clearance - 0.004)], bone, band_shell, subsurf=1)
         return o + ax * 0.154
+    if level == "Upper":
+        # sin muñón en el antebrazo: carcasa del codo a la muñeca (algo más fina que el brazo) y anillo en el codo
+        B.loft("ecuff", smooth_rings([arm_ring(arm, t, clearance - 0.001) for t in (-0.004, 0.004, 0.012)]), bone, band_socket, subsurf=1)
+        B.loft("shell", smooth_rings([arm_ring(arm, t, -0.003) for t in (0.012, 0.035, 0.06, 0.085, 0.105, 0.12)]), bone, band_shell, subsurf=subsurf)
+        return o + ax * 0.12
     ts = [-0.015, 0.0, 0.015, 0.03, 0.045]
     B.loft("socket", smooth_rings([arm_ring(arm, t, clearance) for t in ts]), bone, band_socket, subsurf=subsurf)
     rim = smooth_rings([arm_ring(arm, -0.019, clearance + 0.004), arm_ring(arm, -0.015, clearance + 0.006), arm_ring(arm, -0.003, clearance + 0.005), arm_ring(arm, 0.001, clearance + 0.001)])
@@ -349,33 +402,41 @@ def mech_bars_arm(B, arm, level, bone):
         for k in (0, len(pts) - 1):
             p = Vector(pts[k]); B.sphere("rivet%s%d" % (nm, k), tuple(p + fr * sgn * 0.003), 0.003, bone, B.band("dark"), segs=8)
 
-def hand(B, s, arm, bone, band, medical):
+def hand(B, s, arm, bone, band, medical, joint_band=None):
+    """Mano de las prótesis mecánica y médica. Rehecha en 3.1.0 (comentario de la ronda 2: "desentonan con las manos
+    del juego"): palma con perfil de mano (estrecha en la muñeca, ancha y plana en los nudillos) en vez de una caja,
+    dedos más gruesos, juntos y algo curvados como las manos "manopla" del juego, pulgar robusto y, en la mecánica,
+    un eje oscuro en los nudillos en lugar de ocho bolitas. La palma mira a +dn (los dedos se curvan hacia ahí)."""
     o, ax, dn, fr = arm_frame(arm)
     s = Vector(s)
-    pw = 0.032 if medical else 0.031; pt = 0.013 if medical else 0.0115
-    # palma: caja redondeada
-    B.box("palm", s + ax * 0.028, (pt, pw, 0.028), (tuple(dn), tuple(fr), tuple(ax)), bone, band, bevel=0.006 if medical else 0.005, subsurf=1)
-    e = s + ax * 0.054
-    fr_r = 0.0066 if medical else 0.0062
-    for k, off in enumerate((-0.0225, -0.0075, 0.0075, 0.0225)):
-        ln = 0.044 if k in (1, 2) else 0.037
-        p0 = e + fr * off - ax * 0.004
-        pts = [tuple(p0), tuple(p0 + ax * (ln * 0.45)), tuple(p0 + ax * (ln * 0.8) + dn * 0.005), tuple(p0 + ax * ln + dn * 0.012)]
-        B.curve("finger%d" % k, pts, [fr_r, fr_r, fr_r * 0.92, fr_r * 0.8], bone, band, res=3)
-        B.sphere("tip%d" % k, pts[-1], fr_r * 0.8, bone, band, segs=8)
-        if not medical:
-            B.sphere("knuckle%d" % k, tuple(p0 + ax * (ln * 0.45)), fr_r * 1.15, bone, band, segs=8)
-            B.sphere("joint%d" % k, tuple(p0 + ax * (ln * 0.8) + dn * 0.005), fr_r * 1.05, bone, band, segs=8)
-    t0 = s + ax * 0.014 + fr * pw * 0.9 + dn * (pt * 0.3)
-    pts = [tuple(t0), tuple(t0 + fr * 0.014 + ax * 0.009), tuple(t0 + fr * 0.024 + ax * 0.026), tuple(t0 + fr * 0.027 + ax * 0.042)]
-    B.curve("thumb", pts, [fr_r * 1.2, fr_r * 1.1, fr_r, fr_r * 0.85], bone, band, res=3)
-    B.sphere("thumbtip", pts[-1], fr_r * 0.85, bone, band, segs=8)
-    if not medical: B.sphere("thumbjoint", pts[2], fr_r * 1.1, bone, band, segs=8)
+    def rr(c, hw, ht, n=24, e=3.0):
+        pts = []
+        for k in range(n):
+            th = 2 * math.pi * k / n; cx, sy = math.cos(th), math.sin(th)
+            r = 1.0 / ((abs(cx) ** e + abs(sy) ** e) ** (1.0 / e))
+            pts.append(tuple(c + fr * (hw * r * cx) + dn * (ht * r * sy)))
+        return pts
+    k = 1.03 if medical else 1.0
+    prof = [(0.0, 0.017, 0.0105), (0.012, 0.022, 0.0115), (0.026, 0.0275, 0.0118), (0.040, 0.030, 0.0112), (0.050, 0.029, 0.0100)]
+    B.loft("palm", [rr(s + ax * t, hw * k, ht * k) for t, hw, ht in prof], bone, band, subsurf=1)
+    for i, (off, ln) in enumerate(((-0.021, 0.034), (-0.007, 0.041), (0.007, 0.044), (0.021, 0.040))):
+        p0 = s + ax * 0.044 + fr * (off * k)
+        pts = [tuple(p0), tuple(p0 + ax * (ln * 0.42) + dn * 0.002), tuple(p0 + ax * (ln * 0.78) + dn * 0.007), tuple(p0 + ax * ln + dn * 0.015)]
+        rr_ = [0.0072 * k, 0.0068 * k, 0.0062 * k, 0.0055 * k]
+        B.curve("finger%d" % i, pts, rr_, bone, band, res=3)
+        B.sphere("tip%d" % i, pts[-1], rr_[-1], bone, band, segs=10)
+    t0 = s + ax * 0.012 + fr * (0.019 * k) + dn * 0.004
+    pts = [tuple(t0), tuple(t0 + fr * 0.010 + ax * 0.010 + dn * 0.004), tuple(t0 + fr * 0.014 + ax * 0.024 + dn * 0.010), tuple(t0 + fr * 0.013 + ax * 0.034 + dn * 0.016)]
+    B.curve("thumb", pts, [0.0085 * k, 0.0078 * k, 0.007 * k, 0.006 * k], bone, band, res=3)
+    B.sphere("thumbtip", pts[-1], 0.006 * k, bone, band, segs=10)
+    if joint_band is not None:
+        c = s + ax * 0.046 - dn * 0.0045
+        B.cyl("axle", tuple(c - fr * 0.030), tuple(c + fr * 0.030), 0.0042, 0.0042, bone, joint_band, segs=12, bevel=0.001, ref=tuple(ax))
 
 def build_peg_arm(B, arm, level):
     o, ax, dn, fr = arm_frame(arm); bone = arm["bones"]["forearm"]
     s = arm_socket(B, arm, level, bone, B.band("socket"), B.band("wood"))
-    arm_straps(B, arm, (0.09, 0.128) if level == "Wrist" else (0.005, 0.038), 0.0045, bone)
+    arm_straps(B, arm, (0.09, 0.128) if level == "Wrist" else ((0.005, 0.038) if level == "" else ()), 0.0045, bone)
     rod = 0.02 if level == "Wrist" else 0.045
     B.cyl("rod", tuple(s), tuple(s + ax * rod), 0.016, 0.013, bone, B.band("wood"), segs=14, subsurf=1)
     e = s + ax * rod
@@ -389,7 +450,7 @@ def build_peg_arm(B, arm, level):
 def build_hook_arm(B, arm, level):
     o, ax, dn, fr = arm_frame(arm); bone = arm["bones"]["forearm"]
     s = arm_socket(B, arm, level, bone, B.band("socket"), B.band("steel"))
-    arm_straps(B, arm, (0.09, 0.128) if level == "Wrist" else (0.005, 0.038), 0.0045, bone)
+    arm_straps(B, arm, (0.09, 0.128) if level == "Wrist" else ((0.005, 0.038) if level == "" else ()), 0.0045, bone)
     B.cyl("wrist", tuple(s), tuple(s + ax * 0.016), 0.016, 0.0125, bone, B.band("dark"), segs=16, bevel=0.003)
     sh = s + ax * 0.016
     B.cyl("shaft", tuple(sh), tuple(sh + ax * 0.03), 0.0085, 0.008, bone, B.band("steel"), segs=12)
@@ -414,7 +475,9 @@ def build_mech_arm(B, arm, level, medical):
     # muñeca y mano RÍGIDAS (hueso del antebrazo): pesadas al hueso de la mano giraban con el agarre
     # (muleta, armas) y chocaban con la caña; una prótesis mecánica no articula
     B.cyl("wristunit", tuple(s), tuple(s + ax * 0.012), (0.012, 0.018), (0.012, 0.019), bone, B.band("dark"), segs=16, bevel=0.002, ref=tuple(dn))
-    hand(B, s + ax * 0.012, arm, bone, B.band("dark"), medical)
+    # mecánica: mano de acero claro (banda shell) con el eje oscuro; médica: banda "dark" repintada de polímero claro
+    if medical: hand(B, s + ax * 0.012, arm, bone, B.band("dark"), True)
+    else: hand(B, s + ax * 0.012, arm, bone, B.band("shell"), False, joint_band=B.band("dark"))
 
 def build_saw_arm(B, arm, level, saw):
     """Brazo motosierra como el de Ash (Evil Dead 2): la motosierra vanilla sin asas con la espada como prolongación
@@ -449,6 +512,15 @@ def build_saw_arm(B, arm, level, saw):
         cup = [arm_ring(arm, t, cl + e) for t, e in ((0.112, 0.0), (0.122, 0.0015), (0.134, 0.003), (0.142, 0.0035))]
         B.loft("cup", smooth_rings(cup), bone, B.band("steel"), subsurf=1)
         t_end = 0.142; end_cl = cl + 0.0035
+    elif level == "Upper":
+        # antebrazo entero protésico: carcasa de acero del codo al acople, con nervios
+        B.loft("ecuff", smooth_rings([arm_ring(arm, t, cl - 0.001) for t in (-0.004, 0.004, 0.012)]), bone, B.band("dark"), subsurf=1)
+        shell = [arm_ring(arm, t, e) for t, e in ((0.012, -0.002), (0.04, -0.003), (0.07, -0.003), (0.095, -0.003), (0.112, -0.002), (0.12, -0.001))]
+        B.loft("shell", smooth_rings(shell), bone, B.band("steel"), subsurf=1)
+        for k, d in enumerate((fr, -fr)):
+            pts = [tuple(surf(t, d, 0.0025, -0.002)) for t in (0.02, 0.06, 0.1, 0.116)]
+            B.curve("rib%d" % k, pts, [0.003] * 4, bone, B.band("dark"), res=2)
+        t_end = 0.12; end_cl = -0.001
     else:
         ts = [-0.015, 0.0, 0.015, 0.03, 0.045]
         B.loft("socket", smooth_rings([arm_ring(arm, t, cl) for t in ts]), bone, B.band("socket"), subsurf=1)
@@ -510,9 +582,10 @@ def build_saw_arm(B, arm, level, saw):
             B.sphere("hub", tuple(gc + v * 0.005), 0.0042, bone, B.band("polished"), segs=8)
     # manguera de gasolina: del antebrazo, por delante, hasta el borde de la placa
     h = norm(side * 0.45 + fr * 0.9)
-    t_h = 0.07 if level == "Wrist" else 0.025
+    t_h = 0.07 if level == "Wrist" else (0.03 if level == "Upper" else 0.025)
+    h_cl = -0.003 if level == "Upper" else cl           # nivel Upper: la manguera sale de la carcasa, más fina
     p_plate = P_top + h * (max(ho, hn) * 0.92) - ax * 0.002
-    B.curve("hose", [tuple(surf(t_h, h, 0.0045)), tuple(surf(t_end - 0.012, h, 0.006, end_cl)),
+    B.curve("hose", [tuple(surf(t_h, h, 0.0045, h_cl)), tuple(surf(t_end - 0.012, h, 0.006, end_cl)),
                      tuple(c_end + ax * (L * 0.45) + h * (max(e_dn, e_fr) + 0.012)), tuple(p_plate)], [0.0042] * 4, bone, B.band("rubber"), res=3)
     # motosierra: base del motor sobre la placa, espada (b) por el eje del antebrazo, o -> dn, n -> +-fr
     sb, so, sn, base = Vector(saw["b"]), Vector(saw["o"]), Vector(saw["n"]), Vector(saw["base"])
@@ -613,7 +686,7 @@ ARM_TIERS = {"pegArm": ("peg", lambda B, arm, lv: build_peg_arm(B, arm, lv)),
 SAW_TIERS = {"chainsawArm": ("saw", lambda B, arm, lv, saw: build_saw_arm(B, arm, lv, saw))}
 
 LEG_UNDER = ("foot", "sole", "pylon", "ferrule", "peg_")
-ARM_UNDER = ("wrist", "shaft", "band", "prong", "wristunit", "palm", "finger", "tip", "knuckle", "joint", "thumb", "rod", "knob",
+ARM_UNDER = ("wrist", "shaft", "band", "prong", "wristunit", "palm", "finger", "tip", "knuckle", "joint", "thumb", "rod", "knob", "axle",
              "cup", "collar", "lug", "clampbolt", "nut", "plate", "stem", "bar", "hex", "gear", "tooth", "hub")
 report = []
 col_x = 0.0
@@ -634,6 +707,7 @@ for sex, body in fit["bodies"].items():
             if FILTER and FILTER not in name: continue
             B = Builder(name, tex)
             fn(B, data, lv)
+            if lv == "Upper": build_upper_section(B, data)
             nv, nf = export_builder(B, os.path.join(OUTDIR, name + ".json"))
             report.append((name, nv, nf))
             # variante bajo la ropa (modelo alternativo del juego): sólo lo que asoma por el bajo del

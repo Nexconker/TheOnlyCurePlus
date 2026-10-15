@@ -21,7 +21,7 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 [*][b]Peg leg[/b] (Carpentry 3) · [b]Mechanical leg[/b] (Welding 4) · [b]Medical leg[/b] (hospital loot)
 [*]Wood and hooks cannot hold two-handed weapons or anything that needs fingers. Peg legs never sprint. Medical gear has no penalty.
 [*]Every prosthesis is modelled on the actual body sections: sockets hug the stump, no clipping, and they fit under trousers and sleeves.
-[*]The same item adapts to the stump: a missing foot gets an ankle cuff, a missing calf a below-knee socket, a missing thigh a full leg with an articulated knee. Hands and forearms likewise.
+[*]The same item adapts to the stump: a missing foot gets an ankle cuff, a missing calf a below-knee socket, a missing thigh a full leg with an articulated knee. Arms likewise: a missing hand gets a wrist cuff, a missing forearm a below-elbow socket, and a missing upper arm a full arm with an elbow hinge.
 [*]They wear out with use. At 0 condition they fall off. Repair with wood glue, duct tape, welding rods or screws. The [b]Prosthesis Familiarity[/b] skill speeds you up over time.
 [/list]
 
@@ -64,6 +64,8 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Fixed: prostheses from recipes and loot are left-side items and could not be worn on a right stump. They now go on the amputated side by themselves.
 [*]Fixed: a dark stripe around the shoulder after an arm amputation. Arm stumps are now cut from the body itself (same mesh, normals and skin texture), and women get their own stump textures on the arms.
 [*]Fixed: zombies with an amputated arm used a wrong or missing stump texture.
+[*]New: prostheses above the elbow. Every arm tier, the chainsaw arm included, now fits an upper-arm stump: socket on the stump, elbow hinge, and a prosthetic forearm that bends with the animations.
+[*]Changed: the mechanical and medical hands were remodelled to sit better next to the game's hands (hand-shaped palm, thicker fingers; light steel and light polymer instead of black).
 [*]New sandbox options: how much sleeping pills count as anaesthesia (now 30 by default, was 50), and self-amputation above the elbow and knee (off by default, much riskier).
 [/list]
 [b]3.0.1[/b]

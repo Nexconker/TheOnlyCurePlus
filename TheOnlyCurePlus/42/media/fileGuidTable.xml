@@ -49,12 +49,24 @@
         <guid>7951a0fb-188e-4d7b-9f1c-9e1e60d2607c</guid>
     </files>
     <files>
+        <path>media/clothing/clothingItems/Prost_ChainsawArmUpper_R.xml</path>
+        <guid>3154da49-321a-4781-9e16-e3a980980a82</guid>
+    </files>
+    <files>
         <path>media/clothing/clothingItems/Prost_ChainsawArmWrist_R.xml</path>
         <guid>b76e1cb6-8e96-4830-9952-6f9ae6e200ba</guid>
     </files>
     <files>
         <path>media/clothing/clothingItems/Prost_ChainsawArm_R.xml</path>
         <guid>baeedae5-1fbf-4f45-ac74-804a0af7f863</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_HookArmUpper_L.xml</path>
+        <guid>35ef6539-eb94-43e5-8047-1527e288967f</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_HookArmUpper_R.xml</path>
+        <guid>f2e76791-2e2d-453d-8333-8c7fcbd33a0b</guid>
     </files>
     <files>
         <path>media/clothing/clothingItems/Prost_HookArmWrist_L.xml</path>
@@ -97,6 +109,14 @@
         <guid>8e920b7e-d993-4b05-acd8-ea7980c71b55</guid>
     </files>
     <files>
+        <path>media/clothing/clothingItems/Prost_MedicalArmUpper_L.xml</path>
+        <guid>57a96f39-ce39-4928-aee7-884df130d581</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_MedicalArmUpper_R.xml</path>
+        <guid>26f7e094-fb76-4502-86c5-f9d04a0ec00e</guid>
+    </files>
+    <files>
         <path>media/clothing/clothingItems/Prost_MedicalArmWrist_L.xml</path>
         <guid>2abcabe2-75ef-46e7-a2ca-e6ea65596fa3</guid>
     </files>
@@ -137,6 +157,14 @@
         <guid>106c2bae-a8ad-4b55-bc04-fa44db7aaf56</guid>
     </files>
     <files>
+        <path>media/clothing/clothingItems/Prost_NormalArmUpper_L.xml</path>
+        <guid>077823d8-9250-417c-974a-6c29c68a01ad</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_NormalArmUpper_R.xml</path>
+        <guid>31846114-88bd-4835-ac7c-f7db681b12c2</guid>
+    </files>
+    <files>
         <path>media/clothing/clothingItems/Prost_NormalArmWrist_L.xml</path>
         <guid>03c3c20a-9d03-473d-8fc1-468b9f1d84a4</guid>
     </files>
@@ -151,6 +179,14 @@
     <files>
         <path>media/clothing/clothingItems/Prost_NormalArm_R.xml</path>
         <guid>0e24eb76-4745-46af-9147-ba21e0ebbb2e</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_PegArmUpper_L.xml</path>
+        <guid>3bb61f2d-f3c5-4dbc-a39c-7432975cb3d7</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_PegArmUpper_R.xml</path>
+        <guid>88aa4dbc-1636-4900-a046-c2a1bdff2c8c</guid>
     </files>
     <files>
         <path>media/clothing/clothingItems/Prost_PegArmWrist_L.xml</path>

@@ -137,9 +137,9 @@ for _, side in ipairs(StaticData.SIDES_STR) do
     end
 end
 
--- Highest part of each group where no prosthesis can be fitted. Legs have an above-knee
--- prosthesis (thigh socket + articulated knee), arms do not.
-StaticData.NO_PROSTHESIS_PARTS_IND_STR = { UpperArm = true }
+-- Highest part of each group where no prosthesis can be fitted. Legs have an above-knee prosthesis (thigh socket +
+-- articulated knee) and, since 3.1.0, arms have an above-elbow one (upper-arm socket + elbow hinge): none left.
+StaticData.NO_PROSTHESIS_PARTS_IND_STR = {}
 -- Parts a surgeon cannot amputate on themselves.
 StaticData.NO_SELF_SURGERY_PARTS_IND_STR = { UpperArm = true, UpperLeg = true }
 
@@ -268,8 +268,8 @@ StaticData.PROSTHESIS_WEAR_PER_CONDITION = 40      -- wear points that cost one 
 
 -- Every tier exists in model variants per amputation level (same name, icon and stats; only the
 -- worn model differs): item name = base .. suffix .. _side, e.g. Prost_HookArmWrist_L.
-StaticData.PROSTHESIS_LEVEL_SUFFIX = { Hand = "Wrist", ForeArm = "", Foot = "Ankle", LowerLeg = "", UpperLeg = "Thigh" }
-local LEVEL_SUFFIXES = { "Wrist", "Ankle", "Thigh" }
+StaticData.PROSTHESIS_LEVEL_SUFFIX = { Hand = "Wrist", ForeArm = "", UpperArm = "Upper", Foot = "Ankle", LowerLeg = "", UpperLeg = "Thigh" }
+local LEVEL_SUFFIXES = { "Wrist", "Upper", "Ankle", "Thigh" }
 
 ---@param fullType string e.g. "TOC.Prost_HookArmWrist_L"
 ---@return string? base e.g. "Prost_HookArm" (level suffix removed), string? side

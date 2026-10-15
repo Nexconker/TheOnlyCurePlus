@@ -61,5 +61,14 @@
     "TOC.Prost_MedicalLegThigh_R": "Medical Prosthetic Leg",
     "TOC.Prost_ChainsawArm_R": "Chainsaw Arm",
     "TOC.Prost_ChainsawArmWrist_R": "Chainsaw Arm",
-    "TOC.MountedChainsaw": "Mounted Chainsaw"
+    "TOC.MountedChainsaw": "Mounted Chainsaw",
+    "TOC.Prost_PegArmUpper_L": "Wooden Arm",
+    "TOC.Prost_PegArmUpper_R": "Wooden Arm",
+    "TOC.Prost_HookArmUpper_L": "Prosthetic Arm - Hook",
+    "TOC.Prost_HookArmUpper_R": "Prosthetic Arm - Hook",
+    "TOC.Prost_NormalArmUpper_L": "Mechanical Arm",
+    "TOC.Prost_NormalArmUpper_R": "Mechanical Arm",
+    "TOC.Prost_MedicalArmUpper_L": "Medical Prosthetic Arm",
+    "TOC.Prost_MedicalArmUpper_R": "Medical Prosthetic Arm",
+    "TOC.Prost_ChainsawArmUpper_R": "Chainsaw Arm"
 }

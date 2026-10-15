@@ -4,7 +4,7 @@ cambia el modelo vestido. El juego las intercambia solo al ponérselas (Prosthes
 import os, sys, json, re
 MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
 
-ARM_LEVELS = ["", "Wrist"]                # antebrazo (base), mano
+ARM_LEVELS = ["", "Wrist", "Upper"]       # antebrazo (base), mano, brazo (por encima del codo, 3.1.0)
 LEG_LEVELS = ["", "Ankle", "Thigh"]       # pantorrilla (base), pie, muslo
 
 # tier: (icono, modelo de suelo, estadísticas)
