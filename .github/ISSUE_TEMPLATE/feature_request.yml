@@ -1,0 +1,14 @@
+name: Idea or request
+description: A feature, a balance change or a compatibility request
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it would make the mod better

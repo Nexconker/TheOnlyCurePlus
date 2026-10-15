@@ -1,0 +1,90 @@
+module base {
+
+    sound Amputation {
+        category = Player,
+        loop = true,
+        is3D = true,
+        clip {
+          file = media/sound/Amputation.ogg,
+          distanceMax = 3,
+          volume = 1.0,
+        }
+    }
+
+    sound Cauterization {
+        category = Player,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/Cauterization.ogg,
+          distanceMax = 3,
+          volume = 1.0,
+        }
+    }
+
+    /* TOC+ : synthesized, no downloaded audio. Several clips = random pick. */
+    sound TOC_ScreamMale {
+        category = Player,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ScreamMale1.wav,
+          distanceMax = 30,
+          volume = 1.0,
+        }
+        clip {
+          file = media/sound/TOC_ScreamMale2.wav,
+          distanceMax = 30,
+          volume = 1.0,
+        }
+    }
+
+    sound TOC_ScreamFemale {
+        category = Player,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_ScreamFemale1.wav,
+          distanceMax = 30,
+          volume = 1.0,
+        }
+        clip {
+          file = media/sound/TOC_ScreamFemale2.wav,
+          distanceMax = 30,
+          volume = 1.0,
+        }
+    }
+
+    sound TOC_Groan {
+        category = Player,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_Groan.wav,
+          distanceMax = 6,
+          volume = 0.8,
+        }
+    }
+
+    sound TOC_BoneCrack {
+        category = Player,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_BoneCrack.wav,
+          distanceMax = 8,
+          volume = 1.0,
+        }
+    }
+
+    sound TOC_Thud {
+        category = Player,
+        loop = false,
+        is3D = true,
+        clip {
+          file = media/sound/TOC_Thud.wav,
+          distanceMax = 6,
+          volume = 0.9,
+        }
+    }
+}

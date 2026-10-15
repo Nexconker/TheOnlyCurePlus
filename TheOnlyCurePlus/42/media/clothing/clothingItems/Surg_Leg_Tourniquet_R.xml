@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Surgery\TourniquetLeg_R_M</m_MaleModel>
+    <m_FemaleModel>Surgery\TourniquetLeg_R_F</m_FemaleModel>
+    <m_GUID>a1ea41dc-c1b8-4e32-8ca9-ac64cbf39741</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Surgery\tourniquetLeg</textureChoices>
+</clothingItem>

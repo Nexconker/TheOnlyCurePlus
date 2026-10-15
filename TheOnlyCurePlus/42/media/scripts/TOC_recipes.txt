@@ -1,0 +1,192 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+
+	/************* Prosthetic arms *******************/
+	craftRecipe Craft_Prosthetic_PegArm
+	{
+		timedAction = Making,
+		Time = 200,
+		Tags = InHandCraft,
+		category = Carpentry,
+		NeedToBeLearn = false,
+		SkillRequired = Woodwork:2,
+		xpAward = Woodwork:20,
+		inputs
+		{
+			item 2 [Base.Plank],
+			item 1 [Base.LeatherStrips;Base.LeatherStripsDirty],
+			item 4 [Base.Nails],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeVeryLight],
+			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_PegArm_L,
+		}
+	}
+
+	craftRecipe Craft_Prosthetic_Hook
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 100,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:2,
+		xpAward = MetalWelding:30,
+		inputs
+		{
+			item 2 [Base.MetalPipe],
+			item 1 [Base.Plank],
+			item 4 [Base.BlowTorch] flags[DontRecordInput],
+			item 2 [Base.WeldingRods] flags[DontRecordInput],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_HookArm_L,
+		}
+	}
+
+	craftRecipe Craft_Prosthetic_Arm
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 150,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:4,
+		xpAward = MetalWelding:50,
+		inputs
+		{
+			item 4 [Base.MetalPipe],
+			item 2 [Base.Plank],
+			item 4 [Base.Screws],
+			item 4 [Base.BlowTorch] flags[DontRecordInput],
+			item 4 [Base.WeldingRods] flags[DontRecordInput],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_NormalArm_L,
+		}
+	}
+
+	/************* Prosthetic legs (TOC+) *******************/
+	craftRecipe Craft_Prosthetic_PegLeg
+	{
+		timedAction = Making,
+		Time = 260,
+		Tags = InHandCraft,
+		category = Carpentry,
+		NeedToBeLearn = false,
+		SkillRequired = Woodwork:3,
+		xpAward = Woodwork:30,
+		inputs
+		{
+			item 3 [Base.Plank],
+			item 2 [Base.LeatherStrips;Base.LeatherStripsDirty],
+			item 6 [Base.Nails],
+			item 2 [Base.Screws],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeVeryLight],
+			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_PegLeg_L,
+		}
+	}
+
+	craftRecipe Craft_Prosthetic_MechLeg
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 220,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:4,
+		xpAward = MetalWelding:50,
+		inputs
+		{
+			item 3 [Base.MetalPipe],
+			item 1 [Base.SheetMetal],
+			item 4 [Base.Screws],
+			item 1 [Base.LeatherStrips;Base.LeatherStripsDirty],
+			item 4 [Base.BlowTorch] flags[DontRecordInput],
+			item 4 [Base.WeldingRods] flags[DontRecordInput],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_MechLeg_L,
+		}
+	}
+
+	/************* Crutch (TOC+) *******************/
+	craftRecipe Craft_Crutch
+	{
+		timedAction = Making,
+		Time = 120,
+		Tags = InHandCraft,
+		category = Carpentry,
+		NeedToBeLearn = false,
+		SkillRequired = Woodwork:1,
+		xpAward = Woodwork:10,
+		inputs
+		{
+			item 2 [Base.Plank],
+			item 4 [Base.Nails],
+			item 2 [Base.RippedSheets;Base.RippedSheetsDirty],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeVeryLight],
+		}
+		outputs
+		{
+			item 1 TOC.Crutch,
+		}
+	}
+
+	/************* Surgical kit: the recipe the Field Amputation Guide teaches *******************/
+	craftRecipe FieldSurgery
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		category = Medical,
+		NeedToBeLearn = true,
+		xpAward = Doctor:10,
+		inputs
+		{
+			item 1 [TOC.BoneSaw],
+			item 1 [Base.Scalpel],
+			item 1 [Base.SutureNeedle],
+			item 1 [Base.Tweezers],
+			item 1 [TOC.Surg_Arm_Tourniquet_L;TOC.Surg_Arm_Tourniquet_R],
+		}
+		outputs
+		{
+			item 1 TOC.SurgicalKit,
+		}
+	}
+
+	craftRecipe Disassemble_SurgicalKit
+	{
+		timedAction = Making,
+		Time = 40,
+		Tags = InHandCraft,
+		category = Medical,
+		NeedToBeLearn = false,
+		inputs
+		{
+			item 1 [TOC.SurgicalKit],
+		}
+		outputs
+		{
+			item 1 TOC.BoneSaw,
+			item 1 Base.Scalpel,
+			item 1 Base.SutureNeedle,
+			item 1 Base.Tweezers,
+			item 1 TOC.Surg_Arm_Tourniquet_L,
+		}
+	}
+}

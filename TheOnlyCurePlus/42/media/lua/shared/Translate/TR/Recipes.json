@@ -1,0 +1,12 @@
+{
+    "Craft_Prosthetic_Arm": "Protez Kol Yap",
+    "Craft_Prosthetic_Hook": "Protez Kanca Yap",
+    "Recipe_Craft_Prosthetic_Arm": "Mekanik Kol Yap",
+    "Recipe_Craft_Prosthetic_Hook": "Kanca Kol Yap",
+    "Recipe_Craft_Prosthetic_PegArm": "Tahta Kol Yont",
+    "Recipe_Craft_Prosthetic_PegLeg": "Tahta Bacak Yont",
+    "Recipe_Craft_Prosthetic_MechLeg": "Mekanik Bacak Yap",
+    "Recipe_Craft_Crutch": "Koltuk Değneği Yap",
+    "Recipe_FieldSurgery": "Saha Cerrahi Kiti Hazırla",
+    "Recipe_Disassemble_SurgicalKit": "Saha Cerrahi Kitini Boşalt"
+}

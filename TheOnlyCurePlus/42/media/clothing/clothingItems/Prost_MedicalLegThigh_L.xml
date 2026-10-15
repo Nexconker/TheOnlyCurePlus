@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\medicalLegThigh_L_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\medicalLegThigh_L_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\medicalLegThighUnder_L_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\medicalLegThighUnder_L_F</m_AltFemaleModel>
+    <m_GUID>5050443f-41e2-44cb-8bb1-101780f00c47</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Prosthesis\medicalLeg</textureChoices>
+</clothingItem>

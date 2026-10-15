@@ -1,0 +1,10 @@
+{
+    "Tooltip_Surgery_CantCauterize": "Не можна припекти рану",
+    "Tooltip_Surgery_And": " та ",
+    "Tooltip_Surgery_TempTooLow": "Температура занадто низька",
+    "Tooltip_Surgery_Coward": "Вам не вистачає сміливості зробити це",
+    "Tooltip_Surgery_LimbNotFree": "Спочатку необхідно зняти протез",
+    "Tooltip_TOC_NoData": "Медичні дані ще не завантажено",
+    "Tooltip_TOC_CantSelfHigh": "Так високо самому собі не відрізати. Це має зробити хтось інший.",
+    "Tooltip_TOC_NeedDoctor": "Потрібен рівень першої допомоги %1 або Посібник з польової ампутації"
+}

@@ -1,0 +1,62 @@
+[h1]The Only Cure+ · Cirugía de campo[/h1]
+[i]Un mordisco no es el final. Una sierra, pulso y algo de suerte todavía pueden salvarte. Después aprendes a vivir con lo que queda.[/i]
+
+Fork completo de [b]The Only Cure[/b] de ZioPao para [b]Build 42[/b], reconstruido sobre tres ideas: operar debe ser una decisión con riesgo real, el cuerpo que te queda debe importar, y las prótesis deben parecer parte del personaje.
+
+[h2]✚ Cirugía de campo por etapas[/h2]
+[list]
+[*][b]Examina la herida[/b] para ver cuánto ha avanzado la infección. Los médicos obtienen un diagnóstico; el resto, una corazonada.
+[*][b]Ventana de cura[/b]: amputa a tiempo y la infección desaparece. Espera demasiado y se convierte en una apuesta.
+[*][b]Procedimiento por pasos[/b]: desinfectar, incidir, serrar, suturar, vendar. Cada paso tiene sus herramientas, su tiempo y su riesgo. La lista te dice las probabilidades antes de empezar.
+[*]Los gritos atraen zombis. Los pacientes se desmayan. Un cirujano con mal pulso chapucea y la extremidad se queda, mal cortada.
+[*][b]Postoperatorio[/b]: shock, convalecencia, dolor fantasma y [b]sepsis[/b] si el muñón se deja sucio. Mantenlo vendado y limpio, o perderás más.
+[*]Médicos, enfermeros, paramédicos y veterinarios saben hacerlo. Los demás leen la [b]Guía de cirugía de campo[/b].
+[/list]
+
+[h2]✚ Prótesis que encajan[/h2]
+Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites, desgaste y receta de reparación:
+[list]
+[*][b]Brazo de madera[/b] (Carpintería 2) · [b]Gancho[/b] (Soldadura 2) · [b]Brazo mecánico[/b] (Soldadura 4) · [b]Brazo médico[/b] (botín de hospital)
+[*][b]Pata de palo[/b] (Carpintería 3) · [b]Pierna mecánica[/b] (Soldadura 4) · [b]Pierna médica[/b] (botín de hospital)
+[*]Madera y gancho no sujetan armas a dos manos ni nada que exija dedos. La pata de palo nunca esprinta. El material médico no penaliza.
+[*]Cada prótesis está modelada sobre las secciones reales del cuerpo: los encajes abrazan el muñón, sin atravesar nada, y caben bajo pantalones y mangas.
+[*]El mismo ítem se adapta al muñón: sin pie, un manguito de tobillo; sin pantorrilla, un encaje bajo la rodilla; sin muslo, una pierna completa con rodilla articulada. Manos y antebrazos igual.
+[*]Se desgastan con el uso. A condición 0 se caen. Se reparan con cola de madera, cinta, varillas de soldar o tornillos. La habilidad [b]Familiaridad con prótesis[/b] te hace más rápido con el tiempo.
+[/list]
+
+[h2]✚ Piernas, muletas y arrastre[/h2]
+[list]
+[*]Las piernas se amputan por el pie, la pantorrilla o el muslo.
+[*]Sin una pierna necesitas [b]muleta[/b] (fabricable) o prótesis. Con muleta cojeas, no puedes correr y la resistencia se gasta.
+[*]Sin las dos piernas y sin prótesis te [b]arrastras[/b] por el suelo, despacio. A los zombis les da igual que estés ahí abajo.
+[*][b]Zombis rastreros[/b]: golpea fuerte la pierna de un zombi y caerá para arrastrarse tras de ti (opción de sandbox).
+[*]Las extremidades cortadas son ítems. Suéltalas, cárgalas, o no preguntes.
+[/list]
+
+[h2]✚ Hecho para Build 42 y multijugador[/h2]
+[list]
+[*]Todo cambio en el cuerpo se valida y aplica en el lado autoritativo. Los clientes calculan, el servidor decide.
+[*]Modelos 3D e iconos de 32x32 nuevos para cada ítem, renderizados desde los modelos. Los ítems en el suelo muestran su modelo real.
+[*]Las partidas del The Only Cure original siguen funcionando: piernas, sepsis y el resto se añaden al cargar.
+[*]Página de sandbox [b]TOC[/b]: ventana de cura, multiplicador de riesgo, radio de gritos, sepsis, convalecencia, desgaste de prótesis, amputaciones de zombis y más.
+[/list]
+
+[h2]Idiomas[/h2]
+English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Las traducciones del texto nuevo son asistidas por máquina: se agradecen correcciones en los comentarios.
+
+[h2]Cambios[/h2]
+[b]3.0.1[/b]
+[list]
+[*]Corregido: brazo o pierna invisible con camisas, mallas largas, vaqueros ajustados o vestidos largos. Son texturas del cuerpo, no mallas; las prótesis ahora solo se recortan bajo prendas con malla (chaquetas, jerséis, pantalones, trajes).
+[*]Corregido: médicos y enfermeros no empezaban sabiendo cirugía de campo (error en consola en Knowledge.lua).
+[*]Corregido: error en consola al hacer clic derecho en una estufa o chimenea (menú de cauterizar).
+[*]Corregido: las amputaciones de extremidades de zombis nunca se activaban (comprobación de categoría de arma de Build 42).
+[*]Todo el texto traducido a los 10 idiomas.
+[/list]
+
+[h2]Compatibilidad[/h2]
+Activa [b]solo uno[/b] de The Only Cure o The Only Cure+: comparten ítems y datos de partida. No compatible con BB First Aid Overhaul. Fancy Handwork y Brutal Handwork no tienen versión para Build 42; sus ganchos siguen ahí y no hacen nada sin ellos.
+
+[h2]Créditos[/h2]
+Mod original: [b]ZioPao[/b] y colaboradores de The Only Cure (GPL-3.0). Código de ubicaciones de cuerpo: RabenRabo. Este fork mantiene la licencia: GPL-3.0, código incluido.
+Reporta fallos con tu console.txt y una captura. ¿Una prótesis atraviesa algo? Dime cuál y con qué prenda.

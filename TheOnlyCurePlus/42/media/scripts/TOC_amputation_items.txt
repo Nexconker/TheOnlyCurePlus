@@ -1,0 +1,185 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+	/****************** Clothing that look like a cut limb ******************/
+	/* Arms (original The Only Cure). CombatSpeedModifier < 1: swinging with a stump is slower. */
+	item Amputation_Hand_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_Hand_R,
+		BodyLocation = toc:Arm_R,
+		Weight = 0,
+		CombatSpeedModifier = 0.9,
+		BloodLocation = Hands;LowerArms,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_ForeArm_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_ForeArm_R,
+		BodyLocation = toc:Arm_R,
+		Weight = 0,
+		CombatSpeedModifier = 0.8,
+		BloodLocation = UpperArms;LowerArms,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_UpperArm_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_UpperArm_R,
+		BodyLocation = toc:Arm_R,
+		BloodLocation = UpperArms;UpperBody,
+		Weight = 0,
+		CombatSpeedModifier = 0.7,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_Hand_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_Hand_L,
+		BodyLocation = toc:Arm_L,
+		Weight = 0,
+		CombatSpeedModifier = 0.9,
+		BloodLocation = Hands;LowerArms,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_ForeArm_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_ForeArm_L,
+		BodyLocation = toc:Arm_L,
+		Weight = 0,
+		CombatSpeedModifier = 0.8,
+		BloodLocation = UpperArms;LowerArms,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_UpperArm_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_UpperArm_L,
+		BodyLocation = toc:Arm_L,
+		Weight = 0,
+		CombatSpeedModifier = 0.7,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+
+	/* Legs (TOC+). Mobility is handled in Lua (LegMobility), not through item stats. */
+	item Amputation_Foot_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_Foot_R,
+		BodyLocation = toc:Leg_R,
+		Weight = 0,
+		BloodLocation = LowerLegs,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_LowerLeg_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_LowerLeg_R,
+		BodyLocation = toc:Leg_R,
+		Weight = 0,
+		BloodLocation = LowerLegs;UpperLegs,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_UpperLeg_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_UpperLeg_R,
+		BodyLocation = toc:Leg_R,
+		Weight = 0,
+		BloodLocation = UpperLegs;Groin,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_Foot_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_Foot_L,
+		BodyLocation = toc:Leg_L,
+		Weight = 0,
+		BloodLocation = LowerLegs,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_LowerLeg_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_LowerLeg_L,
+		BodyLocation = toc:Leg_L,
+		Weight = 0,
+		BloodLocation = LowerLegs;UpperLegs,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+	item Amputation_UpperLeg_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Amputation,
+		hidden = true,
+		ClothingItem = Amputation_UpperLeg_L,
+		BodyLocation = toc:Leg_L,
+		Weight = 0,
+		BloodLocation = UpperLegs;Groin,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+	}
+}

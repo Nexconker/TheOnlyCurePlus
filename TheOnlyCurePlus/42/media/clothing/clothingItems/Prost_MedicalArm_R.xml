@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\medicalArm_R_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\medicalArm_R_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\medicalArmUnder_R_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\medicalArmUnder_R_F</m_AltFemaleModel>
+    <m_GUID>42af1fc1-023b-4297-9e86-72f58838267f</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Prosthesis\medicalArm</textureChoices>
+</clothingItem>

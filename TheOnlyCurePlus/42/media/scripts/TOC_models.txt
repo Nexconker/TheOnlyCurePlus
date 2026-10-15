@@ -1,0 +1,126 @@
+module Base
+{
+    imports
+    {
+        Base
+    }
+
+    /* Modelos en module Base: los ítems (module TOC) los referencian por nombre y el juego sólo los
+       resuelve ahí (con module TOC intentaba cargar "Crutch" como malla y fallaba). */
+    model prostheticArm
+	{
+		mesh = Prosthesis/normalArm_Ground,
+		texture = Prosthesis/normalArm,
+	}
+    model prostheticArmHook
+	{
+		mesh = Prosthesis/hookArm_Ground,
+		texture = Prosthesis/hookArm,
+	}
+	model tourniquet
+	{
+		mesh = Surgery/Tourniquet_Ground,
+		texture = Surgery/tourniquet,
+	}
+
+    /* TOC+ ground models (same mesh scale as the clothing: no scale needed) */
+    model prostheticArmPeg
+	{
+		mesh = Prosthesis/pegArm_Ground,
+		texture = Prosthesis/pegArm,
+	}
+    model prostheticArmMedical
+	{
+		mesh = Prosthesis/medicalArm_Ground,
+		texture = Prosthesis/medicalArm,
+	}
+    model prostheticLegPeg
+	{
+		mesh = Prosthesis/pegLeg_Ground,
+		texture = Prosthesis/pegLeg,
+	}
+    model prostheticLegMech
+	{
+		mesh = Prosthesis/mechLeg_Ground,
+		texture = Prosthesis/mechLeg,
+	}
+    model prostheticLegMedical
+	{
+		mesh = Prosthesis/medicalLeg_Ground,
+		texture = Prosthesis/medicalLeg,
+	}
+	model tourniquetLeg
+	{
+		mesh = Surgery/TourniquetLeg_Ground,
+		texture = Surgery/tourniquetLeg,
+	}
+
+    /* tools: static (in hand) + ground */
+    model BoneSaw
+	{
+		mesh = Weapons/BoneSaw,
+		texture = Weapons/bonesaw,
+	}
+    model BoneSaw_Ground
+	{
+		mesh = Weapons/BoneSaw_Ground,
+		texture = Weapons/bonesaw,
+	}
+    model Crutch
+	{
+		mesh = Weapons/Crutch,
+		texture = Weapons/crutch,
+		attachment world
+		{
+			offset = 0.0 0.1 0.0,
+			rotate = 0.0 -90.0 0.0,
+		}
+		attachment Bip01_Prop1
+		{
+			offset = 0.0 0.0 0.0,
+			rotate = 180.0 0.0 0.0,
+		}
+		attachment Bip01_Prop2
+		{
+			offset = 0.0 0.0 0.0,
+			rotate = 180.0 0.0 0.0,
+		}
+	}
+    model Crutch_Ground
+	{
+		mesh = Weapons/Crutch_Ground,
+		texture = Weapons/crutch,
+	}
+
+    /* severed limbs on the floor */
+    model SeveredHand
+	{
+		mesh = Severed/SeveredHand,
+		texture = Amputations/Human/Hand/skin01_b,
+	}
+    model SeveredForeArm
+	{
+		mesh = Severed/SeveredForeArm,
+		texture = Amputations/Human/Forearm/skin01_b,
+	}
+    model SeveredUpperArm
+	{
+		mesh = Severed/SeveredUpperArm,
+		texture = Amputations/Human/Upperarm/skin01_b,
+	}
+    model SeveredFoot
+	{
+		mesh = Severed/SeveredFoot,
+		texture = Amputations/Human/Foot/skin01_b,
+	}
+    model SeveredLowerLeg
+	{
+		mesh = Severed/SeveredLowerLeg,
+		texture = Amputations/Human/LowerLeg/skin01_b,
+	}
+    model SeveredUpperLeg
+	{
+		mesh = Severed/SeveredUpperLeg,
+		texture = Amputations/Human/UpperLeg/skin01_b,
+	}
+}

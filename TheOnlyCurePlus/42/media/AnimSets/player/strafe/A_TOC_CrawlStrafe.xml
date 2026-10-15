@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>A_TOC_CrawlStrafe</m_Name>
+	<m_Priority>10</m_Priority>
+	<m_AnimName>Zombie_Crawl</m_AnimName>
+	<m_Looped>true</m_Looped>
+	<m_BlendTime>0.30</m_BlendTime>
+	<m_SpeedScale>0.64</m_SpeedScale>
+	<m_Conditions x_name="toc-toc_crawl">
+		<m_Name>TOC_Crawl</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="toc-toc_crawl2">
+		<m_Name>TOC_Crawl2</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="toc-toc_crawl3">
+		<m_Name>TOC_Crawl3</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="toc-toc_crawl4">
+		<m_Name>TOC_Crawl4</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="toc-toc_crawl5">
+		<m_Name>TOC_Crawl5</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="toc-toc_crawl6">
+		<m_Name>TOC_Crawl6</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="toc-toc_crawl7">
+		<m_Name>TOC_Crawl7</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_Transitions>
+		<m_Target>A_TOC_CrawlIdle</m_Target>
+		<m_blendInTime>0.3</m_blendInTime>
+		<m_blendOutTime>0.3</m_blendOutTime>
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>A_TOC_Crawl</m_Target>
+		<m_blendInTime>0.3</m_blendInTime>
+		<m_blendOutTime>0.3</m_blendOutTime>
+	</m_Transitions>
+</animNode>

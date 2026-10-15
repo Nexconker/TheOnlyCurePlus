@@ -1,0 +1,10 @@
+{
+    "Tooltip_Surgery_CantCauterize": "Vous ne pouvez pas cautériser la plaie",
+    "Tooltip_Surgery_And": " et ",
+    "Tooltip_Surgery_TempTooLow": "La température est encore trop basse",
+    "Tooltip_Surgery_Coward": "Vous n'avez pas le courage de le faire",
+    "Tooltip_Surgery_LimbNotFree": "Vous devez d'abord retirer la prothése",
+    "Tooltip_TOC_NoData": "Données médicales pas encore chargées",
+    "Tooltip_TOC_CantSelfHigh": "Vous ne pouvez pas couper aussi haut sur vous-même. Quelqu'un d'autre doit le faire.",
+    "Tooltip_TOC_NeedDoctor": "Requiert Premiers secours niveau %1, ou le Guide d'amputation de terrain"
+}

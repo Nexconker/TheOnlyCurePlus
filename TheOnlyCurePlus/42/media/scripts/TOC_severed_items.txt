@@ -1,0 +1,94 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+	/****************** What falls to the floor (TOC+) ******************
+	 Food items so that they rot like meat; CantEat keeps them out of the menu. */
+
+	item SeveredHand
+	{
+		DisplayCategory = Corpse,
+		ItemType = base:food,
+		Weight = 0.5,
+		Icon = SeveredHand,
+		CantEat = true,
+		IsCookable = false,
+		DaysFresh = 2,
+		DaysTotallyRotten = 6,
+		HungerChange = -5,
+		UnhappyChange = 40,
+		WorldStaticModel = SeveredHand,
+	}
+	item SeveredForeArm
+	{
+		DisplayCategory = Corpse,
+		ItemType = base:food,
+		Weight = 1.5,
+		Icon = SeveredForeArm,
+		CantEat = true,
+		IsCookable = false,
+		DaysFresh = 2,
+		DaysTotallyRotten = 6,
+		HungerChange = -10,
+		UnhappyChange = 40,
+		WorldStaticModel = SeveredForeArm,
+	}
+	item SeveredUpperArm
+	{
+		DisplayCategory = Corpse,
+		ItemType = base:food,
+		Weight = 3.0,
+		Icon = SeveredUpperArm,
+		CantEat = true,
+		IsCookable = false,
+		DaysFresh = 2,
+		DaysTotallyRotten = 6,
+		HungerChange = -15,
+		UnhappyChange = 40,
+		WorldStaticModel = SeveredUpperArm,
+	}
+	item SeveredFoot
+	{
+		DisplayCategory = Corpse,
+		ItemType = base:food,
+		Weight = 1.0,
+		Icon = SeveredFoot,
+		CantEat = true,
+		IsCookable = false,
+		DaysFresh = 2,
+		DaysTotallyRotten = 6,
+		HungerChange = -5,
+		UnhappyChange = 40,
+		WorldStaticModel = SeveredFoot,
+	}
+	item SeveredLowerLeg
+	{
+		DisplayCategory = Corpse,
+		ItemType = base:food,
+		Weight = 3.5,
+		Icon = SeveredLowerLeg,
+		CantEat = true,
+		IsCookable = false,
+		DaysFresh = 2,
+		DaysTotallyRotten = 6,
+		HungerChange = -15,
+		UnhappyChange = 40,
+		WorldStaticModel = SeveredLowerLeg,
+	}
+	item SeveredUpperLeg
+	{
+		DisplayCategory = Corpse,
+		ItemType = base:food,
+		Weight = 7.0,
+		Icon = SeveredUpperLeg,
+		CantEat = true,
+		IsCookable = false,
+		DaysFresh = 2,
+		DaysTotallyRotten = 6,
+		HungerChange = -25,
+		UnhappyChange = 40,
+		WorldStaticModel = SeveredUpperLeg,
+	}
+}

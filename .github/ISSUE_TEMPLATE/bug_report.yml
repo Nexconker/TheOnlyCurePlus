@@ -1,0 +1,49 @@
+name: Bug report
+description: Something broke, looks wrong or throws an error
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! The most useful thing you can attach is your `console.txt`
+        (`C:\Users\<you>\Zomboid\console.txt` on Windows, `~/Zomboid/console.txt` on Linux/macOS),
+        taken right after the problem happens. Drag and drop it below.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, what you saw instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Game mode
+      options: [Singleplayer, Multiplayer (hosted), Multiplayer (dedicated server)]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Game version
+      placeholder: "42.21.0"
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: console.txt or the error text
+      description: Attach the file, or paste the error block (it starts with `Lua((MOD:The Only Cure+`).
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: mods
+    attributes:
+      label: Other mods
+      description: Especially body, clothing, animation, health and combat mods (TombBody, Wounds Overhaul, Bandits...).
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: For visual problems (clipping, invisible limbs), a screenshot plus which prosthesis and which clothing.

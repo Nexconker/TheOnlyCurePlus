@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\mechLegThigh_L_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\mechLegThigh_L_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\mechLegThighUnder_L_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\mechLegThighUnder_L_F</m_AltFemaleModel>
+    <m_GUID>874c81bd-71cf-4ea7-b62c-2a3d711ed2ad</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Prosthesis\mechLeg</textureChoices>
+</clothingItem>

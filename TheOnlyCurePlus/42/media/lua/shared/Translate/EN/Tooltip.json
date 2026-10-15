@@ -1,0 +1,10 @@
+{
+    "Tooltip_Surgery_CantCauterize": "You can't cauterize the wound",
+    "Tooltip_Surgery_And": " and ",
+    "Tooltip_Surgery_TempTooLow": "The fire is not hot enough",
+    "Tooltip_Surgery_Coward": "You don't have the guts to do it",
+    "Tooltip_Surgery_LimbNotFree": "You need to remove the prosthesis first",
+    "Tooltip_TOC_NoData": "Medical data not loaded yet",
+    "Tooltip_TOC_CantSelfHigh": "You cannot cut that high on yourself. Somebody else has to do it.",
+    "Tooltip_TOC_NeedDoctor": "Needs First Aid level %1, or the Field Amputation Guide"
+}

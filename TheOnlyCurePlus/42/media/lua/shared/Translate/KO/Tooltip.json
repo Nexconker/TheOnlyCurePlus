@@ -1,0 +1,10 @@
+{
+    "Tooltip_Surgery_CantCauterize": "상처를 지질수 없습니다",
+    "Tooltip_Surgery_And": " 그리고 ",
+    "Tooltip_Surgery_TempTooLow": "온도가 아직 낮습니다",
+    "Tooltip_Surgery_Coward": "용감함이 필요합니다",
+    "Tooltip_Surgery_LimbNotFree": "먼저 의수를 해제해야 합니다",
+    "Tooltip_TOC_NoData": "의료 데이터를 아직 불러오지 않음",
+    "Tooltip_TOC_CantSelfHigh": "그렇게 높은 곳은 스스로 자를 수 없습니다. 다른 사람이 해야 합니다.",
+    "Tooltip_TOC_NeedDoctor": "의료 레벨 %1 또는 야전 절단술 안내서 필요"
+}

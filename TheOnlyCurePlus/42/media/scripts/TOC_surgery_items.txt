@@ -1,0 +1,156 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+
+	/****************** Tourniquets ******************/
+	item Surg_Arm_Tourniquet_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Surgery,
+		ClothingItem = Surg_Arm_Tourniquet_L,
+		ClothingItemExtra = Surg_Arm_Tourniquet_R,
+		ClothingItemExtraOption = PutTourniquetArmRight,
+		clothingExtraSubmenu = PutTourniquetArmLeft,
+		BodyLocation = toc:ArmAccessory_L,
+		BloodLocation = UpperArms;UpperBody,
+		Weight = 0.25,
+		Icon = tourniquet,
+		WorldStaticModel = tourniquet,
+		CanHaveHoles = false,
+	}
+	item Surg_Arm_Tourniquet_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Surgery,
+		ClothingItem = Surg_Arm_Tourniquet_R,
+		ClothingItemExtra = Surg_Arm_Tourniquet_L,
+		ClothingItemExtraOption = PutTourniquetArmLeft,
+		clothingExtraSubmenu = PutTourniquetArmRight,
+		BodyLocation = toc:ArmAccessory_R,
+		BloodLocation = UpperArms;UpperBody,
+		Weight = 0.25,
+		Icon = tourniquet,
+		WorldStaticModel = tourniquet,
+		CanHaveHoles = false,
+	}
+	item Surg_Leg_Tourniquet_L
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Surgery,
+		ClothingItem = Surg_Leg_Tourniquet_L,
+		ClothingItemExtra = Surg_Leg_Tourniquet_R,
+		ClothingItemExtraOption = PutTourniquetLegRight,
+		clothingExtraSubmenu = PutTourniquetLegLeft,
+		BodyLocation = toc:LegAccessory_L,
+		BloodLocation = UpperLegs,
+		Weight = 0.3,
+		Icon = LegTourniquet,
+		WorldStaticModel = tourniquetLeg,
+		CanHaveHoles = false,
+	}
+	item Surg_Leg_Tourniquet_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Surgery,
+		ClothingItem = Surg_Leg_Tourniquet_R,
+		ClothingItemExtra = Surg_Leg_Tourniquet_L,
+		ClothingItemExtraOption = PutTourniquetLegLeft,
+		clothingExtraSubmenu = PutTourniquetLegRight,
+		BodyLocation = toc:LegAccessory_R,
+		BloodLocation = UpperLegs,
+		Weight = 0.3,
+		Icon = LegTourniquet,
+		WorldStaticModel = tourniquetLeg,
+		CanHaveHoles = false,
+	}
+
+	/****************** Tools (TOC+) ******************/
+	item BoneSaw
+	{
+		ItemType = base:normal,
+		DisplayCategory = Surgery,
+		Weight = 0.8,
+		Icon = BoneSaw,
+		MetalValue = 20.0,
+		StaticModel = BoneSaw,
+		WorldStaticModel = BoneSaw_Ground,
+		Tags = base:hasmetal;base:showcondition,
+		ConditionLowerChanceOneIn = 10,
+		ConditionMax = 15,
+	}
+
+	item SurgicalKit
+	{
+		ItemType = base:normal,
+		DisplayCategory = Surgery,
+		Weight = 2.5,
+		Icon = SurgicalKit,
+		StaticModel = FirstAidKit_Camping,
+		WorldStaticModel = FirstAidKit_Camping,
+		Tags = base:showcondition,
+		ConditionLowerChanceOneIn = 15,
+		ConditionMax = 20,
+	}
+
+	item FieldSurgeryGuide
+	{
+		DisplayCategory = RecipeResource,
+		ItemType = base:literature,
+		Weight = 0.5,
+		Icon = FieldSurgeryGuide,
+		BoredomChange = -20,
+		StressChange = -15,
+		LearnedRecipes = FieldSurgery,
+		StaticModel = Magazine,
+		WorldStaticModel = MagazineGround,
+		Tags = base:magazine,
+		OnCreate = ItemCodeOnCreate.onCreateRecipeMagazine,
+	}
+
+	/* Crutch: held in a hand. Lets a one-legged survivor walk (LegMobility). Poor weapon. */
+	item Crutch
+	{
+		DisplayCategory = Surgery,
+		ItemType = base:weapon,
+		Weight = 1.5,
+		Icon = Crutch,
+		AttachmentType = BigBlade,
+		BaseSpeed = 0.9,
+		BreakSound = CrowbarBreak,
+		Categories = base:blunt,
+		ConditionLowerChanceOneIn = 30,
+		ConditionMax = 20,
+		CritDmgMultiplier = 1.5,
+		CriticalChance = 5.0,
+		DoorDamage = 2,
+		DoorHitSound = CrowbarHit,
+		DropSound = CrowbarDrop,
+		HitAngleMod = -30.0,
+		HitFloorSound = CrowbarHit,
+		HitSound = CrowbarHit,
+		KnockBackOnNoDeath = true,
+		KnockdownMod = 1.0,
+		MaxDamage = 0.7,
+		MaxHitcount = 1,
+		MaxRange = 1.2,
+		MinAngle = 0.75,
+		MinDamage = 0.3,
+		MinRange = 0.61,
+		MinimumSwingtime = 2.5,
+		PushBackMod = 0.4,
+		RunAnim = Run_Weapon2,
+		SubCategory = Swinging,
+		SwingAmountBeforeImpact = 0.02,
+		SwingAnim = Bat,
+		SwingSound = CrowbarSwing,
+		Swingtime = 3.0,
+		TreeDamage = 0,
+		TwoHandWeapon = false,
+		WeaponLength = 0.5,
+		WeaponSprite = Crutch,
+		WorldStaticModel = Crutch_Ground,
+	}
+}

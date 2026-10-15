@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\hookArmWrist_R_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\hookArmWrist_R_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\hookArmWristUnder_R_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\hookArmWristUnder_R_F</m_AltFemaleModel>
+    <m_GUID>4a3eefaf-b60b-4263-8c47-01bb5d4208cf</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Prosthesis\hookArm</textureChoices>
+</clothingItem>

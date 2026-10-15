@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+tools/out/
+*.blend
+*.blend1
+Thumbs.db
+desktop.ini

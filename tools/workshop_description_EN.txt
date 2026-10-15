@@ -1,0 +1,62 @@
+[h1]The Only Cure+ · Field Surgery[/h1]
+[i]A bite is not the end. A saw, a steady hand and a bit of luck can still save you. Then you learn to live with what is left.[/i]
+
+A complete fork of ZioPao's [b]The Only Cure[/b] for [b]Build 42[/b], rebuilt around three ideas: surgery should be a decision with real risk, the body you keep should matter, and prostheses should look like they belong on the character.
+
+[h2]✚ Field surgery, step by step[/h2]
+[list]
+[*][b]Examine the wound[/b] to see how far the infection has spread. Doctors get a diagnosis; the rest of us get a feeling.
+[*][b]Cure window[/b]: amputate in time and the infection is gone. Wait too long and it becomes a gamble.
+[*][b]Staged procedure[/b]: disinfect, cut, saw, stitch, bandage. Each step has its tools, its time and its risk. The checklist tells you the odds before you start.
+[*]Screams attract zombies. Patients faint. Shaky surgeons botch the job and the limb stays, badly cut.
+[*][b]Post-op[/b]: shock, convalescence, phantom pain and [b]sepsis[/b] if the stump is left dirty. Keep it bandaged and clean, or lose more.
+[*]Doctors, nurses, paramedics and vets know how. Everyone else reads the [b]Field Surgery Guide[/b].
+[/list]
+
+[h2]✚ Prostheses that fit[/h2]
+Four arm tiers and three leg tiers, each with its own stats, limits, wear and repair recipe:
+[list]
+[*][b]Wooden arm[/b] (Carpentry 2) · [b]Hook[/b] (Welding 2) · [b]Mechanical arm[/b] (Welding 4) · [b]Medical arm[/b] (hospital loot)
+[*][b]Peg leg[/b] (Carpentry 3) · [b]Mechanical leg[/b] (Welding 4) · [b]Medical leg[/b] (hospital loot)
+[*]Wood and hooks cannot hold two-handed weapons or anything that needs fingers. Peg legs never sprint. Medical gear has no penalty.
+[*]Every prosthesis is modelled on the actual body sections: sockets hug the stump, no clipping, and they fit under trousers and sleeves.
+[*]The same item adapts to the stump: a missing foot gets an ankle cuff, a missing calf a below-knee socket, a missing thigh a full leg with an articulated knee. Hands and forearms likewise.
+[*]They wear out with use. At 0 condition they fall off. Repair with wood glue, duct tape, welding rods or screws. The [b]Prosthesis Familiarity[/b] skill speeds you up over time.
+[/list]
+
+[h2]✚ Legs, crutches and crawling[/h2]
+[list]
+[*]Legs can be amputated at the foot, the calf or the thigh.
+[*]One leg missing: you need a [b]crutch[/b] (craftable) or a prosthesis. On a crutch you limp, you cannot run, and your stamina drains.
+[*]Both legs missing with no prosthesis: you [b]crawl[/b], on the ground, slowly. Zombies do not care that you are down there.
+[*][b]Crawler zombies[/b]: hit a zombie's leg hard enough and it drops and crawls after you (sandbox option).
+[*]Severed limbs are items. Drop them, carry them, or do not ask.
+[/list]
+
+[h2]✚ Built for Build 42 and multiplayer[/h2]
+[list]
+[*]Every body change is validated and applied on the authoritative side. Clients compute, the server decides.
+[*]New 3D models and 32x32 icons for every item, rendered from the models. Items dropped on the floor show their real model.
+[*]Saves from the original The Only Cure keep working: legs, sepsis and the rest are added on first load.
+[*]Sandbox page [b]TOC[/b]: cure window, risk multiplier, scream radius, sepsis, convalescence, prosthesis wear, zombie amputations and more.
+[/list]
+
+[h2]Languages[/h2]
+English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Translations of the new text were machine-assisted: corrections are welcome in the comments.
+
+[h2]Changelog[/h2]
+[b]3.0.1[/b]
+[list]
+[*]Fixed: invisible arm or leg when wearing shirts, long johns, skinny jeans or long dresses. Those are body textures, not meshes; prostheses are now only trimmed under real clothing meshes (jackets, sweaters, trousers, suits).
+[*]Fixed: doctors and nurses did not start with field surgery knowledge (console error in Knowledge.lua).
+[*]Fixed: console error when right-clicking a stove or fireplace (cauterize menu).
+[*]Fixed: zombie limb amputations never triggered (Build 42 weapon category check).
+[*]All text translated to the 10 supported languages.
+[/list]
+
+[h2]Compatibility[/h2]
+Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version; their hooks are left in place and do nothing without them.
+
+[h2]Credits[/h2]
+Original mod: [b]ZioPao[/b] and contributors of The Only Cure (GPL-3.0). Body-location code: RabenRabo. This fork keeps the license: GPL-3.0, source included.
+Report bugs with your console.txt and a screenshot. Found a prosthesis clipping through something? Tell me which one and which clothing.

@@ -1,0 +1,10 @@
+{
+    "Tooltip_Surgery_CantCauterize": "Du kannst die Wunde nicht kauterisieren",
+    "Tooltip_Surgery_And": " und ",
+    "Tooltip_Surgery_TempTooLow": "Die Temperatur ist immer noch zu niedrig",
+    "Tooltip_Surgery_Coward": "Du hast nicht den Mut dazu",
+    "Tooltip_Surgery_LimbNotFree": "Zuerst musst du die Prothese abnehmen",
+    "Tooltip_TOC_NoData": "Medizinische Daten noch nicht geladen",
+    "Tooltip_TOC_CantSelfHigh": "So weit oben kannst du nicht an dir selbst schneiden. Jemand anderes muss es tun.",
+    "Tooltip_TOC_NeedDoctor": "Benötigt Humanmedizin Stufe %1 oder den Leitfaden zur Feldamputation"
+}

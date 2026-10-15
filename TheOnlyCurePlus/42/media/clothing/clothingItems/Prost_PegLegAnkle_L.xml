@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\pegLegAnkle_L_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\pegLegAnkle_L_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\pegLegAnkleUnder_L_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\pegLegAnkleUnder_L_F</m_AltFemaleModel>
+    <m_GUID>12b83cef-43f3-4aec-be73-6895a6c78e00</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Prosthesis\pegLeg</textureChoices>
+</clothingItem>

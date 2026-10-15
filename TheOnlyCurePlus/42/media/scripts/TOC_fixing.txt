@@ -1,0 +1,223 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+	/* Reparación de prótesis (TOC+): madera con cola o cinta; metal con varillas de soldar o cinta; médicas con mecánica. Generado por tools/gen_prosthesis_items.py */
+	fixing Fix TOC Prost_PegArm_L
+	{
+		Require = TOC.Prost_PegArm_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegArm_R
+	{
+		Require = TOC.Prost_PegArm_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegArmWrist_L
+	{
+		Require = TOC.Prost_PegArmWrist_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegArmWrist_R
+	{
+		Require = TOC.Prost_PegArmWrist_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_HookArm_L
+	{
+		Require = TOC.Prost_HookArm_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=2,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_HookArm_R
+	{
+		Require = TOC.Prost_HookArm_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=2,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_HookArmWrist_L
+	{
+		Require = TOC.Prost_HookArmWrist_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=2,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_HookArmWrist_R
+	{
+		Require = TOC.Prost_HookArmWrist_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=2,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_NormalArm_L
+	{
+		Require = TOC.Prost_NormalArm_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_NormalArm_R
+	{
+		Require = TOC.Prost_NormalArm_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_NormalArmWrist_L
+	{
+		Require = TOC.Prost_NormalArmWrist_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_NormalArmWrist_R
+	{
+		Require = TOC.Prost_NormalArmWrist_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_MedicalArm_L
+	{
+		Require = TOC.Prost_MedicalArm_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalArm_R
+	{
+		Require = TOC.Prost_MedicalArm_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalArmWrist_L
+	{
+		Require = TOC.Prost_MedicalArmWrist_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalArmWrist_R
+	{
+		Require = TOC.Prost_MedicalArmWrist_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_PegLeg_L
+	{
+		Require = TOC.Prost_PegLeg_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegLeg_R
+	{
+		Require = TOC.Prost_PegLeg_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegLegAnkle_L
+	{
+		Require = TOC.Prost_PegLegAnkle_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegLegAnkle_R
+	{
+		Require = TOC.Prost_PegLegAnkle_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegLegThigh_L
+	{
+		Require = TOC.Prost_PegLegThigh_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_PegLegThigh_R
+	{
+		Require = TOC.Prost_PegLegThigh_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_MechLeg_L
+	{
+		Require = TOC.Prost_MechLeg_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_MechLeg_R
+	{
+		Require = TOC.Prost_MechLeg_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_MechLegAnkle_L
+	{
+		Require = TOC.Prost_MechLegAnkle_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_MechLegAnkle_R
+	{
+		Require = TOC.Prost_MechLegAnkle_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_MechLegThigh_L
+	{
+		Require = TOC.Prost_MechLegThigh_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_MechLegThigh_R
+	{
+		Require = TOC.Prost_MechLegThigh_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_MedicalLeg_L
+	{
+		Require = TOC.Prost_MedicalLeg_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalLeg_R
+	{
+		Require = TOC.Prost_MedicalLeg_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalLegAnkle_L
+	{
+		Require = TOC.Prost_MedicalLegAnkle_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalLegAnkle_R
+	{
+		Require = TOC.Prost_MedicalLegAnkle_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalLegThigh_L
+	{
+		Require = TOC.Prost_MedicalLegThigh_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_MedicalLegThigh_R
+	{
+		Require = TOC.Prost_MedicalLegThigh_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Crutch
+	{
+		Require = TOC.Crutch,
+		Fixer = Base.Woodglue=2; Woodwork=1,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC BoneSaw
+	{
+		Require = TOC.BoneSaw,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+	}
+}

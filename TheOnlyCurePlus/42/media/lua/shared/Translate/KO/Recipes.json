@@ -1,0 +1,12 @@
+{
+    "Craft_Prosthetic_Arm": "의수 제작",
+    "Craft_Prosthetic_Hook": "후크 의수 제작",
+    "Recipe_Craft_Prosthetic_Arm": "기계식 의수 제작",
+    "Recipe_Craft_Prosthetic_Hook": "후크 의수 제작",
+    "Recipe_Craft_Prosthetic_PegArm": "나무 의수 깎기",
+    "Recipe_Craft_Prosthetic_PegLeg": "나무 의족 깎기",
+    "Recipe_Craft_Prosthetic_MechLeg": "기계식 의족 제작",
+    "Recipe_Craft_Crutch": "목발 만들기",
+    "Recipe_FieldSurgery": "야전 수술 키트 조립",
+    "Recipe_Disassemble_SurgicalKit": "야전 수술 키트 풀기"
+}

@@ -1,0 +1,5 @@
+{
+    "$schema": "https://raw.githubusercontent.com/pz-wiki-modding/pz-translation-data/refs/heads/main/PZ_Translation_Schemas/Mod.schema.json",
+    "name": "The Only Cure+ (Cirugía de campo)",
+    "description": "Fork de The Only Cure: cirugía de campo por etapas con riesgo real, ventana de infección visible, sepsis, prótesis por niveles, amputación de piernas con muletas y zombis rastreros."
+}

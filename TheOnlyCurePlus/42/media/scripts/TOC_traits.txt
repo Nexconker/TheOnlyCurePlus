@@ -1,0 +1,118 @@
+module TOC
+{
+    /* Left arm (original). The stray lockpicking GrantedRecipes of the original are gone. */
+    character_trait_definition toc:amputee_hand
+    {
+        CharacterTrait = toc:amputee_hand,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -8,
+        UIName = UI_trait_Amputee_Hand,
+        UIDescription = UI_trait_Amputee_Hand_desc,
+        XPBoosts = Side_L=4;Fitness=-1;Strength=-1,
+        MutuallyExclusiveTraits = toc:amputee_forearm;toc:amputee_upperarm,
+    }
+    character_trait_definition toc:amputee_forearm
+    {
+        CharacterTrait = toc:amputee_forearm,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -10,
+        UIName = UI_trait_Amputee_ForeArm,
+        UIDescription = UI_trait_Amputee_ForeArm_desc,
+        XPBoosts = Side_L=4;Fitness=-1;Strength=-1,
+        MutuallyExclusiveTraits = toc:amputee_hand;toc:amputee_upperarm,
+    }
+    character_trait_definition toc:amputee_upperarm
+    {
+        CharacterTrait = toc:amputee_upperarm,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -20,
+        UIName = UI_trait_Amputee_UpperArm,
+        UIDescription = UI_trait_Amputee_UpperArm_desc,
+        XPBoosts = Side_L=4;Fitness=-1;Strength=-1,
+        MutuallyExclusiveTraits = toc:amputee_hand;toc:amputee_forearm,
+    }
+
+    /* Right arm (TOC+) */
+    character_trait_definition toc:amputee_hand_r
+    {
+        CharacterTrait = toc:amputee_hand_r,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -10,
+        UIName = UI_trait_Amputee_Hand_R,
+        UIDescription = UI_trait_Amputee_Hand_R_desc,
+        XPBoosts = Side_R=4;Fitness=-1;Strength=-1,
+        MutuallyExclusiveTraits = toc:amputee_forearm_r;toc:amputee_upperarm_r,
+    }
+    character_trait_definition toc:amputee_forearm_r
+    {
+        CharacterTrait = toc:amputee_forearm_r,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -12,
+        UIName = UI_trait_Amputee_ForeArm_R,
+        UIDescription = UI_trait_Amputee_ForeArm_R_desc,
+        XPBoosts = Side_R=4;Fitness=-1;Strength=-1,
+        MutuallyExclusiveTraits = toc:amputee_hand_r;toc:amputee_upperarm_r,
+    }
+    character_trait_definition toc:amputee_upperarm_r
+    {
+        CharacterTrait = toc:amputee_upperarm_r,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -22,
+        UIName = UI_trait_Amputee_UpperArm_R,
+        UIDescription = UI_trait_Amputee_UpperArm_R_desc,
+        XPBoosts = Side_R=4;Fitness=-1;Strength=-1,
+        MutuallyExclusiveTraits = toc:amputee_hand_r;toc:amputee_forearm_r,
+    }
+
+    /* Legs (TOC+). You start with the stump healed; bring your own crutch. */
+    character_trait_definition toc:amputee_foot
+    {
+        CharacterTrait = toc:amputee_foot,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -10,
+        UIName = UI_trait_Amputee_Foot,
+        UIDescription = UI_trait_Amputee_Foot_desc,
+        XPBoosts = Side_L=4;Fitness=-1;Sprinting=-1,
+        MutuallyExclusiveTraits = toc:amputee_lowerleg,
+    }
+    character_trait_definition toc:amputee_lowerleg
+    {
+        CharacterTrait = toc:amputee_lowerleg,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -14,
+        UIName = UI_trait_Amputee_LowerLeg,
+        UIDescription = UI_trait_Amputee_LowerLeg_desc,
+        XPBoosts = Side_L=4;Fitness=-1;Sprinting=-1,
+        MutuallyExclusiveTraits = toc:amputee_foot,
+    }
+    character_trait_definition toc:amputee_foot_r
+    {
+        CharacterTrait = toc:amputee_foot_r,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -10,
+        UIName = UI_trait_Amputee_Foot_R,
+        UIDescription = UI_trait_Amputee_Foot_R_desc,
+        XPBoosts = Side_R=4;Fitness=-1;Sprinting=-1,
+        MutuallyExclusiveTraits = toc:amputee_lowerleg_r,
+    }
+    character_trait_definition toc:amputee_lowerleg_r
+    {
+        CharacterTrait = toc:amputee_lowerleg_r,
+        IsProfessionTrait = false,
+        DisabledInMultiplayer = false,
+        Cost = -14,
+        UIName = UI_trait_Amputee_LowerLeg_R,
+        UIDescription = UI_trait_Amputee_LowerLeg_R_desc,
+        XPBoosts = Side_R=4;Fitness=-1;Sprinting=-1,
+        MutuallyExclusiveTraits = toc:amputee_foot_r,
+    }
+}

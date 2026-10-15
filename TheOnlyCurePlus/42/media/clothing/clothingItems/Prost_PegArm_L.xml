@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\pegArm_L_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\pegArm_L_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\pegArmUnder_L_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\pegArmUnder_L_F</m_AltFemaleModel>
+    <m_GUID>f90dcac5-e7ff-42b2-9cb4-8924451d137a</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <textureChoices>Prosthesis\pegArm</textureChoices>
+</clothingItem>
