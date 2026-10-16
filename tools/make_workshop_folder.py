@@ -11,6 +11,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 W = os.path.join(HERE, "out", "workshop")
 MOD = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus"
 WS = r"C:\Users\nexco\Zomboid\Workshop\TheOnlyCurePlus"
+# submod opcional para Tomb's Player Body (tools/make_tomb_stumps.py), con permiso de Tomb (2026-10-15): va en el mismo ítem
+SUBMODS = [r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlusTombBody"]
 
 DESC_EN = open(os.path.join(HERE, "workshop_description_EN.txt"), encoding="utf-8").read()
 
@@ -54,6 +56,8 @@ if os.path.exists(WS): shutil.rmtree(WS)
 os.makedirs(os.path.join(WS, "Contents", "mods"), exist_ok=True)
 IGNORE = shutil.ignore_patterns("*.pyc", "__pycache__", "*.bak*", "Thumbs.db", ".git", "*.blend", "*.json.tmp")
 shutil.copytree(MOD, dst, ignore=IGNORE)
+for sub in SUBMODS:
+    if os.path.exists(sub): shutil.copytree(sub, os.path.join(WS, "Contents", "mods", os.path.basename(sub)), ignore=IGNORE)
 from PIL import Image
 Image.open(os.path.join(W, "en", "preview.png") if os.path.exists(os.path.join(W, "en", "preview.png")) else os.path.join(W, "preview.png")).convert("RGB").resize((256, 256), Image.LANCZOS).save(os.path.join(WS, "preview.png"))   # el juego exige 256x256
 lines = ["version=1"] + (["id=" + item_id] if item_id else []) + ["title=The Only Cure+ (Field Surgery)"]
@@ -65,11 +69,12 @@ lines = ["version=1"] + (["id=" + item_id] if item_id else []) + ["title=The Onl
 SHORT = ["The Only Cure+ (Field Surgery) for Build 42: staged field surgery, infection and sepsis,",
          "prostheses that fit the stump (now above the elbow too), an Ash-style chainsaw arm,",
          "legs, crutches and crawling, crawler zombies. SP and MP.",
+         "Includes an optional add-on for Tomb's Player Body.",
          "Full description, changelog and languages on the Steam page."]
 for ln in SHORT:
     assert all(ord(c) < 128 for c in ln)
     lines.append("description=" + ln)
 lines += ["tags=Build 42;Items;Models;Clothing/Armor;Multiplayer;Realistic;Hardmode", "visibility=public"]
 open(os.path.join(WS, "workshop.txt"), "w", encoding="utf-8", newline="\n").write("\n".join(lines) + "\n")
-n = sum(len(f) for _, _, f in os.walk(dst))
+n = sum(len(f) for _, _, f in os.walk(os.path.join(WS, "Contents", "mods")))
 print("Workshop listo:", WS, "-", n, "archivos copiados", "- id:", item_id or "NINGUNO (se publicaría como ítem nuevo)")

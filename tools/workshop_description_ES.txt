@@ -54,36 +54,33 @@ Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites
 [h2]Idiomas[/h2]
 English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Las traducciones del texto nuevo son asistidas por máquina: se agradecen correcciones en los comentarios.
 
+[h2]Tomb's Player Body[/h2]
+[img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
+¿Usas Tomb's Player Body? Activa el mod opcional [b]The Only Cure+ - TombBody fit[/b], incluido en este ítem del Workshop, y cárgalo después de The Only Cure+ y Tomb's Player Body. Los muñones están hechos sobre el cuerpo de Tomb para que cadera y hombro casen, y cada prótesis está reajustada a su forma. Usa tu propia textura de Tomb (normal, DOLL o NUDE).
+
 [h2]Cambios[/h2]
 [b]3.1.1[/b]
 [list]
+[*]Nuevo: mod opcional para Tomb's Player Body, hecho con permiso de Tomb (ver arriba).
 [*]Corregido: partidas que no cargaban con Medieval Makeshiftery, Vanilla Outfits Expanded y otros mods que escriben base.X en minúscula.
 [*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod las borra.
 [*]Corregido: piel que asomaba en la muñeca bajo las prótesis de mano.
 [*]Corregido: la resistencia con muleta y al arrastrarse se gastaba por fotograma. Opciones nuevas de sandbox; con rasgo de pierna amputada se gasta la mitad.
 [/list]
-[b]3.1.0[/b]
-[list]
-[*]Nuevo: brazo motosierra estilo Ash y prótesis por encima del codo para todos los tipos de brazo.
-[*]Corregido: raya oscura en el hombro (los muñones de brazo se recortan del propio cuerpo), piel que asomaba por las prótesis de brazo, textura de muñón equivocada en zombis.
-[*]Corregido: errores con Bandits, cristales y cortes que volvían en multijugador, rasgos de pierna amputada sin poder moverse, prótesis que no se ponían en un muñón derecho.
-[*]Corregido: prótesis de brazo que perdían piezas con las piernas amputadas, rendija en el hombro, pantalones y chaquetas que perdían la pernera o la manga sobre un muñón y huecos en la herida del muñón.
-[*]Cambiado: prótesis de brazo del tamaño del brazo real, manos mecánica y médica nuevas, el gancho se curva hacia dentro, iconos de rasgos de amputado al estilo vanilla.
-[*]Nuevas opciones de sandbox: somníferos como anestesia (30 por defecto) y amputarse uno mismo por encima del codo y la rodilla.
-[/list]
+[b]3.1.0[/b]: brazo motosierra estilo Ash, prótesis por encima del codo, muñones recortados del cuerpo, ropa sobre los muñones y muchos arreglos.
 Historial completo: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG en GitHub[/url].
 
 [h2]Compatibilidad[/h2]
 Activa [b]solo uno[/b] de The Only Cure o The Only Cure+: comparten ítems y datos de partida. No compatible con BB First Aid Overhaul. Fancy Handwork y Brutal Handwork no tienen versión para Build 42; sus ganchos siguen ahí y no hacen nada sin ellos.
 [list]
 [*]Funciona según los jugadores: Wounds Overhaul, AHS, Viewpoint y modpacks grandes en SP y MP. Bandits funciona desde la 3.1.0.
-[*]Los reemplazos de cuerpo como TombBody funcionan, pero las prótesis están ajustadas al cuerpo vanilla y lo atravesarán.
+[*]Tomb's Player Body: usa el mod de arriba. Otros reemplazos de cuerpo funcionan, pero las prótesis están ajustadas al cuerpo vanilla.
 [*]Sin probar: Casualties Undead, Project Remnant y los forks de Build 42 de Fancy/Brutal Handwork.
 [*]Se puede añadir a una partida empezada, también en multijugador (reinicia el servidor).
 [/list]
 
 [h2]Créditos[/h2]
-Mod original: [b]ZioPao[/b] y colaboradores de The Only Cure (GPL-3.0). Código de ubicaciones de cuerpo: RabenRabo. Este fork mantiene la licencia: GPL-3.0, código incluido.
+Mod original: [b]ZioPao[/b] y colaboradores de The Only Cure (GPL-3.0). Código de ubicaciones de cuerpo: RabenRabo. Tomb's Player Body es de Tomb; el mod TombBody fit está hecho con su permiso. Este fork mantiene la licencia: GPL-3.0, código incluido.
 Reporta fallos en [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (o aquí) con tu console.txt y una captura. ¿Una prótesis atraviesa algo? Dime cuál y con qué prenda.
 
 [h2]Apoyo[/h2]

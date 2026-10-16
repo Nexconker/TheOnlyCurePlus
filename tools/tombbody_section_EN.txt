@@ -1,0 +1,3 @@
+[h2]Tomb's Player Body[/h2]
+[img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
+Using Tomb's Player Body? Enable the optional mod [b]The Only Cure+ - TombBody fit[/b], included in this Workshop item, and load it after The Only Cure+ and Tomb's Player Body. Stumps are built on Tomb's body so hips and shoulders match it, and every prosthesis is refitted to its shape. It uses your own Tomb texture (normal, DOLL or NUDE). Tomb's Player Body is made by Tomb.

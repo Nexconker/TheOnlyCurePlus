@@ -121,7 +121,7 @@ def write_xmls():
 MOD_INFO = """name=The Only Cure+ - TombBody fit
 poster=poster.png
 icon=icon.png
-description=Optional add-on for The Only Cure+ with Tomb's Player Body: stumps built on Tomb's body so hips and shoulders match it, using your body texture (normal, DOLL or NUDE). Load it after The Only Cure+ and Tomb's Player Body. Tomb's Player Body is by Tomb.
+description=Optional add-on for The Only Cure+ with Tomb's Player Body: stumps built on Tomb's body so hips and shoulders match it, using your body texture (normal, DOLL or NUDE). Load it after The Only Cure+ and Tomb's Player Body. Tomb's Player Body is by Tomb; this add-on is made with his permission.
 id=TheOnlyCurePlusTombBody
 modversion=1.0.0
 versionMin=42.20
@@ -135,7 +135,8 @@ def write_mod_info():
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "mod.info"), "w", encoding="utf-8", newline="\n").write(MOD_INFO.format(req=req))
         for img in ("poster.png", "icon.png"):
-            src = os.path.join(os.path.dirname(BA.MOD), img)
+            own = os.path.join(HERE, "out", "workshop", "en", "tombbody_" + img)      # make_tomb_banner.py
+            src = own if os.path.exists(own) else os.path.join(os.path.dirname(BA.MOD), img)
             if os.path.exists(src): shutil.copy(src, os.path.join(d, img))
 
 if __name__ == "__main__":

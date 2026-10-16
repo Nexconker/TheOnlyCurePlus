@@ -2,6 +2,11 @@
 
 ## 3.1.1
 
+- New: optional add-on "The Only Cure+ - TombBody fit" (mod id `TheOnlyCurePlusTombBody`), in the same Workshop item and
+  made with Tomb's permission. For Tomb's Player Body: stumps cut from Tomb's body, so hips and shoulders match it,
+  textured with the player's own body texture (Tomb's normal, DOLL or NUDE), and every prosthesis rebuilt on Tomb's
+  measurements (the body is 2-8 mm slimmer than vanilla; the parts that replace the limb keep the vanilla centre line so
+  the elbow hinge and the hand line up). Load it after The Only Cure+ and Tomb's Player Body.
 - Fixed: saves did not load with mods that write item references as `base.X` in lower case (reported with Medieval
   Makeshiftery and Vanilla Outfits Expanded). The sound script inherited from the original TOC declared
   `module base`; that created a separate lower-case module, and `ScriptManager.getModule` resolved every `base.X` of

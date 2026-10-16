@@ -54,36 +54,33 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 [h2]Languages[/h2]
 English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Translations of the new text were machine-assisted: corrections are welcome in the comments.
 
+[h2]Tomb's Player Body[/h2]
+[img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
+Using Tomb's Player Body? Enable the optional mod [b]The Only Cure+ - TombBody fit[/b], included in this Workshop item, and load it after The Only Cure+ and Tomb's Player Body. Stumps are built on Tomb's body so hips and shoulders match it, and every prosthesis is refitted to its shape. It uses your own Tomb texture (normal, DOLL or NUDE).
+
 [h2]Changelog[/h2]
 [b]3.1.1[/b]
 [list]
+[*]New: optional add-on for Tomb's Player Body, made with Tomb's permission (see above).
 [*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
 [*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
 [*]Fixed: skin poking out at the wrist under hand prostheses.
 [*]Fixed: crutch and crawling stamina drained per frame (tired after a few steps at high FPS). New sandbox options for both, and characters with a leg amputee trait spend half.
 [/list]
-[b]3.1.0[/b]
-[list]
-[*]New: Ash-style chainsaw arm, and prostheses above the elbow for every arm tier.
-[*]Fixed: dark stripe around the shoulder (arm stumps are now cut from the body), skin poking through arm prostheses, wrong stump texture on zombies.
-[*]Fixed: Bandits console errors, glass and cuts coming back in multiplayer, leg amputee traits unable to move (they start with a crutch; one leg without a crutch crawls), prostheses that would not go on a right stump.
-[*]Fixed: arm prostheses losing parts with amputated legs, a see-through gap at the shoulder of arm stumps, trousers and jackets losing a leg or sleeve over a stump (prostheses now show under them as intended), and holes in the wound at the end of a stump.
-[*]Changed: arm prostheses sized like the real arm, new mechanical and medical hands, the hook curves inwards, amputee trait icons in the vanilla style.
-[*]New sandbox options: sleeping pills as anaesthesia (30 by default), self-amputation above the elbow and knee.
-[/list]
+[b]3.1.0[/b]: Ash-style chainsaw arm, above-elbow prostheses, stumps cut from the body, clothing over stumps and many fixes.
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]
 Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version; their hooks are left in place and do nothing without them.
 [list]
 [*]Reported working by players: Wounds Overhaul, AHS, Viewpoint, and large modpacks in SP and MP. Bandits works since 3.1.0.
-[*]Body replacers such as TombBody work, but prostheses are fitted to the vanilla body and will clip on a different one.
+[*]Tomb's Player Body: use the add-on above. Other body replacers work, but prostheses are fitted to the vanilla body.
 [*]Untested: Casualties Undead, Project Remnant, the Build 42 forks of Fancy/Brutal Handwork.
 [*]Safe to add to an existing save, also in multiplayer (restart the server).
 [/list]
 
 [h2]Credits[/h2]
-Original mod: [b]ZioPao[/b] and contributors of The Only Cure (GPL-3.0). Body-location code: RabenRabo. This fork keeps the license: GPL-3.0, source included.
+Original mod: [b]ZioPao[/b] and contributors of The Only Cure (GPL-3.0). Body-location code: RabenRabo. Tomb's Player Body is by Tomb; the TombBody fit add-on is made with his permission. This fork keeps the license: GPL-3.0, source included.
 Report bugs on [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (or here) with your console.txt and a screenshot. Found a prosthesis clipping through something? Tell me which one and which clothing.
 
 [h2]Support[/h2]
