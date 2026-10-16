@@ -12,6 +12,12 @@
 - Fixed: under a prosthesis for a missing hand, a flap of skin poked out between the cuff and the wrist unit. The hand
   stump reached the start of the palm, past the narrow end of the cuff; hand stumps now also have the trimmed
   "with prosthesis" model (cut inside the cuff), like the forearm and upper-arm ones.
+- Fixed: walking on a crutch (and crawling) drained stamina per rendered frame, so at 144 FPS a character was tired
+  after 7-10 steps and at 60 FPS after ~17 seconds. Stamina now drains per real second while moving: with the defaults,
+  tired after about a minute on a crutch and about 40 seconds crawling.
+- New sandbox options: `CrutchStaminaDrain` and `CrawlStaminaDrain` (0-300 %, default 100) and
+  `AmputeeTraitStaminaDrain` (default 50 %): characters who start with a leg amputee trait already know how to use
+  crutches and spend half as much.
 
 ## 3.1.0
 

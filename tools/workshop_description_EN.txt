@@ -60,6 +60,7 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
 [*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
 [*]Fixed: skin poking out at the wrist under hand prostheses.
+[*]Fixed: crutch and crawling stamina drained per frame (tired after a few steps at high FPS). New sandbox options for both, and characters with a leg amputee trait spend half.
 [/list]
 [b]3.1.0[/b]
 [list]

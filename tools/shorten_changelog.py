@@ -11,6 +11,7 @@ NEW = {
 [*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
 [*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
 [*]Fixed: skin poking out at the wrist under hand prostheses.
+[*]Fixed: crutch and crawling stamina drained per frame (tired after a few steps at high FPS). New sandbox options for both, and characters with a leg amputee trait spend half.
 [/list]
 [b]3.1.0[/b]
 [list]
@@ -27,16 +28,17 @@ Full history: [url=""" + LINK + """]CHANGELOG on GitHub[/url].
  "ES": ("[h2]Cambios[/h2]", "[h2]Compatibilidad[/h2]", """[h2]Cambios[/h2]
 [b]3.1.1[/b]
 [list]
-[*]Corregido: partidas que no cargaban con mods que escriben base.X en minúscula (Medieval Makeshiftery, Vanilla Outfits Expanded): el script de sonidos de TOC declaraba el módulo "base" en minúscula.
+[*]Corregido: partidas que no cargaban con Medieval Makeshiftery, Vanilla Outfits Expanded y otros mods que escriben base.X en minúscula.
 [*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod las borra.
 [*]Corregido: piel que asomaba en la muñeca bajo las prótesis de mano.
+[*]Corregido: la resistencia con muleta y al arrastrarse se gastaba por fotograma. Opciones nuevas de sandbox; con rasgo de pierna amputada se gasta la mitad.
 [/list]
 [b]3.1.0[/b]
 [list]
 [*]Nuevo: brazo motosierra estilo Ash y prótesis por encima del codo para todos los tipos de brazo.
 [*]Corregido: raya oscura en el hombro (los muñones de brazo se recortan del propio cuerpo), piel que asomaba por las prótesis de brazo, textura de muñón equivocada en zombis.
-[*]Corregido: errores con Bandits, cristales y cortes que volvían en multijugador, rasgos de pierna amputada sin poder moverse (empiezan con muleta; con una pierna y sin muleta se arrastran), prótesis que no se ponían en un muñón derecho.
-[*]Corregido: prótesis de brazo que perdían piezas con las piernas amputadas, una rendija en el hombro de los muñones de brazo, pantalones y chaquetas que perdían la pernera o la manga sobre un muñón (las prótesis ya asoman bajo ellos como debían) y huecos en la herida del extremo del muñón.
+[*]Corregido: errores con Bandits, cristales y cortes que volvían en multijugador, rasgos de pierna amputada sin poder moverse, prótesis que no se ponían en un muñón derecho.
+[*]Corregido: prótesis de brazo que perdían piezas con las piernas amputadas, rendija en el hombro, pantalones y chaquetas que perdían la pernera o la manga sobre un muñón y huecos en la herida del muñón.
 [*]Cambiado: prótesis de brazo del tamaño del brazo real, manos mecánica y médica nuevas, el gancho se curva hacia dentro, iconos de rasgos de amputado al estilo vanilla.
 [*]Nuevas opciones de sandbox: somníferos como anestesia (30 por defecto) y amputarse uno mismo por encima del codo y la rodilla.
 [/list]

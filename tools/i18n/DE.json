@@ -176,7 +176,13 @@
   "Sandbox_TOC_SleepingPillAnesthesia": "Schlaftabletten als Betäubung",
   "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Wie stark Schlaftabletten bei einer Operation als Betäubung zählen, in Prozent (0 = gar nicht). Schmerzmittel zählen bis 60, Alkohol bis 50.",
   "Sandbox_TOC_SelfAmputationHigh": "Selbstamputation oberhalb von Ellbogen und Knie",
-  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Erlaubt es, sich selbst den Oberarm oder Oberschenkel abzutrennen. Deutlich höheres Risiko zu scheitern oder mittendrin ohnmächtig zu werden."
+  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Erlaubt es, sich selbst den Oberarm oder Oberschenkel abzutrennen. Deutlich höheres Risiko zu scheitern oder mittendrin ohnmächtig zu werden.",
+  "Sandbox_TOC_CrutchStaminaDrain": "Ausdauerverbrauch mit Krücke (%)",
+  "Sandbox_TOC_CrutchStaminaDrain_tooltip": "Zusätzlicher Ausdauerverbrauch beim Gehen mit Krücke, in Prozent des Standardwerts (100 = nach etwa einer Minute Gehen ohne Pause erschöpft, 0 = kein Zusatzverbrauch).",
+  "Sandbox_TOC_CrawlStaminaDrain": "Ausdauerverbrauch beim Kriechen (%)",
+  "Sandbox_TOC_CrawlStaminaDrain_tooltip": "Zusätzlicher Ausdauerverbrauch beim Kriechen, in Prozent des Standardwerts (100 = nach etwa 40 Sekunden erschöpft, 0 = kein Zusatzverbrauch).",
+  "Sandbox_TOC_AmputeeTraitStaminaDrain": "Erfahrene Amputierte (%)",
+  "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "Charaktere, die mit einem Beinamputations-Merkmal beginnen, können bereits mit Krücken umgehen: ihr Verbrauch mit Krücke und beim Kriechen beträgt diesen Prozentsatz der obigen Werte (50 = die Hälfte)."
  },
  "Tooltip.json": {
   "Tooltip_TOC_NoData": "Medizinische Daten noch nicht geladen",

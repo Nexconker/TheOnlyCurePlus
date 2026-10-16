@@ -2,7 +2,7 @@
 --  NONE   -> no longer produced (kept for API users): a missing leg without crutch now crawls
 --  CRAWL  -> a leg missing with no crutch, or both legs with no prosthesis: crawls on the ground (animation variable TOC_Crawl
 --            selects the zombie crawler clips added in media/AnimSets/player/*/TOC_Crawl*.xml)
---  CRUTCH -> crutch in a hand: walk only, no running, stamina drains while moving
+--  CRUTCH -> crutch in a hand: walk only, no running, stamina drains while moving (per second, sandbox CrutchStaminaDrain)
 --  PEG    -> peg leg: run but never sprint
 --  FULL   -> mechanical / medical leg or no leg amputation at all
 local DataController = require("TOC/Controllers/DataController")
@@ -21,6 +21,40 @@ LegMobility.current = StaticData.MOBILITY.FULL
 LegMobility.oneLeg = false     -- crawling with one leg left: the hint asks for a crutch
 
 local CRUTCH_TYPE = "TOC.Crutch"
+
+-- Resistencia (3.1.1): antes se restaban 0.0025 (muleta) / 0.004 (arrastre) cada 10 actualizaciones del jugador, es decir,
+-- por FOTOGRAMA: a 60 fps cansado en ~17 s con muleta, a 144 fps en ~7 ("cansado tras 7-10 pasos", comentario del Workshop).
+-- Ahora es por segundo real mientras se mueve, con opciones de sandbox. 100 % = moodle de cansancio tras ~1 min con muleta y
+-- ~40 s arrastrándose; los rasgos de pierna amputada (ya sabe usar muletas) gastan el % de AmputeeTraitStaminaDrain.
+local DRAIN_PER_SECOND = { crutch = 0.004, crawl = 0.006 }
+local LEG_TRAITS = { "Amputee_Foot", "Amputee_LowerLeg", "Amputee_Foot_R", "Amputee_LowerLeg_R" }
+LegMobility.dt = 0
+
+local function sv(name, default)
+    local v = SandboxVars.TOC and SandboxVars.TOC[name]
+    if v == nil then return default end
+    return v
+end
+
+local function isPractised(player)
+    local reg = _TOCRegistries and _TOCRegistries.traits
+    if not reg then return false end
+    for _, k in ipairs(LEG_TRAITS) do
+        if reg[k] and player:hasTrait(reg[k]) then return true end
+    end
+    return false
+end
+
+---Resta la resistencia de dt segundos moviéndose con muleta ("crutch") o arrastrándose ("crawl").
+local function drainEndurance(player, kind, dt)
+    if dt <= 0 then return end
+    local pct = sv(kind == "crutch" and "CrutchStaminaDrain" or "CrawlStaminaDrain", 100)
+    if isPractised(player) then pct = pct * sv("AmputeeTraitStaminaDrain", 50) / 100 end
+    local amount = DRAIN_PER_SECOND[kind] * dt * pct / 100
+    if amount <= 0 then return end
+    local stats = player:getStats()
+    stats:set(CharacterStat.ENDURANCE, math.max(0, (stats:get(CharacterStat.ENDURANCE) or 1) - amount))
+end
 
 ---@param player IsoPlayer
 ---@return boolean
@@ -98,6 +132,8 @@ end
 
 ---@param player IsoPlayer
 function LegMobility.Apply(player)
+    local dt = math.min(LegMobility.dt, 1.0)        -- segundos reales desde la última vez (tope por pausas)
+    LegMobility.dt = 0
     local m = LegMobility.Evaluate(player)
     LegMobility.current = m
     local inVehicle = player:getVehicle() ~= nil
@@ -112,10 +148,7 @@ function LegMobility.Apply(player)
             if player:isRunning() then player:setRunning(false) end
             if player:isSprinting() then player:setSprinting(false) end
             if player:isSneaking() then player:setSneaking(false) end
-            if player:isPlayerMoving() and not inVehicle then
-                local stats = player:getStats()
-                stats:set(CharacterStat.ENDURANCE, math.max(0, (stats:get(CharacterStat.ENDURANCE) or 1) - 0.004))
-            end
+            if player:isPlayerMoving() and not inVehicle then drainEndurance(player, "crawl", dt) end
         end)
         local now = getTimestampMs and getTimestampMs() or 0
         if not inVehicle and now - LegMobility.lastHint > 20000 then
@@ -136,10 +169,7 @@ function LegMobility.Apply(player)
         pcall(function()
             if player:isRunning() then player:setRunning(false) end
             if player:isSprinting() then player:setSprinting(false) end
-            if player:isPlayerMoving() and not inVehicle then
-                local stats = player:getStats()
-                stats:set(CharacterStat.ENDURANCE, math.max(0, (stats:get(CharacterStat.ENDURANCE) or 1) - 0.0025))
-            end
+            if player:isPlayerMoving() and not inVehicle then drainEndurance(player, "crutch", dt) end
         end)
     elseif m == StaticData.MOBILITY.PEG then
         setBlocked(player, false)
@@ -170,6 +200,11 @@ end
 local function OnPlayerUpdate(player)
     if not player or not instanceof(player, "IsoPlayer") or not player:isLocalPlayer() then return end
     LegMobility.tick = LegMobility.tick + 1
+    local gt = getGameTime and getGameTime()
+    if gt and gt.getRealworldSecondsSinceLastUpdate then
+        local speed = (getGameSpeed and getGameSpeed()) or 1
+        LegMobility.dt = LegMobility.dt + math.min(gt:getRealworldSecondsSinceLastUpdate(), 0.25) * math.max(1, speed)
+    end
     if LegMobility.tick % 10 ~= 0 then return end
     local ok, err = pcall(LegMobility.Apply, player)
     if not ok then TOC_DEBUG.print("LegMobility error: " .. tostring(err)) end

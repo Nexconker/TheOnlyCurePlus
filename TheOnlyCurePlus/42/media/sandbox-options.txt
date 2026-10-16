@@ -90,6 +90,21 @@ option TOC.SleepingPillAnesthesia
     type = integer, min = 0, max = 50, default = 30,
     page = TOC, translation = TOC_SleepingPillAnesthesia,
 }
+option TOC.CrutchStaminaDrain
+{
+    type = integer, min = 0, max = 300, default = 100,
+    page = TOC, translation = TOC_CrutchStaminaDrain,
+}
+option TOC.CrawlStaminaDrain
+{
+    type = integer, min = 0, max = 300, default = 100,
+    page = TOC, translation = TOC_CrawlStaminaDrain,
+}
+option TOC.AmputeeTraitStaminaDrain
+{
+    type = integer, min = 0, max = 100, default = 50,
+    page = TOC, translation = TOC_AmputeeTraitStaminaDrain,
+}
 option TOC.SelfAmputationHigh
 {
     type = boolean, default = false,

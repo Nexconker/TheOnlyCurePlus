@@ -176,7 +176,13 @@
   "Sandbox_TOC_SleepingPillAnesthesia": "Tabletki nasenne jako znieczulenie",
   "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Ile tabletki nasenne mogą liczyć się jako znieczulenie podczas operacji, w procentach (0 = nie liczą się). Leki przeciwbólowe liczą się do 60, alkohol do 50.",
   "Sandbox_TOC_SelfAmputationHigh": "Samoamputacja powyżej łokcia i kolana",
-  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Pozwala ocalałemu samemu odciąć sobie ramię lub udo. Znacznie większa szansa na porażkę lub omdlenie w trakcie."
+  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Pozwala ocalałemu samemu odciąć sobie ramię lub udo. Znacznie większa szansa na porażkę lub omdlenie w trakcie.",
+  "Sandbox_TOC_CrutchStaminaDrain": "Zużycie wytrzymałości o kuli (%)",
+  "Sandbox_TOC_CrutchStaminaDrain_tooltip": "Dodatkowa wytrzymałość zużywana podczas chodzenia o kuli, w procentach wartości domyślnej (100 = zmęczenie po około minucie marszu bez odpoczynku, 0 = brak dodatkowego kosztu).",
+  "Sandbox_TOC_CrawlStaminaDrain": "Zużycie wytrzymałości podczas czołgania (%)",
+  "Sandbox_TOC_CrawlStaminaDrain_tooltip": "Dodatkowa wytrzymałość zużywana podczas czołgania się, w procentach wartości domyślnej (100 = zmęczenie po około 40 sekundach, 0 = brak dodatkowego kosztu).",
+  "Sandbox_TOC_AmputeeTraitStaminaDrain": "Doświadczeni po amputacji (%)",
+  "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "Postacie, które zaczynają z cechą amputacji nogi, umieją już chodzić o kulach: ich zużycie o kuli i podczas czołgania to ten procent powyższych wartości (50 = połowa)."
  },
  "Tooltip.json": {
   "Tooltip_TOC_NoData": "Dane medyczne nie są jeszcze wczytane",

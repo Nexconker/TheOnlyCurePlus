@@ -39,5 +39,11 @@
     "Sandbox_TOC_SleepingPillAnesthesia": "Somníferos como anestesia",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Cuánto pueden contar los somníferos como anestesia al operar, en porcentaje (0 = no cuentan). Los analgésicos cuentan hasta 60 y el alcohol hasta 50.",
     "Sandbox_TOC_SelfAmputationHigh": "Amputarse uno mismo por encima del codo y la rodilla",
-    "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permite cortarse uno mismo el brazo o el muslo. Mucho más probable fallar o desmayarse a mitad."
+    "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permite cortarse uno mismo el brazo o el muslo. Mucho más probable fallar o desmayarse a mitad.",
+    "Sandbox_TOC_CrutchStaminaDrain": "Gasto de resistencia con muleta (%)",
+    "Sandbox_TOC_CrutchStaminaDrain_tooltip": "Resistencia extra que se gasta al andar con muleta, en porcentaje del valor por defecto (100 = cansado tras un minuto andando sin parar, 0 = sin gasto extra).",
+    "Sandbox_TOC_CrawlStaminaDrain": "Gasto de resistencia al arrastrarse (%)",
+    "Sandbox_TOC_CrawlStaminaDrain_tooltip": "Resistencia extra que se gasta al arrastrarse, en porcentaje del valor por defecto (100 = cansado tras unos 40 segundos, 0 = sin gasto extra).",
+    "Sandbox_TOC_AmputeeTraitStaminaDrain": "Amputados con experiencia (%)",
+    "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "Los personajes que empiezan con un rasgo de pierna amputada ya saben usar muletas: su gasto con muleta y al arrastrarse es este porcentaje de los valores de arriba (50 = la mitad)."
 }

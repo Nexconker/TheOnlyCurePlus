@@ -176,7 +176,13 @@
   "Sandbox_TOC_SleepingPillAnesthesia": "Somnifères comme anesthésie",
   "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Part maximale des somnifères dans l'anesthésie pendant une opération, en pourcentage (0 = ils ne comptent pas). Les antidouleurs comptent jusqu'à 60 et l'alcool jusqu'à 50.",
   "Sandbox_TOC_SelfAmputationHigh": "Auto-amputation au-dessus du coude et du genou",
-  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permet de se couper soi-même le bras ou la cuisse. Bien plus de risques d'échouer ou de s'évanouir en cours de route."
+  "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permet de se couper soi-même le bras ou la cuisse. Bien plus de risques d'échouer ou de s'évanouir en cours de route.",
+  "Sandbox_TOC_CrutchStaminaDrain": "Coût d'endurance avec béquille (%)",
+  "Sandbox_TOC_CrutchStaminaDrain_tooltip": "Endurance supplémentaire dépensée en marchant avec une béquille, en pourcentage de la valeur par défaut (100 = fatigué après environ une minute de marche sans pause, 0 = aucun coût supplémentaire).",
+  "Sandbox_TOC_CrawlStaminaDrain": "Coût d'endurance en rampant (%)",
+  "Sandbox_TOC_CrawlStaminaDrain_tooltip": "Endurance supplémentaire dépensée en rampant, en pourcentage de la valeur par défaut (100 = fatigué après environ 40 secondes, 0 = aucun coût supplémentaire).",
+  "Sandbox_TOC_AmputeeTraitStaminaDrain": "Amputés expérimentés (%)",
+  "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "Les personnages qui commencent avec un trait d'amputation de la jambe savent déjà utiliser une béquille : leur coût avec béquille et en rampant est ce pourcentage des valeurs ci-dessus (50 = la moitié)."
  },
  "Tooltip.json": {
   "Tooltip_TOC_NoData": "Données médicales pas encore chargées",
