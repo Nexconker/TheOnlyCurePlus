@@ -170,7 +170,13 @@ for _n in ("seam_fa_f", "seam_fa_m", "seam_ua_f", "seam_hand_f", "seam_body_f"):
     JOBS[_n + "_back"] = ([(_n, 0, 0)], 22, 330, 2.6, (-1.3, 0.0, 6.9))
 JOBS["seam_hand_f_wrist"] = ([("seam_hand_f", 0, 0)], 15, 200, 2.4, (-3.4, 0.0, 6.2))
 JOBS["seam_leg_f"] = ([("seam_leg_f", 0, 0)], -25, 150, 3.0, (0.9, 0.0, 2.6))
-CULL = {"seam_fa_f", "seam_fa_m", "seam_ua_f", "seam_hand_f", "seam_body_f", "seam_fa_f_back", "seam_fa_m_back", "seam_ua_f_back",
+# vistas de tomb_preview.py (cuerpo de Tomb's Player Body con las prótesis): se leen de out/scene/tomb_jobs.json
+_tj = os.path.join(SRC, "tomb_jobs.json")
+_tomb_jobs = json.load(open(_tj)) if os.path.exists(_tj) else {}
+for _n, _j in _tomb_jobs.items():
+    _scene, _az, _focus = _j[:3]; _zoom = _j[3] if len(_j) > 3 else 2.4; _elev = _j[4] if len(_j) > 4 else 12
+    JOBS[_n] = ([(_scene, 0, 0)], _elev, _az, _zoom, tuple(_focus))
+CULL = set(_tomb_jobs) | {"seam_fa_f", "seam_fa_m", "seam_ua_f", "seam_hand_f", "seam_body_f", "seam_fa_f_back", "seam_fa_m_back", "seam_ua_f_back",
         "seam_hand_f_back", "seam_body_f_back", "seam_hand_f_wrist", "seam_leg_f",
         "stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f",
         "stump_hand_back", "stump_fa_back", "stump_ua_back", "stump_fa_mech_back", "stump_ua_f_back",

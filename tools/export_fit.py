@@ -3,12 +3,32 @@ secciones reales de piernas y antebrazos del cuerpo vanilla (holgura 0, con su c
 huesos, medidas de pie y mano, alturas de corte y huesos. Unidades y ejes del juego (Y arriba, frente -Z).
 Uso: python export_fit.py [salida.json]"""
 import os, sys, json, math
+_ARGV = sys.argv[1:]; sys.argv = sys.argv[:1]      # build_assets / render_icons leen argv[1] como ruta del mod
 sys.path.insert(0, r"C:\Users\nexco\CODING PARCHEO\HerreriaPZ\tools")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import build_assets as BA
 
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "fit.json")
+# --tomb: ajuste para el submod "TombBody fit": los anillos se miden sobre el cuerpo de Tomb's Player Body (out/tomb/*.json de
+# tomb_export.py; sólo se mide, no se copia nada suyo). Es 2-8 mm más delgado que el vanilla: con los encajes vanilla quedaba
+# hueco y se veía el interior del encaje. Mano y pie siguen siendo los vanilla.
+TOMB = "--tomb" in _ARGV
+_pos = [a for a in _ARGV if not a.startswith("--")]
+OUT = _pos[0] if _pos else os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "fit_tomb.json" if TOMB else "fit.json")
+
+from tomb_common import tomb_main_faces
+
+def tomb_only(vb):
+    """El cuerpo de Tomb como dict de cuerpo (mismo esqueleto y pose de reposo que el vanilla, comprobado en tomb_export),
+    sin su membrana transparente. Sus caras llevan una UV opaca de la textura vanilla para que face_is_hidden no las descarte."""
+    import json as _json
+    here = os.path.dirname(os.path.abspath(__file__))
+    T = _json.load(open(os.path.join(here, "out", "tomb", vb["sex"] + ".json")))["meshes"][0]
+    tv = np.load(os.path.join(here, "out", "tomb", vb["sex"] + "_verts_pz.npy"))
+    alpha = BA.hidden_alpha(vb["sex"])
+    ys, xs = np.nonzero(alpha >= 250); opaque_uv = (xs[len(xs) // 2] / 255.0, ys[len(ys) // 2] / 255.0)
+    return {"verts": tv, "faces": [tuple(int(i) for i in T["tris"][k]) for k in tomb_main_faces(T["tris"], len(tv))],
+            "uvs": np.tile(opaque_uv, (len(tv), 1)), "weights": [dict(w) for w in T["weights"]], "offsets": vb["offsets"], "sex": vb["sex"]}
 
 def ring_with_center(ring):
     R = np.array(ring)
@@ -99,8 +119,9 @@ def upper_arm(body, side):
 
 spec = {"units": "PZ (0.57 u/m), Y arriba, frente -Z", "leg_cuts": BA.LEG_CUTS, "leg_levels": BA.LEG_LEVELS, "arm_levels": dict(BA.ARM_LEVELS, Upper="UpperArm"), "bodies": {}}
 for sex in ("Male", "Female"):
-    body = BA.load_body(sex)
-    V = body["verts"]; W = body["weights"]
+    vbody = BA.load_body(sex)
+    body = tomb_only(vbody) if TOMB else vbody
+    V = vbody["verts"]; W = vbody["weights"]          # pie y mano: los vanilla (no cambian con Tomb)
     B = {"legs": {}, "arms": {}}
     for side in ("L", "R"):
         # ---- pierna: anillos cada 5 mm de 0.06 a 0.49 (holgura 0)
