@@ -59,6 +59,7 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [list]
 [*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
 [*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
+[*]Fixed: skin poking out at the wrist under hand prostheses.
 [/list]
 [b]3.1.0[/b]
 [list]

@@ -98,7 +98,9 @@ def prost_cut(fit_arm, part):
     """|x| del corte bajo el borde del encaje de cada nivel (mismos t que blender_build)."""
     import numpy as np
     o, ax = np.array(fit_arm["o"]), np.array(fit_arm["axis"])
-    if part == "Hand": return abs(o[0] + ax[0] * 0.075)               # brazal desde t = 0.07
+    # mano (2026-10-15): el muñón llegaba a t ~0.149, donde ya empieza la palma (ancha y plana), y asomaba como una pestaña
+    # por el cuello estrecho del brazal (que va hasta t = 0.142 con holgura y luego se cierra): se corta dentro del brazal
+    if part == "Hand": return abs(o[0] + ax[0] * 0.136)
     if part == "ForeArm": return abs(o[0] + ax[0] * (-0.010))         # encaje desde t = -0.015 (sobre el codo)
     up = fit_arm["upper"]; uo, uax = np.array(up["o"]), np.array(up["axis"])
     t0 = max(0.012, up["t_cut"] - 0.035)                               # build_upper_section: encaje desde t0
@@ -112,8 +114,9 @@ def build_prost_variants():
     for sex in ("Male", "Female"):
         body = BA.load_body(sex)
         for side in ("L", "R"):
-            faces = hidden_faces(body, PROST_MASKS[side])
-            for part in ("ForeArm", "UpperArm"):        # mano: sin variante (el antebrazo del cuerpo sigue visible)
+            for part in ("Hand", "ForeArm", "UpperArm"):
+                # mano: con las máscaras de la mano sola (el antebrazo del cuerpo sigue visible bajo el brazal)
+                faces = hidden_faces(body, MASKS["Hand"][side] if part == "Hand" else PROST_MASKS[side])
                 cut = prost_cut(fit["bodies"][sex]["arms"][side], part)
                 tmp = dict(body); tmp["verts"] = body["verts"][:, [1, 0, 2]].copy()
                 nv, nuv, nw, nf, edge = BA.clip_mesh(tmp, faces, cut if side == "L" else -cut, keep_above=(side == "R"))
@@ -169,7 +172,7 @@ def seam_alpha(verbose=True):
     for sex in ("Male", "Female"):
         body = BA.load_body(sex); UV = body["uvs"]; X = body["verts"][:, 0]
         stumps = [(MASKS[p][s], s, c) for p, c in ARM_CUTS.items() for s in ("L", "R")]
-        stumps += [(PROST_MASKS[s], s, prost_cut(fit["bodies"][sex]["arms"][s], p)) for p in ("ForeArm", "UpperArm") for s in ("L", "R")]
+        stumps += [(MASKS["Hand"][s] if p == "Hand" else PROST_MASKS[s], s, prost_cut(fit["bodies"][sex]["arms"][s], p)) for p in ("Hand", "ForeArm", "UpperArm") for s in ("L", "R")]
         for masks, side, cut in stumps:
             zone = hidden_zone(masks)
             for f in hidden_faces(body, masks):

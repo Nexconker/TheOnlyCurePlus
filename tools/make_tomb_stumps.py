@@ -67,8 +67,7 @@ def build_arms(sex, body, fit, report):
     for side in ("L", "R"):
         for part, cut in MS.ARM_CUTS.items():
             for prost in (False, True):
-                if prost and part == "Hand": continue
-                masks = MS.PROST_MASKS[side] if prost else MS.MASKS[part][side]
+                masks = MS.PROST_MASKS[side] if (prost and part != "Hand") else MS.MASKS[part][side]
                 c = MS.prost_cut(fit["bodies"][sex]["arms"][side], part) if prost else cut
                 tmp = dict(body); tmp["verts"] = body["verts"][:, [1, 0, 2]].copy()
                 nv, nuv, nw, nf, edge = BA.clip_mesh(tmp, faces_with_hidden_texels(body, masks), c if side == "L" else -c, keep_above=(side == "R"))

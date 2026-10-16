@@ -10,6 +10,7 @@ NEW = {
 [list]
 [*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
 [*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
+[*]Fixed: skin poking out at the wrist under hand prostheses.
 [/list]
 [b]3.1.0[/b]
 [list]
@@ -27,7 +28,8 @@ Full history: [url=""" + LINK + """]CHANGELOG on GitHub[/url].
 [b]3.1.1[/b]
 [list]
 [*]Corregido: partidas que no cargaban con mods que escriben base.X en minúscula (Medieval Makeshiftery, Vanilla Outfits Expanded): el script de sonidos de TOC declaraba el módulo "base" en minúscula.
-[*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod de ranuras las borra.
+[*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod las borra.
+[*]Corregido: piel que asomaba en la muñeca bajo las prótesis de mano.
 [/list]
 [b]3.1.0[/b]
 [list]

@@ -2,6 +2,8 @@
 <clothingItem>
     <m_MaleModel>Amputation\ArmStump_Left_Hand_Male</m_MaleModel>
     <m_FemaleModel>Amputation\ArmStump_Left_Hand_Female</m_FemaleModel>
+    <m_AltMaleModel>Amputation\ArmStumpProst_Left_Hand_Male</m_AltMaleModel>
+    <m_AltFemaleModel>Amputation\ArmStumpProst_Left_Hand_Female</m_AltFemaleModel>
     <m_GUID>2de93af2-b7a8-4c04-84d1-28d92cce8a0f</m_GUID>
     <m_Static>false</m_Static>
     <m_AllowRandomHue>false</m_AllowRandomHue>

@@ -52,7 +52,7 @@ def inward(m, d=0.0005):
 def stump(kind, part, side, sex):
     tex = os.path.join(MOD, "textures", "Amputations", "Human", "LowerLeg", "skin01_b.png" if sex == "Male" else "skinF01_b.png")
     if kind == "arm":
-        name = "ArmStump%s_%s_%s_%s" % ("" if part == "Hand" else "Prost", BA.SIDE_NAME[side], part, sex)
+        name = "ArmStumpProst_%s_%s_%s" % (BA.SIDE_NAME[side], part, sex)
     else:
         name = "Amputation_%s_%s_%s" % (BA.SIDE_NAME[side], part, sex)
         tex = tex.replace("LowerLeg", part)

@@ -9,6 +9,9 @@
 - Fixed: if another body-slot mod rebuilds the "Human" body location group after TOC+ and drops our locations, they
   are added back on `OnGameBoot` / `OnInitWorld` with their "under clothing" relations, instead of leaving TOC+ items
   without a location.
+- Fixed: under a prosthesis for a missing hand, a flap of skin poked out between the cuff and the wrist unit. The hand
+  stump reached the start of the palm, past the narrow end of the cuff; hand stumps now also have the trimmed
+  "with prosthesis" model (cut inside the cuff), like the forearm and upper-arm ones.
 
 ## 3.1.0
 

@@ -41,7 +41,7 @@ for sex in ("Male", "Female"):
     for kind, tiers, levels in (("arm", ARM_TIERS, ARM_LEVELS), ("leg", LEG_TIERS, LEG_LEVELS)):
         for lvl, part, masks in levels:
             if kind == "arm":
-                stump = "ArmStump%s_Right_%s_%s" % ("" if part == "Hand" else "Prost", part, sex)
+                stump = "ArmStumpProst_Right_%s_%s" % (part, sex)
             else:
                 stump = "Amputation_Right_%s_%s" % (part, sex)
             body = TP.tomb_body(sex, masks)

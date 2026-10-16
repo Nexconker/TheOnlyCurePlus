@@ -65,8 +65,8 @@ for part in ("Hand", "ForeArm", "UpperArm"):
         # del encaje, sin piel dentro que pueda asomar (tools/make_arm_stumps.py: build_prost_variants)
         # (sólo antebrazo y brazo: ahí la amputación ya oculta el brazo entero. En la mano el antebrazo es el del cuerpo y
         # tiene que seguir visible: las camisas de manga larga son textura pintada sobre él)
-        alt = None if part == "Hand" else (P("Amputation", "ArmStumpProst_%s_%s_Male" % (SIDE[side], part)),
-                                           P("Amputation", "ArmStumpProst_%s_%s_Female" % (SIDE[side], part)))
+        # (mano desde 2026-10-15: su alternativo es el muñón cortado dentro del brazal; antes asomaba una pestaña de piel)
+        alt = (P("Amputation", "ArmStumpProst_%s_%s_Male" % (SIDE[side], part)), P("Amputation", "ArmStumpProst_%s_%s_Female" % (SIDE[side], part)))
         write("Amputation_%s_%s" % (part, side), P("Amputation", "ArmStump_%s_%s_Male" % (SIDE[side], part)),
               P("Amputation", "ArmStump_%s_%s_Female" % (SIDE[side], part)), stump_textures("LowerLeg"), ARM_MASKS[part][side], alt=alt)
 

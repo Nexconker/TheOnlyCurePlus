@@ -13,7 +13,7 @@ W = P.worlds_at(clip, 0, False)
 def stump(part, sex="Male", WW=None, prost=False):
     """prost: el modelo alternativo que el juego usa con una prótesis puesta (antebrazo y brazo: recortado bajo el encaje).
     Con el alfa de la textura (costura) y medio milímetro hacia dentro, como en seam_stump."""
-    name = "ArmStumpProst" if prost and part != "Hand" else "ArmStump"
+    name = "ArmStumpProst" if prost else "ArmStump"
     m = P.posed_x(os.path.join(MOD, "models_X", "Amputation", "%s_Right_%s_%s.X" % (name, part, sex)), TEX, WW if WW is not None else W)
     return _inward(m)
 
