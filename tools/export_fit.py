@@ -166,9 +166,23 @@ for sex in ("Male", "Female"):
         hp = np.array([V[i] for i in range(len(V)) if hb in W[i]])
         ht, hd, hf = (hp - o) @ axis, (hp - o) @ down, (hp - o) @ front
         hand = {"t": [float(ht.min()), float(ht.max())], "down": [float(hd.min()), float(hd.max())], "front": [float(hf.min()), float(hf.max())]}
+        upper = upper_arm(body, side)
+        if TOMB:
+            # "dc" de cada anillo: centro de la sección de Tomb - centro vanilla (blender_build recentra las carcasas)
+            uv = upper_arm(vbody, side)
+            for k, r in upper["rings"].items():
+                r["dc"] = [round(float(x), 5) for x in (np.array(r["c"]) - np.array(uv["rings"][k]["c"]))]
+            t = -0.02
+            while t <= 0.1601:
+                R = np.array(BA.axis_ring(vbody, bones, side, o, axis, down, front, t, 0.0, band=ARM_RING_BAND))
+                du, dv = (R - o) @ down, (R - o) @ front
+                cv = o + axis * t + down * ((du.min() + du.max()) / 2) + front * ((dv.min() + dv.max()) / 2)
+                k = "%.3f" % t
+                arings[k]["dc"] = [round(float(x), 5) for x in (np.array(arings[k]["c"]) - cv)]
+                t += 0.005
         B["arms"][side] = {"o": [float(x) for x in o], "axis": [float(x) for x in axis], "down": [float(x) for x in down], "front": [float(x) for x in front], "forearm_len": float(L),
                            "rings": arings, "hand": hand, "end_shift": end_shift, "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2]},
-                           "upper": upper_arm(body, side)}
+                           "upper": upper}
     spec["bodies"][sex] = B
 spec["saw"] = chainsaw_local()
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

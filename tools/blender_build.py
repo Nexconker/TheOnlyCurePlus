@@ -158,10 +158,26 @@ def leg_ring(legs, y, clearance):
     key = "%.3f" % (round(y / 0.005) * 0.005)
     return offset_ring(legs["rings"][key], clearance, y=y)
 
+# Ajuste a TombBody (export_fit --tomb): cada anillo trae "dc" = centro de la sección de Tomb - centro vanilla. Lo que va
+# SOBRE el muñón sigue la forma de Tomb; lo que SUSTITUYE al miembro (carcasas del antebrazo y del brazo, bisagra) vuelve
+# al centro vanilla con el grosor de Tomb, para que bisagra (en la articulación) y mano (en el eje) casen como en vanilla
+# (2026-10-15, "la articulación del codo trae mínimos desfases y la mano también"). Sin "dc" (vanilla) no cambia nada.
+ARM_LEVEL = ""
+
+def _recenter_fore(t):
+    if ARM_LEVEL == "Upper": return 1.0                       # todo el antebrazo es protésico
+    if ARM_LEVEL == "": return min(1.0, max(0.0, (t - 0.045) / 0.03))   # encaje hasta t = 0.045, luego carcasa
+    return 0.0                                                # muñeca: el brazal abraza el antebrazo real
+
+def _shifted(out, ring, w):
+    if not w or "dc" not in ring: return out
+    dc = Vector(ring["dc"]) * w
+    return [tuple(Vector(q) - dc) for q in out]
+
 def arm_ring(arm, t, clearance):
     key = "%.3f" % (round(t / 0.005) * 0.005)
     ring = arm["rings"][key]
-    out = offset_ring(ring, clearance)
+    out = _shifted(offset_ring(ring, clearance), ring, _recenter_fore(t))
     o, ax = Vector(arm["o"]), Vector(arm["axis"])
     # llevar al t exacto
     return [tuple(Vector(p) + ax * (t - (Vector(p) - o).dot(ax))) for p in out]
@@ -172,7 +188,8 @@ def upper_ring(arm, t, clearance):
     t = max(0.0, min(t, up["len"]))
     key = "%.3f" % (round(t / 0.005) * 0.005)
     if key not in up["rings"]: key = max(up["rings"], key=lambda k: -abs(float(k) - t))
-    out = offset_ring(up["rings"][key], clearance)
+    w = min(1.0, max(0.0, (t - (up["t_cut"] + 0.012)) / 0.03))     # encaje del muñón -> carcasa hasta el codo
+    out = _shifted(offset_ring(up["rings"][key], clearance), up["rings"][key], w)
     o, ax = Vector(up["o"]), Vector(up["axis"])
     return [tuple(Vector(q) + ax * (t - (Vector(q) - o).dot(ax))) for q in out]
 
@@ -385,7 +402,7 @@ def arm_socket(B, arm, level, bone, band_socket, band_shell, clearance=ARM_CL, s
         # sin muñón en el antebrazo: carcasa del codo a la muñeca (algo más fina que el brazo) y anillo en el codo
         B.loft("ecuff", smooth_rings([arm_ring(arm, t, clearance - 0.001) for t in (-0.004, 0.004, 0.012)]), bone, band_socket, subsurf=1)
         B.loft("shell", smooth_rings([arm_ring(arm, t, ARM_SHELL) for t in (0.012, 0.035, 0.06, 0.085, 0.105, 0.12)]), bone, band_shell, subsurf=subsurf)
-        return o + ax * 0.12 + end_shift(arm, 0.12)
+        return o + ax * 0.12
     # junto al codo un poco más de holgura: la piel del brazo se mueve al flexionar
     ts = [(-0.015, clearance + 0.001), (-0.0075, clearance + 0.001), (0.0, clearance + 0.001), (0.0075, clearance), (0.015, clearance),
           (0.0225, clearance), (0.03, clearance), (0.0375, clearance), (0.045, clearance)]
@@ -394,7 +411,7 @@ def arm_socket(B, arm, level, bone, band_socket, band_shell, clearance=ARM_CL, s
     B.loft("rim", rim, bone, band_socket, subsurf=1)
     ts = [0.045, 0.065, 0.085, 0.105, 0.12]
     B.loft("shell", smooth_rings([arm_ring(arm, t, ARM_SHELL) for t in ts]), bone, band_shell, subsurf=subsurf)
-    return o + ax * 0.12 + end_shift(arm, 0.12)
+    return o + ax * 0.12
 
 def arm_straps(B, arm, ts, clearance, bone):
     o, ax, dn, fr = arm_frame(arm)
@@ -735,6 +752,7 @@ for sex, body in fit["bodies"].items():
             name = "%s%s_%s_%s" % (tier, lv, side, sx)
             if FILTER and FILTER not in name: continue
             B = Builder(name, tex)
+            ARM_LEVEL = lv if tier in ARM_TIERS or tier in SAW_TIERS else ""
             fn(B, data, lv)
             if lv == "Upper": build_upper_section(B, data)
             nv, nf = export_builder(B, os.path.join(OUTDIR, name + ".json"))
