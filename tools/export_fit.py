@@ -149,12 +149,25 @@ for sex in ("Male", "Female"):
             c = o + axis * t + down * ((du.min() + du.max()) / 2) + front * ((dv.min() + dv.max()) / 2)
             arings["%.3f" % t] = {"c": [round(float(x), 5) for x in c], "pts": [[round(float(x), 5) for x in p] for p in R]}
             t += 0.005
+        end_shift = {}
+        if TOMB:
+            # el encaje se centra en la sección real de Tomb, pero la mano / el gancho / la bola se cuelgan del eje del hueso,
+            # como en vanilla: en la muñeca de Tomb el centro se desvía hasta 5 mm (hombre) y 11.5 mm (mujer) del vanilla y la
+            # mano quedaba desplazada del brazal (2026-10-15, "desfases en las manos"). Se guarda ese desvío al final del
+            # encaje para mover lo que va colgado igual que el encaje (vanilla queda exactamente como estaba).
+            for te in (0.12, 0.14):
+                cs = []
+                for bb in (body, vbody):
+                    R = np.array(BA.axis_ring(bb, bones, side, o, axis, down, front, te, 0.0, band=ARM_RING_BAND))
+                    du, dv = (R - o) @ down, (R - o) @ front
+                    cs.append(o + axis * te + down * ((du.min() + du.max()) / 2) + front * ((dv.min() + dv.max()) / 2))
+                end_shift["%.3f" % te] = [round(float(x), 5) for x in (cs[0] - cs[1])]
         hb = "Bip01_%s_Hand" % side
         hp = np.array([V[i] for i in range(len(V)) if hb in W[i]])
         ht, hd, hf = (hp - o) @ axis, (hp - o) @ down, (hp - o) @ front
         hand = {"t": [float(ht.min()), float(ht.max())], "down": [float(hd.min()), float(hd.max())], "front": [float(hf.min()), float(hf.max())]}
         B["arms"][side] = {"o": [float(x) for x in o], "axis": [float(x) for x in axis], "down": [float(x) for x in down], "front": [float(x) for x in front], "forearm_len": float(L),
-                           "rings": arings, "hand": hand, "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2]},
+                           "rings": arings, "hand": hand, "end_shift": end_shift, "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2]},
                            "upper": upper_arm(body, side)}
     spec["bodies"][sex] = B
 spec["saw"] = chainsaw_local()

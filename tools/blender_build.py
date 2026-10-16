@@ -361,6 +361,12 @@ ARM_SHELL = -0.006       # carcasas que sustituyen al miembro: del tamaño del b
 def arm_frame(arm):
     return Vector(arm["o"]), Vector(arm["axis"]), Vector(arm["down"]), Vector(arm["front"])
 
+def end_shift(arm, t):
+    """Desvío del centro del extremo del encaje respecto al cuerpo vanilla (sólo en el ajuste a TombBody, export_fit --tomb):
+    lo que cuelga del encaje (mano, gancho, bola) se mueve igual que el encaje. En vanilla es cero."""
+    v = arm.get("end_shift", {}).get("%.3f" % t)
+    return Vector(v) if v else Vector((0.0, 0.0, 0.0))
+
 def arm_socket(B, arm, level, bone, band_socket, band_shell, clearance=ARM_CL, subsurf=1):
     o, ax, dn, fr = arm_frame(arm)
     if level == "Wrist":
@@ -374,12 +380,12 @@ def arm_socket(B, arm, level, bone, band_socket, band_shell, clearance=ARM_CL, s
         # y el anillo salía como una falda puntiaguda)
         wr = arm_ring(arm, 0.142, clearance - 0.002)
         B.loft("collar", [wr, [tuple(Vector(q) + ax * 0.012) for q in wr]], bone, band_shell, subsurf=1)
-        return o + ax * 0.154
+        return o + ax * 0.154 + end_shift(arm, 0.14)
     if level == "Upper":
         # sin muñón en el antebrazo: carcasa del codo a la muñeca (algo más fina que el brazo) y anillo en el codo
         B.loft("ecuff", smooth_rings([arm_ring(arm, t, clearance - 0.001) for t in (-0.004, 0.004, 0.012)]), bone, band_socket, subsurf=1)
         B.loft("shell", smooth_rings([arm_ring(arm, t, ARM_SHELL) for t in (0.012, 0.035, 0.06, 0.085, 0.105, 0.12)]), bone, band_shell, subsurf=subsurf)
-        return o + ax * 0.12
+        return o + ax * 0.12 + end_shift(arm, 0.12)
     # junto al codo un poco más de holgura: la piel del brazo se mueve al flexionar
     ts = [(-0.015, clearance + 0.001), (-0.0075, clearance + 0.001), (0.0, clearance + 0.001), (0.0075, clearance), (0.015, clearance),
           (0.0225, clearance), (0.03, clearance), (0.0375, clearance), (0.045, clearance)]
@@ -388,7 +394,7 @@ def arm_socket(B, arm, level, bone, band_socket, band_shell, clearance=ARM_CL, s
     B.loft("rim", rim, bone, band_socket, subsurf=1)
     ts = [0.045, 0.065, 0.085, 0.105, 0.12]
     B.loft("shell", smooth_rings([arm_ring(arm, t, ARM_SHELL) for t in ts]), bone, band_shell, subsurf=subsurf)
-    return o + ax * 0.12
+    return o + ax * 0.12 + end_shift(arm, 0.12)
 
 def arm_straps(B, arm, ts, clearance, bone):
     o, ax, dn, fr = arm_frame(arm)
