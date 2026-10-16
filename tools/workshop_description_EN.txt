@@ -55,6 +55,11 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Translations of the new text were machine-assisted: corrections are welcome in the comments.
 
 [h2]Changelog[/h2]
+[b]3.1.1[/b]
+[list]
+[*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
+[*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
+[/list]
 [b]3.1.0[/b]
 [list]
 [*]New: Ash-style chainsaw arm, and prostheses above the elbow for every arm tier.

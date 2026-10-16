@@ -141,35 +141,57 @@ end
 
 -- TOC+: bajo pantalones / mangas las prótesis usan su modelo alternativo (m_AltMaleModel: sólo lo que
 -- asoma por el bajo o por el puño), igual que el juego hace con las armaduras de pantorrilla y antebrazo.
-local function altModels(coveringLocs, prostNames)
-    local ok, err = pcall(function()
-        local group = BodyLocations.getGroup("Human")
-        for _, pn in ipairs(prostNames) do
-            local loc = results[pn]
-            if loc then
-                for _, covering in ipairs(coveringLocs) do
-                    if covering then group:setAltModel(covering, loc:getId()) end
-                end
-            end
-        end
-    end)
-    if not ok then print("TOC+ BodyLocations: setAltModel failed: " .. tostring(err)) end
-end
-local BL = ItemBodyLocation
 -- Sólo ubicaciones cuyas prendas vanilla son MALLA (tela de verdad que tapa la prótesis). Camisas, mallas
 -- largas (Legs1), vaqueros ajustados (PantsSkinny) y vestidos largos son sólo textura sobre el cuerpo:
 -- con ellas el modelo recortado dejaba el miembro vacío ("brazo invisible con camisa").
-altModels({ BL.PANTS, BL.PANTS_EXTRA, BL.BOILERSUIT, BL.FULL_SUIT, BL.FULL_SUIT_HEAD, BL.BATH_ROBE, BL.FULL_ROBE },
-          { "toc:LegProst_L", "toc:LegProst_R" })
-altModels({ BL.JERSEY, BL.JACKET_SUIT, BL.JACKET, BL.JACKET_DOWN, BL.SWEATER, BL.SWEATER_HAT, BL.JACKET_BULKY, BL.JACKET_HAT, BL.JACKET_HAT_BULKY, BL.BOILERSUIT, BL.FULL_SUIT_HEAD, BL.FULL_SUIT, BL.BATH_ROBE, BL.FULL_ROBE },
-          { "toc:ArmProst_L", "toc:ArmProst_R" })
+local BL = ItemBodyLocation
+local LEG_COVER = { BL.PANTS, BL.PANTS_EXTRA, BL.BOILERSUIT, BL.FULL_SUIT, BL.FULL_SUIT_HEAD, BL.BATH_ROBE, BL.FULL_ROBE }
+local ARM_COVER = { BL.JERSEY, BL.JACKET_SUIT, BL.JACKET, BL.JACKET_DOWN, BL.SWEATER, BL.SWEATER_HAT, BL.JACKET_BULKY, BL.JACKET_HAT,
+                    BL.JACKET_HAT_BULKY, BL.BOILERSUIT, BL.FULL_SUIT_HEAD, BL.FULL_SUIT, BL.BATH_ROBE, BL.FULL_ROBE }
 
--- 3.1.0: con una prótesis de brazo puesta, el muñón (antebrazo / brazo) usa su modelo alternativo: el brazo cortado
--- bajo el borde del encaje, sin piel dentro que pueda asomar al moverse (tools/make_arm_stumps.py).
-pcall(function()
-    local group = BodyLocations.getGroup("Human")
+local function tocId(name) return ItemBodyLocation.get(ResourceLocation.of(name)) end
+
+---Relaciones de modelo alternativo (idempotente: setAltModel no duplica).
+local function applyRelations(group)
     for _, side in ipairs({ "L", "R" }) do
-        local prost, stump = results["toc:ArmProst_" .. side], results["toc:Arm_" .. side]
-        if prost and stump then group:setAltModel(prost:getId(), stump:getId()) end
+        local legProst, armProst = tocId("toc:LegProst_" .. side), tocId("toc:ArmProst_" .. side)
+        for _, covering in ipairs(LEG_COVER) do
+            if covering and group:getLocation(covering) then group:setAltModel(covering, legProst) end
+        end
+        for _, covering in ipairs(ARM_COVER) do
+            if covering and group:getLocation(covering) then group:setAltModel(covering, armProst) end
+        end
+        -- 3.1.0: con una prótesis de brazo puesta, el muñón (antebrazo / brazo) usa su modelo alternativo: el brazo
+        -- cortado bajo el borde del encaje, sin piel dentro que pueda asomar al moverse (tools/make_arm_stumps.py).
+        group:setAltModel(armProst, tocId("toc:Arm_" .. side))
     end
-end)
+end
+
+---Comprueba que las ubicaciones TOC siguen en el grupo y vuelve a poner las relaciones. Otros mods de ranuras
+---(p. ej. Medieval Makeshiftery) recrean el grupo "Human" con BodyLocations.reset(); si alguno lo hace después que
+---nosotros sin copiar las ubicaciones existentes, los ítems TOC quedarían sin ubicación y la partida no cargaría.
+---Si falta alguna se añade al final (orden antiguo: funciona, sólo cambia qué ropa la tapa).
+local function ensureLocations(when)
+    local ok, err = pcall(function()
+        local group = BodyLocations.getGroup("Human")
+        local readded = {}
+        for _, n in ipairs(names) do
+            local id = tocId(n)
+            if not group:getLocation(id) then
+                group:getOrCreateLocation(id)
+                table.insert(readded, n)
+            end
+            local loc = group:getLocation(id)
+            if loc then loc:setMultiItem(false) end
+        end
+        applyRelations(group)
+        if #readded > 0 then print("TOC+ BodyLocations (" .. when .. "): otro mod borró " .. table.concat(readded, ", ") .. "; añadidas de nuevo") end
+    end)
+    if not ok then print("TOC+ BodyLocations (" .. when .. "): " .. tostring(err)) end
+end
+
+ensureLocations("carga")
+if Events then
+    if Events.OnGameBoot then Events.OnGameBoot.Add(function() ensureLocations("OnGameBoot") end) end
+    if Events.OnInitWorld then Events.OnInitWorld.Add(function() ensureLocations("OnInitWorld") end) end
+end

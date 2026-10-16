@@ -6,6 +6,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LINK = "https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md"
 NEW = {
  "EN": ("[h2]Changelog[/h2]", "[h2]Compatibility[/h2]", """[h2]Changelog[/h2]
+[b]3.1.1[/b]
+[list]
+[*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
+[*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
+[/list]
 [b]3.1.0[/b]
 [list]
 [*]New: Ash-style chainsaw arm, and prostheses above the elbow for every arm tier.
@@ -19,6 +24,11 @@ Full history: [url=""" + LINK + """]CHANGELOG on GitHub[/url].
 
 """),
  "ES": ("[h2]Cambios[/h2]", "[h2]Compatibilidad[/h2]", """[h2]Cambios[/h2]
+[b]3.1.1[/b]
+[list]
+[*]Corregido: partidas que no cargaban con mods que escriben base.X en minúscula (Medieval Makeshiftery, Vanilla Outfits Expanded): el script de sonidos de TOC declaraba el módulo "base" en minúscula.
+[*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod de ranuras las borra.
+[/list]
 [b]3.1.0[/b]
 [list]
 [*]Nuevo: brazo motosierra estilo Ash y prótesis por encima del codo para todos los tipos de brazo.

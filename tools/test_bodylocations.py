@@ -43,6 +43,7 @@ for n in order: L.execute("BodyLocations.getGroup('Human'):getOrCreateLocation(I
 # registries.lua del mod
 L.execute("""for _, n in ipairs({"toc:arm_l","toc:arm_r","toc:armprost_l","toc:armprost_r","toc:armaccessory_l","toc:armaccessory_r","toc:leg_l","toc:leg_r","toc:legprost_l","toc:legprost_r","toc:legaccessory_l","toc:legaccessory_r"}) do ItemBodyLocation.get({id=n}) end""")
 src = open(MODF, encoding="utf-8").read()
+L.execute("_handlers = {}; Events = { OnGameBoot = { Add = function(f) table.insert(_handlers, f) end }, OnInitWorld = { Add = function(f) table.insert(_handlers, f) end } }")
 L.execute(src)
 g = L.eval("BodyLocations.getGroup('Human')")
 ids = [str(g.getLocationByIndex(g, i).id) for i in range(int(g.size(g)))]
@@ -53,3 +54,16 @@ alt = L.eval("BodyLocations.getGroup('Human'):getLocation(ItemBodyLocation.PANTS
 print("PANTS alt ->", sorted(str(k.id) for k in alt.keys()))
 print("JERSEY alt ->", sorted(str(k.id) for k in L.eval("BodyLocations.getGroup('Human'):getLocation(ItemBodyLocation.JERSEY).alt").keys()))
 print("armprost_r alt ->", sorted(str(k.id) for k in L.eval("BodyLocations.getGroup('Human'):getLocation(ItemBodyLocation.get({id='toc:armprost_r'})).alt").keys()))
+
+# otro mod recrea el grupo sólo con las vanilla (borra las TOC) y después se disparan los eventos
+L.execute("""
+local g = BodyLocations.getGroup('Human'); local keep = {}
+for _, l in ipairs(g.locs) do if not string.find(l.id.id, '^toc:') then table.insert(keep, l) end end
+g.locs = keep
+for _, f in ipairs(_handlers) do f() end
+""")
+g = L.eval("BodyLocations.getGroup('Human')")
+ids = [str(g.getLocationByIndex(g, i).id) for i in range(int(g.size(g)))]
+print("tras borrado ajeno + eventos: TOC presentes", sum(1 for i in ids if i.startswith("toc:")), "| armprost_r alt ->",
+      sorted(str(k.id) for k in L.eval("BodyLocations.getGroup('Human'):getLocation(ItemBodyLocation.get({id='toc:armprost_r'})).alt").keys()),
+      "| PANTS alt ->", sorted(str(k.id) for k in L.eval("BodyLocations.getGroup('Human'):getLocation(ItemBodyLocation.PANTS).alt").keys()))

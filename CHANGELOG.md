@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.1.1
+
+- Fixed: saves did not load with mods that write item references as `base.X` in lower case (reported with Medieval
+  Makeshiftery and Vanilla Outfits Expanded). The sound script inherited from the original TOC declared
+  `module base`; that created a separate lower-case module, and `ScriptManager.getModule` resolved every `base.X` of
+  the other mod there instead of falling back to `Base`, so their items were "not found". It is `module Base` now.
+- Fixed: if another body-slot mod rebuilds the "Human" body location group after TOC+ and drops our locations, they
+  are added back on `OnGameBoot` / `OnInitWorld` with their "under clothing" relations, instead of leaving TOC+ items
+  without a location.
+
 ## 3.1.0
 
 - New: Ash-style chainsaw arm (`TOC.Prost_ChainsawArm_R`, right arm only). The vanilla `Chainsaw.X` mesh (no

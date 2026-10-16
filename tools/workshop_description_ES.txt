@@ -55,6 +55,11 @@ Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites
 English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Las traducciones del texto nuevo son asistidas por máquina: se agradecen correcciones en los comentarios.
 
 [h2]Cambios[/h2]
+[b]3.1.1[/b]
+[list]
+[*]Corregido: partidas que no cargaban con mods que escriben base.X en minúscula (Medieval Makeshiftery, Vanilla Outfits Expanded): el script de sonidos de TOC declaraba el módulo "base" en minúscula.
+[*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod de ranuras las borra.
+[/list]
 [b]3.1.0[/b]
 [list]
 [*]Nuevo: brazo motosierra estilo Ash y prótesis por encima del codo para todos los tipos de brazo.

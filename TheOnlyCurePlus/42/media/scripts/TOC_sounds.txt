@@ -1,4 +1,8 @@
-module base {
+module Base {
+    /* TOC+ 3.1.1: "Base", not "base". The original TOC declared "module base" in lower case: that creates a separate
+       module, and every "base.X" reference from other mods (Medieval Makeshiftery, Vanilla Outfits Expanded...) was
+       looked up there and failed, so the save did not load. ScriptManager.getModule only falls back to Base when no
+       module named "base" exists. */
 
     sound Amputation {
         category = Player,
