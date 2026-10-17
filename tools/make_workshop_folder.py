@@ -30,7 +30,7 @@ icon=icon.png
 description=Fork of ZioPao's The Only Cure for Build 42. Staged field surgery with real risk, visible infection window and diagnosis, sepsis and convalescence, prosthesis tiers that wear out and fit the stump (foot, calf or thigh; hand, forearm or upper arm), leg amputations with crutches, crawling and above-knee prostheses, an Ash-style chainsaw arm, crawler zombies, severed limbs as items. Enable only one of The Only Cure / The Only Cure+.
 id=TheOnlyCurePlus
 url=https://github.com/Nexconker/TheOnlyCurePlus
-modversion=3.1.1
+modversion=3.1.2
 versionMin=42.20
 loadModAfter=\\FancyHandwork,\\BrutalHandwork,\\TwoWeaponsOnBackRework
 incompatible=\\TheOnlyCure,\\BB_FirstAidOverhaul
@@ -66,7 +66,8 @@ lines = ["version=1"] + (["id=" + item_id] if item_id else []) + ["title=The Onl
 # (tools/workshop_description_EN.txt).
 # SIN enlaces: con "github.com/..." aquí Steam devolvió result=2 al confirmar la 3.1.0 (el contenido ya se había subido
 # entero). El enlace va en la descripción larga, que se pega en la web.
-SHORT = ["The Only Cure+ (Field Surgery) for Build 42: staged field surgery, infection and sepsis,",
+SHORT = ["Standalone: needs no other mods. Do not enable the original The Only Cure with it.",
+         "The Only Cure+ (Field Surgery) for Build 42: staged field surgery, infection and sepsis,",
          "prostheses that fit the stump (now above the elbow too), an Ash-style chainsaw arm,",
          "legs, crutches and crawling, crawler zombies. SP and MP.",
          "Includes an optional add-on for Tomb's Player Body.",

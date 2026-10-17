@@ -2,6 +2,8 @@
 [b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381 · [b]Bug reports:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
 [i]A bite is not the end. A saw, a steady hand and a bit of luck can still save you. Then you learn to live with what is left.[/i]
 
+[b]Standalone:[/b] this is the whole mod and needs no other mods. Do [b]not[/b] enable the original The Only Cure at the same time. "Field Surgery" is part of the name, not a separate mod.
+
 A complete fork of ZioPao's [b]The Only Cure[/b] for [b]Build 42[/b], rebuilt around three ideas: surgery should be a decision with real risk, the body you keep should matter, and prostheses should look like they belong on the character.
 
 [h2]✚ Field surgery, step by step[/h2]
@@ -52,22 +54,23 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 [/list]
 
 [h2]Languages[/h2]
-English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Translations of the new text were machine-assisted: corrections are welcome in the comments.
+English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Translations of the new text were machine-assisted: corrections are welcome in the comments.
 
 [h2]Tomb's Player Body[/h2]
 [img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
 Using Tomb's Player Body? Enable the optional mod [b]The Only Cure+ - TombBody fit[/b], included in this Workshop item, and load it after The Only Cure+ and Tomb's Player Body. Stumps are built on Tomb's body so hips and shoulders match it, and every prosthesis is refitted to its shape. It uses your own Tomb texture (normal, DOLL or NUDE).
 
 [h2]Changelog[/h2]
-[b]3.1.1[/b]
+[b]3.1.2[/b]
 [list]
-[*]New: optional add-on for Tomb's Player Body, made with Tomb's permission (see above).
-[*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
-[*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
-[*]Fixed: skin poking out at the wrist under hand prostheses.
-[*]Fixed: crutch and crawling stamina drained per frame (tired after a few steps at high FPS). New sandbox options for both, and characters with a leg amputee trait spend half.
+[*]Fixed: amputations made an hour or more after loading did not heal or turn septic until reloading (thanks Blakurion).
+[*]Fixed: sprinting on a crutch, crawling or on a peg leg.
+[*]Fixed: amputation saw sound looping forever when another mod cleared the action queue.
+[*]New: improvised tourniquets from ripped sheets, denim or leather strips, or a belt, plus a stick.
+[*]New sandbox option to hide the amputee traits in character creation.
+[*]New language: Brazilian Portuguese.
 [/list]
-[b]3.1.0[/b]: Ash-style chainsaw arm, above-elbow prostheses, stumps cut from the body, clothing over stumps and many fixes.
+[b]3.1.1[/b]: Tomb's Player Body add-on, fix for saves not loading with mods that write base.X in lower case, crutch stamina per second with sandbox options.
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]
@@ -80,7 +83,7 @@ Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and 
 [/list]
 
 [h2]Credits[/h2]
-Original mod: [b]ZioPao[/b] and contributors of The Only Cure (GPL-3.0). Body-location code: RabenRabo. Tomb's Player Body is by Tomb; the TombBody fit add-on is made with his permission. This fork keeps the license: GPL-3.0, source included.
+Original mod: [b]ZioPao[/b] and contributors of The Only Cure (GPL-3.0). Body-location code: RabenRabo. Tomb's Player Body is by Tomb; the TombBody fit add-on is made with Tomb's permission. This fork keeps the license: GPL-3.0, source included.
 Report bugs on [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (or here) with your console.txt and a screenshot. Found a prosthesis clipping through something? Tell me which one and which clothing.
 
 [h2]Support[/h2]

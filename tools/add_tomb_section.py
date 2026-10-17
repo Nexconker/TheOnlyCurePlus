@@ -11,7 +11,7 @@ Using Tomb's Player Body? Enable the optional mod [b]The Only Cure+ - TombBody f
 """ % IMG,
   "[*]Body replacers such as TombBody work, but prostheses are fitted to the vanilla body and will clip on a different one.",
   "[*]Tomb's Player Body: use the add-on above. Other body replacers work, but prostheses are fitted to the vanilla body.",
-  "Body-location code: RabenRabo.", "Body-location code: RabenRabo. Tomb's Player Body is by Tomb; the TombBody fit add-on is made with his permission."),
+  "Body-location code: RabenRabo.", "Body-location code: RabenRabo. Tomb's Player Body is by Tomb; the TombBody fit add-on is made with Tomb's permission."),
  "ES": ("[h2]Cambios[/h2]", """[h2]Tomb's Player Body[/h2]
 [img]%s[/img]
 ¿Usas Tomb's Player Body? Activa el mod opcional [b]The Only Cure+ - TombBody fit[/b], incluido en este ítem del Workshop, y cárgalo después de The Only Cure+ y Tomb's Player Body. Los muñones están hechos sobre el cuerpo de Tomb para que cadera y hombro casen, y cada prótesis está reajustada a su forma. Usa tu propia textura de Tomb (normal, DOLL o NUDE).

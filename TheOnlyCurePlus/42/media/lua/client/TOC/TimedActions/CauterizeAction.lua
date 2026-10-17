@@ -50,7 +50,7 @@ end
 function CauterizeAction:start()
     self:setActionAnim("Loot")
     self.character:SetVariable("LootPosition", "Mid")
-    self.sound = self.character:getEmitter():playSound("Cauterization")
+    self.sound = self.character:getEmitter():playSound("TOC_Cauterization")
     addSound(self.character, self.character:getX(), self.character:getY(), self.character:getZ(), 5, 5)
     local snd = self.character:isFemale() and "TOC_ScreamFemale" or "TOC_ScreamMale"
     if not pcall(function() self.character:playerVoiceSound("PainFromBite") end) then pcall(function() self.character:getEmitter():playSound(snd) end) end

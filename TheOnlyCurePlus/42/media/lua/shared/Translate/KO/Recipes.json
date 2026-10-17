@@ -9,5 +9,9 @@
     "Recipe_Craft_Crutch": "목발 만들기",
     "Recipe_FieldSurgery": "야전 수술 키트 조립",
     "Recipe_Disassemble_SurgicalKit": "야전 수술 키트 풀기",
-    "Recipe_Craft_Prosthetic_ChainsawArm": "전기톱 팔 만들기"
+    "Recipe_Craft_Prosthetic_ChainsawArm": "전기톱 팔 만들기",
+    "Recipe_Craft_Tourniquet_Arm": "임시 팔 지혈대 만들기",
+    "Recipe_Craft_Tourniquet_Arm_Belt": "벨트로 팔 지혈대 만들기",
+    "Recipe_Craft_Tourniquet_Leg": "임시 다리 지혈대 만들기",
+    "Recipe_Craft_Tourniquet_Leg_Belt": "벨트로 다리 지혈대 만들기"
 }

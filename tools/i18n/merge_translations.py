@@ -13,7 +13,7 @@ en = {os.path.basename(f): load(f) for f in glob.glob(os.path.join(T, "EN", "*.j
 VAR = re.compile(r"^TOC\.Prost_(\w+?)(Wrist|Upper|Ankle|Thigh)?_([LR])$")
 PH = re.compile(r"%\d")
 
-langs = sys.argv[1:] or sorted(os.path.splitext(f)[0] for f in os.listdir(HERE) if re.fullmatch(r"[A-Z]{2}\.json", f) and f != "EN.json")
+langs = sys.argv[1:] or sorted(os.path.splitext(f)[0] for f in os.listdir(HERE) if re.fullmatch(r"[A-Z]{2,4}\.json", f) and f != "EN.json")
 problems = 0
 for lang in langs:
     tr = json.load(open(os.path.join(HERE, lang + ".json"), encoding="utf-8"))
@@ -37,7 +37,7 @@ for lang in langs:
                 print("  %s: sin traducción para %s/%s, se deja en inglés" % (lang, fn, k)); val = v_en; problems += 1
             if sorted(PH.findall(val)) != sorted(PH.findall(v_en)):
                 print("  %s: marcadores distintos en %s: %r" % (lang, k, val)); problems += 1
-            if re.search(r"%(?!\d)", val):
+            if re.search(r"%(?!\d)", val.replace("%%", "")):   # %% = signo % literal (así lo escribe el juego)
                 print("  %s: %% suelto en %s: %r" % (lang, k, val)); problems += 1; val = val.replace("%", " ")
             cur[k] = val; added += 1
         os.makedirs(os.path.dirname(path), exist_ok=True)

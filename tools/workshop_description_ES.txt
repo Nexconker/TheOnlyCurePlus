@@ -2,6 +2,8 @@
 [b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381 · [b]Fallos:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
 [i]Un mordisco no es el final. Una sierra, pulso y algo de suerte todavía pueden salvarte. Después aprendes a vivir con lo que queda.[/i]
 
+[b]Independiente:[/b] es el mod completo y no necesita ningún otro. [b]No[/b] actives a la vez The Only Cure original. «Field Surgery» es parte del nombre, no otro mod.
+
 Fork completo de [b]The Only Cure[/b] de ZioPao para [b]Build 42[/b], reconstruido sobre tres ideas: operar debe ser una decisión con riesgo real, el cuerpo que te queda debe importar, y las prótesis deben parecer parte del personaje.
 
 [h2]✚ Cirugía de campo por etapas[/h2]
@@ -52,22 +54,23 @@ Cuatro tiers de brazo y tres de pierna, cada uno con sus estadísticas, límites
 [/list]
 
 [h2]Idiomas[/h2]
-English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어. Las traducciones del texto nuevo son asistidas por máquina: se agradecen correcciones en los comentarios.
+English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Las traducciones del texto nuevo son asistidas por máquina: se agradecen correcciones en los comentarios.
 
 [h2]Tomb's Player Body[/h2]
 [img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
 ¿Usas Tomb's Player Body? Activa el mod opcional [b]The Only Cure+ - TombBody fit[/b], incluido en este ítem del Workshop, y cárgalo después de The Only Cure+ y Tomb's Player Body. Los muñones están hechos sobre el cuerpo de Tomb para que cadera y hombro casen, y cada prótesis está reajustada a su forma. Usa tu propia textura de Tomb (normal, DOLL o NUDE).
 
 [h2]Cambios[/h2]
-[b]3.1.1[/b]
+[b]3.1.2[/b]
 [list]
-[*]Nuevo: mod opcional para Tomb's Player Body, hecho con permiso de Tomb (ver arriba).
-[*]Corregido: partidas que no cargaban con Medieval Makeshiftery, Vanilla Outfits Expanded y otros mods que escriben base.X en minúscula.
-[*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod las borra.
-[*]Corregido: piel que asomaba en la muñeca bajo las prótesis de mano.
-[*]Corregido: la resistencia con muleta y al arrastrarse se gastaba por fotograma. Opciones nuevas de sandbox; con rasgo de pierna amputada se gasta la mitad.
+[*]Corregido: las amputaciones hechas una hora o más tras cargar no cicatrizaban ni daban sepsis hasta recargar (gracias, Blakurion).
+[*]Corregido: se podía esprintar con muleta, arrastrándose o con pata de palo.
+[*]Corregido: el sonido de la sierra quedaba en bucle si otro mod vaciaba la cola de acciones.
+[*]Nuevo: torniquetes improvisados con tiras de tela, vaquero o cuero, o un cinturón, y un palo.
+[*]Nueva opción de sandbox para ocultar los rasgos de amputado en la creación de personaje.
+[*]Nuevo idioma: portugués de Brasil.
 [/list]
-[b]3.1.0[/b]: brazo motosierra estilo Ash, prótesis por encima del codo, muñones recortados del cuerpo, ropa sobre los muñones y muchos arreglos.
+[b]3.1.1[/b]: mod para Tomb's Player Body, partidas que no cargaban con mods que escriben base.X en minúscula, resistencia con muleta por segundo.
 Historial completo: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG en GitHub[/url].
 
 [h2]Compatibilidad[/h2]

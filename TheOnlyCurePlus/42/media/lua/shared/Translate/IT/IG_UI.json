@@ -28,7 +28,7 @@
     "IGUI_TOC_SW_Step_Bone": "Taglia l'osso",
     "IGUI_TOC_SW_Step_Stitches": "Legatura / punti",
     "IGUI_TOC_SW_Step_Bandage": "Fasciatura",
-    "IGUI_TOC_SW_Missing_Tourniquet": "nessun laccio emostatico su quel lato: forte emorragia",
+    "IGUI_TOC_SW_Missing_Tourniquet": "nessun laccio emostatico su quel lato: forte emorragia. Creane uno con strisce di stoffa o una cintura e un bastoncino, e indossalo su quell'arto.",
     "IGUI_TOC_SW_Missing_Disinfect": "niente alcol o disinfettante: la ferita parte sporca",
     "IGUI_TOC_SW_Missing_Anesthesia": "il paziente sentirà tutto",
     "IGUI_TOC_SW_Missing_Incision": "nessuna lama: la sega strapperà la carne",

@@ -28,7 +28,7 @@
     "IGUI_TOC_SW_Step_Bone": "Couper l'os",
     "IGUI_TOC_SW_Step_Stitches": "Ligature / sutures",
     "IGUI_TOC_SW_Step_Bandage": "Bandage",
-    "IGUI_TOC_SW_Missing_Tourniquet": "pas de garrot de ce côté : forte hémorragie",
+    "IGUI_TOC_SW_Missing_Tourniquet": "pas de garrot de ce côté : forte hémorragie. Fabriquez-en un avec des bandes de tissu ou une ceinture et un bâton, puis portez-le sur ce membre.",
     "IGUI_TOC_SW_Missing_Disinfect": "ni alcool ni désinfectant : la plaie part sale",
     "IGUI_TOC_SW_Missing_Anesthesia": "le patient sentira tout",
     "IGUI_TOC_SW_Missing_Incision": "pas de lame : la scie déchire la chair",

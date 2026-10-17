@@ -4,7 +4,7 @@ module Base {
        looked up there and failed, so the save did not load. ScriptManager.getModule only falls back to Base when no
        module named "base" exists. */
 
-    sound Amputation {
+    sound TOC_Amputation {
         category = Player,
         loop = true,
         is3D = true,
@@ -15,7 +15,7 @@ module Base {
         }
     }
 
-    sound Cauterization {
+    sound TOC_Cauterization {
         category = Player,
         loop = false,
         is3D = true,

@@ -121,7 +121,7 @@ def write_xmls():
 MOD_INFO = """name=The Only Cure+ - TombBody fit
 poster=poster.png
 icon=icon.png
-description=Optional add-on for The Only Cure+ with Tomb's Player Body: stumps built on Tomb's body so hips and shoulders match it, using your body texture (normal, DOLL or NUDE). Load it after The Only Cure+ and Tomb's Player Body. Tomb's Player Body is by Tomb; this add-on is made with his permission.
+description=Optional add-on for The Only Cure+ with Tomb's Player Body: stumps built on Tomb's body so hips and shoulders match it, using your body texture (normal, DOLL or NUDE). Load it after The Only Cure+ and Tomb's Player Body. Tomb's Player Body is by Tomb; this add-on is made with Tomb's permission.
 id=TheOnlyCurePlusTombBody
 modversion=1.0.0
 versionMin=42.20

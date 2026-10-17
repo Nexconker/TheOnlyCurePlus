@@ -105,6 +105,11 @@ option TOC.AmputeeTraitStaminaDrain
     type = integer, min = 0, max = 100, default = 50,
     page = TOC, translation = TOC_AmputeeTraitStaminaDrain,
 }
+option TOC.HideAmputeeTraits
+{
+    type = boolean, default = false,
+    page = TOC, translation = TOC_HideAmputeeTraits,
+}
 option TOC.SelfAmputationHigh
 {
     type = boolean, default = false,

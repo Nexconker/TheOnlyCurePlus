@@ -40,10 +40,12 @@
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Quanto possono contare i sonniferi come anestesia durante un'operazione, in percentuale (0 = non contano). Gli antidolorifici contano fino a 60 e l'alcol fino a 50.",
     "Sandbox_TOC_SelfAmputationHigh": "Autoamputazione sopra il gomito e il ginocchio",
     "Sandbox_TOC_SelfAmputationHigh_tooltip": "Permette di amputarsi da soli il braccio o la coscia. Molto più probabile fallire o svenire a metà.",
-    "Sandbox_TOC_CrutchStaminaDrain": "Consumo di resistenza con la stampella ( )",
+    "Sandbox_TOC_CrutchStaminaDrain": "Consumo di resistenza con la stampella (%%)",
     "Sandbox_TOC_CrutchStaminaDrain_tooltip": "Resistenza extra consumata camminando con la stampella, in percentuale del valore predefinito (100 = stanco dopo circa un minuto di cammino senza pause, 0 = nessun consumo extra).",
-    "Sandbox_TOC_CrawlStaminaDrain": "Consumo di resistenza strisciando ( )",
+    "Sandbox_TOC_CrawlStaminaDrain": "Consumo di resistenza strisciando (%%)",
     "Sandbox_TOC_CrawlStaminaDrain_tooltip": "Resistenza extra consumata strisciando, in percentuale del valore predefinito (100 = stanco dopo circa 40 secondi, 0 = nessun consumo extra).",
-    "Sandbox_TOC_AmputeeTraitStaminaDrain": "Amputati esperti ( )",
-    "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "I personaggi che iniziano con un tratto di amputazione della gamba sanno già usare le stampelle: il loro consumo con la stampella e strisciando è questa percentuale dei valori sopra (50 = la metà)."
+    "Sandbox_TOC_AmputeeTraitStaminaDrain": "Amputati esperti (%%)",
+    "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "I personaggi che iniziano con un tratto di amputazione della gamba sanno già usare le stampelle: il loro consumo con la stampella e strisciando è questa percentuale dei valori sopra (50 = la metà).",
+    "Sandbox_TOC_HideAmputeeTraits": "Nascondi i tratti da amputato",
+    "Sandbox_TOC_HideAmputeeTraits_tooltip": "I tratti da amputato non compaiono nella creazione del personaggio. I personaggi che li hanno già li mantengono."
 }

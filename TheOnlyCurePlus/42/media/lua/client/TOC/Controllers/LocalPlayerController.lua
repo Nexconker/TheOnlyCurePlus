@@ -219,10 +219,10 @@ function LocalPlayerController.UpdateAmputations()
     local pl = getPlayer()
     if not pl then return end
     local dcInst = DataController.GetReady(pl:getUsername())
-    if not dcInst or not dcInst:getIsAnyLimbCut() then
-        Events.EveryHours.Remove(LocalPlayerController.UpdateAmputations)
-        return
-    end
+    -- 3.1.2: antes se quitaba de EveryHours si no había ningún miembro cortado y sólo InitializePlayer lo volvía a poner:
+    -- quien se amputaba más de una hora después de cargar no cicatrizaba ni cogía sepsis hasta recargar (informe de
+    -- Blakurion en el Workshop). Ahora sigue registrado y simplemente no hace nada.
+    if not dcInst or not dcInst:getIsAnyLimbCut() then return end
     LocalPlayerController.playerObj = pl
     local visual = pl:getHumanVisual()
     local amputatedLimbs = CachedDataHandler.GetAmputatedLimbs(pl:getUsername())

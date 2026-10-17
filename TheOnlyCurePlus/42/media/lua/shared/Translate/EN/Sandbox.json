@@ -40,10 +40,12 @@
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "How much sleeping pills can count towards anaesthesia during surgery, in percent (0 = they do not count). Painkillers count up to 60 and alcohol up to 50.",
     "Sandbox_TOC_SelfAmputationHigh": "Self-amputation above the elbow and knee",
     "Sandbox_TOC_SelfAmputationHigh_tooltip": "Lets a survivor cut off their own upper arm or thigh. Much more likely to fail or to faint halfway.",
-    "Sandbox_TOC_CrutchStaminaDrain": "Crutch stamina drain (%)",
+    "Sandbox_TOC_CrutchStaminaDrain": "Crutch stamina drain (%%)",
     "Sandbox_TOC_CrutchStaminaDrain_tooltip": "Extra stamina used while walking on a crutch, in percent of the default (100 = tired after about a minute of walking without rest, 0 = no extra cost).",
-    "Sandbox_TOC_CrawlStaminaDrain": "Crawling stamina drain (%)",
+    "Sandbox_TOC_CrawlStaminaDrain": "Crawling stamina drain (%%)",
     "Sandbox_TOC_CrawlStaminaDrain_tooltip": "Extra stamina used while crawling, in percent of the default (100 = tired after about 40 seconds, 0 = no extra cost).",
-    "Sandbox_TOC_AmputeeTraitStaminaDrain": "Experienced amputees (%)",
-    "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "Characters who start with a leg amputee trait already know how to use crutches: their crutch and crawling stamina cost is this percent of the values above (50 = half)."
+    "Sandbox_TOC_AmputeeTraitStaminaDrain": "Experienced amputees (%%)",
+    "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "Characters who start with a leg amputee trait already know how to use crutches: their crutch and crawling stamina cost is this percent of the values above (50 = half).",
+    "Sandbox_TOC_HideAmputeeTraits": "Hide amputee traits",
+    "Sandbox_TOC_HideAmputeeTraits_tooltip": "Amputee traits do not appear in character creation. Characters that already have them keep them."
 }

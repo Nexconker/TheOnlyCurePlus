@@ -28,7 +28,7 @@
     "IGUI_TOC_SW_Step_Bone": "Przecięcie kości",
     "IGUI_TOC_SW_Step_Stitches": "Podwiązanie / szwy",
     "IGUI_TOC_SW_Step_Bandage": "Bandaż",
-    "IGUI_TOC_SW_Missing_Tourniquet": "brak opaski uciskowej po tej stronie: silne krwawienie",
+    "IGUI_TOC_SW_Missing_Tourniquet": "brak opaski uciskowej po tej stronie: silne krwawienie. Zrób ją z pasków materiału albo paska i patyka, i załóż na tę kończynę.",
     "IGUI_TOC_SW_Missing_Disinfect": "brak alkoholu i środka do dezynfekcji: rana od początku brudna",
     "IGUI_TOC_SW_Missing_Anesthesia": "pacjent poczuje wszystko",
     "IGUI_TOC_SW_Missing_Incision": "brak ostrza: piła szarpie ciało",

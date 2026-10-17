@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.1.2
+
+- Fixed: amputations made more than an hour after loading did not heal and could not turn septic until the game was
+  reloaded (reported by Blakurion). The hourly update removed itself from `EveryHours` when no limb was cut, and only
+  loading the character added it back; it now stays registered and does nothing while no limb is cut.
+- Fixed: sprinting and running on a crutch, crawling or on a peg leg. The game rewrites the "can't sprint" flag every
+  update from the moodles, and TOC+ only set it every 10 frames, so holding the key sprinted in between; it is now set
+  every frame.
+- Fixed: the saw sound of an amputation could loop forever when the action was removed from the queue without being
+  stopped (another mod clearing the queue). A watchdog stops it once no amputation is running. The sounds are now
+  named `TOC_Amputation` / `TOC_Cauterization` instead of the generic `Amputation` / `Cauterization`.
+- New: improvised tourniquets. Arm (2 strips) or leg (3 strips) from ripped sheets, denim or leather strips, or from a
+  belt, plus a stick, twigs, a pencil or a spoon as windlass. Hand-crafted, no recipe to learn, Doctor XP. The surgery
+  window's "no tourniquet" warning now says how to make one.
+- New sandbox option `HideAmputeeTraits` (off by default): the amputee traits do not appear in character creation.
+  Characters that already have them keep them.
+- New language: Brazilian Portuguese (PTBR), machine-assisted.
+- Fixed: the three stamina sandbox options showed "( )" instead of "(%)" in several languages; written as `%%`, as
+  the game does.
+- The Workshop description now says it plainly: TOC+ is standalone and must not be enabled with the original The Only
+  Cure.
+
 ## 3.1.1
 
 - New: optional add-on "The Only Cure+ - TombBody fit" (mod id `TheOnlyCurePlusTombBody`), in the same Workshop item and

@@ -9,5 +9,9 @@
     "Recipe_Craft_Crutch": "Fabbrica stampella",
     "Recipe_FieldSurgery": "Assembla kit chirurgico da campo",
     "Recipe_Disassemble_SurgicalKit": "Disfa kit chirurgico da campo",
-    "Recipe_Craft_Prosthetic_ChainsawArm": "Costruisci braccio motosega"
+    "Recipe_Craft_Prosthetic_ChainsawArm": "Costruisci braccio motosega",
+    "Recipe_Craft_Tourniquet_Arm": "Crea laccio emostatico improvvisato per braccio",
+    "Recipe_Craft_Tourniquet_Arm_Belt": "Crea laccio emostatico per braccio con una cintura",
+    "Recipe_Craft_Tourniquet_Leg": "Crea laccio emostatico improvvisato per gamba",
+    "Recipe_Craft_Tourniquet_Leg_Belt": "Crea laccio emostatico per gamba con una cintura"
 }

@@ -177,6 +177,81 @@ module TOC
 		}
 	}
 
+	/************* 3.1.2: torniquete improvisado (antes sólo salía como botín: "no me deja poner el torniquete")
+	   tiras de tela o un cinturón + algo con lo que retorcerlo (rama, palo, lápiz, cuchara) *******************/
+	craftRecipe Craft_Tourniquet_Arm
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		category = Medical,
+		NeedToBeLearn = false,
+		xpAward = Doctor:2,
+		inputs
+		{
+			item 2 [Base.RippedSheets;Base.RippedSheetsDirty;Base.DenimStrips;Base.LeatherStrips],
+			item 1 [Base.TreeBranch2;Base.WoodenStick2;Base.Twigs;Base.Pencil;Base.Spoon],
+		}
+		outputs
+		{
+			item 1 TOC.Surg_Arm_Tourniquet_L,
+		}
+	}
+	craftRecipe Craft_Tourniquet_Arm_Belt
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		category = Medical,
+		NeedToBeLearn = false,
+		xpAward = Doctor:2,
+		inputs
+		{
+			item 1 [Base.Belt2],
+			item 1 [Base.TreeBranch2;Base.WoodenStick2;Base.Twigs;Base.Pencil;Base.Spoon],
+		}
+		outputs
+		{
+			item 1 TOC.Surg_Arm_Tourniquet_L,
+		}
+	}
+	craftRecipe Craft_Tourniquet_Leg
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		category = Medical,
+		NeedToBeLearn = false,
+		xpAward = Doctor:2,
+		inputs
+		{
+			item 3 [Base.RippedSheets;Base.RippedSheetsDirty;Base.DenimStrips;Base.LeatherStrips],
+			item 1 [Base.TreeBranch2;Base.WoodenStick2;Base.Twigs;Base.Pencil;Base.Spoon],
+		}
+		outputs
+		{
+			item 1 TOC.Surg_Leg_Tourniquet_L,
+		}
+	}
+	craftRecipe Craft_Tourniquet_Leg_Belt
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		category = Medical,
+		NeedToBeLearn = false,
+		xpAward = Doctor:2,
+		inputs
+		{
+			item 1 [Base.Belt2],
+			item 1 [Base.TreeBranch2;Base.WoodenStick2;Base.Twigs;Base.Pencil;Base.Spoon],
+		}
+		outputs
+		{
+			item 1 TOC.Surg_Leg_Tourniquet_L,
+		}
+	}
+
 	/************* Surgical kit: the recipe the Field Amputation Guide teaches *******************/
 	craftRecipe FieldSurgery
 	{

@@ -9,5 +9,9 @@
     "Recipe_Craft_Crutch": "Koltuk Değneği Yap",
     "Recipe_FieldSurgery": "Saha Cerrahi Kiti Hazırla",
     "Recipe_Disassemble_SurgicalKit": "Saha Cerrahi Kitini Boşalt",
-    "Recipe_Craft_Prosthetic_ChainsawArm": "Testere Kol Yap"
+    "Recipe_Craft_Prosthetic_ChainsawArm": "Testere Kol Yap",
+    "Recipe_Craft_Tourniquet_Arm": "Doğaçlama kol turnikesi yap",
+    "Recipe_Craft_Tourniquet_Arm_Belt": "Kemerden kol turnikesi yap",
+    "Recipe_Craft_Tourniquet_Leg": "Doğaçlama bacak turnikesi yap",
+    "Recipe_Craft_Tourniquet_Leg_Belt": "Kemerden bacak turnikesi yap"
 }

@@ -40,10 +40,12 @@
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "수술 중 수면제가 마취로 인정되는 최대 비율(퍼센트, 0 = 인정 안 됨). 진통제는 60, 알코올은 50까지 인정된다.",
     "Sandbox_TOC_SelfAmputationHigh": "팔꿈치·무릎 위 자가 절단",
     "Sandbox_TOC_SelfAmputationHigh_tooltip": "생존자가 스스로 위팔이나 허벅지를 절단할 수 있다. 실패하거나 도중에 기절할 확률이 훨씬 높다.",
-    "Sandbox_TOC_CrutchStaminaDrain": "목발 사용 시 지구력 소모 ( )",
+    "Sandbox_TOC_CrutchStaminaDrain": "목발 사용 시 지구력 소모 (%%)",
     "Sandbox_TOC_CrutchStaminaDrain_tooltip": "목발로 걸을 때 추가로 소모되는 지구력, 기본값 대비 퍼센트 (100 = 쉬지 않고 약 1분 걸으면 지침, 0 = 추가 소모 없음).",
-    "Sandbox_TOC_CrawlStaminaDrain": "기어갈 때 지구력 소모 ( )",
+    "Sandbox_TOC_CrawlStaminaDrain": "기어갈 때 지구력 소모 (%%)",
     "Sandbox_TOC_CrawlStaminaDrain_tooltip": "기어갈 때 추가로 소모되는 지구력, 기본값 대비 퍼센트 (100 = 약 40초 후 지침, 0 = 추가 소모 없음).",
-    "Sandbox_TOC_AmputeeTraitStaminaDrain": "숙련된 절단 장애인 ( )",
-    "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "다리 절단 특성을 가지고 시작한 캐릭터는 이미 목발 사용에 익숙하다: 목발과 기어가기 소모량이 위 값의 이 퍼센트가 된다 (50 = 절반)."
+    "Sandbox_TOC_AmputeeTraitStaminaDrain": "숙련된 절단 장애인 (%%)",
+    "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip": "다리 절단 특성을 가지고 시작한 캐릭터는 이미 목발 사용에 익숙하다: 목발과 기어가기 소모량이 위 값의 이 퍼센트가 된다 (50 = 절반).",
+    "Sandbox_TOC_HideAmputeeTraits": "절단 특성 숨기기",
+    "Sandbox_TOC_HideAmputeeTraits_tooltip": "캐릭터 생성 화면에 절단 특성이 나타나지 않는다. 이미 가진 캐릭터는 그대로 유지된다."
 }

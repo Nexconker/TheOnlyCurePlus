@@ -9,5 +9,9 @@
     "Recipe_Craft_Crutch": "Baue Krücke",
     "Recipe_FieldSurgery": "Feldchirurgie-Set zusammenstellen",
     "Recipe_Disassemble_SurgicalKit": "Feldchirurgie-Set auspacken",
-    "Recipe_Craft_Prosthetic_ChainsawArm": "Kettensägenarm bauen"
+    "Recipe_Craft_Prosthetic_ChainsawArm": "Kettensägenarm bauen",
+    "Recipe_Craft_Tourniquet_Arm": "Behelfs-Tourniquet für den Arm herstellen",
+    "Recipe_Craft_Tourniquet_Arm_Belt": "Arm-Tourniquet aus einem Gürtel herstellen",
+    "Recipe_Craft_Tourniquet_Leg": "Behelfs-Tourniquet für das Bein herstellen",
+    "Recipe_Craft_Tourniquet_Leg_Belt": "Bein-Tourniquet aus einem Gürtel herstellen"
 }

@@ -8,7 +8,7 @@ amputations with crutches and crawling, an Ash-style chainsaw arm, crawler zombi
 - **Workshop ID:** `3818733381`
 - **Mod ID:** `TheOnlyCurePlus`
 - **Game:** Build 42.21+, singleplayer and multiplayer
-- **Languages:** EN, ES, DE, FR, IT, PL, RU, UA, TR, KO
+- **Languages:** EN, ES, DE, FR, IT, PL, RU, UA, TR, KO, PTBR
 
 ## Reporting a bug
 

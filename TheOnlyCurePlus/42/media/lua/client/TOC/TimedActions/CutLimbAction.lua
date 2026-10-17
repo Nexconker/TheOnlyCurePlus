@@ -99,7 +99,7 @@ function CutLimbAction:start()
         self:setOverrideHandModels(model)
     end)
 
-    self.sound = self.character:getEmitter():playSound("Amputation")
+    self.sound = self.character:getEmitter():playSound("TOC_Amputation")
     addSound(self.character, self.character:getX(), self.character:getY(), self.character:getZ(), 5, 5)
 end
 
@@ -192,5 +192,23 @@ function CutLimbAction:perform()
     end)
     ISBaseTimedAction.perform(self)
 end
+
+-- 3.1.2: vigilante del sonido de la sierra (en bucle). Si la acción desaparece sin pasar por stop()/perform() (otro mod que
+-- limpia la cola, Wounds Expansion / Viewpoint...) el bucle sonaba para siempre ("amputation sound that loops forever").
+-- Además el sonido se llamaba "Amputation", un nombre genérico que otro mod podía disparar: ahora es TOC_Amputation.
+local watchTick = 0
+Events.OnPlayerUpdate.Add(function(player)
+    if not player or not instanceof(player, "IsoPlayer") or not player:isLocalPlayer() then return end
+    watchTick = watchTick + 1
+    if watchTick % 60 ~= 0 then return end
+    pcall(function()
+        local emitter = player:getEmitter()
+        if not emitter or not emitter:isPlaying("TOC_Amputation") then return end
+        local q = ISTimedActionQueue.getTimedActionQueue(player)
+        local cur = q and q.queue and q.queue[1]
+        if cur and cur.Type == "CutLimbAction" then return end
+        emitter:stopSoundByName("TOC_Amputation")
+    end)
+end)
 
 return CutLimbAction

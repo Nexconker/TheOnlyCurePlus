@@ -6,28 +6,30 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LINK = "https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md"
 NEW = {
  "EN": ("[h2]Changelog[/h2]", "[h2]Compatibility[/h2]", """[h2]Changelog[/h2]
-[b]3.1.1[/b]
+[b]3.1.2[/b]
 [list]
-[*]New: optional add-on for Tomb's Player Body, made with Tomb's permission (see above).
-[*]Fixed: saves not loading with mods that write lower-case base.X references (Medieval Makeshiftery, Vanilla Outfits Expanded): TOC's sound script declared module "base" in lower case.
-[*]Fixed: TOC+ body slots are restored if another body-slot mod removes them.
-[*]Fixed: skin poking out at the wrist under hand prostheses.
-[*]Fixed: crutch and crawling stamina drained per frame (tired after a few steps at high FPS). New sandbox options for both, and characters with a leg amputee trait spend half.
+[*]Fixed: amputations made an hour or more after loading did not heal or turn septic until reloading (thanks Blakurion).
+[*]Fixed: sprinting on a crutch, crawling or on a peg leg.
+[*]Fixed: amputation saw sound looping forever when another mod cleared the action queue.
+[*]New: improvised tourniquets from ripped sheets, denim or leather strips, or a belt, plus a stick.
+[*]New sandbox option to hide the amputee traits in character creation.
+[*]New language: Brazilian Portuguese.
 [/list]
-[b]3.1.0[/b]: Ash-style chainsaw arm, above-elbow prostheses, stumps cut from the body, clothing over stumps and many fixes.
+[b]3.1.1[/b]: Tomb's Player Body add-on, fix for saves not loading with mods that write base.X in lower case, crutch stamina per second with sandbox options.
 Full history: [url=""" + LINK + """]CHANGELOG on GitHub[/url].
 
 """),
  "ES": ("[h2]Cambios[/h2]", "[h2]Compatibilidad[/h2]", """[h2]Cambios[/h2]
-[b]3.1.1[/b]
+[b]3.1.2[/b]
 [list]
-[*]Nuevo: mod opcional para Tomb's Player Body, hecho con permiso de Tomb (ver arriba).
-[*]Corregido: partidas que no cargaban con Medieval Makeshiftery, Vanilla Outfits Expanded y otros mods que escriben base.X en minúscula.
-[*]Corregido: las ranuras corporales de TOC+ se restauran si otro mod las borra.
-[*]Corregido: piel que asomaba en la muñeca bajo las prótesis de mano.
-[*]Corregido: la resistencia con muleta y al arrastrarse se gastaba por fotograma. Opciones nuevas de sandbox; con rasgo de pierna amputada se gasta la mitad.
+[*]Corregido: las amputaciones hechas una hora o más tras cargar no cicatrizaban ni daban sepsis hasta recargar (gracias, Blakurion).
+[*]Corregido: se podía esprintar con muleta, arrastrándose o con pata de palo.
+[*]Corregido: el sonido de la sierra quedaba en bucle si otro mod vaciaba la cola de acciones.
+[*]Nuevo: torniquetes improvisados con tiras de tela, vaquero o cuero, o un cinturón, y un palo.
+[*]Nueva opción de sandbox para ocultar los rasgos de amputado en la creación de personaje.
+[*]Nuevo idioma: portugués de Brasil.
 [/list]
-[b]3.1.0[/b]: brazo motosierra estilo Ash, prótesis por encima del codo, muñones recortados del cuerpo, ropa sobre los muñones y muchos arreglos.
+[b]3.1.1[/b]: mod para Tomb's Player Body, partidas que no cargaban con mods que escriben base.X en minúscula, resistencia con muleta por segundo.
 Historial completo: [url=""" + LINK + """]CHANGELOG en GitHub[/url].
 
 """),

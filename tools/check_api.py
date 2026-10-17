@@ -87,7 +87,7 @@ CHECKS = {
                                         "setMetabolicTarget", "SetVariable", "isTimedActionInstant", "getX", "getY", "getZ"],
     "zombie/characters/WornItems/WornItems": ["size", "get"],
     "zombie/characters/WornItems/WornItem": ["getItem"],
-    "zombie/characters/BaseCharacterSoundEmitter": ["isPlaying"],
+    "zombie/characters/BaseCharacterSoundEmitter": ["isPlaying", "stopSoundByName"],
     "zombie/inventory/ItemContainer": ["getFirstTypeRecurse", "getFirstEvalRecurse", "containsRecursive", "AddItem", "Remove"],
     "zombie/inventory/InventoryItem#saw": ["getModData", "getID", "setName", "getContainer", "getFluidContainer", "setJobType", "setJobDelta",
                                            "getScriptItem"],

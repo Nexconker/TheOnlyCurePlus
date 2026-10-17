@@ -205,6 +205,17 @@ local function OnPlayerUpdate(player)
         local speed = (getGameSpeed and getGameSpeed()) or 1
         LegMobility.dt = LegMobility.dt + math.min(gt:getRealworldSecondsSinceLastUpdate(), 0.25) * math.max(1, speed)
     end
+    -- 3.1.2: el juego reescribe la marca "no puede esprintar" en cada actualización (sistema de moodles) y Apply sólo corre
+    -- cada 10 fotogramas: con la tecla pulsada se volvía a esprintar entre medias ("con muleta esprinto como si nada").
+    -- Se impone en CADA fotograma.
+    local m = LegMobility.current
+    if m == StaticData.MOBILITY.CRUTCH or m == StaticData.MOBILITY.CRAWL or m == StaticData.MOBILITY.PEG then
+        pcall(function()
+            player:setMoodleCantSprint(true)
+            if player:isSprinting() then player:setSprinting(false) end
+            if m ~= StaticData.MOBILITY.PEG and player:isRunning() then player:setRunning(false) end
+        end)
+    end
     if LegMobility.tick % 10 ~= 0 then return end
     local ok, err = pcall(LegMobility.Apply, player)
     if not ok then TOC_DEBUG.print("LegMobility error: " .. tostring(err)) end
