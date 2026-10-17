@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>TOC_NoHandL_DrinkPopCan</m_Name>
+	<m_AnimName>TOC_Mirror_Bob_IdleDrinkPopCan</m_AnimName>
+	<m_BlendTime>0.40</m_BlendTime>
+	<m_SpeedScale>0.64</m_SpeedScale>
+	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
+	<m_Conditions x_name="7efbadcd-7fb7-4a1e-9f43-abfd853a1e71">
+		<m_Name>PerformingAction</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>drink</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="45bbfaa5-8fd6-49b0-a8ad-662a862dcab0">
+		<m_Name>FoodType</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>popcan</m_Value>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>TOC_NoHandL</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Spine</boneName>
+		<weight>0.50</weight>
+		<includeDescendants>false</includeDescendants>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Spine1</boneName>
+		<includeDescendants>false</includeDescendants>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Neck</boneName>
+		<includeDescendants>false</includeDescendants>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Head</boneName>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_R_Clavicle</boneName>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Prop1</boneName>
+	</m_SubStateBoneWeights>
+	<m_EarlyTransitionOut>true</m_EarlyTransitionOut>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_L_Clavicle</boneName>
+		<weight>0.50</weight>
+	</m_SubStateBoneWeights>
+</animNode>

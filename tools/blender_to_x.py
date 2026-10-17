@@ -12,7 +12,7 @@ SRC = _args[0] if len(_args) > 0 else os.path.join(os.path.dirname(os.path.abspa
 MOD = _args[1] if len(_args) > 1 else BA.MOD
 TEX = {"pegLeg": "Prosthesis/pegLeg", "mechLeg": "Prosthesis/mechLeg", "medicalLeg": "Prosthesis/medicalLeg",
        "pegArm": "Prosthesis/pegArm", "hookArm": "Prosthesis/hookArm", "normalArm": "Prosthesis/normalArm", "medicalArm": "Prosthesis/medicalArm",
-       "chainsawArm": "Prosthesis/chainsawArm"}
+       "chainsawArm": "Prosthesis/chainsawArm", "knifeArm": "Prosthesis/knifeArm"}
 bodies = {"Male": BA.load_body("Male"), "Female": BA.load_body("Female")}
 
 def tier_of(name):
@@ -44,7 +44,7 @@ for path in sorted(glob.glob(os.path.join(SRC, "*.json"))):
     n += 1
     # modelo de suelo: la pieza izquierda masculina del nivel base (la motosierra sólo existe a la derecha:
     # se deja tal cual, de lado sobre el suelo, que es como cae una motosierra)
-    if name == tier + ("_R_M" if tier == "chainsawArm" else "_L_M"):
+    if name == tier + ("_R_M" if tier in ("chainsawArm", "knifeArm") else "_L_M"):      # motosierra y bayoneta: sólo derechas
         if tier == "chainsawArm":
             V = np.array(d["verts"], float); Nn = np.array(d["normals"], float)
             V = V - V.mean(0); V[:, 1] -= V[:, 1].min() - 0.002

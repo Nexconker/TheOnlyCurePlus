@@ -102,7 +102,8 @@
     "IGUI_TOC_SawRunning": "Stop the engine first.",
     "IGUI_TOC_SawFull": "The tank is full.",
     "IGUI_TOC_SawArmBusy": "Your right hand is a chainsaw.",
-    "IGUI_TOC_SawRefueling": "Refueling"
+    "IGUI_TOC_SawRefueling": "Refueling",
+    "IGUI_TOC_BladeArmBusy": "Your right hand is a bayonet."
   },
   "ItemName.json": {
     "TOC.Surg_Leg_Tourniquet_L": "Leg Tourniquet",
@@ -129,7 +130,9 @@
     "TOC.Amputation_UpperLeg_L": "Stump",
     "TOC.Prost_ChainsawArm_R": "Chainsaw Arm",
     "TOC.Prost_ChainsawArmWrist_R": "Chainsaw Arm",
-    "TOC.MountedChainsaw": "Mounted Chainsaw"
+    "TOC.MountedChainsaw": "Mounted Chainsaw",
+    "TOC.Prost_KnifeArm_R": "Bayonet Arm",
+    "TOC.MountedBlade": "Mounted Bayonet"
   },
   "Recipes.json": {
     "Recipe_Craft_Prosthetic_Arm": "Build Mechanical Arm",
@@ -144,7 +147,8 @@
     "Recipe_Craft_Tourniquet_Arm": "Make Improvised Arm Tourniquet",
     "Recipe_Craft_Tourniquet_Arm_Belt": "Make Arm Tourniquet from a Belt",
     "Recipe_Craft_Tourniquet_Leg": "Make Improvised Leg Tourniquet",
-    "Recipe_Craft_Tourniquet_Leg_Belt": "Make Leg Tourniquet from a Belt"
+    "Recipe_Craft_Tourniquet_Leg_Belt": "Make Leg Tourniquet from a Belt",
+    "Recipe_Craft_Prosthetic_KnifeArm": "Build Bayonet Arm"
   },
   "Sandbox.json": {
     "Sandbox_TOC_XPMultiplierSide_L": "Left Side XP Multiplier",

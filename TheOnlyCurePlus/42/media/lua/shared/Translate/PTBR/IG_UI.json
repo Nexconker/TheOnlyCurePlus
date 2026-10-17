@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "Desligue o motor primeiro.",
     "IGUI_TOC_SawFull": "O tanque está cheio.",
     "IGUI_TOC_SawArmBusy": "Sua mão direita é uma motosserra.",
-    "IGUI_TOC_SawRefueling": "Reabastecendo"
+    "IGUI_TOC_SawRefueling": "Reabastecendo",
+    "IGUI_TOC_BladeArmBusy": "Sua mão direita é uma baioneta."
 }

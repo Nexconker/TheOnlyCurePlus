@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>TOC_NoHandR_OpenTinCan</m_Name>
+	<m_AnimName>TOC_Mirror_Bob_IdleOpenCan</m_AnimName>
+	<m_BlendTime>0.20</m_BlendTime>
+	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
+	<m_Conditions x_name="b282a88f-b2fd-45f8-93cd-d9e53f7d6ba0">
+		<m_Name>PerformingAction</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>OpenTinCan</m_Value>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>TOC_NoHandR</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+</animNode>

@@ -99,6 +99,11 @@ module Base
 		mesh = Prosthesis/chainsawArm_Ground,
 		texture = Prosthesis/chainsawArm,
 	}
+    model prostheticArmKnife
+	{
+		mesh = Prosthesis/knifeArm_Ground,
+		texture = Prosthesis/knifeArm,
+	}
     model TOC_Invisible
 	{
 		mesh = Weapons/TOC_Invisible,

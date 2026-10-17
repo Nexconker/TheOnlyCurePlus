@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "Erst den Motor abstellen.",
     "IGUI_TOC_SawFull": "Der Tank ist voll.",
     "IGUI_TOC_SawArmBusy": "Deine rechte Hand ist eine Kettensäge.",
-    "IGUI_TOC_SawRefueling": "Tanke nach"
+    "IGUI_TOC_SawRefueling": "Tanke nach",
+    "IGUI_TOC_BladeArmBusy": "Deine rechte Hand ist ein Bajonett."
 }

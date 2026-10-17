@@ -437,18 +437,26 @@ def mech_bars_arm(B, arm, level, bone):
         for k in (0, len(pts) - 1):
             p = Vector(pts[k]); B.sphere("rivet%s%d" % (nm, k), tuple(p + fr * sgn * 0.003), 0.003, bone, B.band("dark"), segs=8)
 
-def hand(B, s, arm, bone, band, medical, joint_band=None):
+WRIST_BALL = 0.0165      # radio de la rótula de muñeca (3.2.0)
+
+def hand(B, q, arm, band, medical, joint_band=None):
     """Mano de las prótesis mecánica y médica. Rehecha en 3.1.0 (comentario de la ronda 2: "desentonan con las manos
     del juego"): palma con perfil de mano (estrecha en la muñeca, ancha y plana en los nudillos), dedos gruesos, juntos
     y algo curvados como las manos "manopla" del juego, pulgar robusto y, en la mecánica, un eje en los nudillos.
-    Tamaño = el de la mano vanilla CON dedos (13 x 7.9 x 5.4 cm en unidades del juego: 0.13 x 0.079 x 0.054): el
-    largo se ajusta para que la punta de los dedos llegue donde llega la mano real (t = 0.258 del antebrazo), así la
-    variante de muñeca, que empieza más abajo por el manguito, no queda más larga. La palma mira a +dn."""
+    Tamaño = el de la mano vanilla con dedos (puntas en t ~ 0.26 del antebrazo). La palma mira a +dn.
+
+    3.2.0, la mano se cierra al agarrar (petición del Workshop): ya no es rígida al antebrazo. La palma va al hueso de
+    la mano y nace en la rótula de muñeca q; los dedos van a Bip01_X_Finger1 y el pulgar a Bip01_X_Finger0, como la mano
+    vanilla. Medido en los clips del juego: Finger1 gira siempre alrededor de SU eje Y local (bisagra, 34-77° al
+    agarrar), así que los nudillos se ponen justo sobre esa recta (fit.json "joints"): el dedo gira sobre su nudillo y
+    no se separa de la palma. El pulgar nace en el pivote de Finger0, tapado por una bola centrada en él (gira sobre
+    ejes variables, y una esfera centrada en el pivote es invariante a cualquier giro)."""
     o, ax, dn, fr = arm_frame(arm)
-    s = Vector(s)
-    BASE_LEN = 0.093                       # largo del diseño a escala 1 (palma + dedo medio + punta)
-    t_s = (s - Vector(arm["o"])).dot(ax)
-    SL = max(1.0, min(1.32, (0.258 - t_s) / BASE_LEN))
+    q = Vector(q)
+    hb, f0, f1 = arm["bones"]["hand"], arm["bones"]["finger0"], arm["bones"]["finger1"]
+    J = arm["joints"]
+    P0, P1, a1 = Vector(J["finger0"]), Vector(J["finger1"]), norm(Vector(J["finger1_axis"]))
+    if a1.dot(fr) < 0: a1 = -a1
     SW, ST = 1.12, 1.35                    # ancho y grueso (la mano del juego es una manopla gruesa)
     SR = (SW + ST) / 2                     # radios de dedos
     def rr(c, hw, ht, n=24, e=3.0):
@@ -459,23 +467,43 @@ def hand(B, s, arm, bone, band, medical, joint_band=None):
             pts.append(tuple(c + fr * (hw * r * cx) + dn * (ht * r * sy)))
         return pts
     k = 1.03 if medical else 1.0
-    prof = [(0.0, 0.017, 0.0105), (0.012, 0.022, 0.0115), (0.026, 0.0275, 0.0118), (0.040, 0.030, 0.0112), (0.050, 0.029, 0.0100)]
-    B.loft("palm", [rr(s + ax * (t * SL), hw * k * SW, ht * k * ST) for t, hw, ht in prof], bone, band, subsurf=1)
-    for i, (off, ln) in enumerate(((-0.021, 0.034), (-0.007, 0.041), (0.007, 0.044), (0.021, 0.040))):
-        p0 = s + ax * (0.044 * SL) + fr * (off * k * SW)
-        L = ln * SL
-        pts = [tuple(p0), tuple(p0 + ax * (L * 0.42) + dn * (0.002 * ST)), tuple(p0 + ax * (L * 0.78) + dn * (0.007 * ST)), tuple(p0 + ax * L + dn * (0.015 * ST))]
-        rr_ = [0.0072 * k * SR, 0.0068 * k * SR, 0.0062 * k * SR, 0.0055 * k * SR]
-        B.curve("finger%d" % i, pts, rr_, bone, band, res=3)
-        B.sphere("tip%d" % i, pts[-1], rr_[-1], bone, band, segs=10)
-    t0 = s + ax * (0.012 * SL) + fr * (0.019 * k * SW) + dn * (0.004 * ST)
-    pts = [tuple(t0), tuple(t0 + fr * (0.010 * SW) + ax * (0.010 * SL) + dn * (0.004 * ST)),
-           tuple(t0 + fr * (0.014 * SW) + ax * (0.024 * SL) + dn * (0.010 * ST)), tuple(t0 + fr * (0.013 * SW) + ax * (0.034 * SL) + dn * (0.016 * ST))]
-    B.curve("thumb", pts, [0.0085 * k * SR, 0.0078 * k * SR, 0.007 * k * SR, 0.006 * k * SR], bone, band, res=3)
-    B.sphere("thumbtip", pts[-1], 0.006 * k * SR, bone, band, segs=10)
+    # palma: de la rótula a la recta de los nudillos; el eje baja hacia la palma (+dn) hasta la altura de la bisagra
+    Lp = (P1 - q).dot(ax); dK = (P1 - q).dot(dn)
+    prof = [(0.0, 0.017, 0.0105), (0.24, 0.022, 0.0115), (0.52, 0.0275, 0.0118), (0.80, 0.030, 0.0112), (1.0, 0.029, 0.0100)]
+    B.loft("palm", [rr(q + ax * (u * Lp) + dn * (dK * u * u), hw * k * SW, ht * k * ST) for u, hw, ht in prof], hb, band, subsurf=1)
+    # nudillos sobre la bisagra, centrados en la palma
+    H0 = P1 + a1 * ((q - P1).dot(fr) / a1.dot(fr))
+    # dedos en curva relajada: salen a 15° hacia la palma y se curvan 40° más hasta la punta (puntas donde las de la mano
+    # vanilla, t ~ 0.26 y dn ~ +0.04). Al agarrar, la bisagra gira 34-77° y las puntas vuelven hacia la palma (puño);
+    # rectos quedaban en "L" (2026-10-16, primeros renders).
+    AL, PHI = math.radians(15.0), math.radians(40.0)
+    def finger_pts(K, ln):
+        pts, p, n = [tuple(K)], Vector(K), 24
+        marks = {round(0.42 * n), round(0.78 * n), n}
+        for j in range(1, n + 1):
+            th = AL + PHI * ((j - 0.5) / n) ** 1.3
+            p = p + (ax * math.cos(th) + dn * math.sin(th)) * (ln / n)
+            if j in marks: pts.append(tuple(p))
+        return pts
+    r0 = 0.0072 * k * SR
+    for i, (off, ln) in enumerate(((-0.021, 0.037), (-0.007, 0.045), (0.007, 0.048), (0.021, 0.044))):
+        K = H0 + a1 * (off * k * SW / a1.dot(fr))
+        pts = finger_pts(K, ln)
+        rr_ = [r0, 0.0068 * k * SR, 0.0062 * k * SR, 0.0055 * k * SR]
+        B.curve("finger%d" % i, pts, rr_, f1, band, res=3)
+        B.sphere("tip%d" % i, pts[-1], rr_[-1], f1, band, segs=10)
+        B.sphere("knuckle%d" % i, tuple(K), r0 * 1.04, hb, band, segs=12)
+    # pulgar: nace en el pivote de Finger0
+    # algo más corto que el de 3.1.0: al agarrar (Finger0 gira hasta 75°) un pulgar largo asomaba por fuera del mango
+    pts = [tuple(P0), tuple(P0 + fr * (0.010 * SW) + ax * 0.009 + dn * (0.004 * ST)),
+           tuple(P0 + fr * (0.013 * SW) + ax * 0.019 + dn * (0.009 * ST)), tuple(P0 + fr * (0.012 * SW) + ax * 0.026 + dn * (0.014 * ST))]
+    B.curve("thumb", pts, [0.0085 * k * SR, 0.0078 * k * SR, 0.007 * k * SR, 0.006 * k * SR], f0, band, res=3)
+    B.sphere("thumbtip", pts[-1], 0.006 * k * SR, f0, band, segs=10)
+    B.sphere("thumbball", tuple(P0), 0.0085 * k * SR * 1.06, hb, band, segs=12)
     if joint_band is not None:
-        c = s + ax * (0.046 * SL) - dn * (0.0045 * ST)
-        B.cyl("axle", tuple(c - fr * (0.030 * SW)), tuple(c + fr * (0.030 * SW)), 0.0048, 0.0048, bone, joint_band, segs=12, bevel=0.001, ref=tuple(ax))
+        # eje de los nudillos de la mecánica: sobre la bisagra real, así no se mueve al cerrar los dedos
+        w = 0.036 * SW / a1.dot(fr)
+        B.cyl("axle", tuple(H0 - a1 * w), tuple(H0 + a1 * w), 0.0052, 0.0052, hb, joint_band, segs=12, bevel=0.001, ref=tuple(ax))
 
 def build_peg_arm(B, arm, level):
     o, ax, dn, fr = arm_frame(arm); bone = arm["bones"]["forearm"]
@@ -518,33 +546,36 @@ def build_mech_arm(B, arm, level, medical):
     o, ax, dn, fr = arm_frame(arm); bone, hb = arm["bones"]["forearm"], arm["bones"]["hand"]
     s = arm_socket(B, arm, level, bone, B.band("socket"), B.band("shell"), clearance=ARM_CL, subsurf=1)
     if not medical: mech_bars_arm(B, arm, level, bone)
-    # muñeca y mano RÍGIDAS (hueso del antebrazo): pesadas al hueso de la mano giraban con el agarre
-    # (muleta, armas) y chocaban con la caña; una prótesis mecánica no articula
-    B.cyl("wristunit", tuple(s), tuple(s + ax * 0.012), (0.012, 0.018), (0.012, 0.019), bone, B.band("dark"), segs=16, bevel=0.002, ref=tuple(dn))
-    # mecánica: mano de acero claro (banda shell) con el eje oscuro; médica: banda "dark" repintada de polímero claro
-    if medical: hand(B, s + ax * 0.012, arm, bone, B.band("dark"), True)
-    else: hand(B, s + ax * 0.012, arm, bone, B.band("shell"), False, joint_band=B.band("dark"))
+    # 3.2.0: la mano sigue al hueso de la mano (antes rígida al antebrazo: con la palma rígida y los dedos rectos el
+    # objeto en la mano quedaba fuera de ella). Rótula de muñeca:
+    #  - antebrazo / brazo: la articulación real (pivote del hueso de la mano) está libre -> unidad de muñeca redonda
+    #    hasta el pivote y bola centrada en él: invariante a cualquier giro, no se abre ni al girar ni al flexionar.
+    #  - muñeca: el pivote real queda dentro del brazal -> bola junto al collar, en el eje (el giro, que es lo que más
+    #    hace la mano, la deja en su sitio; al flexionar resbala sobre la tapa del collar).
+    hb = arm["bones"]["hand"]
+    if level == "Wrist":
+        q = s + ax * 0.006
+    else:
+        q = Vector(arm["joints"]["hand"])
+        B.cyl("wristunit", tuple(s - ax * 0.002), tuple(q), 0.0145, 0.0145, bone, B.band("dark"), segs=16, bevel=0.0015, ref=tuple(dn))
+    B.sphere("wristball", tuple(q), WRIST_BALL, hb, B.band("dark"), segs=16)
+    # mecánica: mano de acero claro (banda shell) con nudillos y eje oscuros; médica: banda "dark" repintada de polímero claro
+    if medical: hand(B, q, arm, B.band("dark"), True)
+    else: hand(B, q, arm, B.band("shell"), False, joint_band=B.band("dark"))
 
-def build_saw_arm(B, arm, level, saw):
-    """Brazo motosierra como el de Ash (Evil Dead 2): la motosierra vanilla sin asas con la espada como prolongación
-    del antebrazo, unida por un acople mecánico (abrazadera con orejeta y perno, vástago, dos pletinas laterales
-    atornilladas, piñón y placa de montaje). Todo rígido al hueso del antebrazo (como la mano mecánica).
-    Por nivel de amputación:
-      - Wrist (falta la mano): el antebrazo está entero -> brazal de cuero con dos férulas de acero y copa en la muñeca.
-      - ForeArm (falta medio antebrazo): encaje de cuero en el muñón y carcasa de acero que sustituye lo que falta."""
+def bracer_section(B, arm, level):
+    """Parte del antebrazo de los brazos-arma (motosierra, bayoneta) según el nivel de amputación:
+      - Wrist (falta la mano): brazal de cuero con dos férulas de acero y copa en la muñeca.
+      - ForeArm: encaje de cuero en el muñón y carcasa de acero que sustituye lo que falta.
+      - Upper: carcasa de acero del codo al acople (el brazo y la bisagra los pone build_upper_section).
+    Devuelve (t_end, end_cl): dónde acaba y con qué holgura, para colgar el acople. Todo rígido al antebrazo."""
     o, ax, dn, fr = arm_frame(arm); bone = arm["bones"]["forearm"]
     cl = ARM_CL
-    side = -dn                               # con el brazo colgando: -dn = hacia fuera, dn = hacia el cuerpo
     def rivet(name, p, r=0.003): B.sphere(name, tuple(p), r, bone, B.band("polished"), segs=8)
     def surf(t, d, extra, clr=cl):
         r = [Vector(p) for p in arm_ring(arm, t, clr)]
         c = sum(r, Vector()) / len(r)
         return max(r, key=lambda p: (p - c).dot(d)) + d * extra
-    def hexbolt(name, p, axis, r=0.0042, hgt=0.003):
-        axis = norm(Vector(axis))
-        B.cyl(name, tuple(p), tuple(p + axis * hgt), r, r, bone, B.band("polished"), segs=6, bevel=0.0007,
-              ref=tuple(ax if abs(axis.dot(ax)) < 0.9 else fr))
-    # ---------------- parte del antebrazo según el nivel
     if level == "Wrist":
         ts = [0.03, 0.045, 0.06, 0.075, 0.09, 0.105, 0.118]
         B.loft("bracer", smooth_rings([arm_ring(arm, t, cl) for t in ts], 2), bone, B.band("socket"), subsurf=1, tight=True)
@@ -582,6 +613,28 @@ def build_saw_arm(B, arm, level, saw):
             B.curve("rib%d" % k, pts, [0.003] * 4, bone, B.band("dark"), res=2)
             for j, pp in enumerate(pts[::3]): rivet("ribrivet%d%d" % (k, j), Vector(pp) + d * 0.0022, 0.0026)
         t_end = 0.12; end_cl = ARM_SHELL + 0.001
+    return t_end, end_cl
+
+def build_saw_arm(B, arm, level, saw):
+    """Brazo motosierra como el de Ash (Evil Dead 2): la motosierra vanilla sin asas con la espada como prolongación
+    del antebrazo, unida por un acople mecánico (abrazadera con orejeta y perno, vástago, dos pletinas laterales
+    atornilladas, piñón y placa de montaje). Todo rígido al hueso del antebrazo (como la mano mecánica).
+    Por nivel de amputación:
+      - Wrist (falta la mano): el antebrazo está entero -> brazal de cuero con dos férulas de acero y copa en la muñeca.
+      - ForeArm (falta medio antebrazo): encaje de cuero en el muñón y carcasa de acero que sustituye lo que falta."""
+    o, ax, dn, fr = arm_frame(arm); bone = arm["bones"]["forearm"]
+    cl = ARM_CL
+    side = -dn                               # con el brazo colgando: -dn = hacia fuera, dn = hacia el cuerpo
+    def rivet(name, p, r=0.003): B.sphere(name, tuple(p), r, bone, B.band("polished"), segs=8)
+    def surf(t, d, extra, clr=cl):
+        r = [Vector(p) for p in arm_ring(arm, t, clr)]
+        c = sum(r, Vector()) / len(r)
+        return max(r, key=lambda p: (p - c).dot(d)) + d * extra
+    def hexbolt(name, p, axis, r=0.0042, hgt=0.003):
+        axis = norm(Vector(axis))
+        B.cyl(name, tuple(p), tuple(p + axis * hgt), r, r, bone, B.band("polished"), segs=6, bevel=0.0007,
+              ref=tuple(ax if abs(axis.dot(ax)) < 0.9 else fr))
+    t_end, end_cl = bracer_section(B, arm, level)
     # ---------------- acople
     end = [Vector(p) for p in arm_ring(arm, t_end, end_cl)]
     c_end = sum(end, Vector()) / len(end)
@@ -646,6 +699,56 @@ def build_saw_arm(B, arm, level, saw):
         return norm(ax * nv.dot(sb) + dn * nv.dot(so) + fr_s * nv.dot(sn))
     B.raw.append({"verts": [tuple(place(p)) for p in saw["verts"]], "normals": [tuple(turn(n)) for n in saw["normals"]],
                   "uvs": saw["uvs"], "faces": saw["faces"], "bone": bone, "name": "saw"})
+
+def build_knife_arm(B, arm, level):
+    """Brazo bayoneta (3.2.0), como el de Merle en The Walking Dead: sobre el muñón el mismo brazal / carcasa que el
+    brazo motosierra (bracer_section) y en la punta una copa de acero cerrada, una virola, una guarda y una hoja de
+    bayoneta en línea con el antebrazo, el filo hacia la palma. Sólo derecho (el juego ataca con la mano principal).
+    Todo rígido al antebrazo; el arma (TOC.MountedBlade) es invisible y usa las animaciones de cuchillo (estocada),
+    que empujan el antebrazo hacia delante: la hoja en línea con él apuñala."""
+    o, ax, dn, fr = arm_frame(arm); bone = arm["bones"]["forearm"]
+    t_end, end_cl = bracer_section(B, arm, level)
+    end = [Vector(p) for p in arm_ring(arm, t_end, end_cl)]
+    c = sum(end, Vector()) / len(end)
+    e_dn = max(abs((p - c).dot(dn)) for p in end) + 0.002
+    e_fr = max(abs((p - c).dot(fr)) for p in end) + 0.002
+    # casquete que cierra la copa
+    caps = []
+    for d, f in ((0.0, 1.0), (0.007, 0.93), (0.014, 0.74), (0.019, 0.44)):
+        cc = c + ax * d
+        caps.append([tuple(cc + dn * (e_dn * f * math.cos(2 * math.pi * j / 20)) + fr * (e_fr * f * math.sin(2 * math.pi * j / 20))) for j in range(20)])
+    B.loft("endcap", caps, bone, B.band("dark"), subsurf=1)
+    for j in range(6):                       # remaches en el borde del casquete
+        an = 2 * math.pi * (j + 0.5) / 6
+        p = c + ax * 0.004 + dn * ((e_dn + 0.0006) * math.cos(an)) + fr * ((e_fr + 0.0006) * math.sin(an))
+        B.sphere("caprivet%d" % j, tuple(p), 0.0025, bone, B.band("polished"), segs=8)
+    # virola y guarda
+    f0 = c + ax * 0.015
+    B.cyl("ferrule", tuple(f0), tuple(f0 + ax * 0.026), 0.0105, 0.0085, bone, B.band("steel"), segs=14, bevel=0.0012, ref=tuple(dn))
+    g = f0 + ax * 0.027
+    B.box("guard", tuple(g), (0.0035, 0.020, 0.0072), (tuple(ax), tuple(dn), tuple(fr)), bone, B.band("dark"), bevel=0.0012)
+    # apaño casero: cinta americana enrollada en la virola y sobre la junta de la carcasa con el casquete
+    def wrap(name, centers, radii):
+        rings = []
+        for k, (cc, r) in enumerate(zip(centers, radii)):
+            j = 0.0005 * math.sin(k * 2.3)
+            rings.append([tuple(cc + dn * ((r + j) * math.cos(2 * math.pi * i / 16)) + fr * ((r - j) * math.sin(2 * math.pi * i / 16))) for i in range(16)])
+        B.loft(name, rings, bone, B.band("rubber"), subsurf=1)
+    wrap("wrap0", [f0 + ax * d for d in (0.002, 0.007, 0.012, 0.017)], [0.0116, 0.0119, 0.0113, 0.0108])
+    jr = [Vector(q) for q in arm_ring(arm, t_end - 0.004, end_cl + 0.0014)]
+    wrap("wrap1", [c + ax * d for d in (-0.008, -0.003, 0.002, 0.006)],
+         [max((q - c).length for q in jr) * f for f in (1.0, 1.02, 1.01, 0.97)])
+    # hoja: sección hexagonal (lomo hacia -dn, filo hacia +dn), punta recortada en el lomo
+    L, n, rings = 0.15, 16, []
+    for k in range(n + 1):
+        u = k / n
+        we = 0.0125 * (1.0 if u < 0.6 else max(0.03, 1 - ((u - 0.6) / 0.4) ** 1.5))      # del eje al filo
+        ws = 0.0072 * (1.0 if u < 0.7 else max(0.03, 1 - ((u - 0.7) / 0.3) ** 0.8))      # del eje al lomo
+        th = max(0.0004, 0.0023 * (1 - 0.65 * u))                                          # medio grueso
+        cc = g + ax * (0.0035 + L * u)
+        pts = [(-ws, th), (we * 0.3, th), (we, 0.0), (we * 0.3, -th), (-ws, -th), (-ws - th * 0.6, 0.0)]
+        rings.append([tuple(cc + dn * a + fr * b) for a, b in pts])
+    B.loft("blade", rings, bone, B.band("polished"), subsurf=0, smooth=False)
 
 # ------------------------------------------------------------------ exportación
 def export_builder(B, path):
@@ -730,10 +833,13 @@ ARM_TIERS = {"pegArm": ("peg", lambda B, arm, lv: build_peg_arm(B, arm, lv)),
              "medicalArm": ("metal", lambda B, arm, lv: build_mech_arm(B, arm, lv, True))}
 # sólo brazo derecho: las animaciones de motosierra del juego son diestras (Bip01_Prop1 = mano derecha)
 SAW_TIERS = {"chainsawArm": ("saw", lambda B, arm, lv, saw: build_saw_arm(B, arm, lv, saw))}
+# brazo bayoneta (estilo Merle, 3.2.0): sólo derecho, como la motosierra; atlas del gancho (cuero, correa, acero, pulido)
+KNIFE_TIERS = {"knifeArm": ("hook", lambda B, arm, lv: build_knife_arm(B, arm, lv))}
 
 LEG_UNDER = ("foot", "sole", "pylon", "ferrule", "peg_")
 ARM_UNDER = ("wrist", "shaft", "band", "prong", "wristunit", "palm", "finger", "tip", "knuckle", "joint", "thumb", "rod", "knob", "axle",
-             "cup", "collar", "lug", "clampbolt", "nut", "plate", "stem", "bar", "hex", "gear", "tooth", "hub")
+             "cup", "collar", "lug", "clampbolt", "nut", "plate", "stem", "bar", "hex", "gear", "tooth", "hub",
+             "endcap", "caprivet", "ferrule", "guard", "blade", "wrap")
 report = []
 col_x = 0.0
 for sex, body in fit["bodies"].items():
@@ -748,11 +854,13 @@ for sex, body in fit["bodies"].items():
             for tier, (tex, fn) in SAW_TIERS.items():
                 for lv in fit["arm_levels"]:
                     jobs.append((tier, lv, tex, (lambda f, sw: (lambda B, arm, l: f(B, arm, l, sw)))(fn, fit["saw"]), body["arms"][side]))
+            for tier, (tex, fn) in KNIFE_TIERS.items():
+                for lv in fit["arm_levels"]: jobs.append((tier, lv, tex, fn, body["arms"][side]))
         for tier, lv, tex, fn, data in jobs:
             name = "%s%s_%s_%s" % (tier, lv, side, sx)
             if FILTER and FILTER not in name: continue
             B = Builder(name, tex)
-            ARM_LEVEL = lv if tier in ARM_TIERS or tier in SAW_TIERS else ""
+            ARM_LEVEL = lv if tier in ARM_TIERS or tier in SAW_TIERS or tier in KNIFE_TIERS else ""
             fn(B, data, lv)
             if lv == "Upper": build_upper_section(B, data)
             nv, nf = export_builder(B, os.path.join(OUTDIR, name + ".json"))

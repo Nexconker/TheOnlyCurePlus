@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>TOC_NoHandR_reading</m_Name>
+	<m_AnimName>Bob_Idle</m_AnimName>
+	<m_BlendTime>0.32</m_BlendTime>
+	<m_SpeedScale>0.19</m_SpeedScale>
+	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
+	<m_Conditions x_name="caf7d088-ccb0-49c6-b048-0026a9c4a9ad">
+		<m_Name>PerformingAction</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>read</m_Value>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>TOC_NoHandR</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+</animNode>

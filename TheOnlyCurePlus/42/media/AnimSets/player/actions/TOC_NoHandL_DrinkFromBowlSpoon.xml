@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>TOC_NoHandL_DrinkFromBowlSpoon</m_Name>
+	<m_BlendTime>0.35</m_BlendTime>
+	<m_SpeedScale>1.00</m_SpeedScale>
+	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
+	<m_AnimName>Bob_IdleEatingFromBowl</m_AnimName>
+	<m_Conditions x_name="910d281e-9360-40d1-9dbe-6376a8ed570d">
+		<m_Name>PerformingAction</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>eat</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="03a71d9c-9dcf-4d73-b962-352a7197662f">
+		<m_Name>FoodType</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>2handbowl</m_Value>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>TOC_NoHandL</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Spine</boneName>
+		<includeDescendants>false</includeDescendants>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Spine1</boneName>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Prop1</boneName>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Prop2</boneName>
+	</m_SubStateBoneWeights>
+</animNode>

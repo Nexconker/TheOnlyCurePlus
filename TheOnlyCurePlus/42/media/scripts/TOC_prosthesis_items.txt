@@ -596,6 +596,63 @@ module TOC
 		WorldStaticModel = prostheticArmChainsaw,
 	}
 
+	item Prost_KnifeArm_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_KnifeArm_R,
+		BodyLocation = toc:armprost_r,
+		Weight = 1.8,
+		CombatSpeedModifier = 0.95,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 25,
+		ConditionLowerChanceOneIn = 35,
+		Icon = KnifeArm,
+		WorldStaticModel = prostheticArmKnife,
+	}
+
+	item Prost_KnifeArmWrist_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_KnifeArmWrist_R,
+		BodyLocation = toc:armprost_r,
+		Weight = 1.8,
+		CombatSpeedModifier = 0.95,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 25,
+		ConditionLowerChanceOneIn = 35,
+		Icon = KnifeArm,
+		WorldStaticModel = prostheticArmKnife,
+	}
+
+	item Prost_KnifeArmUpper_R
+	{
+		ItemType = base:clothing,
+		DisplayCategory = Prosthesis,
+		ClothingItem = Prost_KnifeArmUpper_R,
+		BodyLocation = toc:armprost_r,
+		Weight = 1.8,
+		CombatSpeedModifier = 0.95,
+		BloodLocation = UpperArms;UpperBody,
+		Insulation = 0.0,
+		WindResistance = 0.0,
+		WaterResistance = 0.0,
+		CanHaveHoles = false,
+		ConditionMax = 25,
+		ConditionLowerChanceOneIn = 35,
+		Icon = KnifeArm,
+		WorldStaticModel = prostheticArmKnife,
+	}
+
 	item Prost_PegLeg_L
 	{
 		ItemType = base:clothing,

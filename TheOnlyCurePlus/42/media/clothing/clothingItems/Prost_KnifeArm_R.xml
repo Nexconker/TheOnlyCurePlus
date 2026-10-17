@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\knifeArm_R_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\knifeArm_R_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\knifeArmUnder_R_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\knifeArmUnder_R_F</m_AltFemaleModel>
+    <m_GUID>50a1b8ce-a01a-4a2e-9e30-19c15c1113ad</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <m_MasksFolder>none</m_MasksFolder>
+    <textureChoices>Prosthesis\knifeArm</textureChoices>
+</clothingItem>

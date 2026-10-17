@@ -58,6 +58,17 @@ def stump(kind, part, side, sex):
         tex = tex.replace("LowerLeg", part)
     return inward(P.posed_x(os.path.join(MOD, "models_X", "Amputation", name + ".X"), tex, W))
 
+SUB_AMP = os.path.join(os.path.expanduser("~"), "Zomboid", "mods", "TheOnlyCurePlusTombBody", "42", "media", "models_X", "Amputation")
+def stump_tomb(kind, part, side, sex):
+    """El muñón del submod (recortado del cuerpo de Tomb, textura del cuerpo) como lo usa el juego con el submod activo.
+    Sin él la vista de Tomb usaba el muñón vanilla del mod principal, más grueso, que asomaba por el brazal."""
+    name = ("ArmStumpProst_%s_%s_%s" if kind == "arm" else "Amputation_%s_%s_%s") % (BA.SIDE_NAME[side], part, sex)
+    path = os.path.join(SUB_AMP, name + ".X")
+    if not os.path.exists(path): return stump(kind, part, side, sex)
+    tex = os.path.join(TT, ("MaleBody01" if sex == "Male" else "FemaleBody01") + ".png")
+    m = P.posed_x(path, tex, W); m["alpha"] = True
+    return m
+
 def prost(model, sex):
     texname = model.split("Arm")[0] + "Arm" if "Arm" in model else model.split("Leg")[0] + "Leg"
     return P.posed_x(os.path.join(PROST, "%s_%s.X" % (model, "M" if sex == "Male" else "F")), os.path.join(MOD, "textures", "Prosthesis", texname + ".png"), W)
@@ -76,7 +87,7 @@ if __name__ == "__main__":
             c = np.asarray(pr["v"]).mean(0); focus = (round(c[0] * 10, 2), round(-c[2] * 10, 2), round(c[1] * 10, 2))
             tag = "%s_%s" % (case, sex[0].lower())
             P.export("tomb_%s_v" % tag, [P.posed_body_texel(sex, list(masks), W, shirt=False), st, pr])
-            P.export("tomb_%s_t" % tag, [tomb_body(sex, masks), st, pr])
+            P.export("tomb_%s_t" % tag, [tomb_body(sex, masks), stump_tomb(kind, part, "R", sex), pr])
             for suffix in ("v", "t"):
                 for view, az in (("", 200), ("b", 20)):
                     jobs["tomb_%s_%s%s" % (tag, suffix, view)] = ("tomb_%s_%s" % (tag, suffix), az, focus)

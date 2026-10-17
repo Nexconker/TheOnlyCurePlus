@@ -85,6 +85,18 @@
         <guid>8ee7e1bc-2c21-428e-a15d-760d98df973d</guid>
     </files>
     <files>
+        <path>media/clothing/clothingItems/Prost_KnifeArmUpper_R.xml</path>
+        <guid>95e4f2bb-31d9-4119-b86c-a22508745af0</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_KnifeArmWrist_R.xml</path>
+        <guid>f0f7df72-fe1c-4da5-9d46-98e0fb7851df</guid>
+    </files>
+    <files>
+        <path>media/clothing/clothingItems/Prost_KnifeArm_R.xml</path>
+        <guid>50a1b8ce-a01a-4a2e-9e30-19c15c1113ad</guid>
+    </files>
+    <files>
         <path>media/clothing/clothingItems/Prost_MechLegAnkle_L.xml</path>
         <guid>3f50b4bd-d890-4714-a300-172377f2b41a</guid>
     </files>

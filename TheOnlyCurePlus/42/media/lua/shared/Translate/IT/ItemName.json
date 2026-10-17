@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "Braccio Prostetico",
     "TOC.Prost_MedicalArmUpper_L": "Braccio prostetico medico",
     "TOC.Prost_MedicalArmUpper_R": "Braccio prostetico medico",
-    "TOC.Prost_ChainsawArmUpper_R": "Braccio motosega"
+    "TOC.Prost_ChainsawArmUpper_R": "Braccio motosega",
+    "TOC.Prost_KnifeArm_R": "Braccio a baionetta",
+    "TOC.MountedBlade": "Baionetta montata",
+    "TOC.Prost_KnifeArmWrist_R": "Braccio a baionetta",
+    "TOC.Prost_KnifeArmUpper_R": "Braccio a baionetta"
 }

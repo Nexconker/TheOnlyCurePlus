@@ -1,5 +1,28 @@
 # Changelog
 
+## 3.2.0
+
+- New: the mechanical and medical hands close when gripping (a Workshop request). The palm follows the hand bone,
+  the fingers `Bip01_X_Finger1` and the thumb `Bip01_X_Finger0`, like the vanilla hand. Measured in the game's clips,
+  `Finger1` always rotates around its own local Y axis (34-77° when gripping), so the knuckles sit exactly on that line
+  and the fingers turn on them without leaving the palm; the thumb grows from a ball centred on its pivot. The wrist is
+  a ball joint: centred on the real pivot for forearm and upper-arm amputations, next to the cuff for the wrist level.
+  Fingers have a relaxed curl, so a grip makes a fist around the handle. Rebuilt in the TombBody add-on too.
+- New: no more "ghost hand" (a Workshop report: painkillers taken with the amputated left hand). One-handed actions
+  (pills, drinking, smoking, eating, the spoon and plate ones, reading a book, pouring, opening cans and bottles,
+  rolling dice, painting) get mirrored animations: `tools/make_mirror_anims.py` mirrors the vanilla clips left/right
+  (exactly, from the bind skeleton, with the held item bones swapped) into `media/anims_X/Bob/TOC_Mirror_*` and copies
+  their animation nodes with one extra condition, `TOC_NoHandL` / `TOC_NoHandR`. Every sibling node of the same action
+  is copied too, so the game's choice between them is unchanged. `TOC/Plus/GhostHand.lua` sets the variable when one
+  hand is missing (amputated and without a gripping prosthesis; hooks, the wooden hand and weapon arms do not grip) and
+  moves the action's item to the hand that exists. Other players' amputations are read from their worn items, so it
+  also works for them in multiplayer.
+- New: Merle-style bayonet arm (`TOC.Prost_KnifeArm_R`, right arm only, Welding 2: a knife, scrap metal, leather strips
+  and duct tape). A makeshift scrap-metal sleeve with a bayonet in line with the forearm; its own models per amputation
+  level (leather bracer, socket and shell, or full arm with elbow hinge), rusty texture. While worn the right hand holds
+  `TOC.MountedBlade`, an invisible one-handed knife (stab animations, hunting-knife stats with a bit more reach); the
+  arm wears out with use. Text in the 11 languages.
+
 ## 3.1.2
 
 - Fixed: amputations made more than an hour after loading did not heal and could not turn septic until the game was

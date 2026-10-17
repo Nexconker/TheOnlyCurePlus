@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "Bras prothétique",
     "TOC.Prost_MedicalArmUpper_L": "Prothèse de bras médicale",
     "TOC.Prost_MedicalArmUpper_R": "Prothèse de bras médicale",
-    "TOC.Prost_ChainsawArmUpper_R": "Bras tronçonneuse"
+    "TOC.Prost_ChainsawArmUpper_R": "Bras tronçonneuse",
+    "TOC.Prost_KnifeArm_R": "Bras-baïonnette",
+    "TOC.MountedBlade": "Baïonnette montée",
+    "TOC.Prost_KnifeArmWrist_R": "Bras-baïonnette",
+    "TOC.Prost_KnifeArmUpper_R": "Bras-baïonnette"
 }

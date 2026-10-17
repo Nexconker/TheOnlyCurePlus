@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "Brazo mecánico",
     "TOC.Prost_MedicalArmUpper_L": "Prótesis de brazo médica",
     "TOC.Prost_MedicalArmUpper_R": "Prótesis de brazo médica",
-    "TOC.Prost_ChainsawArmUpper_R": "Brazo motosierra"
+    "TOC.Prost_ChainsawArmUpper_R": "Brazo motosierra",
+    "TOC.Prost_KnifeArm_R": "Brazo bayoneta",
+    "TOC.MountedBlade": "Bayoneta montada",
+    "TOC.Prost_KnifeArmWrist_R": "Brazo bayoneta",
+    "TOC.Prost_KnifeArmUpper_R": "Brazo bayoneta"
 }

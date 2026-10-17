@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "Proteza ręki",
     "TOC.Prost_MedicalArmUpper_L": "Medyczna proteza ręki",
     "TOC.Prost_MedicalArmUpper_R": "Medyczna proteza ręki",
-    "TOC.Prost_ChainsawArmUpper_R": "Ramię z piłą łańcuchową"
+    "TOC.Prost_ChainsawArmUpper_R": "Ramię z piłą łańcuchową",
+    "TOC.Prost_KnifeArm_R": "Ramię z bagnetem",
+    "TOC.MountedBlade": "Zamontowany bagnet",
+    "TOC.Prost_KnifeArmWrist_R": "Ramię z bagnetem",
+    "TOC.Prost_KnifeArmUpper_R": "Ramię z bagnetem"
 }

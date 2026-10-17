@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "Stop the engine first.",
     "IGUI_TOC_SawFull": "The tank is full.",
     "IGUI_TOC_SawArmBusy": "Your right hand is a chainsaw.",
-    "IGUI_TOC_SawRefueling": "Refueling"
+    "IGUI_TOC_SawRefueling": "Refueling",
+    "IGUI_TOC_BladeArmBusy": "Your right hand is a bayonet."
 }

@@ -23,17 +23,25 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 [*][b]Peg leg[/b] (Carpentry 3) · [b]Mechanical leg[/b] (Welding 4) · [b]Medical leg[/b] (hospital loot)
 [*]Wood and hooks cannot hold two-handed weapons or anything that needs fingers. Peg legs never sprint. Medical gear has no penalty.
 [*]Every prosthesis is modelled on the actual body sections: sockets hug the stump, no clipping, and they fit under trousers and sleeves.
-[*]The same item adapts to the stump: a missing foot gets an ankle cuff, a missing calf a below-knee socket, a missing thigh a full leg with an articulated knee. Arms likewise: a missing hand gets a wrist cuff, a missing forearm a below-elbow socket, and a missing upper arm a full arm with an elbow hinge.
+[*]The same item adapts to the stump: an ankle or wrist cuff, a below-knee or below-elbow socket, or a full leg or arm with an articulated knee or elbow.
+[*]Mechanical and medical hands [b]close when gripping[/b]: fingers and thumb follow the game's hand animations, so weapons and tools sit in a fist.
+[*]One-handed actions (pills, drinking, smoking, eating, reading...) use the hand you still have: no more ghost hand.
 [*]They wear out with use. At 0 condition they fall off. Repair with wood glue, duct tape, welding rods or screws. The [b]Prosthesis Familiarity[/b] skill speeds you up over time.
 [/list]
 
 [h2]✚ Groovy: the chainsaw arm[/h2]
 [list]
-[*]Right arm only, Ash style: the motor bolted to the stump, the bar in line with the forearm. A leather bracer with steel splints if you lost the hand, a socket and steel shell if you lost the forearm.
+[*]Right arm only, Ash style: the motor bolted to the stump, the bar in line with the forearm.
 [*]Craft it with Welding 5 and Mechanics 4 (engine parts, sheet metal, a saw for the teeth). It comes with an empty tank.
 [*]Right-click: [b]pull the starter cord[/b] (Mechanics helps), [b]stop the engine[/b], [b]refuel[/b] from any petrol can. Half a litre lasts about two in-game hours idling.
 [*]Running, it cuts through zombies and limbs, and every zombie in the area hears it. Off, it is a heavy club.
 [*]Your left hand stays free: keep a shotgun in it.
+[/list]
+
+[h2]✚ Merle's bayonet arm[/h2]
+[list]
+[*]Right arm only, a makeshift job: a rusty scrap-metal sleeve, leather straps, duct tape and a bayonet in line with the forearm.
+[*]Welding 2, a knife, scrap metal, leather and duct tape. It stabs like a hunting knife and your left hand stays free.
 [/list]
 
 [h2]✚ Legs, crutches and crawling[/h2]
@@ -54,27 +62,24 @@ Four arm tiers and three leg tiers, each with its own stats, limits, wear and re
 [/list]
 
 [h2]Languages[/h2]
-English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Translations of the new text were machine-assisted: corrections are welcome in the comments.
+English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Machine-assisted translations: corrections are welcome in the comments.
 
 [h2]Tomb's Player Body[/h2]
 [img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
 Using Tomb's Player Body? Enable the optional mod [b]The Only Cure+ - TombBody fit[/b], included in this Workshop item, and load it after The Only Cure+ and Tomb's Player Body. Stumps are built on Tomb's body so hips and shoulders match it, and every prosthesis is refitted to its shape. It uses your own Tomb texture (normal, DOLL or NUDE).
 
 [h2]Changelog[/h2]
-[b]3.1.2[/b]
+[b]3.2.0[/b]
 [list]
-[*]Fixed: amputations made an hour or more after loading did not heal or turn septic until reloading (thanks Blakurion).
-[*]Fixed: sprinting on a crutch, crawling or on a peg leg.
-[*]Fixed: amputation saw sound looping forever when another mod cleared the action queue.
-[*]New: improvised tourniquets from ripped sheets, denim or leather strips, or a belt, plus a stick.
-[*]New sandbox option to hide the amputee traits in character creation.
-[*]New language: Brazilian Portuguese.
+[*]New: mechanical and medical hands close when gripping.
+[*]New: no more ghost hand. One-handed actions use the hand you have left, with mirrored animations.
+[*]New: Merle's bayonet arm (right arm, Welding 2).
 [/list]
-[b]3.1.1[/b]: Tomb's Player Body add-on, fix for saves not loading with mods that write base.X in lower case, crutch stamina per second with sandbox options.
+[b]3.1.2[/b]: healing and sepsis after the first hour fixed, no sprinting on crutches, looping saw sound, improvised tourniquets, option to hide amputee traits, Brazilian Portuguese.
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]
-Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version; their hooks are left in place and do nothing without them.
+Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version.
 [list]
 [*]Reported working by players: Wounds Overhaul, AHS, Viewpoint, and large modpacks in SP and MP. Bandits works since 3.1.0.
 [*]Tomb's Player Body: use the add-on above. Other body replacers work, but prostheses are fitted to the vanilla body.

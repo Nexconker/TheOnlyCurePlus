@@ -105,6 +105,33 @@ module TOC
 		}
 	}
 
+	/* Merle-style bayonet arm (TOC+ 3.2.0, right arm only: attacks are made with the main hand). Scrap metal for the
+	   sleeve, a knife for the blade, leather straps and duct tape: a makeshift job. */
+	craftRecipe Craft_Prosthetic_KnifeArm
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 180,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:2,
+		xpAward = MetalWelding:30,
+		inputs
+		{
+			item 1 [Base.HuntingKnife;Base.KitchenKnife;Base.FlintKnife;Base.KnifeButterfly;Base.LargeKnife],
+			item 1 [Base.SmallSheetMetal;Base.ScrapMetal;Base.SheetMetal],
+			item 3 [Base.LeatherStrips;Base.LeatherStripsDirty],
+			item 2 [Base.DuctTape],
+			item 2 [Base.BlowTorch] flags[DontRecordInput],
+			item 1 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_KnifeArm_R,
+		}
+	}
+
 	/************* Prosthetic legs (TOC+) *******************/
 	craftRecipe Craft_Prosthetic_PegLeg
 	{

@@ -73,8 +73,8 @@ for part in ("Hand", "ForeArm", "UpperArm"):
 # prótesis: tier x nivel de amputación (mismo nombre de ítem con sufijo Wrist / Ankle / Thigh)
 PROST = {"PegArm": ("pegArm", ["", "Wrist", "Upper"]), "HookArm": ("hookArm", ["", "Wrist", "Upper"]), "NormalArm": ("normalArm", ["", "Wrist", "Upper"]), "MedicalArm": ("medicalArm", ["", "Wrist", "Upper"]),
          "PegLeg": ("pegLeg", ["", "Ankle", "Thigh"]), "MechLeg": ("mechLeg", ["", "Ankle", "Thigh"]), "MedicalLeg": ("medicalLeg", ["", "Ankle", "Thigh"]),
-         "ChainsawArm": ("chainsawArm", ["", "Wrist", "Upper"])}
-ONE_SIDE = {"ChainsawArm": "R"}      # brazo motosierra: sólo derecho
+         "ChainsawArm": ("chainsawArm", ["", "Wrist", "Upper"]), "KnifeArm": ("knifeArm", ["", "Wrist", "Upper"])}
+ONE_SIDE = {"ChainsawArm": "R", "KnifeArm": "R"}      # brazo motosierra y brazo bayoneta: sólo derechos
 for side in ("L", "R"):
     for tier, (model, levels) in PROST.items():
         if ONE_SIDE.get(tier, side) != side: continue

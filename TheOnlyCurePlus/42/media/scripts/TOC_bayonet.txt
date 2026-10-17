@@ -1,0 +1,61 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+
+	/* Mounted bayonet (TOC+ 3.2.0), Merle style. Never crafted or looted: lua/client/TOC/Plus/KnifeArm.lua creates it
+	   while the bayonet arm prosthesis (Prost_KnifeArm_R) is worn, keeps it in the right hand and removes it when the
+	   arm comes off. The visible blade is part of the prosthesis model (rigid on the forearm, in line with it); this
+	   item only carries the combat stats and uses the knife stab animations, so the left hand stays free.
+	   Stats: a hunting knife with a bit more reach (the blade sits beyond the stump). It never breaks: wear goes to
+	   the prosthesis. */
+	item MountedBlade
+	{
+		DisplayCategory = Prosthesis,
+		ItemType = base:weapon,
+		Weight = 0.1,
+		Icon = KnifeArm,
+		BaseSpeed = 1.0,
+		BreakSound = HuntingKnifeBreak,
+		Categories = base:smallblade,
+		ConditionLowerChanceOneIn = 1000000,
+		ConditionMax = 100,
+		CritDmgMultiplier = 3.0,
+		CriticalChance = 40.0,
+		DamageCategory = Slash,
+		DamageMakeHole = true,
+		DoorDamage = 1,
+		DoorHitSound = HuntingKnifeHit,
+		DropSound = HuntingKnifeDrop,
+		HitFloorSound = HuntingKnifeHit,
+		HitSound = HuntingKnifeHit,
+		IdleAnim = Idle_Weapon2,
+		IsAimedHandWeapon = true,
+		ImpactSound = HuntingKnifeHit,
+		KnockBackOnNoDeath = false,
+		KnockdownMod = 0.0,
+		MaxDamage = 1.3,
+		MaxHitcount = 1,
+		MaxRange = 1.0,
+		MinAngle = 0.65,
+		MinDamage = 0.7,
+		MinRange = 0.61,
+		MinimumSwingtime = 2.0,
+		PushBackMod = 0.01,
+		RunAnim = Run_Weapon2,
+		SplatBloodOnNoDeath = true,
+		SplatNumber = 4,
+		SubCategory = Stab,
+		SwingAmountBeforeImpact = 0.02,
+		SwingAnim = Stab,
+		SwingSound = HuntingKnifeSwing,
+		Swingtime = 2.0,
+		TreeDamage = 0,
+		WeaponLength = 0.3,
+		WeaponSprite = TOC_Invisible,
+		WorldStaticModel = prostheticArmKnife,
+		Tags = base:sharpknife;base:cutplant,
+	}
+}

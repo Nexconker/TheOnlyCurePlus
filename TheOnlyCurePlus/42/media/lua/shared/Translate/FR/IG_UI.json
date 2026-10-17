@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "Coupez d'abord le moteur.",
     "IGUI_TOC_SawFull": "Le réservoir est plein.",
     "IGUI_TOC_SawArmBusy": "Votre main droite est une tronçonneuse.",
-    "IGUI_TOC_SawRefueling": "Plein d'essence"
+    "IGUI_TOC_SawRefueling": "Plein d'essence",
+    "IGUI_TOC_BladeArmBusy": "Votre main droite est une baïonnette."
 }

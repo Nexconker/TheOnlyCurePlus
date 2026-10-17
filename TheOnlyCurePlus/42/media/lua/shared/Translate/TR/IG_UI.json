@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "Önce motoru durdur.",
     "IGUI_TOC_SawFull": "Depo dolu.",
     "IGUI_TOC_SawArmBusy": "Sağ elin bir motorlu testere.",
-    "IGUI_TOC_SawRefueling": "Yakıt dolduruluyor"
+    "IGUI_TOC_SawRefueling": "Yakıt dolduruluyor",
+    "IGUI_TOC_BladeArmBusy": "Sağ elin bir süngü."
 }

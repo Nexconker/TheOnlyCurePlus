@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "의수",
     "TOC.Prost_MedicalArmUpper_L": "의료용 의수",
     "TOC.Prost_MedicalArmUpper_R": "의료용 의수",
-    "TOC.Prost_ChainsawArmUpper_R": "전기톱 팔"
+    "TOC.Prost_ChainsawArmUpper_R": "전기톱 팔",
+    "TOC.Prost_KnifeArm_R": "총검 팔",
+    "TOC.MountedBlade": "장착된 총검",
+    "TOC.Prost_KnifeArmWrist_R": "총검 팔",
+    "TOC.Prost_KnifeArmUpper_R": "총검 팔"
 }

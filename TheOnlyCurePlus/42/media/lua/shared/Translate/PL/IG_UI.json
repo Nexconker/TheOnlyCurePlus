@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "Najpierw wyłącz silnik.",
     "IGUI_TOC_SawFull": "Bak jest pełny.",
     "IGUI_TOC_SawArmBusy": "Twoja prawa ręka to piła łańcuchowa.",
-    "IGUI_TOC_SawRefueling": "Tankowanie"
+    "IGUI_TOC_SawRefueling": "Tankowanie",
+    "IGUI_TOC_BladeArmBusy": "Twoja prawa ręka to bagnet."
 }

@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "Armprothese Rechts",
     "TOC.Prost_MedicalArmUpper_L": "Medizinische Armprothese",
     "TOC.Prost_MedicalArmUpper_R": "Medizinische Armprothese",
-    "TOC.Prost_ChainsawArmUpper_R": "Kettensägenarm"
+    "TOC.Prost_ChainsawArmUpper_R": "Kettensägenarm",
+    "TOC.Prost_KnifeArm_R": "Bajonettarm",
+    "TOC.MountedBlade": "Montiertes Bajonett",
+    "TOC.Prost_KnifeArmWrist_R": "Bajonettarm",
+    "TOC.Prost_KnifeArmUpper_R": "Bajonettarm"
 }

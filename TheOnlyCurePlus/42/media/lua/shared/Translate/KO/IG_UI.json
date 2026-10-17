@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "먼저 엔진을 꺼야 한다.",
     "IGUI_TOC_SawFull": "연료통이 가득 찼다.",
     "IGUI_TOC_SawArmBusy": "오른손은 전기톱이다.",
-    "IGUI_TOC_SawRefueling": "연료 넣는 중"
+    "IGUI_TOC_SawRefueling": "연료 넣는 중",
+    "IGUI_TOC_BladeArmBusy": "오른손이 총검이다."
 }

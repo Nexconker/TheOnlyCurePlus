@@ -15,8 +15,10 @@ ARMS = {
     "MedicalArm": ("MedicalArm", "prostheticArmMedical", dict(Weight="1.2", CombatSpeedModifier="1.0",  ConditionMax=40, ConditionLowerChanceOneIn=60, BloodLocation="UpperArms;UpperBody")),
     # brazo motosierra (tipo Ash): sólo derecho (las animaciones de motosierra del juego son diestras)
     "ChainsawArm": ("ChainsawArm", "prostheticArmChainsaw", dict(Weight="4.5", CombatSpeedModifier="0.9", ConditionMax=30, ConditionLowerChanceOneIn=40, BloodLocation="UpperArms;UpperBody")),
+    # brazo bayoneta (estilo Merle, 3.2.0): sólo derecho (el juego ataca con la mano principal), chatarra y una hoja
+    "KnifeArm": ("KnifeArm", "prostheticArmKnife", dict(Weight="1.8", CombatSpeedModifier="0.95", ConditionMax=25, ConditionLowerChanceOneIn=35, BloodLocation="UpperArms;UpperBody")),
 }
-SIDES = {"ChainsawArm": ("R",)}          # tiers que sólo existen de un lado (sin opción de cambiar de lado)
+SIDES = {"ChainsawArm": ("R",), "KnifeArm": ("R",)}   # tiers que sólo existen de un lado (sin opción de cambiar de lado)
 LEGS = {
     "PegLeg":     ("PegLeg",     "prostheticLegPeg",     dict(Weight="2.0", RunSpeedModifier="0.85", ConditionMax=15, ConditionLowerChanceOneIn=20, BloodLocation="LowerLegs")),
     "MechLeg":    ("MechLeg",    "prostheticLegMech",    dict(Weight="3.0", RunSpeedModifier="0.95", ConditionMax=30, ConditionLowerChanceOneIn=40, BloodLocation="LowerLegs")),
@@ -64,7 +66,7 @@ open(os.path.join(MOD, "scripts", "TOC_prosthesis_items.txt"), "w", encoding="ut
 print("items:", len(names))
 
 # nombres: la variante hereda el nombre de la base
-for lang in ("EN", "ES"):
+for lang in ("EN", "ES", "DE", "FR", "IT", "KO", "PL", "PTBR", "RU", "TR", "UA"):
     path = os.path.join(MOD, "lua", "shared", "Translate", lang, "ItemName.json")
     data = json.load(open(path, encoding="utf-8"))
     added = 0
@@ -79,6 +81,7 @@ FIX = {"PegArm": ["Base.Woodglue=2; Woodwork=2", "Base.DuctTape=2"], "PegLeg": [
        "HookArm": ["Base.WeldingRods=2; MetalWelding=2", "Base.DuctTape=3"], "NormalArm": ["Base.WeldingRods=2; MetalWelding=3", "Base.DuctTape=3"],
        "MechLeg": ["Base.WeldingRods=2; MetalWelding=3", "Base.DuctTape=3"],
        "ChainsawArm": ["Base.EngineParts=2; Mechanics=3", "Base.WeldingRods=2; MetalWelding=4", "Base.DuctTape=4"],
+       "KnifeArm": ["Base.WeldingRods=1; MetalWelding=2", "Base.DuctTape=2", "Base.LeatherStrips=2"],
        "MedicalArm": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"], "MedicalLeg": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"]}
 fx = ["module TOC", "{", "	imports", "	{", "		Base", "	}", "	/* Reparación de prótesis (TOC+): madera con cola o cinta; metal con varillas de soldar o cinta; médicas con mecánica. Generado por tools/gen_prosthesis_items.py */"]
 for full, base in names:

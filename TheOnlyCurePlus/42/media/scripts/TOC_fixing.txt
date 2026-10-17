@@ -170,6 +170,27 @@ module TOC
 		Fixer = Base.WeldingRods=2; MetalWelding=4,
 		Fixer = Base.DuctTape=4,
 	}
+	fixing Fix TOC Prost_KnifeArm_R
+	{
+		Require = TOC.Prost_KnifeArm_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_KnifeArmWrist_R
+	{
+		Require = TOC.Prost_KnifeArmWrist_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_KnifeArmUpper_R
+	{
+		Require = TOC.Prost_KnifeArmUpper_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
 	fixing Fix TOC Prost_PegLeg_L
 	{
 		Require = TOC.Prost_PegLeg_L,

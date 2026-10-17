@@ -180,9 +180,21 @@ for sex in ("Male", "Female"):
                 k = "%.3f" % t
                 arings[k]["dc"] = [round(float(x), 5) for x in (np.array(arings[k]["c"]) - cv)]
                 t += 0.005
+        # 3.2.0, mano que se cierra al agarrar: pivotes de muñeca, pulgar y dedos (origen de cada hueso en bind) y eje de
+        # bisagra de los dedos. Medido en los clips del juego (Idle1HandExt, IdleAim1Hand, AimToIdle_Handgun, Idle2H_Heavy):
+        # Bip01_X_Finger1 gira SIEMPRE alrededor de su eje Y local (34-77°), el pulgar alrededor de ejes variables y la
+        # mano sobre todo en giro sobre el eje del antebrazo (hasta 60-90°).
+        joints = {}
+        for key, bn in (("hand", "Bip01_%s_Hand" % side), ("finger0", "Bip01_%s_Finger0" % side), ("finger1", "Bip01_%s_Finger1" % side)):
+            Wm = np.linalg.inv(np.array(body["offsets"][bn], float).reshape(4, 4))
+            joints[key] = [round(float(x), 5) for x in Wm[3, :3]]
+            if key == "finger1":
+                a = Wm[1, :3] / np.linalg.norm(Wm[1, :3])
+                joints["finger1_axis"] = [round(float(x), 5) for x in a]
         B["arms"][side] = {"o": [float(x) for x in o], "axis": [float(x) for x in axis], "down": [float(x) for x in down], "front": [float(x) for x in front], "forearm_len": float(L),
-                           "rings": arings, "hand": hand, "end_shift": end_shift, "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2]},
-                           "upper": upper}
+                           "rings": arings, "hand": hand, "end_shift": end_shift,
+                           "bones": {"upper": bones[0], "forearm": bones[1], "hand": bones[2], "finger0": "Bip01_%s_Finger0" % side, "finger1": "Bip01_%s_Finger1" % side},
+                           "joints": joints, "upper": upper}
     spec["bodies"][sex] = B
 spec["saw"] = chainsaw_local()
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

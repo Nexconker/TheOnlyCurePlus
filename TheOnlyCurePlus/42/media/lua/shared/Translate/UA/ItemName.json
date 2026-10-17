@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "Протез Руки",
     "TOC.Prost_MedicalArmUpper_L": "Медичний Протез Руки",
     "TOC.Prost_MedicalArmUpper_R": "Медичний Протез Руки",
-    "TOC.Prost_ChainsawArmUpper_R": "Рука-бензопила"
+    "TOC.Prost_ChainsawArmUpper_R": "Рука-бензопила",
+    "TOC.Prost_KnifeArm_R": "Рука-багнет",
+    "TOC.MountedBlade": "Закріплений багнет",
+    "TOC.Prost_KnifeArmWrist_R": "Рука-багнет",
+    "TOC.Prost_KnifeArmUpper_R": "Рука-багнет"
 }

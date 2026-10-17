@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>TOC_NoHandR_PourWateringCan</m_Name>
+	<m_AnimName>Bob_Water_WaterinCan</m_AnimName>
+	<m_BlendTime>0.40</m_BlendTime>
+	<m_BlendOutTime>-1.00</m_BlendOutTime>
+	<m_SpeedScale>0.80</m_SpeedScale>
+	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
+	<m_Conditions x_name="df97d456-49a7-4b4d-9263-f731c1eca048">
+		<m_Name>PerformingAction</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>pour</m_Value>
+	</m_Conditions>
+	<m_Conditions x_name="22f3ea7e-9b20-40fd-9397-3c80cfd91996">
+		<m_Name>PourType</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>wateringcan</m_Value>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>TOC_NoHandR</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_Value>true</m_Value>
+	</m_Conditions>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01</boneName>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Prop1</boneName>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Prop2</boneName>
+	</m_SubStateBoneWeights>
+</animNode>

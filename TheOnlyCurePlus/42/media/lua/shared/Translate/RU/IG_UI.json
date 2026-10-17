@@ -104,5 +104,6 @@
     "IGUI_TOC_SawRunning": "Сначала заглуши двигатель.",
     "IGUI_TOC_SawFull": "Бак полон.",
     "IGUI_TOC_SawArmBusy": "Твоя правая рука — бензопила.",
-    "IGUI_TOC_SawRefueling": "Заправка"
+    "IGUI_TOC_SawRefueling": "Заправка",
+    "IGUI_TOC_BladeArmBusy": "Ваша правая рука — штык."
 }

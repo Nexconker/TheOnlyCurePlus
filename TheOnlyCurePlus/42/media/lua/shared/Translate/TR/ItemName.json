@@ -70,5 +70,9 @@
     "TOC.Prost_NormalArmUpper_R": "Protez Kol",
     "TOC.Prost_MedicalArmUpper_L": "Tıbbi Protez Kol",
     "TOC.Prost_MedicalArmUpper_R": "Tıbbi Protez Kol",
-    "TOC.Prost_ChainsawArmUpper_R": "Testere Kol"
+    "TOC.Prost_ChainsawArmUpper_R": "Testere Kol",
+    "TOC.Prost_KnifeArm_R": "Süngü kol",
+    "TOC.MountedBlade": "Takılı süngü",
+    "TOC.Prost_KnifeArmWrist_R": "Süngü kol",
+    "TOC.Prost_KnifeArmUpper_R": "Süngü kol"
 }
