@@ -4,12 +4,12 @@ The Only Cure+ is free and will stay free. If you enjoy it and want to help, you
 [url=https://ko-fi.com/nexconker]ko-fi.com/nexconker[/url]
 
 [h1]The Only Cure+ · Field Surgery[/h1]
-[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381 · [b]Bug reports:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
+[b]Mod ID:[/b] TheOnlyCurePlus · [b]Bug reports:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
 [i]A bite is not the end. A saw, a steady hand and a bit of luck can still save you. Then you learn to live with what is left.[/i]
 
 [b]Standalone:[/b] this is the whole mod and needs no other mods. Do [b]not[/b] enable the original The Only Cure at the same time. "Field Surgery" is part of the name, not a separate mod.
 
-A complete fork of ZioPao's [b]The Only Cure[/b] for [b]Build 42[/b], rebuilt around three ideas: surgery should be a decision with real risk, the body you keep should matter, and prostheses should look like they belong on the character.
+A complete fork of ZioPao's [b]The Only Cure[/b] for [b]Build 42[/b]: surgery with real risk, a body that matters, and prostheses that look like they belong on the character.
 
 [h2]✚ New in 3.3: modular prostheses[/h2]
 An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attachment[/b] you can swap without taking the base off.
@@ -40,32 +40,26 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 [*][b]Examine the wound[/b] to see how far the infection has spread. Doctors get a diagnosis; the rest of us get a feeling.
 [*][b]Cure window[/b]: amputate in time and the infection is gone. Wait too long and it becomes a gamble.
 [*][b]Staged procedure[/b]: disinfect, cut, saw, stitch, bandage. Each step has its tools, its time and its risk. The checklist tells you the odds before you start.
-[*]Screams attract zombies. Patients faint. Shaky surgeons botch the job and the limb stays, badly cut.
+[*]Screams attract zombies. Shaky surgeons botch the job.
 [*][b]Post-op[/b]: shock, convalescence, phantom pain and [b]sepsis[/b] if the stump is left dirty. Keep it bandaged and clean, or lose more.
-[*]Doctors, nurses, paramedics and vets know how. Everyone else reads the [b]Field Surgery Guide[/b].
+[*]Medical professions know how; everyone else reads the [b]Field Surgery Guide[/b].
 [/list]
 
 [h2]✚ Prostheses that fit[/h2]
 [list]
 [*]Legs: [b]peg leg[/b] (Carpentry 3), [b]mechanical leg[/b] (Welding 4), [b]medical leg[/b] (hospital loot) and the [b]cybernetic leg[/b]. Peg legs never sprint.
 [*]Wood and hooks cannot hold two-handed weapons or anything that needs fingers. With a bare base and no attachment you cannot hold anything.
-[*]Every prosthesis is modelled on the actual body sections: sockets hug the stump, no clipping, and they fit under trousers and sleeves. Hands are sized to your character's hands.
-[*]The same item adapts to the stump: an ankle or wrist cuff, a below-knee or below-elbow socket, or a full leg or arm with an articulated knee or elbow.
+[*]Modelled on the real body: sockets hug the stump and fit under trousers and sleeves.
+[*]Each one adapts to the stump: cuff, socket, or a full limb with an articulated knee or elbow.
 [*]Mechanical, medical and cybernetic hands [b]close when gripping[/b]: weapons and tools sit in a fist.
 [*]One-handed actions (pills, drinking, smoking, eating, reading...) use the hand you still have: no more ghost hand.
 [*]They wear out with use. At 0 condition they fall off. Repair them. The [b]Prosthesis Familiarity[/b] skill speeds you up over time.
 [/list]
 
-[h2]✚ Groovy: the chainsaw attachment[/h2]
+[h2]✚ Weapon attachments (right arm)[/h2]
 [list]
-[*]Right arm only, Ash style, on any metal base. Welding 5 and Mechanics 4. It comes with an empty tank.
-[*]Right-click: [b]pull the starter cord[/b] (Mechanics helps), [b]stop the engine[/b], [b]refuel[/b] from any petrol can.
-[*]Running, it cuts through zombies and limbs, and every zombie in the area hears it. Your left hand stays free.
-[/list]
-
-[h2]✚ Merle's bayonet attachment[/h2]
-[list]
-[*]Right arm only, a makeshift job: leather straps, duct tape and a bayonet. Welding 2. It stabs like a hunting knife.
+[*][b]Groovy[/b]: an Ash-style chainsaw on any metal base (Welding 5, Mechanics 4). Pull the cord, refuel from any petrol can. It cuts zombies and limbs, and every zombie around hears it.
+[*][b]Merle's bayonet[/b]: leather straps, duct tape and a bayonet (Welding 2). It stabs like a hunting knife.
 [/list]
 
 [h2]✚ Legs, crutches and crawling[/h2]
@@ -74,24 +68,21 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 [*]One leg missing: without a [b]crutch[/b] (craftable) or a prosthesis you can only crawl. On a crutch you limp, you cannot run, and your stamina drains.
 [*]Both legs missing with no prosthesis: you [b]crawl[/b], slowly, and you can still fight from the ground. Zombies will still find you down there.
 [*][b]Crawler zombies[/b]: hit a zombie's leg hard enough and it drops and crawls after you (sandbox option).
-[*]Severed limbs are items. Drop them, carry them, or do not ask.
 [/list]
 
 [h2]✚ Built for Build 42 and multiplayer[/h2]
 [list]
-[*]Every body change is validated and applied on the authoritative side. Clients compute, the server decides.
-[*]New 3D models and 32x32 icons for every item, rendered from the models. Items dropped on the floor show their real model.
-[*]Saves from the original The Only Cure keep working: legs, sepsis and the rest are added on first load.
-[*]Sandbox page [b]TOC[/b]: cure window, risk multiplier, scream radius, sepsis, convalescence, prosthesis wear, zombie amputations and more.
+[*]Body changes are validated on the server. Saves from the original The Only Cure keep working.
+[*]Sandbox page [b]TOC[/b]: cure window, risk, scream radius, sepsis, convalescence, prosthesis wear and more.
 [*]Modders: other mods can add their own bases and attachments with TOC_Compat.RegisterBase / RegisterHead (see API_MODULAR.md on GitHub).
 [/list]
 
 [h2]Languages[/h2]
-English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Machine-assisted translations: corrections are welcome in the comments.
+English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Corrections welcome in the comments.
 
 [h2]Tomb's Player Body[/h2]
 [img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
-Using Tomb's Player Body? Enable the optional mod [b]The Only Cure+ - TombBody fit[/b], included in this Workshop item, and load it after The Only Cure+ and Tomb's Player Body. Stumps are built on Tomb's body so hips and shoulders match it, and every prosthesis (modular arms and the new legs included) is refitted to its shape. It uses your own Tomb texture (normal, DOLL or NUDE).
+Using Tomb's Player Body? Enable the included optional mod [b]The Only Cure+ - TombBody fit[/b] and load it after both. Stumps and every prosthesis are refitted to Tomb's body, with your own Tomb texture.
 
 [h2]Changelog[/h2]
 [b]3.3.0[/b]
@@ -100,20 +91,17 @@ Using Tomb's Player Body? Enable the optional mod [b]The Only Cure+ - TombBody f
 [*]New: cybernetic tier (frame, hand and leg); +1 Strength from the frame, +10% running speed from the leg.
 [*]New: craftable prosthesis workbench with a 3D view and stat comparison; paint prostheses with vanilla paints.
 [*]New: rebuilt peg, mechanical and medical legs; knees bend with the thigh when walking.
-[*]Fixed: hands sized to the character, wrists twisting in some animations, attacks while crawling not hitting, elbow/knee pads and wrist items floating on amputated limbs.
-[*]Viewpoint: the workbench has its own 3D model pack.
+[*]Fixed: hand size and twisted wrists, attacks while crawling, elbow/knee pads floating on amputated limbs.
 [/list]
-[b]3.2.0[/b]: hands that close when gripping, no more ghost hand, Merle's bayonet arm.
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]
 Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version.
 [list]
-[*]Reported working by players: Wounds Overhaul, AHS, Viewpoint, and large modpacks in SP and MP. Bandits works since 3.1.0.
-[*]Tomb's Player Body: use the add-on above. Other body replacers work, but prostheses are fitted to the vanilla body.
+[*]Reported working: Wounds Overhaul, AHS, Viewpoint, Bandits and large modpacks in SP and MP.
 [*]Safe to add to an existing save, also in multiplayer (restart the server). Back up your save before updating from 3.2: worn arms are converted on first load.
 [/list]
 
 [h2]Credits[/h2]
 Original mod: [b]ZioPao[/b] and contributors of The Only Cure (GPL-3.0). Body-location code: RabenRabo. Tomb's Player Body is by Tomb; the TombBody fit add-on is made with Tomb's permission. This fork keeps the license: GPL-3.0, source included.
-Report bugs on [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (or here) with your console.txt and a screenshot. Found a prosthesis clipping through something? Tell me which one and which clothing.
+Report bugs on [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (or here) with your console.txt and a screenshot.

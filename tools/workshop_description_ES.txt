@@ -4,34 +4,34 @@ The Only Cure+ es gratis y lo seguirá siendo. Si te gusta y quieres ayudar, pue
 [url=https://ko-fi.com/nexconker]ko-fi.com/nexconker[/url]
 
 [h1]The Only Cure+ · Cirugía de campo[/h1]
-[b]Mod ID:[/b] TheOnlyCurePlus · [b]Workshop ID:[/b] 3818733381 · [b]Fallos:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
+[b]Mod ID:[/b] TheOnlyCurePlus · [b]Fallos:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
 [i]Un mordisco no es el final. Una sierra, pulso y algo de suerte todavía pueden salvarte. Después aprendes a vivir con lo que queda.[/i]
 
 [b]Independiente:[/b] es el mod completo y no necesita ningún otro. [b]No[/b] actives a la vez The Only Cure original. «Field Surgery» es parte del nombre, no otro mod.
 
-Fork completo de [b]The Only Cure[/b] de ZioPao para [b]Build 42[/b], reconstruido sobre tres ideas: operar debe ser una decisión con riesgo real, el cuerpo que te queda debe importar, y las prótesis deben parecer parte del personaje.
+Fork completo de [b]The Only Cure[/b] de ZioPao para [b]Build 42[/b]: operar con riesgo real, un cuerpo que importa y prótesis que parecen parte del personaje.
 
 [h2]✚ Nuevo en la 3.3: prótesis modulares[/h2]
 La prótesis de brazo ahora son dos piezas: una [b]base[/b] en el muñón y un [b]cabezal[/b] que se cambia sin quitarse la base.
 [list]
 [*][b]5 bases[/b]: de madera, de chatarra, armazón mecánico, médica y [b]cibernética[/b]. Cada una modelada para mano, antebrazo o brazo entero.
 [*][b]7 cabezales[/b]: pomo de madera, gancho, mano mecánica, mano médica, mano cibernética, motosierra y bayoneta.
-[*]Las estadísticas salen de la combinación: agarre, armas a dos manos, velocidad de combate, bonificación de acciones y desgaste.
-[*]Hay pares que no encajan: la motosierra necesita base de metal, las manos mecánica y médica no van sobre madera, la mano cibernética necesita base de tier 3 o mejor.
+[*]Las estadísticas salen de la combinación: agarre, dos manos, combate, acciones y desgaste.
+[*]Hay pares que no encajan: motosierra sólo en metal, manos mecánica y médica no en madera, mano cibernética desde tier 3.
 [*]Tus brazos antiguos se convierten solos en la base y el cabezal equivalentes, con su condición.
 [/list]
 
 [h2]✚ Tier cibernético[/h2]
 [list]
 [*]Tier 5: placas de blindaje, músculos de cable, dedos segmentados. Armazón cibernético, mano cibernética y pierna cibernética.
-[*]Difícil de fabricar: Soldadura 7, Electricidad 6-7, Mecánica 5-6 y electrónica rara (cargador de baterías, amplificador, sensor de movimiento).
+[*]Difícil de fabricar: Soldadura 7, Electricidad 6-7, Mecánica 5-6 y electrónica rara.
 [*]La mejor bonificación de acciones y el menor desgaste. El armazón cibernético da [b]+1 de Fuerza[/b] mientras lo llevas; con la pierna cibernética corres un [b]10% más rápido[/b] que con una pierna sana.
 [/list]
 
 [h2]✚ Banco de prótesis y pintura[/h2]
 [list]
 [*]Construye el [b]banco de prótesis[/b] (Carpintería 3) y colócalo como cualquier mueble. Tiene modelo 3D propio, también para mods de cámara 3D / primera persona como Viewpoint.
-[*]Junto a él se abre la ventana del banco: pon bases, monta cabezales, mira a tu personaje en 3D y compara estadísticas con iconos y barras.
+[*]Su ventana: pon bases, monta cabezales, mira a tu personaje en 3D y compara estadísticas.
 [*]Allí puedes [b]pintar tus prótesis[/b] con cualquier lata de pintura vanilla y una brocha: 10 colores para bases, cabezales y piernas. Rasca la pintura para volver al acabado original.
 [/list]
 
@@ -40,58 +40,49 @@ La prótesis de brazo ahora son dos piezas: una [b]base[/b] en el muñón y un [
 [*][b]Examina la herida[/b] para ver cuánto ha avanzado la infección. Los médicos obtienen un diagnóstico; el resto, una corazonada.
 [*][b]Ventana de cura[/b]: amputa a tiempo y la infección desaparece. Espera demasiado y se convierte en una apuesta.
 [*][b]Procedimiento por pasos[/b]: desinfectar, incidir, serrar, suturar, vendar. Cada paso tiene sus herramientas, su tiempo y su riesgo. La lista te dice las probabilidades antes de empezar.
-[*]Los gritos atraen zombis. Los pacientes se desmayan. Un cirujano con mal pulso chapucea y la extremidad se queda, mal cortada.
+[*]Los gritos atraen zombis. Un cirujano con mal pulso chapucea.
 [*][b]Postoperatorio[/b]: shock, convalecencia, dolor fantasma y [b]sepsis[/b] si el muñón se deja sucio. Mantenlo vendado y limpio, o perderás más.
-[*]Médicos, enfermeros, paramédicos y veterinarios saben hacerlo. Los demás leen la [b]Guía de cirugía de campo[/b].
+[*]Las profesiones médicas saben hacerlo; los demás leen la [b]Guía de cirugía de campo[/b].
 [/list]
 
 [h2]✚ Prótesis que encajan[/h2]
 [list]
 [*]Piernas: [b]pata de palo[/b] (Carpintería 3), [b]pierna mecánica[/b] (Soldadura 4), [b]pierna médica[/b] (botín de hospital) y la [b]pierna cibernética[/b]. La pata de palo nunca esprinta.
 [*]Madera y gancho no sujetan armas a dos manos ni nada que exija dedos. Con una base sin cabezal no puedes sujetar nada.
-[*]Cada prótesis está modelada sobre las secciones reales del cuerpo: los encajes abrazan el muñón, sin atravesar nada, y caben bajo pantalones y mangas. Las manos tienen el tamaño de las de tu personaje.
-[*]El mismo ítem se adapta al muñón: manguito de tobillo o muñeca, encaje bajo la rodilla o el codo, o la pierna o el brazo entero con rodilla o codo articulado.
+[*]Modeladas sobre el cuerpo real: los encajes abrazan el muñón y caben bajo pantalones y mangas.
+[*]Cada una se adapta al muñón: manguito, encaje o la extremidad entera con rodilla o codo articulado.
 [*]Las manos mecánica, médica y cibernética [b]se cierran al agarrar[/b]: el arma o la herramienta queda en el puño.
-[*]Las acciones de una mano (pastillas, beber, fumar, comer, leer...) usan la mano que te queda: se acabó la mano fantasma.
+[*]Las acciones de una mano usan la mano que te queda: se acabó la mano fantasma.
 [*]Se desgastan con el uso. A condición 0 se caen. Repáralas. La habilidad [b]Familiaridad con prótesis[/b] te hace más rápido con el tiempo.
 [/list]
 
-[h2]✚ Groovy: el cabezal motosierra[/h2]
+[h2]✚ Cabezales de arma (brazo derecho)[/h2]
 [list]
-[*]Solo brazo derecho, estilo Ash, sobre cualquier base de metal. Soldadura 5 y Mecánica 4. Sale con el depósito vacío.
-[*]Clic derecho: [b]tirar del arrancador[/b] (la Mecánica ayuda), [b]apagar el motor[/b] y [b]echar gasolina[/b] de cualquier bidón.
-[*]En marcha corta zombis y extremidades, y lo oye todo zombi de la zona. La mano izquierda queda libre.
-[/list]
-
-[h2]✚ El cabezal bayoneta de Merle[/h2]
-[list]
-[*]Solo brazo derecho y hecho a mano: correas de cuero, cinta americana y una bayoneta. Soldadura 2. Apuñala como un cuchillo de caza.
+[*][b]Groovy[/b]: motosierra estilo Ash sobre cualquier base de metal (Soldadura 5, Mecánica 4). Tira del arrancador, echa gasolina de cualquier bidón. Corta zombis y extremidades, y la oye todo zombi de la zona.
+[*][b]Bayoneta de Merle[/b]: correas de cuero, cinta americana y una bayoneta (Soldadura 2). Apuñala como un cuchillo de caza.
 [/list]
 
 [h2]✚ Piernas, muletas y arrastre[/h2]
 [list]
 [*]Las piernas se amputan por el pie, la pantorrilla o el muslo.
-[*]Sin una pierna, sin [b]muleta[/b] (fabricable) ni prótesis solo puedes arrastrarte. Con muleta cojeas, no puedes correr y la resistencia se gasta.
+[*]Sin una pierna, sin [b]muleta[/b] ni prótesis solo puedes arrastrarte. Con muleta cojeas y no corres.
 [*]Sin las dos piernas y sin prótesis te [b]arrastras[/b] por el suelo, despacio, y puedes pelear desde ahí. Los zombis te encontrarán igual ahí abajo.
 [*][b]Zombis rastreros[/b]: golpea fuerte la pierna de un zombi y caerá para arrastrarse tras de ti (opción de sandbox).
-[*]Las extremidades cortadas son ítems. Suéltalas, cárgalas, o no preguntes.
 [/list]
 
 [h2]✚ Hecho para Build 42 y multijugador[/h2]
 [list]
-[*]Todo cambio en el cuerpo se valida y aplica en el lado autoritativo. Los clientes calculan, el servidor decide.
-[*]Modelos 3D e iconos de 32x32 nuevos para cada ítem, renderizados desde los modelos. Los ítems en el suelo muestran su modelo real.
-[*]Las partidas del The Only Cure original siguen funcionando: piernas, sepsis y el resto se añaden al cargar.
-[*]Página de sandbox [b]TOC[/b]: ventana de cura, multiplicador de riesgo, radio de gritos, sepsis, convalecencia, desgaste de prótesis, amputaciones de zombis y más.
+[*]Los cambios en el cuerpo se validan en el servidor. Las partidas del The Only Cure original siguen funcionando.
+[*]Página de sandbox [b]TOC[/b]: ventana de cura, riesgo, radio de gritos, sepsis, convalecencia, desgaste de prótesis y más.
 [*]Para modders: otros mods pueden añadir sus propias bases y cabezales con TOC_Compat.RegisterBase / RegisterHead (ver API_MODULAR.md en GitHub).
 [/list]
 
 [h2]Idiomas[/h2]
-English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Traducciones asistidas por máquina: se agradecen correcciones en los comentarios.
+English, Español, Deutsch, Français, Italiano, Polski, Русский, Українська, Türkçe, 한국어, Português (Brasil). Se agradecen correcciones en los comentarios.
 
 [h2]Tomb's Player Body[/h2]
 [img]https://raw.githubusercontent.com/Nexconker/TheOnlyCurePlus/main/docs/tombbody_banner.png[/img]
-¿Usas Tomb's Player Body? Activa el mod opcional [b]The Only Cure+ - TombBody fit[/b], incluido en este ítem del Workshop, y cárgalo después de The Only Cure+ y Tomb's Player Body. Los muñones están hechos sobre el cuerpo de Tomb para que cadera y hombro casen, y cada prótesis (brazos modulares y piernas nuevas incluidos) está reajustada a su forma. Usa tu propia textura de Tomb (normal, DOLL o NUDE).
+¿Usas Tomb's Player Body? Activa el mod opcional incluido [b]The Only Cure+ - TombBody fit[/b] y cárgalo después de ambos. Muñones y prótesis quedan ajustados al cuerpo de Tomb, con tu propia textura de Tomb.
 
 [h2]Cambios[/h2]
 [b]3.3.0[/b]
@@ -99,21 +90,18 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 [*]Nuevo: prótesis de brazo modulares (5 bases x 7 cabezales). Los brazos antiguos se convierten solos.
 [*]Nuevo: tier cibernético (armazón, mano y pierna); +1 de Fuerza con el armazón, +10% de velocidad al correr con la pierna.
 [*]Nuevo: banco de prótesis fabricable con vista 3D y comparación de estadísticas; pinta las prótesis con pinturas vanilla.
-[*]Nuevo: pata de palo, pierna mecánica y pierna médica rehechas; la rodilla se dobla con el muslo al caminar.
-[*]Arreglado: manos a la medida del personaje, muñecas que se torcían en algunas animaciones, golpes en el suelo que no daban, coderas, rodilleras y objetos de muñeca flotando en extremidades amputadas.
-[*]Viewpoint: el banco tiene su propio paquete de modelo 3D.
+[*]Nuevo: piernas de palo, mecánica y médica rehechas.
+[*]Arreglado: tamaño de las manos y muñecas torcidas, golpes desde el suelo, coderas y rodilleras flotando en extremidades amputadas.
 [/list]
-[b]3.2.0[/b]: manos que se cierran al agarrar, se acabó la mano fantasma, el brazo bayoneta de Merle.
 Historial completo: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG en GitHub[/url].
 
 [h2]Compatibilidad[/h2]
 Activa [b]solo uno[/b] de The Only Cure o The Only Cure+: comparten ítems y datos de partida. No compatible con BB First Aid Overhaul. Fancy Handwork y Brutal Handwork no tienen versión para Build 42.
 [list]
-[*]Funciona según los jugadores: Wounds Overhaul, AHS, Viewpoint y modpacks grandes en SP y MP. Bandits funciona desde la 3.1.0.
-[*]Tomb's Player Body: usa el mod de arriba. Otros reemplazos de cuerpo funcionan, pero las prótesis están ajustadas al cuerpo vanilla.
+[*]Funciona según los jugadores: Wounds Overhaul, AHS, Viewpoint, Bandits y modpacks grandes en SP y MP.
 [*]Se puede añadir a una partida empezada, también en multijugador (reinicia el servidor). Haz copia de tu partida antes de actualizar desde la 3.2: los brazos puestos se convierten al cargar.
 [/list]
 
 [h2]Créditos[/h2]
 Mod original: [b]ZioPao[/b] y colaboradores de The Only Cure (GPL-3.0). Código de ubicaciones de cuerpo: RabenRabo. Tomb's Player Body es de Tomb; el mod TombBody fit está hecho con su permiso. Este fork mantiene la licencia: GPL-3.0, código incluido.
-Reporta fallos en [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (o aquí) con tu console.txt y una captura. ¿Una prótesis atraviesa algo? Dime cuál y con qué prenda.
+Reporta fallos en [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub[/url] (o aquí) con tu console.txt y una captura.
