@@ -93,7 +93,9 @@ end
 --   brazos: tras VEST_TEXTURE (la última textura con manga), antes de JERSEY / SWEATER / JACKET.
 -- Si falta alguna referencia (otra versión del juego), todo vuelve a FULL_TOP como antes.
 local LEG_NAMES = { "toc:Leg_L", "toc:Leg_R", "toc:LegProst_L", "toc:LegProst_R", "toc:LegAccessory_L", "toc:LegAccessory_R" }
-local ARM_NAMES = { "toc:Arm_L", "toc:Arm_R", "toc:ArmProst_L", "toc:ArmProst_R", "toc:ArmAccessory_L", "toc:ArmAccessory_R" }
+-- 3.3: toc:ArmHead_X (cabezal de la prótesis modular) justo después de la base; sin modelo alternativo bajo la manga
+-- (el cabezal asoma siempre por el puño)
+local ARM_NAMES = { "toc:Arm_L", "toc:Arm_R", "toc:ArmProst_L", "toc:ArmProst_R", "toc:ArmHead_L", "toc:ArmHead_R", "toc:ArmAccessory_L", "toc:ArmAccessory_R" }
 local names = {}
 for _, n in ipairs(ARM_NAMES) do table.insert(names, n) end
 for _, n in ipairs(LEG_NAMES) do table.insert(names, n) end

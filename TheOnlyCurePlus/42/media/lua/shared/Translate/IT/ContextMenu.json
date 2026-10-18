@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Tira la corda d'avviamento",
     "ContextMenu_TOC_SawStop": "Spegni il motore",
     "ContextMenu_TOC_SawRefuel": "Fai rifornimento da %1",
-    "ContextMenu_TOC_SawNoPetrol": "Fai rifornimento (niente benzina nell'inventario)"
+    "ContextMenu_TOC_SawNoPetrol": "Fai rifornimento (niente benzina nell'inventario)",
+    "ContextMenu_TOC_Workbench": "Banco protesi",
+    "ContextMenu_TOC_Paint": "Dipingi",
+    "ContextMenu_TOC_StripPaint": "Raschia la vernice",
+    "ContextMenu_TOC_NoPaint": "Nessuna vernice"
 }

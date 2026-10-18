@@ -8,7 +8,7 @@ import pzx
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-MOD = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 TOC_UP = r"C:\Users\nexco\CODING PARCHEO\TOCPlus\upstream_2.4.0\42\media"
 OUT = os.path.join(MOD, "textures")
 SHEET = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "preview", "icons_rendered.png")
@@ -223,6 +223,7 @@ ITEMS = [
     ("PegLeg",      os.path.join(MX, "Prosthesis", "pegLeg_L_M.X"),      tex(os.path.join(MOD, "textures", "Prosthesis", "pegLeg.png")), (12, 35, 8),   0.9, 1.35, 2),
     ("MechLeg",     os.path.join(MX, "Prosthesis", "mechLeg_L_M.X"),     tex(os.path.join(MOD, "textures", "Prosthesis", "mechLeg.png")), (12, 35, 8),  0.9, 1.25, 2),
     ("MedicalLeg",  os.path.join(MX, "Prosthesis", "medicalLeg_L_M.X"),  tex(os.path.join(MOD, "textures", "Prosthesis", "medicalLeg.png")), (12, 35, 8), 0.9, 1.6, 0),
+    ("CyberLeg",    os.path.join(MX, "Prosthesis", "cyberLeg_L_M.X"),    tex(os.path.join(MOD, "textures", "Prosthesis", "cyberArm.png")), (12, 35, 8),  0.9, 1.3, 1),
     ("LegTourniquet", os.path.join(MX, "Surgery", "TourniquetLeg_Ground.X"), tex(os.path.join(MOD, "textures", "Surgery", "tourniquetLeg.png")), (62, 15, 0), 0.9, 1.1, 2),
     ("SeveredHand",  os.path.join(MX, "Severed", "SeveredHand.X"),      skin_tex("Hand"),      (35, 25, -20), 0.88, 1.1, 0),
     ("SeveredForeArm", os.path.join(MX, "Severed", "SeveredForeArm.X"), skin_tex("Forearm"),   (35, 25, -25), 0.9, 1.1, 0),

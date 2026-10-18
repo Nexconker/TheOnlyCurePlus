@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Pociągnij linkę rozrusznika",
     "ContextMenu_TOC_SawStop": "Wyłącz silnik",
     "ContextMenu_TOC_SawRefuel": "Zatankuj z: %1",
-    "ContextMenu_TOC_SawNoPetrol": "Zatankuj (brak benzyny w ekwipunku)"
+    "ContextMenu_TOC_SawNoPetrol": "Zatankuj (brak benzyny w ekwipunku)",
+    "ContextMenu_TOC_Workbench": "Stół do protez",
+    "ContextMenu_TOC_Paint": "Pomaluj",
+    "ContextMenu_TOC_StripPaint": "Zeskrob farbę",
+    "ContextMenu_TOC_NoPaint": "Brak farby"
 }

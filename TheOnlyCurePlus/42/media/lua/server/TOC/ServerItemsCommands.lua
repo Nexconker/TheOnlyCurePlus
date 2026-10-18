@@ -44,7 +44,7 @@ end
 function ServerItemsCommands.SetSawFuel(playerObj, args)
     if not playerObj or not args or type(args.itemId) ~= "number" or type(args.fuel) ~= "number" then return end
     local item = playerObj:getInventory():getItemById(args.itemId)
-    if not item or not string.find(item:getFullType(), "Prost_ChainsawArm", 1, true) then return end
+    if not item or not (string.find(item:getFullType(), "Prost_ChainsawArm", 1, true) or string.find(item:getFullType(), "Prost_HeadChainsaw", 1, true)) then return end
     item:getModData().TOC_SawFuel = math.max(0, math.min(0.5, args.fuel))
 end
 

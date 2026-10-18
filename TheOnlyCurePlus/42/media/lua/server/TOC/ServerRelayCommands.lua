@@ -207,6 +207,18 @@ end
 
 --* PROSTHESES *--
 
+---3.3: cabezal modular puesto / quitado en un grupo (el cliente lo valida al vestirlo; aquí sólo se comprueba el tipo)
+---@param args relayProsthesisHeadParams
+function ServerRelayCommands.RelayProsthesisHead(playerObj, args)
+    if type(args) ~= "table" or type(args.group) ~= "string" then return end
+    local DataController = require("TOC/Controllers/DataController")
+    local dcInst = DataController.GetReady(playerObj:getUsername())
+    if not dcInst or not StaticData.AMP_GROUPS_IND_STR[args.group] then return end
+    local headType = type(args.headType) == "string" and StaticData.GetHeadTier(args.headType) and args.headType or nil
+    dcInst:setProstHead(args.group, headType)
+    dcInst:apply(playerObj)
+end
+
 ---@param args relayProsthesisStateParams
 function ServerRelayCommands.RelayProsthesisState(playerObj, args)
     if type(args) ~= "table" or type(args.group) ~= "string" then return end
@@ -219,6 +231,7 @@ function ServerRelayCommands.RelayProsthesisState(playerObj, args)
     local prostType = type(args.prostType) == "string" and StaticData.GetProsthesisTier(args.prostType) and args.prostType or nil
     dcInst:setIsProstEquipped(args.group, isEquipped)
     dcInst:setProstType(args.group, isEquipped and prostType or nil)
+    if not isEquipped then dcInst:setProstHead(args.group, nil) end
     local CachedDataHandler = require("TOC/Handlers/CachedDataHandler")
     CachedDataHandler.CalculateCacheableValues(username)
     dcInst:apply(playerObj)

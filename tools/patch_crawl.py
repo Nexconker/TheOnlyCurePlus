@@ -1,7 +1,7 @@
 """Arrastrarse sin piernas: nodos de animación del rastrero (Zombie_Crawl / Zombie_CrawlIdle) en los
 estados del jugador, activados por la variable de animación TOC_Crawl, y la movilidad CRAWL en Lua."""
 import os, sys
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 LUA = os.path.join(MOD, "lua")
 
 def node(name, anim, speed, blend="0.30"):

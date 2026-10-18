@@ -6,5 +6,7 @@
     "Tooltip_Surgery_LimbNotFree": "You need to remove the prosthesis first",
     "Tooltip_TOC_NoData": "Medical data not loaded yet",
     "Tooltip_TOC_CantSelfHigh": "You cannot cut that high on yourself. Somebody else has to do it.",
-    "Tooltip_TOC_NeedDoctor": "Needs First Aid level %1, or the Field Amputation Guide"
+    "Tooltip_TOC_NeedDoctor": "Needs First Aid level %1, or the Field Amputation Guide",
+    "Tooltip_TOC_NeedBrush": "Needs a paintbrush.",
+    "Tooltip_TOC_NeedBench": "Stand next to a prosthesis workbench (Carpentry recipe)."
 }

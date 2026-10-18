@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 from PIL import Image, ImageDraw
 
-MOD = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 VANILLA_TEX = r"D:\SteamLibrary\steamapps\common\ProjectZomboid\media\textures\chainsaw.png"
 TILES = 3
 what = set(_args) or {"tex", "model", "icon"}

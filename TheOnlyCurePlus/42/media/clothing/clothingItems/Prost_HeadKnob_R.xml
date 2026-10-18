@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\headKnob_R_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\headKnob_R_F</m_FemaleModel>
+    <m_GUID>c2c9eb45-1a87-4332-ba37-dc1daad38c8a</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <m_MasksFolder>none</m_MasksFolder>
+    <textureChoices>Prosthesis\pegArm</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_black</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_white</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_grey</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_red</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_orange</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_yellow</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_green</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_blue</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_purple</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegArm_pink</textureChoices>
+</clothingItem>

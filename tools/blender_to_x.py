@@ -10,9 +10,14 @@ import build_assets as BA
 
 SRC = _args[0] if len(_args) > 0 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "blender")
 MOD = _args[1] if len(_args) > 1 else BA.MOD
-TEX = {"pegLeg": "Prosthesis/pegLeg", "mechLeg": "Prosthesis/mechLeg", "medicalLeg": "Prosthesis/medicalLeg",
+TEX = {"pegLeg": "Prosthesis/pegLeg", "mechLeg": "Prosthesis/mechLeg", "medicalLeg": "Prosthesis/medicalLeg", "cyberLeg": "Prosthesis/cyberArm",
        "pegArm": "Prosthesis/pegArm", "hookArm": "Prosthesis/hookArm", "normalArm": "Prosthesis/normalArm", "medicalArm": "Prosthesis/medicalArm",
-       "chainsawArm": "Prosthesis/chainsawArm", "knifeArm": "Prosthesis/knifeArm"}
+       "chainsawArm": "Prosthesis/chainsawArm", "knifeArm": "Prosthesis/knifeArm",
+       # 3.3 modular: bases y cabezales (atlas existentes)
+       "baseWood": "Prosthesis/pegArm", "baseScrap": "Prosthesis/knifeArm", "baseMech": "Prosthesis/normalArm", "baseMed": "Prosthesis/medicalArm",
+       "headKnob": "Prosthesis/pegArm", "headHook": "Prosthesis/hookArm", "headMechHand": "Prosthesis/normalArm", "headMedHand": "Prosthesis/medicalArm",
+       "headChainsaw": "Prosthesis/chainsawArm", "headBayonet": "Prosthesis/knifeArm",
+       "baseCyber": "Prosthesis/cyberArm", "headCyberHand": "Prosthesis/cyberArm"}
 bodies = {"Male": BA.load_body("Male"), "Female": BA.load_body("Female")}
 
 def tier_of(name):
@@ -38,13 +43,13 @@ for path in sorted(glob.glob(os.path.join(SRC, "*.json"))):
     body = bodies[sex]
     verts = [BA.v3(v) for v in d["verts"]]; normals = [BA.v3(v) for v in d["normals"]]
     uvs = [(float(u), float(v)) for u, v in d["uvs"]]; faces = [tuple(f) for f in d["faces"]]
-    weights = [[(b, 1.0)] for b in d["bones"]]
+    weights = [[(b, 1.0)] if isinstance(b, str) else [(x[0], float(x[1])) for x in b] for b in d["bones"]]   # 3.3: también pesos repartidos
     out = os.path.join(MOD, "models_X", "Prosthesis", name + ".X")
     pzx.write_skinned_x(BA.TEMPLATE[sex], out, name, TEX[tier], verts, normals, uvs, faces, weights, body["offsets"])
     n += 1
     # modelo de suelo: la pieza izquierda masculina del nivel base (la motosierra sólo existe a la derecha:
     # se deja tal cual, de lado sobre el suelo, que es como cae una motosierra)
-    if name == tier + ("_R_M" if tier in ("chainsawArm", "knifeArm") else "_L_M"):      # motosierra y bayoneta: sólo derechas
+    if name == tier + ("_R_M" if tier in ("chainsawArm", "knifeArm", "headChainsaw", "headBayonet") else "_L_M"):      # motosierra y bayoneta: sólo derechas
         if tier == "chainsawArm":
             V = np.array(d["verts"], float); Nn = np.array(d["normals"], float)
             V = V - V.mean(0); V[:, 1] -= V[:, 1].min() - 0.002

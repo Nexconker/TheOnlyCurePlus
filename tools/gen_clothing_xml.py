@@ -1,6 +1,6 @@
 """Genera los clothingItems XML nuevos de TOC+ y regenera fileGuidTable.xml con TODOS los XML del mod."""
 import os, re, uuid, sys
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 CI = os.path.join(MOD, "clothing", "clothingItems")
 os.makedirs(CI, exist_ok=True)
 BS = "\\"   # separador de rutas de modelo/textura dentro del XML (como en los XML vanilla)
@@ -75,13 +75,39 @@ PROST = {"PegArm": ("pegArm", ["", "Wrist", "Upper"]), "HookArm": ("hookArm", ["
          "PegLeg": ("pegLeg", ["", "Ankle", "Thigh"]), "MechLeg": ("mechLeg", ["", "Ankle", "Thigh"]), "MedicalLeg": ("medicalLeg", ["", "Ankle", "Thigh"]),
          "ChainsawArm": ("chainsawArm", ["", "Wrist", "Upper"]), "KnifeArm": ("knifeArm", ["", "Wrist", "Upper"])}
 ONE_SIDE = {"ChainsawArm": "R", "KnifeArm": "R"}      # brazo motosierra y brazo bayoneta: sólo derechos
+PROST_TEX = {"CyberLeg": "cyberArm"}                   # atlas compartido con la gama cyber del brazo
+if os.environ.get("MODULAR") == "1": PROST["CyberLeg"] = ("cyberLeg", ["", "Ankle", "Thigh"])
+# apariencias pintables (make_paint_variants.py; índice = PAINTS de TOC/Plus/ProsthesisPaint.lua, 0 = original). Sólo en
+# el mod de desarrollo (MODULAR=1): piezas modulares y piernas.
+PAINT = ["black", "white", "grey", "red", "orange", "yellow", "green", "blue", "purple", "pink"]
+def paint_tex(tex):
+    if tex == "chainsawArm" or os.environ.get("MODULAR") != "1": return [P("Prosthesis", tex)]
+    return [P("Prosthesis", tex)] + [P("Prosthesis", "Paint", "%s_%s" % (tex, c)) for c in PAINT]
+PAINTABLE_LEGS = ("PegLeg", "MechLeg", "MedicalLeg", "CyberLeg")
 for side in ("L", "R"):
     for tier, (model, levels) in PROST.items():
         if ONE_SIDE.get(tier, side) != side: continue
         for lvl in levels:
             item = "Prost_%s%s_%s" % (tier, lvl, side)
-            write(item, P("Prosthesis", "%s%s_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%s_%s_F" % (model, lvl, side)), [P("Prosthesis", model)],
+            texs = paint_tex(PROST_TEX.get(tier, model)) if tier in PAINTABLE_LEGS else [P("Prosthesis", PROST_TEX.get(tier, model))]
+            # (2026-10-17: probado y quitado: con máscaras en la prótesis de pierna el juego las aplicaba también a la textura del
+            # muñón, que va debajo, y el muñón desaparecía. No poner m_Masks a las prótesis.)
+            write(item, P("Prosthesis", "%s%s_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%s_%s_F" % (model, lvl, side)), texs,
                   alt=(P("Prosthesis", "%s%sUnder_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%sUnder_%s_F" % (model, lvl, side))), own_atlas=True)
+    # 3.3 modular (sólo con MODULAR=1: el mod de desarrollo). Bases: modelo por nivel y, bajo la manga, sólo la brida;
+    # cabezales: un modelo por lado (asoman siempre por el puño, sin modelo alternativo). Atlas de las prótesis de siempre.
+    if os.environ.get("MODULAR") == "1":
+        MB = {"BaseWood": ("baseWood", "pegArm"), "BaseScrap": ("baseScrap", "knifeArm"), "BaseMech": ("baseMech", "normalArm"), "BaseMed": ("baseMed", "medicalArm"), "BaseCyber": ("baseCyber", "cyberArm")}
+        MH = {"HeadKnob": ("headKnob", "pegArm"), "HeadHook": ("headHook", "hookArm"), "HeadMechHand": ("headMechHand", "normalArm"),
+              "HeadMedHand": ("headMedHand", "medicalArm"), "HeadChainsaw": ("headChainsaw", "chainsawArm"), "HeadBayonet": ("headBayonet", "knifeArm"),
+              "HeadCyberHand": ("headCyberHand", "cyberArm")}
+        for tier, (model, tex) in MB.items():
+            for lvl in ("", "Wrist", "Upper"):
+                write("Prost_%s%s_%s" % (tier, lvl, side), P("Prosthesis", "%s%s_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%s_%s_F" % (model, lvl, side)),
+                      paint_tex(tex), alt=(P("Prosthesis", "%s%sUnder_%s_M" % (model, lvl, side)), P("Prosthesis", "%s%sUnder_%s_F" % (model, lvl, side))), own_atlas=True)
+        for tier, (model, tex) in MH.items():
+            if tier in ("HeadChainsaw", "HeadBayonet") and side != "R": continue
+            write("Prost_%s_%s" % (tier, side), P("Prosthesis", "%s_%s_M" % (model, side)), P("Prosthesis", "%s_%s_F" % (model, side)), paint_tex(tex), own_atlas=True)
     write("Surg_Leg_Tourniquet_%s" % side, P("Surgery", "TourniquetLeg_%s_M" % side), P("Surgery", "TourniquetLeg_%s_F" % side), [P("Surgery", "tourniquetLeg")], own_atlas=True)
     # torniquete de brazo: el del TOC original (también atlas propio), sólo se le añade la carpeta de máscaras
     tq = os.path.join(CI, "Surg_Arm_Tourniquet_%s.xml" % side)

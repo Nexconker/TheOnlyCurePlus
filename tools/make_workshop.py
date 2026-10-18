@@ -36,6 +36,9 @@ EN = {
     "Tirón de arranque (la Mecánica ayuda)": "Pull-start (Mechanics helps)", "Depósito de 0,5 L: échale gasolina": "0.5 L tank: refuel with petrol",
     "En marcha corta zombis y extremidades": "Running, it cuts zombies and limbs", "Ruido: lo oyen desde lejos": "Loud: they hear it from afar",
     "Mano izquierda libre": "Left hand stays free", "Sólo brazo derecho": "Right arm only", "Mano, antebrazo o brazo entero": "Hand, forearm or whole arm",
+    "EL BRAZO DE MERLE.": "MERLE'S ARM.", "Brazo bayoneta estilo Merle: chatarra, cuero, cinta americana y una bayoneta": "Merle-style bayonet arm: scrap metal, leather, duct tape and a bayonet",
+    "Soldadura 2: un cuchillo, chatarra, cuero y cinta": "Welding 2: a knife, scrap metal, leather and tape", "Apuñala como un cuchillo de caza": "Stabs like a hunting knife",
+    "Se desgasta con el uso": "Wears out with use", "Brazo bayoneta": "Bayonet Arm",
     "TUMBADO": "ON THE GROUND", "NO ESTÁS A SALVO": "YOU ARE NOT SAFE",
     "Arrastrarte no te esconde: los zombis te ven, te oyen y te alcanzan.": "Crawling does not hide you: zombies see you, hear you and catch up.",
     "Los zombis no te ignoran en el suelo": "Zombies do not ignore you on the ground", "Te mueves a paso de rastrero": "You move at a crawler's pace",
@@ -69,6 +72,8 @@ EN = {
     "Animación del rastrero en todos los estados": "Crawler animation in every state", "Ni correr ni esprintar": "No running, no sprinting",
     "Con una pierna: muleta o arrastrarse": "One leg: crutch, or crawl", "Una prótesis te devuelve a pie": "A prosthesis puts you back on your feet",
 }
+EN.update({'Prótesis modulares · Gama cibernética · Pintura': 'Modular prostheses · Cybernetic tier · Paint', 'Pata de palo · Mecánica · Médica · Cibernética — pie, pantorrilla o muslo': 'Peg leg · Mechanical · Medical · Cybernetic — foot, calf or thigh', 'Se pintan en el banco': 'Paint them at the workbench', 'Madera · Chatarra · Mecánica · Médica · Cibernética — sin mano, sin antebrazo o sin brazo entero': 'Wood · Scrap · Mechanical · Medical · Cybernetic — for a missing hand, forearm or whole arm', 'Base + cabezal intercambiable': 'Base + swappable attachment', 'Manos: armas a dos manos': 'Hands: two-handed weapons', 'Cabezal de motosierra estilo Ash: se monta en cualquier base de metal': 'Ash-style chainsaw attachment: mounts on any metal base', 'Cabezal de bayoneta estilo Merle: chatarra, cuero, cinta americana y una bayoneta': 'Merle-style bayonet attachment: scrap metal, leather, duct tape and a bayonet', 'PRÓTESIS MODULARES': 'MODULAR PROSTHESES', 'Una base en el muñón y el cabezal que quieras: cámbialo sin quitarte la base': 'A base on the stump and any attachment you like: swap it without taking the base off', 'Pomo': 'Knob', 'Motosierra': 'Chainsaw', 'Bayoneta': 'Bayonet', 'Mano mecánica': 'Mechanical Hand', '5 bases · 7 cabezales': '5 bases · 7 attachments', 'Estadísticas de la combinación': 'Stats come from the combination', 'Cada base por nivel: mano, antebrazo o brazo': 'Every base per level: hand, forearm or arm', 'Tus brazos viejos se convierten solos': 'Your old arms convert automatically', 'API para cabezales de otros mods': 'API for attachments from other mods', 'GAMA CIBERNÉTICA': 'CYBERNETIC TIER', 'Tier 5: placas blindadas, músculos de cable y dedos articulados — brazo y pierna': 'Tier 5: armour plates, cable muscles and segmented fingers — arm and leg', 'Mano cibernética: se cierra al agarrar': 'Cybernetic hand: closes when gripping', 'Sólo en bases de tier 3 o más': 'Only on tier 3+ bases', 'Soldadura 7 · Electricidad 6 · Mecánica 5': 'Welding 7 · Electrical 6 · Mechanics 5', 'Electrónica rara: cargador, amplificador, sensor': 'Rare electronics: charger, amplifier, sensor', 'Mejor bonificación y menor desgaste': 'Best bonus, lowest wear', 'Brazo, mano y pierna': 'Arm, hand and leg', 'PINTA TU PRÓTESIS': 'PAINT YOUR PROSTHESIS', 'Cualquier bote de pintura del juego y un pincel, en el banco de prótesis': 'Any vanilla paint can and a paintbrush, at the prosthesis workbench', '10 colores': '10 colours', 'Rasca la pintura para volver': 'Scrape the paint off to get', 'al acabado original': 'the original finish back', 'Bases, cabezales y piernas': 'Bases, attachments and legs', 'Gasta un uso del bote': 'Uses one dose of the can', 'La pintura gastada muestra el desgaste': 'Worn paint shows the wear', 'Se ve en multijugador': 'Visible in multiplayer', 'BANCO DE PRÓTESIS': 'PROSTHESIS WORKBENCH', 'Un mueble que fabricas y colocas: monta, combina y pinta tus prótesis a su lado': 'Furniture you build and place: fit, combine and paint your prostheses next to it', 'Carpintería 3: tablones, clavos, chapa y tornillos': 'Carpentry 3: planks, nails, sheet metal and screws', 'Modelo 3D de verdad': 'A real 3D model', 'Vista 3D de tu personaje': '3D view of your character', 'Estadísticas y comparación': 'Stats and comparison', 'Botón para pintar': 'Paint button', 'Banco de prótesis': 'Prosthesis Workbench', 'Base de madera': 'Wooden Base', 'Base de chatarra': 'Scrap Base', 'Armazón mecánico': 'Mechanical Frame', 'Base médica': 'Medical Base', 'Armazón cibernético': 'Cybernetic Frame', 'Mano médica': 'Medical Hand', 'Mano cibernética': 'Cybernetic Hand', 'Pierna cibernética': 'Cybernetic Leg'})
+
 def tr(text):
     return EN.get(text, text) if LANG == "en" else text
 _orig_text = ImageDraw.ImageDraw.text
@@ -211,7 +216,7 @@ def make_hero(w=1920, h=1080):
     d.text((200, 330), "FIELD SURGERY", font=font(F_TITLE, 120), fill=BONE)
     d.rectangle((84, 470, 820, 480), fill=RED)
     lines = ["Cirugía de campo por etapas · Infección y sepsis", "Prótesis por niveles que encajan de verdad",
-             "Piernas, muletas y arrastre · Brazo motosierra", "Build 42 · Singleplayer y multijugador"]
+             "Prótesis modulares · Gama cibernética · Pintura", "Build 42 · Singleplayer y multijugador"]
     fy = 505
     for ln in lines:
         d.text((90, fy), ln, font=font(F_BODY, 40), fill=(215, 210, 200)); fy += 56
@@ -263,8 +268,11 @@ def make_card(name, renders, title, sub, bullets, w=1600, h=900, blood_before=()
     img.convert("RGB").save(os.path.join(OUT, "card_%s.png" % name)); print("card_%s.png" % name)
 
 ITEMS = [("BoneSaw", "Sierra de hueso"), ("SurgicalKit", "Kit quirúrgico"), ("FieldSurgeryGuide", "Guía de cirugía"), ("Crutch", "Muleta"), ("LegTourniquet", "Torniquete de pierna"),
-         ("PegArm", "Brazo de madera"), ("HookArm", "Gancho"), ("MechArm", "Brazo mecánico"), ("MedicalArm", "Brazo médico"), ("ChainsawArm", "Brazo motosierra"),
-         ("PegLeg", "Pata de palo"), ("MechLeg", "Pierna mecánica"), ("MedicalLeg", "Pierna médica"),
+         ("ProsthesisWorkbench", "Banco de prótesis"), ("BaseWood", "Base de madera"),
+         ("BaseScrap", "Base de chatarra"), ("BaseMech", "Armazón mecánico"), ("BaseMed", "Base médica"), ("BaseCyber", "Armazón cibernético"),
+         ("HeadKnob", "Pomo"), ("HeadHook", "Gancho"), ("HeadMechHand", "Mano mecánica"), ("HeadMedHand", "Mano médica"), ("HeadCyberHand", "Mano cibernética"),
+         ("HeadChainsaw", "Motosierra"), ("HeadBayonet", "Bayoneta"),
+         ("PegLeg", "Pata de palo"), ("MechLeg", "Pierna mecánica"), ("MedicalLeg", "Pierna médica"), ("CyberLeg", "Pierna cibernética"),
          ("SeveredHand", "Mano cercenada"), ("SeveredForeArm", "Antebrazo cercenado"), ("SeveredUpperArm", "Brazo cercenado"),
          ("SeveredFoot", "Pie cercenado"), ("SeveredLowerLeg", "Pantorrilla cercenada"), ("SeveredUpperLeg", "Muslo cercenado")]
 TEXD = os.path.join(os.path.expanduser("~"), "Zomboid", "mods", "TheOnlyCurePlus", "42", "media", "textures")
@@ -277,22 +285,22 @@ def make_items_card(w=1600, h=900):
     d.text((44, 34), "NUEVOS ÍTEMS", font=font(F_TITLE, 84), fill=(0, 0, 0)); d.text((40, 30), "NUEVOS ÍTEMS", font=font(F_TITLE, 84), fill=BONE)
     d.rectangle((40, 122, 40 + d.textlength("NUEVOS ÍTEMS", font=font(F_TITLE, 84)), 128), fill=RED)
     d.text((40, 140), "Iconos 32x32 renderizados de los modelos · todos con modelo 3D en el suelo", font=font(F_BODY, 32), fill=GREY)
-    cols, cell, x0, y0 = 7, 150, 40, 200
+    cols, cell, x0, y0 = 8, 124, 40, 196
     fl = font(F_BODY, 20)
     for i, (nm, label) in enumerate(ITEMS):
-        cx = x0 + (i % cols) * (cell + 14); cy = y0 + (i // cols) * (cell + 16)
+        cx = x0 + (i % cols) * (cell + 12); cy = y0 + (i // cols) * (cell + 12)
         d.rounded_rectangle((cx, cy, cx + cell, cy + cell), radius=10, fill=(0, 0, 0, 110), outline=(255, 255, 255, 25))
-        ic = Image.open(os.path.join(TEXD, "Item_%s.png" % nm)).convert("RGBA").resize((96, 96), Image.NEAREST)
-        img.alpha_composite(ic, (cx + (cell - 96) // 2, cy + 12))
-        fsz = 20; fl2 = fl
-        while d.textlength(label, font=fl2) > cell - 10 and fsz > 13:
+        ic = Image.open(os.path.join(TEXD, "Item_%s.png" % nm)).convert("RGBA").resize((80, 80), Image.NEAREST)
+        img.alpha_composite(ic, (cx + (cell - 80) // 2, cy + 8))
+        fsz = 18; fl2 = font(F_BODY, fsz)
+        while d.textlength(label, font=fl2) > cell - 8 and fsz > 12:
             fsz -= 1; fl2 = font(F_BODY, fsz)
         tw = d.textlength(label, font=fl2)
-        d.text((cx + (cell - tw) / 2, cy + cell - 34), label, font=fl2, fill=(225, 220, 210))
+        d.text((cx + (cell - tw) / 2, cy + cell - 28), label, font=fl2, fill=(225, 220, 210))
     d.text((1180, 200), "En el suelo", font=font(F_BOLD, 26), fill=GREY)
-    paste_render(img, "prop_hook", (1180, 240, 1560, 440))
-    paste_render(img, "prop_mechleg", (1180, 440, 1560, 640))
-    paste_render(img, "prop_leg", (1180, 640, 1560, 860))
+    paste_render(img, "prop_bench", (1180, 240, 1560, 500))
+    paste_render(img, "prop_cyberhand", (1180, 510, 1560, 680))
+    paste_render(img, "prop_cyberleg", (1180, 690, 1560, 860))
     img.convert("RGB").save(os.path.join(OUT, "card_items.png")); print("card_items.png")
 
 def blood_smear(img, p0, p1, width, seed=4):
@@ -425,21 +433,45 @@ def make_chainsaw_card(w=1600, h=900):
     img = background(w, h, 314).convert("RGBA")
     red_vignette(img, 120)
     add_blood(img, [(300, 640, 130, 0), (560, 420, 70, 2), (170, 760, 90, 1), (1460, 820, 80, 0)], seed=66)
-    paste_render(img, "saw_attack", (-20, 215, 840, 900))
-    paste_render(img, "saw_idle", (830, 225, 1220, 885), soft=True)
+    # 3.2.0: con ropa del juego al estilo Ash Williams (export_ash_scene.py): camisa vaquera, escopeta recortada en la izquierda
+    paste_render(img, "ash_attack", (-20, 215, 840, 900))
+    paste_render(img, "ash_idle", (830, 225, 1220, 885))
     box = (1235, 235, 1580, 580)
     d = ImageDraw.Draw(img, "RGBA")
     d.rounded_rectangle((box[0] - 6, box[1] - 6, box[2] + 6, box[3] + 6), radius=14, fill=(0, 0, 0, 150), outline=(196, 32, 38, 200), width=3)
-    paste_render(img, "saw_close", box, shadow=False)
+    paste_render(img, "ash_close", box, shadow=False)
     add_blood(img, [(560, 430, 50, 3), (600, 470, 30, 4)], seed=77)
     d = ImageDraw.Draw(img)
     d.text((44, 34), "GROOVY.", font=font(F_TITLE, 96), fill=(0, 0, 0)); d.text((40, 30), "GROOVY.", font=font(F_TITLE, 96), fill=RED)
     d.rectangle((40, 136, 40 + d.textlength("GROOVY.", font=font(F_TITLE, 96)), 143), fill=BONE)
-    d.text((40, 156), "Brazo motosierra estilo Ash: el motor al muñón, la espada en línea con el antebrazo", font=font(F_BODY, 30), fill=(215, 210, 200))
+    d.text((40, 156), "Cabezal de motosierra estilo Ash: se monta en cualquier base de metal", font=font(F_BODY, 30), fill=(215, 210, 200))
     d.text((box[0], box[3] + 14), "Mano, antebrazo o brazo entero", font=font(F_BODY, 22), fill=GREY)
     footer(img, d, ["Tirón de arranque (la Mecánica ayuda)", "Depósito de 0,5 L: échale gasolina", "En marcha corta zombis y extremidades",
                     "Ruido: lo oyen desde lejos", "Mano izquierda libre", "Sólo brazo derecho"], w, h)
     img.convert("RGB").save(os.path.join(OUT, "card_chainsaw.png")); print("card_chainsaw.png")
+
+def make_bayonet_card(w=1600, h=900):
+    """Brazo bayoneta (3.2.0), mismo esquema que la motosierra: la estocada en grande, en reposo y el brazo de cerca.
+    Renders de export_merle_scene.py (chaqueta de cuero con la manga derecha cortada, vaqueros, botas)."""
+    img = background(w, h, 271).convert("RGBA")
+    red_vignette(img, 110)
+    add_blood(img, [(260, 700, 120, 0), (620, 380, 60, 2), (140, 800, 80, 1), (1480, 830, 70, 0)], seed=91)
+    paste_render(img, "knife_attack", (0, 215, 820, 900))
+    paste_render(img, "knife_idle", (830, 225, 1220, 885))
+    box = (1235, 235, 1580, 580)
+    d = ImageDraw.Draw(img, "RGBA")
+    d.rounded_rectangle((box[0] - 6, box[1] - 6, box[2] + 6, box[3] + 6), radius=14, fill=(0, 0, 0, 150), outline=(196, 32, 38, 200), width=3)
+    paste_render(img, "knife_close", box, shadow=False)
+    add_blood(img, [(470, 330, 40, 3), (505, 300, 26, 4)], seed=93)
+    d = ImageDraw.Draw(img)
+    t = "EL BRAZO DE MERLE."
+    d.text((44, 34), t, font=font(F_TITLE, 96), fill=(0, 0, 0)); d.text((40, 30), t, font=font(F_TITLE, 96), fill=RED)
+    d.rectangle((40, 136, 40 + d.textlength(t, font=font(F_TITLE, 96)), 143), fill=BONE)
+    d.text((40, 156), "Cabezal de bayoneta estilo Merle: chatarra, cuero, cinta americana y una bayoneta", font=font(F_BODY, 30), fill=(215, 210, 200))
+    d.text((box[0], box[3] + 14), "Mano, antebrazo o brazo entero", font=font(F_BODY, 22), fill=GREY)
+    footer(img, d, ["Soldadura 2: un cuchillo, chatarra, cuero y cinta", "Apuñala como un cuchillo de caza", "Se desgasta con el uso",
+                    "Mano izquierda libre", "Sólo brazo derecho"], w, h)
+    img.convert("RGB").save(os.path.join(OUT, "card_bayonet.png")); print("card_bayonet.png")
 
 def make_findyou_card(w=1600, h=900):
     """Aclara lo que la frase vieja del arrastre daba a entender: en el suelo los zombis NO te ignoran."""
@@ -465,6 +497,83 @@ def make_findyou_card(w=1600, h=900):
     footer(img, d, ["Los zombis no te ignoran en el suelo", "Te mueves a paso de rastrero", "Ni correr ni esprintar", "Busca una muleta o una prótesis"], w, h)
     img.convert("RGB").save(os.path.join(OUT, "card_findyou.png")); print("card_findyou.png")
 
+# ------------------------------------------------------------------ 3.3: tarjetas nuevas (2026-10-17)
+def card_header(img, title, sub, color=BONE):
+    d = ImageDraw.Draw(img)
+    d.text((44, 34), title, font=font(F_TITLE, 84), fill=(0, 0, 0)); d.text((40, 30), title, font=font(F_TITLE, 84), fill=color)
+    d.rectangle((40, 122, 40 + d.textlength(title, font=font(F_TITLE, 84)), 128), fill=RED)
+    d.text((40, 140), sub, font=font(F_BODY, 32), fill=GREY)
+    return d
+
+def label_under(d, box, text, size=24, color=(225, 220, 210)):
+    f = font(F_BODY, size); tw = d.textlength(text, font=f)
+    d.text(((box[0] + box[2]) / 2 - tw / 2, box[3] + 6), text, font=f, fill=color)
+
+def make_modular_card(w=1600, h=900):
+    """Un armazón, cinco cabezales: el mismo brazo con pomo, gancho, mano, motosierra y bayoneta."""
+    img = background(w, h, 333).convert("RGBA")
+    add_blood(img, [(1460, 830, 80, 0), (120, 820, 70, 1)], seed=33)
+    d = card_header(img, "PRÓTESIS MODULARES", "Una base en el muñón y el cabezal que quieras: cámbialo sin quitarte la base")
+    heads = [("mod_Knob", "Pomo"), ("mod_Hook", "Gancho"), ("mod_MechHand", "Mano mecánica"), ("mod_Chainsaw", "Motosierra"), ("mod_Bayonet", "Bayoneta")]
+    cw = (w - 80) // len(heads)
+    for i, (rn, lab) in enumerate(heads):
+        box = (40 + i * cw + 10, 200, 40 + (i + 1) * cw - 10, h - 150)
+        ov = Image.new("RGBA", img.size, (0, 0, 0, 0)); ImageDraw.Draw(ov).rounded_rectangle(box, radius=14, fill=(0, 0, 0, 90), outline=(255, 255, 255, 28))
+        img.alpha_composite(ov)
+        paste_render(img, rn, (box[0] + 10, box[1] + 10, box[2] - 10, box[3] - 10), shadow=False)
+        label_under(ImageDraw.Draw(img), box, lab)
+    d = ImageDraw.Draw(img)
+    footer(img, d, ["5 bases · 7 cabezales", "Estadísticas de la combinación", "Cada base por nivel: mano, antebrazo o brazo",
+                    "Tus brazos viejos se convierten solos", "API para cabezales de otros mods"], w, h)
+    img.convert("RGB").save(os.path.join(OUT, "card_modular.png")); print("card_modular.png")
+
+def make_cyber_card(w=1600, h=900):
+    img = background(w, h, 515).convert("RGBA")
+    d = card_header(img, "GAMA CIBERNÉTICA", "Tier 5: placas blindadas, músculos de cable y dedos articulados — brazo y pierna", color=(232, 196, 120))
+    paste_render(img, "cyber_full", (20, 180, 620, h - 100))
+    paste_render(img, "cyber_grip", (600, 200, 1120, h - 100))
+    box = (1160, 220, 1560, 620)
+    dd = ImageDraw.Draw(img, "RGBA")
+    dd.rounded_rectangle((box[0] - 6, box[1] - 6, box[2] + 6, box[3] + 6), radius=14, fill=(0, 0, 0, 150), outline=(200, 152, 58, 220), width=3)
+    paste_render(img, "cyber_hand", box, shadow=False)
+    d = ImageDraw.Draw(img)
+    d.text((box[0], box[3] + 16), "Mano cibernética: se cierra al agarrar", font=font(F_BODY, 22), fill=GREY)
+    d.text((box[0], box[3] + 46), "Sólo en bases de tier 3 o más", font=font(F_BODY, 22), fill=GREY)
+    footer(img, d, ["Soldadura 7 · Electricidad 6 · Mecánica 5", "Electrónica rara: cargador, amplificador, sensor", "Mejor bonificación y menor desgaste",
+                    "Brazo, mano y pierna"], w, h)
+    img.convert("RGB").save(os.path.join(OUT, "card_cyber.png")); print("card_cyber.png")
+
+def make_paint_card(w=1600, h=900):
+    img = background(w, h, 727).convert("RGBA")
+    d = card_header(img, "PINTA TU PRÓTESIS", "Cualquier bote de pintura del juego y un pincel, en el banco de prótesis")
+    for i, rn in enumerate(("paint_red", "paint_yellow", "paint_blue")):
+        paste_render(img, rn, (60 + i * 330, 190, 60 + (i + 1) * 330 - 20, h - 110))
+    # muestras de color
+    cols = [(38, 38, 42), (232, 232, 228), (128, 130, 134), (168, 34, 30), (214, 104, 28), (222, 184, 40), (78, 102, 52), (40, 72, 150), (98, 52, 130), (214, 116, 150)]
+    d = ImageDraw.Draw(img)
+    x0, y0 = 1080, 230
+    d.text((x0, y0 - 46), "10 colores", font=font(F_BOLD, 30), fill=BONE)
+    for k, c in enumerate(cols):
+        r, cc = divmod(k, 2)
+        d.rounded_rectangle((x0 + cc * 220, y0 + r * 92, x0 + cc * 220 + 200, y0 + r * 92 + 76), radius=10, fill=c + (255,), outline=(220, 220, 220, 120))
+    d.text((x0, y0 + 5 * 92 + 10), "Rasca la pintura para volver", font=font(F_BODY, 24), fill=GREY)
+    d.text((x0, y0 + 5 * 92 + 40), "al acabado original", font=font(F_BODY, 24), fill=GREY)
+    footer(img, d, ["Bases, cabezales y piernas", "Gasta un uso del bote", "La pintura gastada muestra el desgaste", "Se ve en multijugador"], w, h)
+    img.convert("RGB").save(os.path.join(OUT, "card_paint.png")); print("card_paint.png")
+
+def make_workbench_card(w=1600, h=900):
+    img = background(w, h, 919).convert("RGBA")
+    d = card_header(img, "BANCO DE PRÓTESIS", "Un mueble que fabricas y colocas: monta, combina y pinta tus prótesis a su lado")
+    paste_render(img, "prop_bench", (30, 190, 560, h - 110))
+    ui = Image.open(os.path.join(HERE, "out", "preview", "workbench_mockup%s.png" % ("_en" if LANG == "en" else ""))).convert("RGBA")
+    ui = ui.crop((50, 50, ui.width - 50, ui.height - 50))
+    s = min(980 / ui.width, 600 / ui.height); ui = ui.resize((int(ui.width * s), int(ui.height * s)), Image.LANCZOS)
+    img.alpha_composite(shadowed(ui), (580 + 10, 200 + 18)); img.alpha_composite(ui, (580, 200))
+    d = ImageDraw.Draw(img)
+    footer(img, d, ["Carpintería 3: tablones, clavos, chapa y tornillos", "Modelo 3D de verdad", "Vista 3D de tu personaje",
+                    "Estadísticas y comparación", "Botón para pintar"], w, h)
+    img.convert("RGB").save(os.path.join(OUT, "card_workbench.png")); print("card_workbench.png")
+
 def make_poster(size=512):
     img = Image.open(os.path.join(OUT, "preview.png")).convert("RGB").resize((size, size), Image.LANCZOS)
     img.save(os.path.join(OUT, "poster.png")); print("poster.png")
@@ -475,12 +584,14 @@ def make_poster(size=512):
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     make_hero(); make_preview()
-    make_card("legs", ["legs_peg", "legs_mech", "legs_medical"], "PRÓTESIS DE PIERNA", "Pata de palo · Pierna mecánica · Pierna médica — por nivel de amputación: pie, pantorrilla o muslo",
-              ["Encajes a la medida del muñón", "Rodilla articulada en las de muslo", "Caben bajo el pantalón", "Se desgastan y se reparan"],
+    make_card("legs", ["legs_peg", "legs_mech", "legs_medical", "legs_cyber"], "PRÓTESIS DE PIERNA", "Pata de palo · Mecánica · Médica · Cibernética — pie, pantorrilla o muslo",
+              ["Encajes a la medida del muñón", "Rodilla articulada en las de muslo", "Caben bajo el pantalón", "Se desgastan y se reparan", "Se pintan en el banco"],
               blood_before=[(120, 800, 90, 0), (1380, 780, 70, 0)], vignette=50)
-    make_card("arms", ["arms_peg", "arms_hook", "arms_mech", "arms_medical"], "PRÓTESIS DE BRAZO", "Madera · Gancho · Mecánico · Médico — sin mano, sin antebrazo o sin brazo entero",
-              ["Cada tier con sus limitaciones", "Gancho: nada que exija dedos", "Mecánico y médico: armas a dos manos", "Por encima del codo: bisagra de codo"])
+    make_card("arms", ["arms_peg", "arms_hook", "arms_mech", "arms_medical", "arms_cyber"], "PRÓTESIS DE BRAZO", "Madera · Chatarra · Mecánica · Médica · Cibernética — sin mano, sin antebrazo o sin brazo entero",
+              ["Base + cabezal intercambiable", "Gancho: nada que exija dedos", "Manos: armas a dos manos", "Por encima del codo: bisagra de codo"])
+    make_modular_card(); make_cyber_card(); make_paint_card(); make_workbench_card()
     make_chainsaw_card()
+    make_bayonet_card()
     make_findyou_card()
     make_card("surgery", ["stumps", "bonesaw", "crutch"], "CIRUGÍA DE CAMPO", "Prepara, incide, sierra, sutura y venda — con riesgo real, gritos y desmayos",
               ["Ventana de cura e infección visible", "Sepsis y convalecencia", "Sierra de hueso y kit quirúrgico", "Muleta o arrastre sin piernas"],

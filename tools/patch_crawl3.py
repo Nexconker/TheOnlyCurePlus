@@ -1,7 +1,7 @@
 """Arrastre en TODOS los estados de pie (giros, strafe, empujones) + andar con muleta cojeando.
 Reescribe todos los nodos A_TOC_* (sustituye a patch_crawl2.py)."""
 import os, sys, glob
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 LUA = os.path.join(MOD, "lua")
 CRAWL = ["TOC_Crawl"] + ["TOC_Crawl%d" % i for i in range(2, 8)]
 CRUTCH = ["TOC_Crutch%d" % i for i in range(1, 8)]

@@ -191,6 +191,265 @@ module TOC
 		Fixer = Base.DuctTape=2,
 		Fixer = Base.LeatherStrips=2,
 	}
+	fixing Fix TOC Prost_BaseWood_L
+	{
+		Require = TOC.Prost_BaseWood_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_BaseWood_R
+	{
+		Require = TOC.Prost_BaseWood_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_BaseWoodWrist_L
+	{
+		Require = TOC.Prost_BaseWoodWrist_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_BaseWoodWrist_R
+	{
+		Require = TOC.Prost_BaseWoodWrist_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_BaseWoodUpper_L
+	{
+		Require = TOC.Prost_BaseWoodUpper_L,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_BaseWoodUpper_R
+	{
+		Require = TOC.Prost_BaseWoodUpper_R,
+		Fixer = Base.Woodglue=2; Woodwork=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_BaseScrap_L
+	{
+		Require = TOC.Prost_BaseScrap_L,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_BaseScrap_R
+	{
+		Require = TOC.Prost_BaseScrap_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_BaseScrapWrist_L
+	{
+		Require = TOC.Prost_BaseScrapWrist_L,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_BaseScrapWrist_R
+	{
+		Require = TOC.Prost_BaseScrapWrist_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_BaseScrapUpper_L
+	{
+		Require = TOC.Prost_BaseScrapUpper_L,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_BaseScrapUpper_R
+	{
+		Require = TOC.Prost_BaseScrapUpper_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+		Fixer = Base.LeatherStrips=2,
+	}
+	fixing Fix TOC Prost_BaseMech_L
+	{
+		Require = TOC.Prost_BaseMech_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMech_R
+	{
+		Require = TOC.Prost_BaseMech_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMechWrist_L
+	{
+		Require = TOC.Prost_BaseMechWrist_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMechWrist_R
+	{
+		Require = TOC.Prost_BaseMechWrist_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMechUpper_L
+	{
+		Require = TOC.Prost_BaseMechUpper_L,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMechUpper_R
+	{
+		Require = TOC.Prost_BaseMechUpper_R,
+		Fixer = Base.WeldingRods=2; MetalWelding=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMed_L
+	{
+		Require = TOC.Prost_BaseMed_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMed_R
+	{
+		Require = TOC.Prost_BaseMed_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMedWrist_L
+	{
+		Require = TOC.Prost_BaseMedWrist_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMedWrist_R
+	{
+		Require = TOC.Prost_BaseMedWrist_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMedUpper_L
+	{
+		Require = TOC.Prost_BaseMedUpper_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseMedUpper_R
+	{
+		Require = TOC.Prost_BaseMedUpper_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_BaseCyber_L
+	{
+		Require = TOC.Prost_BaseCyber_L,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_BaseCyber_R
+	{
+		Require = TOC.Prost_BaseCyber_R,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_BaseCyberWrist_L
+	{
+		Require = TOC.Prost_BaseCyberWrist_L,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_BaseCyberWrist_R
+	{
+		Require = TOC.Prost_BaseCyberWrist_R,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_BaseCyberUpper_L
+	{
+		Require = TOC.Prost_BaseCyberUpper_L,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_BaseCyberUpper_R
+	{
+		Require = TOC.Prost_BaseCyberUpper_R,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_HeadKnob_L
+	{
+		Require = TOC.Prost_HeadKnob_L,
+		Fixer = Base.Woodglue=1; Woodwork=1,
+		Fixer = Base.DuctTape=1,
+	}
+	fixing Fix TOC Prost_HeadKnob_R
+	{
+		Require = TOC.Prost_HeadKnob_R,
+		Fixer = Base.Woodglue=1; Woodwork=1,
+		Fixer = Base.DuctTape=1,
+	}
+	fixing Fix TOC Prost_HeadHook_L
+	{
+		Require = TOC.Prost_HeadHook_L,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_HeadHook_R
+	{
+		Require = TOC.Prost_HeadHook_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+	}
+	fixing Fix TOC Prost_HeadMechHand_L
+	{
+		Require = TOC.Prost_HeadMechHand_L,
+		Fixer = Base.Screws=4; Mechanics=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_HeadMechHand_R
+	{
+		Require = TOC.Prost_HeadMechHand_R,
+		Fixer = Base.Screws=4; Mechanics=3,
+		Fixer = Base.DuctTape=3,
+	}
+	fixing Fix TOC Prost_HeadMedHand_L
+	{
+		Require = TOC.Prost_HeadMedHand_L,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_HeadMedHand_R
+	{
+		Require = TOC.Prost_HeadMedHand_R,
+		Fixer = Base.DuctTape=3; Mechanics=3,
+		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_HeadCyberHand_L
+	{
+		Require = TOC.Prost_HeadCyberHand_L,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.ElectricWire=2; Electricity=4,
+	}
+	fixing Fix TOC Prost_HeadCyberHand_R
+	{
+		Require = TOC.Prost_HeadCyberHand_R,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.ElectricWire=2; Electricity=4,
+	}
+	fixing Fix TOC Prost_HeadChainsaw_R
+	{
+		Require = TOC.Prost_HeadChainsaw_R,
+		Fixer = Base.EngineParts=2; Mechanics=3,
+		Fixer = Base.WeldingRods=2; MetalWelding=4,
+		Fixer = Base.DuctTape=4,
+	}
+	fixing Fix TOC Prost_HeadBayonet_R
+	{
+		Require = TOC.Prost_HeadBayonet_R,
+		Fixer = Base.WeldingRods=1; MetalWelding=2,
+		Fixer = Base.DuctTape=2,
+	}
 	fixing Fix TOC Prost_PegLeg_L
 	{
 		Require = TOC.Prost_PegLeg_L,
@@ -298,6 +557,42 @@ module TOC
 		Require = TOC.Prost_MedicalLegThigh_R,
 		Fixer = Base.DuctTape=3; Mechanics=3,
 		Fixer = Base.Screws=4; Mechanics=2,
+	}
+	fixing Fix TOC Prost_CyberLeg_L
+	{
+		Require = TOC.Prost_CyberLeg_L,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_CyberLeg_R
+	{
+		Require = TOC.Prost_CyberLeg_R,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_CyberLegAnkle_L
+	{
+		Require = TOC.Prost_CyberLegAnkle_L,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_CyberLegAnkle_R
+	{
+		Require = TOC.Prost_CyberLegAnkle_R,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_CyberLegThigh_L
+	{
+		Require = TOC.Prost_CyberLegThigh_L,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
+	}
+	fixing Fix TOC Prost_CyberLegThigh_R
+	{
+		Require = TOC.Prost_CyberLegThigh_R,
+		Fixer = Base.ElectronicsScrap=3; Electricity=5,
+		Fixer = Base.WeldingRods=2; MetalWelding=5,
 	}
 	fixing Fix TOC Crutch
 	{

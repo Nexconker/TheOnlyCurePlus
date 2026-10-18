@@ -6,5 +6,7 @@
     "Tooltip_Surgery_LimbNotFree": "Você precisa remover a prótese primeiro",
     "Tooltip_TOC_NoData": "Dados médicos ainda não carregados",
     "Tooltip_TOC_CantSelfHigh": "Você não consegue se cortar tão alto. Outra pessoa precisa fazer isso.",
-    "Tooltip_TOC_NeedDoctor": "Requer Primeiros Socorros nível %1 ou o Guia de Amputação de Campo"
+    "Tooltip_TOC_NeedDoctor": "Requer Primeiros Socorros nível %1 ou o Guia de Amputação de Campo",
+    "Tooltip_TOC_NeedBrush": "Precisa de um pincel.",
+    "Tooltip_TOC_NeedBench": "Fique ao lado de uma bancada de próteses (receita de Carpintaria)."
 }

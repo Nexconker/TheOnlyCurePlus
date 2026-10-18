@@ -1,0 +1,290 @@
+{
+ "ItemName.json": {
+  "TOC.Prost_BaseWood_L": [
+   "Wooden Prosthesis Base",
+   "Base de prótesis de madera"
+  ],
+  "TOC.Prost_BaseScrap_L": [
+   "Scrap Prosthesis Base",
+   "Base de prótesis de chatarra"
+  ],
+  "TOC.Prost_BaseMech_L": [
+   "Mechanical Prosthesis Frame",
+   "Armazón de prótesis mecánico"
+  ],
+  "TOC.Prost_BaseMed_L": [
+   "Medical Prosthesis Base",
+   "Base de prótesis médica"
+  ],
+  "TOC.Prost_HeadKnob_L": [
+   "Wooden Knob Attachment",
+   "Cabezal: pomo de madera"
+  ],
+  "TOC.Prost_HeadHook_L": [
+   "Hook Attachment",
+   "Cabezal: gancho"
+  ],
+  "TOC.Prost_HeadMechHand_L": [
+   "Mechanical Hand Attachment",
+   "Cabezal: mano mecánica"
+  ],
+  "TOC.Prost_HeadMedHand_L": [
+   "Medical Hand Attachment",
+   "Cabezal: mano médica"
+  ],
+  "TOC.Prost_HeadChainsaw_R": [
+   "Chainsaw Attachment",
+   "Cabezal: motosierra"
+  ],
+  "TOC.Prost_HeadBayonet_R": [
+   "Bayonet Attachment",
+   "Cabezal: bayoneta"
+  ],
+  "TOC.Prost_BaseCyber_L": [
+   "Cybernetic Prosthesis Frame",
+   "Armazón de prótesis cibernético"
+  ],
+  "TOC.Prost_HeadCyberHand_L": [
+   "Cybernetic Hand Attachment",
+   "Cabezal: mano cibernética"
+  ],
+  "TOC.Prost_CyberLeg_L": [
+   "Cybernetic Leg",
+   "Pierna cibernética"
+  ],
+  "TOC.ProsthesisWorkbench": [
+   "Prosthesis Workbench",
+   "Banco de prótesis"
+  ]
+ },
+ "Recipes.json": {
+  "Recipe_Craft_Prosthetic_BaseWood": [
+   "Make Wooden Prosthesis Base",
+   "Hacer base de prótesis de madera"
+  ],
+  "Recipe_Craft_Prosthetic_HeadKnob": [
+   "Carve Wooden Knob Attachment",
+   "Tallar cabezal de pomo de madera"
+  ],
+  "Recipe_Craft_Prosthetic_BaseScrap": [
+   "Make Scrap Prosthesis Base",
+   "Hacer base de prótesis de chatarra"
+  ],
+  "Recipe_Craft_Prosthetic_HeadHook": [
+   "Make Hook Attachment",
+   "Hacer cabezal de gancho"
+  ],
+  "Recipe_Craft_Prosthetic_BaseMech": [
+   "Build Mechanical Prosthesis Frame",
+   "Montar armazón de prótesis mecánico"
+  ],
+  "Recipe_Craft_Prosthetic_HeadMechHand": [
+   "Build Mechanical Hand Attachment",
+   "Montar cabezal de mano mecánica"
+  ],
+  "Recipe_Craft_Prosthetic_HeadChainsaw": [
+   "Build Chainsaw Attachment",
+   "Montar cabezal de motosierra"
+  ],
+  "Recipe_Craft_Prosthetic_HeadBayonet": [
+   "Make Bayonet Attachment",
+   "Hacer cabezal de bayoneta"
+  ],
+  "Recipe_Craft_Prosthetic_BaseCyber": [
+   "Build Cybernetic Prosthesis Frame",
+   "Montar armazón de prótesis cibernético"
+  ],
+  "Recipe_Craft_Prosthetic_HeadCyberHand": [
+   "Build Cybernetic Hand Attachment",
+   "Montar cabezal de mano cibernética"
+  ],
+  "Recipe_Craft_Prosthetic_CyberLeg": [
+   "Build Cybernetic Leg",
+   "Montar pierna cibernética"
+  ],
+  "Recipe_Build_TOC_ProsthesisWorkbench": [
+   "Build Prosthesis Workbench",
+   "Construir banco de prótesis"
+  ]
+ },
+ "IG_UI.json": {
+  "IGUI_TOC_HeadNeedsBase": [
+   "Fit a prosthesis base on that arm first.",
+   "Primero ponte una base de prótesis en ese brazo."
+  ],
+  "IGUI_TOC_HeadWrongSide": [
+   "This attachment only fits the right arm.",
+   "Este cabezal sólo va en el brazo derecho."
+  ],
+  "IGUI_TOC_HeadNeedsMetal": [
+   "Needs a metal base (scrap, mechanical or cybernetic).",
+   "Necesita una base de metal (chatarra, mecánica o cibernética)."
+  ],
+  "IGUI_TOC_ProsthesesConverted": [
+   "Your prosthesis now comes apart into a base and an attachment.",
+   "Tu prótesis ahora se separa en base y cabezal."
+  ],
+  "IGUI_TOC_WB_Title": [
+   "Prosthesis Workbench",
+   "Banco de prótesis"
+  ],
+  "IGUI_TOC_WB_Bases": [
+   "Bases",
+   "Bases"
+  ],
+  "IGUI_TOC_WB_Heads": [
+   "Attachments",
+   "Cabezales"
+  ],
+  "IGUI_TOC_WB_FitBase": [
+   "Fit base",
+   "Poner base"
+  ],
+  "IGUI_TOC_WB_MountHead": [
+   "Mount attachment",
+   "Montar cabezal"
+  ],
+  "IGUI_TOC_WB_Remove": [
+   "Take off",
+   "Quitar"
+  ],
+  "IGUI_TOC_WB_Left": [
+   "left",
+   "izquierda"
+  ],
+  "IGUI_TOC_WB_Right": [
+   "right",
+   "derecha"
+  ],
+  "IGUI_TOC_WB_None": [
+   "nothing",
+   "nada"
+  ],
+  "IGUI_TOC_WB_Stats": [
+   "Stats",
+   "Estadísticas"
+  ],
+  "IGUI_TOC_WB_Preview": [
+   "Selected",
+   "Selección"
+  ],
+  "IGUI_TOC_WB_Grip": [
+   "Can hold items",
+   "Puede sujetar objetos"
+  ],
+  "IGUI_TOC_WB_NoGrip": [
+   "Cannot hold items",
+   "No puede sujetar objetos"
+  ],
+  "IGUI_TOC_WB_TwoHanded": [
+   "Two-handed weapons: yes",
+   "Armas a dos manos: sí"
+  ],
+  "IGUI_TOC_WB_OneHanded": [
+   "Two-handed weapons: no",
+   "Armas a dos manos: no"
+  ],
+  "IGUI_TOC_WB_Combat": [
+   "Combat speed: %1",
+   "Velocidad de combate: %1"
+  ],
+  "IGUI_TOC_WB_Speed": [
+   "Action bonus: %1",
+   "Bonificación en acciones: %1"
+  ],
+  "IGUI_TOC_WB_Wear": [
+   "Wear per action: %1",
+   "Desgaste por acción: %1"
+  ],
+  "IGUI_TOC_WB_RightOnly": [
+   "Right arm only",
+   "Sólo brazo derecho"
+  ],
+  "IGUI_TOC_HeadNeedsAdvancedBase": [
+   "Needs a mechanical, medical or cybernetic base.",
+   "Necesita una base mecánica, médica o cibernética."
+  ],
+  "IGUI_TOC_HeadNotOnWood": [
+   "Doesn't fit a wooden base.",
+   "No se puede montar en una base de madera."
+  ],
+  "IGUI_TOC_WB_LGrip": [
+   "Grip",
+   "Agarre"
+  ],
+  "IGUI_TOC_WB_LTwoHanded": [
+   "Two-handed",
+   "A dos manos"
+  ],
+  "IGUI_TOC_WB_LCombat": [
+   "Combat speed",
+   "Combate"
+  ],
+  "IGUI_TOC_WB_LSpeed": [
+   "Action bonus",
+   "Acciones"
+  ],
+  "IGUI_TOC_WB_LWear": [
+   "Wear",
+   "Desgaste"
+  ],
+  "IGUI_TOC_WB_NoHead": [
+   "no attachment",
+   "sin cabezal"
+  ],
+  "IGUI_TOC_WB_ArmRight": [
+   "Right arm",
+   "Brazo derecho"
+  ],
+  "IGUI_TOC_WB_ArmLeft": [
+   "Left arm",
+   "Brazo izquierdo"
+  ],
+  "IGUI_TOC_WB_Legs": [
+   "Legs",
+   "Piernas"
+  ],
+  "IGUI_TOC_NoHeadCantHold": [
+   "I need something to hold it with.",
+   "Me falta algo con qué sujetarlo."
+  ]
+ },
+ "ContextMenu.json": {
+  "ContextMenu_TOC_Workbench": [
+   "Prosthesis workbench",
+   "Banco de prótesis"
+  ],
+  "ContextMenu_TOC_Paint": [
+   "Paint",
+   "Pintar"
+  ],
+  "ContextMenu_TOC_StripPaint": [
+   "Scrape off the paint",
+   "Rascar la pintura"
+  ],
+  "ContextMenu_TOC_NoPaint": [
+   "No paint",
+   "Sin pintura"
+  ]
+ },
+ "Tooltip.json": {
+  "Tooltip_TOC_NeedBrush": [
+   "Needs a paintbrush.",
+   "Hace falta un pincel."
+  ],
+  "Tooltip_TOC_NeedBench": [
+   "Stand next to a prosthesis workbench (Carpentry recipe).",
+   "Ponte junto a un banco de prótesis (receta de Carpintería)."
+  ]
+ },
+ "Moveables.json": {
+  "Prosthesis_Workbench": [
+   "Prosthesis Workbench",
+   "Banco de prótesis"
+  ],
+  "TOC_Prosthesis_Workbench": [
+   "Prosthesis Workbench",
+   "Banco de prótesis"
+  ]
+ }
+}

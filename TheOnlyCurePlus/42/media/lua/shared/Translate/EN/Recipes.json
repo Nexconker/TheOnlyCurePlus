@@ -12,5 +12,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Make Arm Tourniquet from a Belt",
     "Recipe_Craft_Tourniquet_Leg": "Make Improvised Leg Tourniquet",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Make Leg Tourniquet from a Belt",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Build Bayonet Arm"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Build Bayonet Arm",
+    "Recipe_Craft_Prosthetic_BaseWood": "Make Wooden Prosthesis Base",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Carve Wooden Knob Attachment",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Make Scrap Prosthesis Base",
+    "Recipe_Craft_Prosthetic_HeadHook": "Make Hook Attachment",
+    "Recipe_Craft_Prosthetic_BaseMech": "Build Mechanical Prosthesis Frame",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Build Mechanical Hand Attachment",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Build Chainsaw Attachment",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Make Bayonet Attachment",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Build Cybernetic Prosthesis Frame",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Build Cybernetic Hand Attachment",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Build Cybernetic Leg",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Build Prosthesis Workbench"
 }

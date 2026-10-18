@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Kemerden kol turnikesi yap",
     "Recipe_Craft_Tourniquet_Leg": "Doğaçlama bacak turnikesi yap",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Kemerden bacak turnikesi yap",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Süngü kol yap"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Süngü kol yap",
+    "Recipe_Craft_Prosthetic_BaseWood": "Tahta Protez Tabanı Yap",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Tahta Topuz Ucu Yont",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Hurda Protez Tabanı Yap",
+    "Recipe_Craft_Prosthetic_HeadHook": "Kanca Ucu Yap",
+    "Recipe_Craft_Prosthetic_BaseMech": "Mekanik Protez İskeleti Yap",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Mekanik El Ucu Yap",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Testere Ucu Yap",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Süngü Ucu Yap",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Sibernetik protez iskeleti yap",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Sibernetik el ucu yap",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Sibernetik bacak yap",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Protez tezgâhı yap"
 }

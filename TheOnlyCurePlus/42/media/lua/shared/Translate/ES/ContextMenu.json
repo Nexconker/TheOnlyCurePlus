@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Tirar del arrancador",
     "ContextMenu_TOC_SawStop": "Apagar el motor",
     "ContextMenu_TOC_SawRefuel": "Echar gasolina de %1",
-    "ContextMenu_TOC_SawNoPetrol": "Echar gasolina (no llevas gasolina)"
+    "ContextMenu_TOC_SawNoPetrol": "Echar gasolina (no llevas gasolina)",
+    "ContextMenu_TOC_Workbench": "Banco de prótesis",
+    "ContextMenu_TOC_Paint": "Pintar",
+    "ContextMenu_TOC_StripPaint": "Rascar la pintura",
+    "ContextMenu_TOC_NoPaint": "Sin pintura"
 }

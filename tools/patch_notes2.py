@@ -7,7 +7,7 @@ D. Al amputar con el kit quirúrgico se muestra la sierra de hueso en la mano, n
 """
 import os, sys, glob
 HERE = os.path.dirname(os.path.abspath(__file__))
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 LUA = os.path.join(MOD, "lua")
 
 def patch(path, pairs, must=True):

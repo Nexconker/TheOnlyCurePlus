@@ -104,6 +104,74 @@ module Base
 		mesh = Prosthesis/knifeArm_Ground,
 		texture = Prosthesis/knifeArm,
 	}
+    /* 3.3 modular: piezas en el suelo */
+    model prostheticBaseWood
+	{
+		mesh = Prosthesis/baseWood_Ground,
+		texture = Prosthesis/pegArm,
+	}
+    model prostheticBaseScrap
+	{
+		mesh = Prosthesis/baseScrap_Ground,
+		texture = Prosthesis/knifeArm,
+	}
+    model prostheticBaseMech
+	{
+		mesh = Prosthesis/baseMech_Ground,
+		texture = Prosthesis/normalArm,
+	}
+    model prostheticBaseMed
+	{
+		mesh = Prosthesis/baseMed_Ground,
+		texture = Prosthesis/medicalArm,
+	}
+    model prostheticHeadKnob
+	{
+		mesh = Prosthesis/headKnob_Ground,
+		texture = Prosthesis/pegArm,
+	}
+    model prostheticHeadHook
+	{
+		mesh = Prosthesis/headHook_Ground,
+		texture = Prosthesis/hookArm,
+	}
+    model prostheticHeadMechHand
+	{
+		mesh = Prosthesis/headMechHand_Ground,
+		texture = Prosthesis/normalArm,
+	}
+    model prostheticHeadMedHand
+	{
+		mesh = Prosthesis/headMedHand_Ground,
+		texture = Prosthesis/medicalArm,
+	}
+    model prostheticHeadChainsaw
+	{
+		mesh = Prosthesis/headChainsaw_Ground,
+		texture = Prosthesis/chainsawArm,
+	}
+    model prostheticHeadBayonet
+	{
+		mesh = Prosthesis/headBayonet_Ground,
+		texture = Prosthesis/knifeArm,
+	}
+    /* 3.3 modular: piezas en el suelo */
+    model prostheticBaseCyber
+	{
+		mesh = Prosthesis/baseCyber_Ground,
+		texture = Prosthesis/cyberArm,
+	}
+    model prostheticHeadCyberHand
+	{
+		mesh = Prosthesis/headCyberHand_Ground,
+		texture = Prosthesis/cyberArm,
+	}
+    /* 3.3 modular: piezas en el suelo */
+    model prostheticLegCyber
+	{
+		mesh = Prosthesis/cyberLeg_Ground,
+		texture = Prosthesis/cyberArm,
+	}
     model TOC_Invisible
 	{
 		mesh = Weapons/TOC_Invisible,

@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Am Starterseil ziehen",
     "ContextMenu_TOC_SawStop": "Motor abstellen",
     "ContextMenu_TOC_SawRefuel": "Aus %1 nachtanken",
-    "ContextMenu_TOC_SawNoPetrol": "Nachtanken (kein Benzin im Inventar)"
+    "ContextMenu_TOC_SawNoPetrol": "Nachtanken (kein Benzin im Inventar)",
+    "ContextMenu_TOC_Workbench": "Prothesenwerkbank",
+    "ContextMenu_TOC_Paint": "Lackieren",
+    "ContextMenu_TOC_StripPaint": "Lack abkratzen",
+    "ContextMenu_TOC_NoPaint": "Keine Farbe"
 }

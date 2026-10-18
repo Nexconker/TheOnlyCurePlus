@@ -3,7 +3,7 @@ opción de sandbox para ocultar los rasgos de amputado. Se escriben DIRECTAMENTE
 existía y merge_translations no pisa textos existentes). Uso: python add_312_texts.py [PTBR]"""
 import os, sys, json
 HERE = os.path.dirname(os.path.abspath(__file__))
-T_DIR = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media\lua\shared\Translate"
+T_DIR = os.path.join(os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"), "lua", "shared", "Translate")
 KEYS = {
  "Recipes.json": ["Recipe_Craft_Tourniquet_Arm", "Recipe_Craft_Tourniquet_Arm_Belt", "Recipe_Craft_Tourniquet_Leg", "Recipe_Craft_Tourniquet_Leg_Belt"],
  "IG_UI.json": ["IGUI_TOC_SW_Missing_Tourniquet"],

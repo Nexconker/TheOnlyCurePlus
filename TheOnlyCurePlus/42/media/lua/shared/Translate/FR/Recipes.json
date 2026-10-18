@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Fabriquer un garrot de bras avec une ceinture",
     "Recipe_Craft_Tourniquet_Leg": "Fabriquer un garrot de jambe improvisé",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Fabriquer un garrot de jambe avec une ceinture",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Fabriquer un bras-baïonnette"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Fabriquer un bras-baïonnette",
+    "Recipe_Craft_Prosthetic_BaseWood": "Fabriquer une base de prothèse en bois",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Sculpter un embout pommeau en bois",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Fabriquer une base de prothèse en ferraille",
+    "Recipe_Craft_Prosthetic_HeadHook": "Fabriquer un embout crochet",
+    "Recipe_Craft_Prosthetic_BaseMech": "Fabriquer une armature de prothèse mécanique",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Fabriquer un embout main mécanique",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Fabriquer un embout tronçonneuse",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Fabriquer un embout baïonnette",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Monter une armature de prothèse cybernétique",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Monter un embout main cybernétique",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Monter une jambe cybernétique",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Construire un établi à prothèses"
 }

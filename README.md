@@ -2,8 +2,10 @@
 
 A Build 42 fork of ZioPao's **The Only Cure** for Project Zomboid: staged field surgery with real risk,
 a visible infection window, sepsis and convalescence, prostheses that fit the stump and wear out (hands that close
-when gripping), one-handed actions done with the hand you have left, leg amputations with crutches and crawling, an
-Ash-style chainsaw arm, a Merle-style bayonet arm, crawler zombies and severed limbs as items.
+when gripping), modular arm prostheses (5 bases and 7 swappable attachments, up to a cybernetic tier), a craftable
+prosthesis workbench to fit and paint them, one-handed actions done with the hand you have left, leg amputations with
+crutches and crawling, chainsaw and bayonet attachments, crawler zombies and severed limbs as items.
+Other mods can add their own bases and attachments: see [API_MODULAR.md](API_MODULAR.md).
 
 - **Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=3818733381
 - **Workshop ID:** `3818733381`

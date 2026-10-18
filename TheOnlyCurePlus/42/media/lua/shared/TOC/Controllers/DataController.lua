@@ -201,6 +201,8 @@ function DataController:setIsProstEquipped(group, isProstEquipped) self:prost(gr
 function DataController:setProstFactor(group, prostFactor) self:prost(group).prostFactor = prostFactor end
 function DataController:setProstType(group, prostType) self:prost(group).prostType = prostType end
 function DataController:setProstWear(group, wear) self:prost(group).wear = math.max(0, wear or 0) end
+-- 3.3: cabezal de la prótesis modular puesto en ese grupo (fullType) o nil
+function DataController:setProstHead(group, headType) self:prost(group).headType = headType end
 
 ---@return plusDataType
 function DataController:plus()
@@ -306,6 +308,15 @@ function DataController:getProstType(group)
     if not self.isDataReady or not self.tocData then return nil end
     local p = self.tocData.prostheses[group]
     if p and p.isProstEquipped then return p.prostType end
+    return nil
+end
+
+---@param group string
+---@return string? fullType del cabezal modular puesto (3.3)
+function DataController:getProstHead(group)
+    if not self.isDataReady or not self.tocData then return nil end
+    local p = self.tocData.prostheses[group]
+    if p and p.isProstEquipped then return p.headType end
     return nil
 end
 

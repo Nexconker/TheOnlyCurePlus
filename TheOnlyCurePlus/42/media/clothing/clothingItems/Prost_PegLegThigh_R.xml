@@ -10,4 +10,14 @@
     <m_AllowRandomTint>false</m_AllowRandomTint>
     <m_MasksFolder>none</m_MasksFolder>
     <textureChoices>Prosthesis\pegLeg</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_black</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_white</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_grey</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_red</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_orange</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_yellow</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_green</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_blue</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_purple</textureChoices>
+    <textureChoices>Prosthesis\Paint\pegLeg_pink</textureChoices>
 </clothingItem>

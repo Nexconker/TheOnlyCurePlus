@@ -58,6 +58,7 @@ CommandsData.server = {
         RequestSanitizeCutLimb = "RequestSanitizeCutLimb",                 ---@alias requestSanitizeCutLimbParams {limbName : string}
 
         --* PROSTHESES *--
+        RelayProsthesisHead = "RelayProsthesisHead",                     ---@alias relayProsthesisHeadParams {group : string, headType : string?} (3.3)
         RelayProsthesisState = "RelayProsthesisState",                   ---@alias relayProsthesisStateParams {group : string, isEquipped : boolean, prostType : string?}
         RelayProsthesisWear = "RelayProsthesisWear",                     ---@alias relayProsthesisWearParams {group : string, wear : number}
 

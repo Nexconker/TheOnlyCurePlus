@@ -6,5 +6,7 @@
     "Tooltip_Surgery_LimbNotFree": "Musisz najpierw usunąć protezę",
     "Tooltip_TOC_NoData": "Dane medyczne nie są jeszcze wczytane",
     "Tooltip_TOC_CantSelfHigh": "Nie przetniesz sobie kończyny tak wysoko. Musi to zrobić ktoś inny.",
-    "Tooltip_TOC_NeedDoctor": "Wymaga pierwszej pomocy na poziomie %1 lub Poradnika amputacji polowej"
+    "Tooltip_TOC_NeedDoctor": "Wymaga pierwszej pomocy na poziomie %1 lub Poradnika amputacji polowej",
+    "Tooltip_TOC_NeedBrush": "Potrzebny pędzel.",
+    "Tooltip_TOC_NeedBench": "Stań przy stole do protez (przepis stolarski)."
 }

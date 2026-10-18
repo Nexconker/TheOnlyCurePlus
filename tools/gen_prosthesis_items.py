@@ -2,7 +2,7 @@
 a ItemName.json (EN/ES). Las variantes comparten nombre, icono, modelo de suelo y estadísticas: sólo
 cambia el modelo vestido. El juego las intercambia solo al ponérselas (ProsthesisHandler.FitToStump)."""
 import os, sys, json, re
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 
 ARM_LEVELS = ["", "Wrist", "Upper"]       # antebrazo (base), mano, brazo (por encima del codo, 3.1.0)
 LEG_LEVELS = ["", "Ankle", "Thigh"]       # pantorrilla (base), pie, muslo
@@ -24,10 +24,14 @@ LEGS = {
     "MechLeg":    ("MechLeg",    "prostheticLegMech",    dict(Weight="3.0", RunSpeedModifier="0.95", ConditionMax=30, ConditionLowerChanceOneIn=40, BloodLocation="LowerLegs")),
     "MedicalLeg": ("MedicalLeg", "prostheticLegMedical", dict(Weight="1.8", RunSpeedModifier="1.0",  ConditionMax=40, ConditionLowerChanceOneIn=60, BloodLocation="LowerLegs")),
 }
+# 3.3 gama cyber: sólo en el mod de desarrollo (MODULAR=1), como las piezas modulares
+if os.environ.get("MODULAR") == "1":
+    # corre un 10 % más que una pierna sana (2026-10-17, pedido): la única prótesis que mejora la velocidad
+    LEGS["CyberLeg"] = ("CyberLeg", "prostheticLegCyber", dict(Weight="2.2", RunSpeedModifier="1.1", ConditionMax=60, ConditionLowerChanceOneIn=90, BloodLocation="LowerLegs"))
 OTHER = {"L": "R", "R": "L"}
 
 def block(name, side, group, icon, ground, st, one_side=False):
-    bl = ("toc:armprost_" if group == "arm" else "toc:legprost_") + side.lower()
+    bl = {"arm": "toc:armprost_", "leg": "toc:legprost_", "head": "toc:armhead_"}[group] + side.lower()
     L = ["\titem %s_%s" % (name, side), "\t{",
          "\t\tItemType = base:clothing,", "\t\tDisplayCategory = Prosthesis,",
          "\t\tClothingItem = %s_%s," % (name, side)]
@@ -56,6 +60,38 @@ for tier, (icon, ground, st) in ARMS.items():
         for side in sides:
             out.append(block("Prost_" + tier.replace("Arm", "Arm" + lvl), side, "arm", icon, ground, st, one_side=len(sides) == 1)); out.append("")
             names.append(("TOC.Prost_%s_%s" % (tier.replace("Arm", "Arm" + lvl), side), "TOC.Prost_%s_%s" % (tier, side)))
+# 3.3 modular (DISENO_3.3_MODULAR.md): sólo con MODULAR=1 en el entorno (el mod de desarrollo); el mod base no los lleva.
+# Bases: por nivel, como los brazos; cabezales: un ítem por lado en toc:armhead_X (motosierra y bayoneta sólo derechas).
+MODULAR = os.environ.get("MODULAR") == "1"
+BASES = {
+    "BaseWood":  ("BaseWood",  "prostheticBaseWood",  dict(Weight="0.8", CombatSpeedModifier="0.85", ConditionMax=15, ConditionLowerChanceOneIn=20, BloodLocation="UpperArms;LowerArms")),
+    "BaseScrap": ("BaseScrap", "prostheticBaseScrap", dict(Weight="1.3", CombatSpeedModifier="0.92", ConditionMax=22, ConditionLowerChanceOneIn=30, BloodLocation="UpperArms;UpperBody")),
+    "BaseMech":  ("BaseMech",  "prostheticBaseMech",  dict(Weight="1.6", CombatSpeedModifier="0.97", ConditionMax=30, ConditionLowerChanceOneIn=40, BloodLocation="UpperArms;UpperBody")),
+    "BaseMed":   ("BaseMed",   "prostheticBaseMed",   dict(Weight="1.0", CombatSpeedModifier="1.0",  ConditionMax=40, ConditionLowerChanceOneIn=60, BloodLocation="UpperArms;UpperBody")),
+    "BaseCyber": ("BaseCyber", "prostheticBaseCyber", dict(Weight="1.2", CombatSpeedModifier="1.0",  ConditionMax=60, ConditionLowerChanceOneIn=90, BloodLocation="UpperArms;UpperBody")),
+}
+HEADS = {
+    "HeadKnob":     ("HeadKnob",     "prostheticHeadKnob",     dict(Weight="0.3", ConditionMax=15, ConditionLowerChanceOneIn=20, BloodLocation="LowerArms")),
+    "HeadHook":     ("HeadHook",     "prostheticHeadHook",     dict(Weight="0.4", ConditionMax=25, ConditionLowerChanceOneIn=30, BloodLocation="LowerArms")),
+    "HeadMechHand": ("HeadMechHand", "prostheticHeadMechHand", dict(Weight="0.5", ConditionMax=30, ConditionLowerChanceOneIn=40, BloodLocation="LowerArms")),
+    "HeadMedHand":  ("HeadMedHand",  "prostheticHeadMedHand",  dict(Weight="0.3", ConditionMax=40, ConditionLowerChanceOneIn=60, BloodLocation="LowerArms")),
+    "HeadCyberHand": ("HeadCyberHand", "prostheticHeadCyberHand", dict(Weight="0.4", ConditionMax=60, ConditionLowerChanceOneIn=90, BloodLocation="LowerArms")),
+    "HeadChainsaw": ("HeadChainsaw", "prostheticHeadChainsaw", dict(Weight="3.0", ConditionMax=30, ConditionLowerChanceOneIn=40, BloodLocation="LowerArms")),
+    "HeadBayonet":  ("HeadBayonet",  "prostheticHeadBayonet",  dict(Weight="0.5", ConditionMax=25, ConditionLowerChanceOneIn=35, BloodLocation="LowerArms")),
+}
+HEAD_SIDES = {"HeadChainsaw": ("R",), "HeadBayonet": ("R",)}
+if MODULAR:
+    for tier, (icon, ground, st) in BASES.items():
+        for lvl in ARM_LEVELS:
+            for side in ("L", "R"):
+                nm = "Prost_%s%s" % (tier, lvl)
+                out.append(block(nm, side, "arm", icon, ground, st)); out.append("")
+                names.append(("TOC.%s_%s" % (nm, side), "TOC.Prost_%s_%s" % (tier, side)))
+    for tier, (icon, ground, st) in HEADS.items():
+        sides = HEAD_SIDES.get(tier, ("L", "R"))
+        for side in sides:
+            out.append(block("Prost_" + tier, side, "head", icon, ground, st, one_side=len(sides) == 1)); out.append("")
+            names.append(("TOC.Prost_%s_%s" % (tier, side), "TOC.Prost_%s_%s" % (tier, side)))
 for tier, (icon, ground, st) in LEGS.items():
     for lvl in LEG_LEVELS:
         for side in ("L", "R"):
@@ -82,7 +118,17 @@ FIX = {"PegArm": ["Base.Woodglue=2; Woodwork=2", "Base.DuctTape=2"], "PegLeg": [
        "MechLeg": ["Base.WeldingRods=2; MetalWelding=3", "Base.DuctTape=3"],
        "ChainsawArm": ["Base.EngineParts=2; Mechanics=3", "Base.WeldingRods=2; MetalWelding=4", "Base.DuctTape=4"],
        "KnifeArm": ["Base.WeldingRods=1; MetalWelding=2", "Base.DuctTape=2", "Base.LeatherStrips=2"],
-       "MedicalArm": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"], "MedicalLeg": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"]}
+       "MedicalArm": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"], "MedicalLeg": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"],
+       # 3.3 modular
+       "BaseWood": ["Base.Woodglue=2; Woodwork=2", "Base.DuctTape=2"], "BaseScrap": ["Base.WeldingRods=1; MetalWelding=2", "Base.DuctTape=2", "Base.LeatherStrips=2"],
+       "BaseMech": ["Base.WeldingRods=2; MetalWelding=3", "Base.Screws=4; Mechanics=2"], "BaseMed": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"],
+       "HeadKnob": ["Base.Woodglue=1; Woodwork=1", "Base.DuctTape=1"], "HeadHook": ["Base.WeldingRods=1; MetalWelding=2", "Base.DuctTape=2"],
+       "HeadMechHand": ["Base.Screws=4; Mechanics=3", "Base.DuctTape=3"], "HeadMedHand": ["Base.DuctTape=3; Mechanics=3", "Base.Screws=4; Mechanics=2"],
+       "HeadChainsaw": ["Base.EngineParts=2; Mechanics=3", "Base.WeldingRods=2; MetalWelding=4", "Base.DuctTape=4"],
+       "HeadBayonet": ["Base.WeldingRods=1; MetalWelding=2", "Base.DuctTape=2"],
+       "BaseCyber": ["Base.ElectronicsScrap=3; Electricity=5", "Base.WeldingRods=2; MetalWelding=5"],
+       "CyberLeg": ["Base.ElectronicsScrap=3; Electricity=5", "Base.WeldingRods=2; MetalWelding=5"],
+       "HeadCyberHand": ["Base.ElectronicsScrap=3; Electricity=5", "Base.ElectricWire=2; Electricity=4"]}
 fx = ["module TOC", "{", "	imports", "	{", "		Base", "	}", "	/* Reparación de prótesis (TOC+): madera con cola o cinta; metal con varillas de soldar o cinta; médicas con mecánica. Generado por tools/gen_prosthesis_items.py */"]
 for full, base in names:
     tier = base.split("Prost_")[1].rsplit("_", 1)[0]

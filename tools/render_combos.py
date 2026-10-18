@@ -10,7 +10,7 @@ import pzx, fbx_min
 import build_assets as BA
 from render_icons import load_x, rot, smooth_normals
 
-MOD = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 PZ = r"D:\SteamLibrary\steamapps\common\ProjectZomboid\media"
 OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "preview")
 SIZE = int(sys.argv[sys.argv.index("--size") + 1]) if "--size" in sys.argv else 220

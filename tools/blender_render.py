@@ -176,7 +176,8 @@ _tomb_jobs = json.load(open(_tj)) if os.path.exists(_tj) else {}
 for _n, _j in _tomb_jobs.items():
     _scene, _az, _focus = _j[:3]; _zoom = _j[3] if len(_j) > 3 else 2.4; _elev = _j[4] if len(_j) > 4 else 12
     JOBS[_n] = ([(_scene, 0, 0)], _elev, _az, _zoom, tuple(_focus))
-CULL = set(_tomb_jobs) | {"seam_fa_f", "seam_fa_m", "seam_ua_f", "seam_hand_f", "seam_body_f", "seam_fa_f_back", "seam_fa_m_back", "seam_ua_f_back",
+# un sexto elemento "nocull" en tomb_jobs.json: sin culling (ropa vanilla, que el juego dibuja con su propio orden de caras)
+CULL = {n for n, j in _tomb_jobs.items() if not (len(j) > 5 and j[5] == "nocull")} | {"seam_fa_f", "seam_fa_m", "seam_ua_f", "seam_hand_f", "seam_body_f", "seam_fa_f_back", "seam_fa_m_back", "seam_ua_f_back",
         "seam_hand_f_back", "seam_body_f_back", "seam_hand_f_wrist", "seam_leg_f",
         "stump_hand", "stump_fa", "stump_ua", "stump_fa_mech", "stump_ua_f",
         "stump_hand_back", "stump_fa_back", "stump_ua_back", "stump_fa_mech_back", "stump_ua_f_back",

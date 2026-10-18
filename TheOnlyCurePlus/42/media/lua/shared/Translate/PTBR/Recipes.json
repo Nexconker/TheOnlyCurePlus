@@ -12,5 +12,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Fazer torniquete para braço com um cinto",
     "Recipe_Craft_Tourniquet_Leg": "Fazer torniquete improvisado para perna",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Fazer torniquete para perna com um cinto",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Montar braço-baioneta"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Montar braço-baioneta",
+    "Recipe_Craft_Prosthetic_BaseWood": "Fazer Base de Prótese de Madeira",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Entalhar Ponteira de Pomo de Madeira",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Fazer Base de Prótese de Sucata",
+    "Recipe_Craft_Prosthetic_HeadHook": "Fazer Ponteira de Gancho",
+    "Recipe_Craft_Prosthetic_BaseMech": "Montar Estrutura de Prótese Mecânica",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Montar Ponteira de Mão Mecânica",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Montar Ponteira de Motosserra",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Fazer Ponteira de Baioneta",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Montar estrutura de prótese cibernética",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Montar acessório de mão cibernética",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Montar perna cibernética",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Construir bancada de próteses"
 }

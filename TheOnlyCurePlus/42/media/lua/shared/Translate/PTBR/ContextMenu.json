@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Puxar a corda de partida",
     "ContextMenu_TOC_SawStop": "Desligar o motor",
     "ContextMenu_TOC_SawRefuel": "Reabastecer com %1",
-    "ContextMenu_TOC_SawNoPetrol": "Reabastecer (sem gasolina no inventário)"
+    "ContextMenu_TOC_SawNoPetrol": "Reabastecer (sem gasolina no inventário)",
+    "ContextMenu_TOC_Workbench": "Bancada de próteses",
+    "ContextMenu_TOC_Paint": "Pintar",
+    "ContextMenu_TOC_StripPaint": "Raspar a tinta",
+    "ContextMenu_TOC_NoPaint": "Sem tinta"
 }

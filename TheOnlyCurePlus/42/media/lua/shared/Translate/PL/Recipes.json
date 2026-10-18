@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Zrób opaskę uciskową na rękę z paska",
     "Recipe_Craft_Tourniquet_Leg": "Zrób prowizoryczną opaskę uciskową na nogę",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Zrób opaskę uciskową na nogę z paska",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Zrób ramię z bagnetem"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Zrób ramię z bagnetem",
+    "Recipe_Craft_Prosthetic_BaseWood": "Zrób drewnianą podstawę protezy",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Wyrzeźbij końcówkę: drewniana gałka",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Zrób podstawę protezy ze złomu",
+    "Recipe_Craft_Prosthetic_HeadHook": "Zrób końcówkę: hak",
+    "Recipe_Craft_Prosthetic_BaseMech": "Zbuduj mechaniczny stelaż protezy",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Zbuduj końcówkę: mechaniczna dłoń",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Zbuduj końcówkę: piła łańcuchowa",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Zrób końcówkę: bagnet",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Zbuduj cybernetyczny szkielet protezy",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Zbuduj końcówkę: cybernetyczna dłoń",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Zbuduj cybernetyczną nogę",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Zbuduj stół do protez"
 }

@@ -6,15 +6,24 @@ module TOC
 	}
 
 	/************* Prosthetic arms *******************/
-	craftRecipe Craft_Prosthetic_PegArm
+
+	/* Ash-style chainsaw arm (right arm only: the game's chainsaw animations are right-handed).
+	   Engine parts = the motor, a hand saw gives up its teeth for the chain. Starts with an empty tank. */
+
+	/* Merle-style bayonet arm (TOC+ 3.2.0, right arm only: attacks are made with the main hand). Scrap metal for the
+	   sleeve, a knife for the blade, leather straps and duct tape: a makeshift job. */
+
+	/************* 3.3: prótesis de brazo modulares (base + cabezal) *******************/
+	/* 3.3 modular: base de madera (encaje de cuero y carcasa de madera) */
+	craftRecipe Craft_Prosthetic_BaseWood
 	{
 		timedAction = Making,
-		Time = 200,
+		Time = 160,
 		Tags = InHandCraft,
 		category = Carpentry,
 		NeedToBeLearn = false,
 		SkillRequired = Woodwork:2,
-		xpAward = Woodwork:20,
+		xpAward = Woodwork:15,
 		inputs
 		{
 			item 2 [Base.Plank],
@@ -25,100 +34,43 @@ module TOC
 		}
 		outputs
 		{
-			item 1 TOC.Prost_PegArm_L,
+			item 1 TOC.Prost_BaseWood_L,
 		}
 	}
 
-	craftRecipe Craft_Prosthetic_Hook
+	/* cabezal: pomo de madera */
+	craftRecipe Craft_Prosthetic_HeadKnob
 	{
-		timedAction = BuildMetalStructureSmall,
-		Time = 100,
+		timedAction = Making,
+		Time = 60,
 		Tags = InHandCraft,
-		category = Metalworking,
+		category = Carpentry,
 		NeedToBeLearn = false,
-		SkillRequired = MetalWelding:2,
-		xpAward = MetalWelding:30,
+		SkillRequired = Woodwork:1,
+		xpAward = Woodwork:5,
 		inputs
 		{
-			item 2 [Base.MetalPipe],
 			item 1 [Base.Plank],
-			item 4 [Base.BlowTorch] flags[DontRecordInput],
-			item 2 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
 		}
 		outputs
 		{
-			item 1 TOC.Prost_HookArm_L,
+			item 1 TOC.Prost_HeadKnob_L,
 		}
 	}
 
-	craftRecipe Craft_Prosthetic_Arm
+	/* base de chatarra (brazal de cuero y carcasa de chapa) */
+	craftRecipe Craft_Prosthetic_BaseScrap
 	{
 		timedAction = BuildMetalStructureSmall,
-		Time = 150,
-		Tags = InHandCraft,
-		category = Metalworking,
-		NeedToBeLearn = false,
-		SkillRequired = MetalWelding:4,
-		xpAward = MetalWelding:50,
-		inputs
-		{
-			item 4 [Base.MetalPipe],
-			item 2 [Base.Plank],
-			item 4 [Base.Screws],
-			item 4 [Base.BlowTorch] flags[DontRecordInput],
-			item 4 [Base.WeldingRods] flags[DontRecordInput],
-		}
-		outputs
-		{
-			item 1 TOC.Prost_NormalArm_L,
-		}
-	}
-
-	/* Ash-style chainsaw arm (right arm only: the game's chainsaw animations are right-handed).
-	   Engine parts = the motor, a hand saw gives up its teeth for the chain. Starts with an empty tank. */
-	craftRecipe Craft_Prosthetic_ChainsawArm
-	{
-		timedAction = Welding,
-		Time = 400,
-		Tags = InHandCraft;Welding,
-		category = Metalworking,
-		NeedToBeLearn = false,
-		SkillRequired = MetalWelding:5;Mechanics:4,
-		xpAward = MetalWelding:60;Mechanics:40,
-		inputs
-		{
-			item 4 [Base.EngineParts],
-			item 2 [Base.SmallSheetMetal],
-			item 1 [Base.MetalPipe],
-			item 6 [Base.Screws],
-			item 1 [Base.Saw;Base.GardenSaw;Base.SmallSaw;Base.CrudeSaw],
-			item 2 [Base.LeatherStrips;Base.LeatherStripsDirty],
-			item 4 [Base.BlowTorch] flags[DontRecordInput],
-			item 3 [Base.WeldingRods] flags[DontRecordInput],
-			item 1 tags[base:weldingmask] mode:keep,
-			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
-			item 1 tags[base:wrench] mode:keep flags[MayDegradeLight],
-		}
-		outputs
-		{
-			item 1 TOC.Prost_ChainsawArm_R,
-		}
-	}
-
-	/* Merle-style bayonet arm (TOC+ 3.2.0, right arm only: attacks are made with the main hand). Scrap metal for the
-	   sleeve, a knife for the blade, leather straps and duct tape: a makeshift job. */
-	craftRecipe Craft_Prosthetic_KnifeArm
-	{
-		timedAction = BuildMetalStructureSmall,
-		Time = 180,
+		Time = 140,
 		Tags = InHandCraft,
 		category = Metalworking,
 		NeedToBeLearn = false,
 		SkillRequired = MetalWelding:2,
-		xpAward = MetalWelding:30,
+		xpAward = MetalWelding:20,
 		inputs
 		{
-			item 1 [Base.HuntingKnife;Base.KitchenKnife;Base.FlintKnife;Base.KnifeButterfly;Base.LargeKnife],
 			item 1 [Base.SmallSheetMetal;Base.ScrapMetal;Base.SheetMetal],
 			item 3 [Base.LeatherStrips;Base.LeatherStripsDirty],
 			item 2 [Base.DuctTape],
@@ -128,7 +80,220 @@ module TOC
 		}
 		outputs
 		{
-			item 1 TOC.Prost_KnifeArm_R,
+			item 1 TOC.Prost_BaseScrap_L,
+		}
+	}
+
+	/* cabezal: gancho */
+	craftRecipe Craft_Prosthetic_HeadHook
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 80,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:2,
+		xpAward = MetalWelding:15,
+		inputs
+		{
+			item 1 [Base.MetalPipe],
+			item 2 [Base.BlowTorch] flags[DontRecordInput],
+			item 1 [Base.WeldingRods] flags[DontRecordInput],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_HeadHook_L,
+		}
+	}
+
+	/* base mecánica: armazón hueco con pistón */
+	craftRecipe Craft_Prosthetic_BaseMech
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 200,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:4,
+		xpAward = MetalWelding:40,
+		inputs
+		{
+			item 3 [Base.MetalPipe],
+			item 1 [Base.SmallSheetMetal;Base.SheetMetal],
+			item 4 [Base.Screws],
+			item 3 [Base.BlowTorch] flags[DontRecordInput],
+			item 3 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_BaseMech_L,
+		}
+	}
+
+	/* cabezal: mano mecánica (se cierra al agarrar) */
+	craftRecipe Craft_Prosthetic_HeadMechHand
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 160,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:4;Mechanics:2,
+		xpAward = MetalWelding:25;Mechanics:15,
+		inputs
+		{
+			item 1 [Base.MetalPipe],
+			item 1 [Base.SmallSheetMetal;Base.SheetMetal],
+			item 6 [Base.Screws],
+			item 1 [Base.BlowTorch] flags[DontRecordInput],
+			item 1 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_HeadMechHand_L,
+		}
+	}
+
+	/* cabezal: motosierra estilo Ash (sólo derecho, pide base de metal; sale con el depósito vacío) */
+	craftRecipe Craft_Prosthetic_HeadChainsaw
+	{
+		timedAction = Welding,
+		Time = 360,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:5;Mechanics:4,
+		xpAward = MetalWelding:50;Mechanics:40,
+		inputs
+		{
+			item 4 [Base.EngineParts],
+			item 2 [Base.SmallSheetMetal],
+			item 1 [Base.MetalPipe],
+			item 6 [Base.Screws],
+			item 1 [Base.Saw;Base.GardenSaw;Base.SmallSaw;Base.CrudeSaw],
+			item 4 [Base.BlowTorch] flags[DontRecordInput],
+			item 3 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:weldingmask] mode:keep,
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:wrench] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_HeadChainsaw_R,
+		}
+	}
+
+	/* cabezal: bayoneta estilo Merle (sólo derecho) */
+	craftRecipe Craft_Prosthetic_HeadBayonet
+	{
+		timedAction = BuildMetalStructureSmall,
+		Time = 90,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:2,
+		xpAward = MetalWelding:15,
+		inputs
+		{
+			item 1 [Base.HuntingKnife;Base.KitchenKnife;Base.FlintKnife;Base.KnifeButterfly;Base.LargeKnife],
+			item 1 [Base.ScrapMetal;Base.SmallSheetMetal],
+			item 1 [Base.DuctTape],
+			item 1 [Base.BlowTorch] flags[DontRecordInput],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_HeadBayonet_R,
+		}
+	}
+
+	/* gama cyber: base de placas blindadas con músculos de cable (tier 5) */
+	craftRecipe Craft_Prosthetic_BaseCyber
+	{
+		timedAction = Welding,
+		Time = 600,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:7;Electricity:6;Mechanics:5,
+		xpAward = MetalWelding:60;Electricity:60;Mechanics:40,
+		inputs
+		{
+			item 2 [Base.SheetMetal],
+			item 2 [Base.Aluminum],
+			item 1 [Base.CarBatteryCharger],
+			item 1 [Base.Amplifier],
+			item 6 [Base.ElectronicsScrap],
+			item 4 [Base.ElectricWire],
+			item 10 [Base.Screws],
+			item 5 [Base.BlowTorch] flags[DontRecordInput],
+			item 4 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:weldingmask] mode:keep,
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_BaseCyber_L,
+		}
+	}
+
+	/* gama cyber: mano de dedos articulados por segmentos */
+	craftRecipe Craft_Prosthetic_HeadCyberHand
+	{
+		timedAction = MakingElectrical,
+		Time = 480,
+		Tags = InHandCraft,
+		category = Electrical,
+		NeedToBeLearn = false,
+		SkillRequired = Electricity:7;Mechanics:6;MetalWelding:4,
+		xpAward = Electricity:60;Mechanics:50,
+		inputs
+		{
+			item 1 [Base.MotionSensor],
+			item 1 [Base.Pager;Base.Calculator;Base.Remote;Base.RemoteCraftedV3],
+			item 1 [Base.Aluminum],
+			item 5 [Base.ElectronicsScrap],
+			item 3 [Base.ElectricWire],
+			item 12 [Base.Screws],
+			item 2 [Base.BlowTorch] flags[DontRecordInput],
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_HeadCyberHand_L,
+		}
+	}
+
+	/* gama cyber: pierna blindada con actuadores en rodilla y tobillo (tier 5, no modular) */
+	craftRecipe Craft_Prosthetic_CyberLeg
+	{
+		timedAction = Welding,
+		Time = 660,
+		Tags = InHandCraft,
+		category = Metalworking,
+		NeedToBeLearn = false,
+		SkillRequired = MetalWelding:7;Electricity:6;Mechanics:6,
+		xpAward = MetalWelding:60;Electricity:60;Mechanics:50,
+		inputs
+		{
+			item 3 [Base.SheetMetal],
+			item 2 [Base.Aluminum],
+			item 1 [Base.CarBatteryCharger],
+			item 1 [Base.MotionSensor],
+			item 8 [Base.ElectronicsScrap],
+			item 5 [Base.ElectricWire],
+			item 14 [Base.Screws],
+			item 6 [Base.BlowTorch] flags[DontRecordInput],
+			item 5 [Base.WeldingRods] flags[DontRecordInput],
+			item 1 tags[base:weldingmask] mode:keep,
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:wrench] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 1 TOC.Prost_CyberLeg_L,
 		}
 	}
 

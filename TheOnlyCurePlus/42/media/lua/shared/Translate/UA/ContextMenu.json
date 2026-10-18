@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Смикнути шнур стартера",
     "ContextMenu_TOC_SawStop": "Заглушити двигун",
     "ContextMenu_TOC_SawRefuel": "Заправити з: %1",
-    "ContextMenu_TOC_SawNoPetrol": "Заправити (немає бензину в інвентарі)"
+    "ContextMenu_TOC_SawNoPetrol": "Заправити (немає бензину в інвентарі)",
+    "ContextMenu_TOC_Workbench": "Верстат протезів",
+    "ContextMenu_TOC_Paint": "Пофарбувати",
+    "ContextMenu_TOC_StripPaint": "Зішкребти фарбу",
+    "ContextMenu_TOC_NoPaint": "Немає фарби"
 }

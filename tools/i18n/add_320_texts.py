@@ -3,7 +3,7 @@ variantes por nivel (…Wrist_R, …Upper_R) las rellena gen_prosthesis_items.py
 Uso: python add_320_texts.py"""
 import os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
-T_DIR = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media\lua\shared\Translate"
+T_DIR = os.path.join(os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"), "lua", "shared", "Translate")
 KEYS = {
  "ItemName.json": ["TOC.Prost_KnifeArm_R", "TOC.MountedBlade"],
  "Recipes.json": ["Recipe_Craft_Prosthetic_KnifeArm"],

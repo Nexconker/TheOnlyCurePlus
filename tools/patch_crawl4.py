@@ -1,6 +1,6 @@
 """Arrastre también al apuntar, golpear, empujar, pisotear y disparar (estados aim*, melee, shove*, stomp, ranged)."""
 import os, sys
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 CRAWL = ["TOC_Crawl"] + ["TOC_Crawl%d" % i for i in range(2, 8)]
 
 def conds():

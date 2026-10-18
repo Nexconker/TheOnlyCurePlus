@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Tirer le lanceur",
     "ContextMenu_TOC_SawStop": "Couper le moteur",
     "ContextMenu_TOC_SawRefuel": "Faire le plein avec %1",
-    "ContextMenu_TOC_SawNoPetrol": "Faire le plein (pas d'essence dans l'inventaire)"
+    "ContextMenu_TOC_SawNoPetrol": "Faire le plein (pas d'essence dans l'inventaire)",
+    "ContextMenu_TOC_Workbench": "Établi de prothèses",
+    "ContextMenu_TOC_Paint": "Peindre",
+    "ContextMenu_TOC_StripPaint": "Gratter la peinture",
+    "ContextMenu_TOC_NoPaint": "Pas de peinture"
 }

@@ -13,7 +13,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 PZ = r"D:\SteamLibrary\steamapps\common\ProjectZomboid\media"
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 TOC_UP = r"C:\Users\nexco\CODING PARCHEO\TOCPlus\upstream_2.4.0\42\media"
 
 BODY = {"Male": os.path.join(PZ, r"models_X\Skinned\MaleBody.X"), "Female": os.path.join(PZ, r"models_X\Skinned\FemaleBody.X")}

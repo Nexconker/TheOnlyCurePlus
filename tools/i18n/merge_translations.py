@@ -6,7 +6,7 @@ Uso: python merge_translations.py [LANG ...]   (sin argumentos: todos los presen
 import os, sys, json, re, glob
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-T = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media\lua\shared\Translate"
+T = os.path.join(os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"), "lua", "shared", "Translate")
 src = json.load(open(os.path.join(HERE, "source_EN.json"), encoding="utf-8"))
 load = lambda p: json.loads(open(p, encoding="utf-8-sig").read()) if os.path.exists(p) else {}
 en = {os.path.basename(f): load(f) for f in glob.glob(os.path.join(T, "EN", "*.json"))}

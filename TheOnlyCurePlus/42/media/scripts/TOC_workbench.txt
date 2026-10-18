@@ -1,0 +1,53 @@
+module TOC
+{
+	imports
+	{
+		Base
+	}
+
+	/* TOC+ 3.3: mesa del banco de prótesis. Mueble propio: tile TOCPlus_bench_0..3 (S, E, N, W) en
+	   texturepacks/TOCPlus_bench.pack + TOCPlus_bench.tiles, y su modelo 3D en spriteModels.txt. Se fabrica como objeto
+	   (moveable) y se coloca desde el inventario; el banco de prótesis sólo se abre a su lado. tools/make_workbench_*.py */
+
+	model ProsthesisWorkbench_World
+	{
+		mesh = Furniture/TOCWorkbench,
+		texture = Furniture/TOCWorkbench,
+		undoCoreScale = true,
+	}
+
+	item ProsthesisWorkbench
+	{
+		DisplayCategory = Furniture,
+		ItemType = base:moveable,
+		Weight = 25,
+		Icon = ProsthesisWorkbench,
+		WorldObjectSprite = TOCPlus_bench_0,
+		WorldStaticModel = ProsthesisWorkbench_World,
+	}
+
+	craftRecipe Build_TOC_ProsthesisWorkbench
+	{
+		timedAction = Making,
+		Time = 400,
+		Tags = InHandCraft,
+		category = Carpentry,
+		NeedToBeLearn = false,
+		SkillRequired = Woodwork:3,
+		xpAward = Woodwork:30,
+		inputs
+		{
+			item 8 [Base.Plank],
+			item 20 [Base.Nails],
+			item 1 [Base.SmallSheetMetal;Base.SheetMetal],
+			item 8 [Base.Screws],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:screwdriver] mode:keep flags[MayDegradeVeryLight],
+		}
+		outputs
+		{
+			item 1 TOC.ProsthesisWorkbench,
+		}
+	}
+}

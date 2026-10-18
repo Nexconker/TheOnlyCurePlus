@@ -3,7 +3,7 @@ EN y ES van directos al mod; el resto a tools/i18n/<LANG>.json y luego merge_tra
 Uso: python add_round2_sandbox.py && python merge_translations.py"""
 import os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
-T_DIR = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media\lua\shared\Translate"
+T_DIR = os.path.join(os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"), "lua", "shared", "Translate")
 K = ["Sandbox_TOC_SleepingPillAnesthesia", "Sandbox_TOC_SleepingPillAnesthesia_tooltip",
      "Sandbox_TOC_SelfAmputationHigh", "Sandbox_TOC_SelfAmputationHigh_tooltip"]
 T = {

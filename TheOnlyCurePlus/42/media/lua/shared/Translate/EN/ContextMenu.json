@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Pull the starter cord",
     "ContextMenu_TOC_SawStop": "Stop the engine",
     "ContextMenu_TOC_SawRefuel": "Refuel from %1",
-    "ContextMenu_TOC_SawNoPetrol": "Refuel (no petrol in your inventory)"
+    "ContextMenu_TOC_SawNoPetrol": "Refuel (no petrol in your inventory)",
+    "ContextMenu_TOC_Workbench": "Prosthesis workbench",
+    "ContextMenu_TOC_Paint": "Paint",
+    "ContextMenu_TOC_StripPaint": "Scrape off the paint",
+    "ContextMenu_TOC_NoPaint": "No paint"
 }

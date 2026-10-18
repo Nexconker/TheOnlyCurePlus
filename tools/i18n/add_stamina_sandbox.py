@@ -3,7 +3,7 @@ tras 7-10 pasos con muleta"). EN y ES van directos al mod; el resto a tools/i18n
 Uso: python add_stamina_sandbox.py && python merge_translations.py"""
 import os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
-T_DIR = r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media\lua\shared\Translate"
+T_DIR = os.path.join(os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"), "lua", "shared", "Translate")
 K = ["Sandbox_TOC_CrutchStaminaDrain", "Sandbox_TOC_CrutchStaminaDrain_tooltip",
      "Sandbox_TOC_CrawlStaminaDrain", "Sandbox_TOC_CrawlStaminaDrain_tooltip",
      "Sandbox_TOC_AmputeeTraitStaminaDrain", "Sandbox_TOC_AmputeeTraitStaminaDrain_tooltip"]

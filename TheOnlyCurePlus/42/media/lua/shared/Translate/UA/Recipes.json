@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Зробити джгут для руки з ременя",
     "Recipe_Craft_Tourniquet_Leg": "Зробити саморобний джгут для ноги",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Зробити джгут для ноги з ременя",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Зробити руку-багнет"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Зробити руку-багнет",
+    "Recipe_Craft_Prosthetic_BaseWood": "Створити Дерев'яну Основу Протеза",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Вирізьбити Насадку: Дерев'яне Навершя",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Створити Основу Протеза з Брухту",
+    "Recipe_Craft_Prosthetic_HeadHook": "Створити Насадку: Гак",
+    "Recipe_Craft_Prosthetic_BaseMech": "Зібрати Механічний Каркас Протеза",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Зібрати Насадку: Механічна Кисть",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Зібрати Насадку: Бензопила",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Створити Насадку: Багнет",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Зібрати кібернетичний каркас протеза",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Зібрати насадку: кібернетична кисть",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Зібрати кібернетичну ногу",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Зібрати верстат для протезів"
 }

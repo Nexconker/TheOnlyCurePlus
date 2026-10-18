@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Crea laccio emostatico per braccio con una cintura",
     "Recipe_Craft_Tourniquet_Leg": "Crea laccio emostatico improvvisato per gamba",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Crea laccio emostatico per gamba con una cintura",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Costruisci braccio a baionetta"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Costruisci braccio a baionetta",
+    "Recipe_Craft_Prosthetic_BaseWood": "Costruisci base prostetica di legno",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Intaglia terminale pomello di legno",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Costruisci base prostetica di rottami",
+    "Recipe_Craft_Prosthetic_HeadHook": "Costruisci terminale a uncino",
+    "Recipe_Craft_Prosthetic_BaseMech": "Costruisci telaio prostetico meccanico",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Costruisci terminale mano meccanica",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Costruisci terminale motosega",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Costruisci terminale a baionetta",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Costruisci telaio protesico cibernetico",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Costruisci attacco mano cibernetica",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Costruisci gamba cibernetica",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Costruisci banco per protesi"
 }

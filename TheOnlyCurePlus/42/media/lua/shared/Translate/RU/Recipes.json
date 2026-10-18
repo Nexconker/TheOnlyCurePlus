@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Сделать жгут для руки из ремня",
     "Recipe_Craft_Tourniquet_Leg": "Сделать самодельный жгут для ноги",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Сделать жгут для ноги из ремня",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Сделать руку-штык"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Сделать руку-штык",
+    "Recipe_Craft_Prosthetic_BaseWood": "Изготовить деревянную основу протеза",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Вырезать насадку: деревянный набалдашник",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Изготовить основу протеза из металлолома",
+    "Recipe_Craft_Prosthetic_HeadHook": "Изготовить насадку: крюк",
+    "Recipe_Craft_Prosthetic_BaseMech": "Собрать механический каркас протеза",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Собрать насадку: механическая кисть",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Собрать насадку: бензопила",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Изготовить насадку: штык",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Собрать кибернетический каркас протеза",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Собрать насадку: кибернетическая кисть",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Собрать кибернетическую ногу",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Собрать верстак для протезов"
 }

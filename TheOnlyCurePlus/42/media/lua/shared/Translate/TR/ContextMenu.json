@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Marş ipini çek",
     "ContextMenu_TOC_SawStop": "Motoru durdur",
     "ContextMenu_TOC_SawRefuel": "Yakıt doldur: %1",
-    "ContextMenu_TOC_SawNoPetrol": "Yakıt doldur (envanterde benzin yok)"
+    "ContextMenu_TOC_SawNoPetrol": "Yakıt doldur (envanterde benzin yok)",
+    "ContextMenu_TOC_Workbench": "Protez tezgâhı",
+    "ContextMenu_TOC_Paint": "Boya",
+    "ContextMenu_TOC_StripPaint": "Boyayı kazı",
+    "ContextMenu_TOC_NoPaint": "Boya yok"
 }

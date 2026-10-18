@@ -27,13 +27,15 @@ shutil.copy(os.path.join(WI, "icon.png"), os.path.join(MOD, "icon.png"))
 INFO = """name=The Only Cure+ (Field Surgery)
 poster=poster.png
 icon=icon.png
-description=Fork of ZioPao's The Only Cure for Build 42. Staged field surgery with real risk, visible infection window and diagnosis, sepsis and convalescence, prosthesis tiers that wear out and fit the stump (foot, calf or thigh; hand, forearm or upper arm), hands that close when gripping, one-handed actions done with the hand you have left, leg amputations with crutches, crawling and above-knee prostheses, an Ash-style chainsaw arm and a Merle-style bayonet arm, crawler zombies, severed limbs as items. Enable only one of The Only Cure / The Only Cure+.
+description=Fork of ZioPao's The Only Cure for Build 42. Staged field surgery with real risk, visible infection window and diagnosis, sepsis and convalescence, prosthesis tiers that wear out and fit the stump (foot, calf or thigh; hand, forearm or upper arm), hands that close when gripping, one-handed actions done with the hand you have left, leg amputations with crutches, crawling and above-knee prostheses, modular arm prostheses (bases + swappable attachments: hands, hook, chainsaw, bayonet) with a cybernetic tier, paintable prostheses at a craftable prosthesis workbench, crawler zombies, severed limbs as items. Enable only one of The Only Cure / The Only Cure+.
 id=TheOnlyCurePlus
 url=https://github.com/Nexconker/TheOnlyCurePlus
-modversion=3.2.0
+modversion=3.3.0
 versionMin=42.20
 loadModAfter=\\FancyHandwork,\\BrutalHandwork,\\TwoWeaponsOnBackRework
 incompatible=\\TheOnlyCure,\\BB_FirstAidOverhaul
+pack=TOCPlus_bench
+tiledef=TOCPlus_bench 7317
 """
 for p in (os.path.join(MOD, "42", "mod.info"), os.path.join(MOD, "mod.info")):
     if os.path.exists(os.path.dirname(p)):
@@ -68,8 +70,9 @@ lines = ["version=1"] + (["id=" + item_id] if item_id else []) + ["title=The Onl
 # entero). El enlace va en la descripción larga, que se pega en la web.
 SHORT = ["Standalone: needs no other mods. Do not enable the original The Only Cure with it.",
          "The Only Cure+ (Field Surgery) for Build 42: staged field surgery, infection and sepsis,",
-         "prostheses that fit the stump and hands that close when gripping, an Ash-style chainsaw arm",
-         "and a Merle-style bayonet arm, legs, crutches and crawling, crawler zombies. SP and MP.",
+         "modular arm prostheses (5 bases, 7 swappable attachments) with a cybernetic tier,",
+         "a craftable prosthesis workbench to fit and paint them, legs, crutches and crawling,",
+         "chainsaw and bayonet attachments, crawler zombies. SP and MP.",
          "Includes an optional add-on for Tomb's Player Body.",
          "Full description, changelog and languages on the Steam page."]
 for ln in SHORT:

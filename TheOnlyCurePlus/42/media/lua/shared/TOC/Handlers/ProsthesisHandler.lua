@@ -142,6 +142,7 @@ function ProsthesisHandler.SearchAndSetupProsthesis(character, item, isEquipping
     local fullType = item:getFullType()
     dcInst:setIsProstEquipped(group, isEquipping)
     dcInst:setProstType(group, isEquipping and fullType or nil)
+    if not isEquipping then dcInst:setProstHead(group, nil) end          -- 3.3: sin base no hay cabezal
 
     if isClient() and character:isLocalPlayer() then
         sendClientCommand(CommandsData.modules.TOC_RELAY, CommandsData.server.Relay.RelayProsthesisState,
@@ -170,7 +171,8 @@ function ProsthesisHandler.GetEquippedTier(username, group)
         end
         return nil
     end
-    return StaticData.GetProsthesisTier(t), t
+    -- 3.3: base modular + cabezal
+    return StaticData.CombineTier(StaticData.GetProsthesisTier(t), dcInst:getProstHead(group)), t
 end
 
 ---Find the worn prosthesis item for a group

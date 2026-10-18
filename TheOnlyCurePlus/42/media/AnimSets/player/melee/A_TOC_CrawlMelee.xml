@@ -52,6 +52,33 @@
 		<m_Time>Start</m_Time>
 		<m_ParameterValue></m_ParameterValue>
 	</m_Events>
+	<!-- 2026-10-17 ("no alcanzo a golpear a los zombies estando en modo crawl"): sin AttackCollisionCheck el juego nunca
+	     comprobaba el golpe. Mismos eventos que el golpe a una mano vanilla (1HDefault.xml). -->
+	<m_Events x_name="toc-ev-attackon">
+		<m_EventName>AttackAnim</m_EventName>
+		<m_Time>Start</m_Time>
+		<m_ParameterValue>TRUE</m_ParameterValue>
+	</m_Events>
+	<m_Events x_name="toc-ev-hit">
+		<m_EventName>AttackCollisionCheck</m_EventName>
+		<m_TimePc>0.35</m_TimePc>
+		<m_ParameterValue>MeleeSwing</m_ParameterValue>
+	</m_Events>
+	<m_Events x_name="toc-ev-attackoff">
+		<m_EventName>AttackAnim</m_EventName>
+		<m_Time>End</m_Time>
+		<m_ParameterValue>FALSE</m_ParameterValue>
+	</m_Events>
+	<m_Events x_name="toc-ev-delay">
+		<m_EventName>SetMeleeDelay</m_EventName>
+		<m_Time>End</m_Time>
+		<m_ParameterValue>12</m_ParameterValue>
+	</m_Events>
+	<m_Events x_name="toc-ev-voice">
+		<m_EventName>PlayerVoiceSound</m_EventName>
+		<m_Time>Start</m_Time>
+		<m_ParameterValue>MeleeAttack</m_ParameterValue>
+	</m_Events>
 	<m_Transitions>
 		<m_Target>A_TOC_CrawlIdle</m_Target>
 		<m_blendInTime>0.3</m_blendInTime>

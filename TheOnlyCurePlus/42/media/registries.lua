@@ -19,6 +19,9 @@ _TOCRegistries.bodylocations = {
     TOC_Arm_R = ItemBodyLocation.register("toc:Arm_R"),
     TOC_ArmProst_L = ItemBodyLocation.register("toc:ArmProst_L"),
     TOC_ArmProst_R = ItemBodyLocation.register("toc:ArmProst_R"),
+    -- TOC+ 3.3: cabezal de la prótesis modular (mano, gancho, motosierra...), encima de la base (toc:ArmProst_X)
+    TOC_ArmHead_L = ItemBodyLocation.register("toc:ArmHead_L"),
+    TOC_ArmHead_R = ItemBodyLocation.register("toc:ArmHead_R"),
     TOC_ArmAccessory_L = ItemBodyLocation.register("toc:ArmAccessory_L"),
     TOC_ArmAccessory_R = ItemBodyLocation.register("toc:ArmAccessory_R"),
     -- TOC+: legs

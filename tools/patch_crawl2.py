@@ -2,7 +2,7 @@
 con 3 gana a Idle con 2; los nodos vanilla llegan a 5). Los nodos de arrastre llevan 7 condiciones sobre
 variables TOC_Crawl1..7 que Lua pone a la vez."""
 import os, sys, glob
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 LUA = os.path.join(MOD, "lua")
 VARS = ["TOC_Crawl"] + ["TOC_Crawl%d" % i for i in range(2, 8)]
 

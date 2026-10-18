@@ -88,7 +88,7 @@ CHECKS = {
     "zombie/characters/WornItems/WornItems": ["size", "get"],
     "zombie/characters/WornItems/WornItem": ["getItem"],
     "zombie/characters/BaseCharacterSoundEmitter": ["isPlaying", "stopSoundByName"],
-    "zombie/inventory/ItemContainer": ["getFirstTypeRecurse", "getFirstEvalRecurse", "containsRecursive", "AddItem", "Remove"],
+    "zombie/inventory/ItemContainer": ["getAllEvalRecurse", "getFirstTypeRecurse", "getFirstEvalRecurse", "containsRecursive", "AddItem", "Remove"],
     "zombie/inventory/InventoryItem#saw": ["getModData", "getID", "setName", "getContainer", "getFluidContainer", "setJobType", "setJobDelta",
                                            "getScriptItem"],
     "zombie/entity/components/fluids/FluidContainer": ["contains", "getAmount", "adjustAmount"],

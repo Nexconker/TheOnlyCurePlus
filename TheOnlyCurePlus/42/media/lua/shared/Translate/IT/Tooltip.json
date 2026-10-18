@@ -6,5 +6,7 @@
     "Tooltip_Surgery_LimbNotFree": "Devi rimuovere la protesi",
     "Tooltip_TOC_NoData": "Dati medici non ancora caricati",
     "Tooltip_TOC_CantSelfHigh": "Non puoi tagliare così in alto su te stesso. Deve farlo qualcun altro.",
-    "Tooltip_TOC_NeedDoctor": "Richiede Pronto Soccorso livello %1 o la Guida all'amputazione da campo"
+    "Tooltip_TOC_NeedDoctor": "Richiede Pronto Soccorso livello %1 o la Guida all'amputazione da campo",
+    "Tooltip_TOC_NeedBrush": "Serve un pennello.",
+    "Tooltip_TOC_NeedBench": "Mettiti accanto a un banco per protesi (ricetta di Falegnameria)."
 }

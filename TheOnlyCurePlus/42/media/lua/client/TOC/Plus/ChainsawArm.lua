@@ -13,6 +13,8 @@ local ChainsawArm = {}
 
 ChainsawArm.WEAPON = "TOC.MountedChainsaw"
 ChainsawArm.BASE = "Prost_ChainsawArm"
+ChainsawArm.HEAD = "Prost_HeadChainsaw"   -- 3.3: cabezal modular (la gasolina va en el cabezal)
+local function IsSawPart(ft) local b = StaticData.GetProsthesisBase(ft); return b == ChainsawArm.BASE or b == ChainsawArm.HEAD end
 ChainsawArm.TANK = 0.5              -- litres
 ChainsawArm.IDLE_DRAIN = 0.004      -- litres per game minute while running: a full tank idles about two game hours
 ChainsawArm.SWING_DRAIN = 0.002     -- litres per swing while running
@@ -52,7 +54,7 @@ function ChainsawArm.GetArm(player)
     if not worn then return nil end
     for i = 0, worn:size() - 1 do
         local item = worn:get(i):getItem()
-        if item and StaticData.GetProsthesisBase(item:getFullType()) == ChainsawArm.BASE then return item end
+        if item and IsSawPart(item:getFullType()) then return item end
     end
     return nil
 end
@@ -256,7 +258,8 @@ local function AddSwingWear(player, arm)
     if cond <= 0 then
         local ProsthesisHandler = require("TOC/Handlers/ProsthesisHandler")
         player:removeWornItem(arm)
-        ProsthesisHandler.SearchAndSetupProsthesis(player, arm, false)
+        local Modular = require("TOC/Plus/ModularProsthesis")
+        if Modular.IsHead(arm) then Modular.SetupHead(player, arm, false) else ProsthesisHandler.SearchAndSetupProsthesis(player, arm, false) end
         player:resetModelNextFrame()
         ChainsawArm.SetRunning(player, false)
         Messages.Say(player, getText("IGUI_TOC_ProsthesisBroke"), true)
@@ -359,7 +362,7 @@ local function OnFillInventoryObjectContextMenu(playerNum, context, items)
     for i = 1, #items do
         local it = items[i]
         if type(it) == "table" and it.items then it = it.items[1] end
-        if it and (ChainsawArm.IsSaw(it) or StaticData.GetProsthesisBase(it:getFullType()) == ChainsawArm.BASE or PetrolPredicate(it)) then relevant = true end
+        if it and (ChainsawArm.IsSaw(it) or IsSawPart(it:getFullType()) or PetrolPredicate(it)) then relevant = true end
     end
     if relevant then pcall(AddMenu, playerNum, context) end
 end

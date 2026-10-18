@@ -31,7 +31,9 @@ function GhostHand.Missing(player)
             end
             local base, side = StaticData.GetProsthesisBase(ft)
             local tier = base and StaticData.PROSTHESIS_TIERS[base]
-            if tier and tier.group == "Top" and not tier.hookLike then grip[side] = true end
+            if tier and tier.group == "Top" and not tier.hookLike and not tier.modular then grip[side] = true end
+            local head = base and StaticData.PROSTHESIS_HEADS and StaticData.PROSTHESIS_HEADS[base]
+            if head and not head.hookLike then grip[side] = true end          -- 3.3: cabezal que agarra (mano)
         end
     end
     local l = not cut.L or grip.L

@@ -1,5 +1,33 @@
 # Changelog
 
+## 3.3.0
+
+- New: modular arm prostheses. An arm prosthesis is now a base (`toc:ArmProst_X`, one model per amputation level) and
+  an attachment (`toc:ArmHead_X`) that can be swapped without taking the base off. 5 bases (wooden, scrap, mechanical
+  frame, medical, cybernetic) and 7 attachments (wooden knob, hook, mechanical, medical and cybernetic hands, chainsaw,
+  bayonet). Stats come from the pair (`StaticData.CombineTier`). Some pairs do not fit: the chainsaw needs a metal base,
+  the mechanical and medical hands do not go on wood, the cybernetic hand needs a tier 3 base or better. A base with no
+  attachment cannot hold anything ("I need something to hold it with"). Worn 3.2 arms convert into the matching base
+  and attachment on first load, keeping their condition.
+- New: cybernetic tier (tier 5): frame, hand and leg in a plated sci-fi style, hard to craft (Welding 7, Electrical
+  6-7, Mechanics 5-6 and rare electronics). The frame gives +1 Strength while worn (`TOC/Plus/CyberStrength.lua`, one
+  point even with two arms, synced with `SyncXp`); the leg has `RunSpeedModifier` 1.1.
+- New: prosthesis workbench (`TOC.ProsthesisWorkbench`, Carpentry 3), placeable furniture with its own tiles
+  (`TOCPlus_bench.pack`, tiledef 7317) and 3D model, plus a Viewpoint model pack (`media/viewpoint/tocplus_bench`). Its
+  window lists bases, attachments and legs, shows the character in 3D and compares stats with icons and bars.
+- New: paint prostheses at the workbench with a vanilla paint can and a paintbrush: 10 colours as clothing texture
+  choices (bases, attachments and legs); scrape to get the original finish back.
+- New: rebuilt peg, mechanical (hollow frame) and medical (thicker fairing) legs; the knee blends with the thigh.
+- New: `TOC_Compat.RegisterBase` / `RegisterHead` for third-party prostheses ([API_MODULAR.md](API_MODULAR.md)).
+- Fixed: prosthetic hands sized to the character's hands, wrists no longer twist in some animations (also with the
+  TombBody add-on), hands no longer curve inwards when gripping.
+- Fixed: attacks while crawling never hit (the animation had no `AttackCollisionCheck`).
+- Fixed: elbow pads, knee pads, watches and other items could be worn on an amputated limb and floated (Build 42 body
+  locations are `base:<id>`; `StaticData.GetAffectedLimb`).
+- Fixed: the wear menu offers only the amputated side when the other limb is intact.
+- Fixed: a worn prosthetic leg whose saved state was lost is registered again instead of forcing you to crawl.
+- TombBody fit add-on 1.1.0: modular arms and the new legs refitted to Tomb's body; female models.
+
 ## 3.2.0
 
 - New: the mechanical and medical hands close when gripping (a Workshop request). The palm follows the hand bone,

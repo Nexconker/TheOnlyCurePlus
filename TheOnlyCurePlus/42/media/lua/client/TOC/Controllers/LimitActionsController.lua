@@ -17,11 +17,16 @@ end
 ---A hook-like prosthesis on either hand?
 ---@param player IsoPlayer
 ---@return boolean
+---@return boolean, string? clave del mensaje (gancho de verdad, o base modular sin cabezal)
 local function HasHookLike(player)
     local ProsthesisHandler = require("TOC/Handlers/ProsthesisHandler")
     for _, side in ipairs(StaticData.SIDES_STR) do
         local tier = ProsthesisHandler.GetEquippedTier(player:getUsername(), "Top_" .. side)
-        if tier and tier.hookLike then return true end
+        if tier and tier.hookLike then
+            -- 3.3: una base sin cabezal no es un gancho, es que no hay nada con qué sujetar
+            if tier.modular and not tier.head then return true, "IGUI_TOC_NoHeadCantHold" end
+            return true, "IGUI_TOC_HookCantHold"
+        end
     end
     return false
 end
@@ -50,7 +55,7 @@ function LimitActionsController.WrapClothingAction(obj, wrappedFunc, item)
     local isEquippable = wrappedFunc(obj)
     if not isEquippable or not item then return isEquippable end
     local itemBodyLoc = item:getBodyLocation()
-    local limbToCheck = StaticData.AFFECTED_BODYLOCS_TO_LIMBS_IND_STR[itemBodyLoc]
+    local limbToCheck = StaticData.GetAffectedLimb(itemBodyLoc)            -- antes se buscaba con el objeto y nunca coincidía
     if limbToCheck and not LimitActionsController.CheckLimbFeasibility(limbToCheck) then return false end
     return isEquippable
 end
@@ -78,8 +83,9 @@ function ISEquipWeaponAction:isValid()
             Messages.Say(self.character, getText("IGUI_TOC_NeedBothHands"), true)
             return false
         end
-        if HasHookLike(self.character) then
-            Messages.Say(self.character, getText("IGUI_TOC_HookCantHold"), true)
+        local hooked, why = HasHookLike(self.character)
+        if hooked then
+            Messages.Say(self.character, getText(why or "IGUI_TOC_HookCantHold"), true)
             return false
         end
     end

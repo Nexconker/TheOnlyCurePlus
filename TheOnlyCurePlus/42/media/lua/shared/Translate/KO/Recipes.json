@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "벨트로 팔 지혈대 만들기",
     "Recipe_Craft_Tourniquet_Leg": "임시 다리 지혈대 만들기",
     "Recipe_Craft_Tourniquet_Leg_Belt": "벨트로 다리 지혈대 만들기",
-    "Recipe_Craft_Prosthetic_KnifeArm": "총검 팔 만들기"
+    "Recipe_Craft_Prosthetic_KnifeArm": "총검 팔 만들기",
+    "Recipe_Craft_Prosthetic_BaseWood": "나무 의수 베이스 제작",
+    "Recipe_Craft_Prosthetic_HeadKnob": "나무 손잡이 부착물 깎기",
+    "Recipe_Craft_Prosthetic_BaseScrap": "고철 의수 베이스 제작",
+    "Recipe_Craft_Prosthetic_HeadHook": "후크 부착물 제작",
+    "Recipe_Craft_Prosthetic_BaseMech": "기계식 의수 프레임 조립",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "기계식 손 부착물 조립",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "전기톱 부착물 조립",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "총검 부착물 제작",
+    "Recipe_Craft_Prosthetic_BaseCyber": "사이버네틱 의수 프레임 제작",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "사이버네틱 손 부착물 제작",
+    "Recipe_Craft_Prosthetic_CyberLeg": "사이버네틱 의족 제작",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "의수족 작업대 제작"
 }

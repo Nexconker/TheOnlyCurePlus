@@ -10,7 +10,7 @@
 import os, re, sys, json, glob
 from xml.etree import ElementTree as ET
 
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 PZ = r"D:\SteamLibrary\steamapps\common\ProjectZomboid\media"
 errors, warns = [], []
 
@@ -159,7 +159,7 @@ dynamic = {
 }
 for pre, sufs in dynamic.items():
     for s in sufs: used.add(pre + s)
-vanilla_keys = ("ContextMenu_Equip_Primary", "ContextMenu_Equip_Secondary", "ContextMenu_Equip_Two_Hands", "ContextMenu_RemoveBrokenGlass",
+vanilla_keys = ("UI_Close", "IGUI_perks_Strength", "ContextMenu_Equip_Primary", "ContextMenu_Equip_Secondary", "ContextMenu_Equip_Two_Hands", "ContextMenu_RemoveBrokenGlass",
                 "ContextMenu_Add_escape_rope_sheet", "ContextMenu_Add_escape_rope", "ContextMenu_Remove_escape_rope", "ContextMenu_Barricade",
                 "ContextMenu_Unbarricade", "ContextMenu_MetalBarricade", "ContextMenu_MetalBarBarricade", "ContextMenu_Open_window",
                 "ContextMenu_Close_window", "ContextMenu_PickupBrokenGlass", "ContextMenu_Open_door", "ContextMenu_Close_door")

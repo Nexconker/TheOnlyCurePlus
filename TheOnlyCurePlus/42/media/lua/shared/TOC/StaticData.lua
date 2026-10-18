@@ -22,7 +22,7 @@ local StaticData = {}
 ---Mod name, used to setup Global Mod Data and various stuff. Kept as "TOC" so that
 ---saves made with the original mod keep working after switching to TOC+.
 StaticData.MOD_NAME = "TOC"
-StaticData.PLUS_VERSION = "3.2.0"
+StaticData.PLUS_VERSION = "3.3.0"
 
 StaticData.COMPAT_42 = luautils.stringStarts(getGameVersion(), "42")
 
@@ -160,6 +160,29 @@ for _, side in ipairs(StaticData.SIDES_STR) do
         StaticData.AFFECTED_BODYLOCS_TO_LIMBS_IND_STR[string.format(foreArmBodyLocs[i], sideFull)] = "ForeArm_" .. side
     end
 end
+-- 2026-10-17 ("si me pongo coderas en un brazo aparecen flotando"): en la Build 42 las ubicaciones son "base:<id>" en
+-- minúsculas y los nombres de arriba ya no coincidían con nada. Prenda -> parte que tiene que existir para ponérsela
+-- (con una prótesis puesta en esa parte sí se puede). Se busca con StaticData.GetAffectedLimb.
+for _, side in ipairs(StaticData.SIDES_STR) do
+    local s = side == "R" and "right" or "left"
+    local map = {
+        ["base:hands" .. s] = "Hand_", ["base:" .. s .. "_middlefinger"] = "Hand_", ["base:" .. s .. "_ringfinger"] = "Hand_",
+        ["base:" .. s .. "wrist"] = "ForeArm_", ["base:forearm_" .. s] = "ForeArm_",
+        ["base:elbow_" .. s] = "UpperArm_",
+        ["base:calf_" .. s] = "LowerLeg_", ["base:calf_" .. s .. "_texture"] = "LowerLeg_",
+        ["base:knee_" .. s] = "UpperLeg_",
+    }
+    for loc, limb in pairs(map) do StaticData.AFFECTED_BODYLOCS_TO_LIMBS_IND_STR[loc] = limb .. side end
+end
+
+---Parte que tiene que existir para llevar una prenda en esa ubicación (o nil)
+---@param bodyLoc any ItemBodyLocation o texto
+---@return string?
+function StaticData.GetAffectedLimb(bodyLoc)
+    if bodyLoc == nil then return nil end
+    local key = tostring(bodyLoc)
+    return StaticData.AFFECTED_BODYLOCS_TO_LIMBS_IND_STR[key] or StaticData.AFFECTED_BODYLOCS_TO_LIMBS_IND_STR[string.lower(key)]
+end
 
 -----------------
 --* Traits
@@ -262,9 +285,20 @@ StaticData.PROSTHESIS_TIERS = {
     Prost_ChainsawArm = { tier = 3, group = "Top",   timeBonus = 0, twoHanded = false, combatMod = 0.90, wearPerAction = 0.6, hookLike = true, chainsaw = true },
     -- Merle-style bayonet arm (right only, 3.2.0): the right hand is the blade (TOC.MountedBlade), see TOC/Plus/KnifeArm
     Prost_KnifeArm   = { tier = 2, group = "Top",    timeBonus = 0, twoHanded = false, combatMod = 0.95, wearPerAction = 0.6, hookLike = true, blade = true },
+    -- 3.3 modular: BASES (encaje + armazón, por nivel). Sin cabezal no agarran; el tier puesto es la combinación con el
+    -- cabezal (StaticData.CombineTier). Madera+pomo ~ brazo de madera, chatarra+gancho ~ gancho, mecánica+mano mecánica
+    -- ~ brazo mecánico, médica+mano médica ~ brazo médico.
+    Prost_BaseWood   = { tier = 1, group = "Top",    timeBonus = 0, twoHanded = true,  combatMod = 0.85, wearPerAction = 1.0, modular = true, material = "wood" },
+    Prost_BaseScrap  = { tier = 2, group = "Top",    timeBonus = 1, twoHanded = true,  combatMod = 0.92, wearPerAction = 0.6, modular = true, material = "metal" },
+    Prost_BaseMech   = { tier = 3, group = "Top",    timeBonus = 2, twoHanded = true,  combatMod = 0.97, wearPerAction = 0.4, modular = true, material = "metal" },
+    Prost_BaseMed    = { tier = 4, group = "Top",    timeBonus = 3, twoHanded = true,  combatMod = 1.00, wearPerAction = 0.2, modular = true, material = "polymer" },
+    -- gama cyber (tier 5): placas blindadas y músculos de cable; la más cara de fabricar. Cuenta como metal (admite la motosierra)
+    Prost_BaseCyber  = { tier = 5, group = "Top",    timeBonus = 4, twoHanded = true,  combatMod = 1.00, wearPerAction = 0.12, modular = true, material = "metal", strengthBonus = 1 },
     Prost_PegLeg     = { tier = 1, group = "Bottom", timeBonus = 0, sprint = false, run = true,  wearPerAction = 0.8 },
     Prost_MechLeg    = { tier = 3, group = "Bottom", timeBonus = 2, sprint = true,  run = true,  wearPerAction = 0.4 },
     Prost_MedicalLeg = { tier = 4, group = "Bottom", timeBonus = 4, sprint = true,  run = true,  wearPerAction = 0.2 },
+    -- 3.3 gama cyber (dev): blindaje en franjas y actuadores; la más cara de fabricar
+    Prost_CyberLeg   = { tier = 5, group = "Bottom", timeBonus = 5, sprint = true,  run = true,  wearPerAction = 0.12 },
 }
 StaticData.PROSTHESIS_WEAR_PER_CONDITION = 40      -- wear points that cost one condition point
 
@@ -305,6 +339,53 @@ function StaticData.GetProsthesisTypeForPart(fullType, part)
     local suf = StaticData.PROSTHESIS_LEVEL_SUFFIX[part]
     if not base or suf == nil then return nil end
     return "TOC." .. base .. suf .. "_" .. side
+end
+
+------------------
+--* 3.3: cabezales de la prótesis modular (ubicación toc:ArmHead_X, encima de la base)
+-- hookLike: no agarra; twoHanded: deja sujetar armas a dos manos; combatMod / timeBonus se combinan con la base;
+-- wearMul multiplica el desgaste de la base; side: sólo de ese lado; metalBase: pide base de metal;
+-- minBaseTier: tier mínimo de la base (manos mecánica y médica: no en madera; cibernética: ni madera ni chatarra).
+StaticData.PROSTHESIS_HEADS = {
+    Prost_HeadKnob     = { hookLike = true,  twoHanded = false, combatMod = 0.95, timeBonus = 0, wearMul = 1.0 },
+    Prost_HeadHook     = { hookLike = true,  twoHanded = false, combatMod = 0.98, timeBonus = 0, wearMul = 1.0 },
+    Prost_HeadMechHand = { hookLike = false, twoHanded = true,  combatMod = 0.98, timeBonus = 0, wearMul = 1.0, minBaseTier = 2 },
+    Prost_HeadMedHand  = { hookLike = false, twoHanded = true,  combatMod = 1.00, timeBonus = 1, wearMul = 0.8, minBaseTier = 2 },
+    Prost_HeadCyberHand = { hookLike = false, twoHanded = true, combatMod = 1.00, timeBonus = 1, wearMul = 0.7, minBaseTier = 3 },
+    Prost_HeadChainsaw = { hookLike = true,  twoHanded = false, combatMod = 0.98, timeBonus = 0, wearMul = 1.5, chainsaw = true, side = "R", metalBase = true },
+    Prost_HeadBayonet  = { hookLike = true,  twoHanded = false, combatMod = 1.00, timeBonus = 0, wearMul = 1.2, blade = true, side = "R" },
+}
+StaticData.HEAD_LOCATION_PREFIX = "toc:armhead_"
+
+---@param fullType string e.g. "TOC.Prost_HeadHook_L"
+---@return table? headData, string? side
+function StaticData.GetHeadTier(fullType)
+    local base, side = StaticData.GetProsthesisBase(fullType)
+    if not base then return nil end
+    return StaticData.PROSTHESIS_HEADS[base], side
+end
+
+---Tier puesto = base + cabezal. Sin cabezal la base no agarra ni sujeta nada a dos manos.
+---@param baseTier table
+---@param headType string? fullType del cabezal
+---@return table
+function StaticData.CombineTier(baseTier, headType)
+    if not baseTier or not baseTier.modular then return baseTier end
+    local head = headType and StaticData.GetHeadTier(headType)
+    local t = {}
+    for k, v in pairs(baseTier) do t[k] = v end
+    if not head then
+        t.hookLike = true; t.twoHanded = false
+        return t
+    end
+    t.hookLike = head.hookLike
+    t.twoHanded = baseTier.twoHanded and head.twoHanded
+    t.combatMod = (baseTier.combatMod or 1) * (head.combatMod or 1)
+    t.timeBonus = (baseTier.timeBonus or 0) + (head.timeBonus or 0)
+    t.wearPerAction = (baseTier.wearPerAction or 0.5) * (head.wearMul or 1)
+    t.chainsaw = head.chainsaw; t.blade = head.blade
+    t.head = headType
+    return t
 end
 
 ------------------

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\baseCyberWrist_R_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\baseCyberWrist_R_F</m_FemaleModel>
+    <m_AltMaleModel>Prosthesis\baseCyberWristUnder_R_M</m_AltMaleModel>
+    <m_AltFemaleModel>Prosthesis\baseCyberWristUnder_R_F</m_AltFemaleModel>
+    <m_GUID>cc0378d1-d29f-45a0-a730-71df4225d88f</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <m_MasksFolder>none</m_MasksFolder>
+    <textureChoices>Prosthesis\cyberArm</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_black</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_white</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_grey</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_red</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_orange</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_yellow</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_green</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_blue</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_purple</textureChoices>
+    <textureChoices>Prosthesis\Paint\cyberArm_pink</textureChoices>
+</clothingItem>

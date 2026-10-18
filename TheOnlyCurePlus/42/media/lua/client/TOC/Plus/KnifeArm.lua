@@ -12,6 +12,7 @@ local KnifeArm = {}
 
 KnifeArm.WEAPON = "TOC.MountedBlade"
 KnifeArm.BASE = "Prost_KnifeArm"
+KnifeArm.HEAD = "Prost_HeadBayonet"      -- 3.3: cabezal modular
 KnifeArm.SWINGS_PER_CONDITION = 50
 
 local states = {}
@@ -40,7 +41,8 @@ function KnifeArm.GetArm(player)
     if not worn then return nil end
     for i = 0, worn:size() - 1 do
         local item = worn:get(i):getItem()
-        if item and StaticData.GetProsthesisBase(item:getFullType()) == KnifeArm.BASE then return item end
+        local b = item and StaticData.GetProsthesisBase(item:getFullType())
+        if b == KnifeArm.BASE or b == KnifeArm.HEAD then return item end
     end
     return nil
 end
@@ -119,7 +121,8 @@ local function AddSwingWear(player, arm)
     if cond <= 0 then
         local ProsthesisHandler = require("TOC/Handlers/ProsthesisHandler")
         player:removeWornItem(arm)
-        ProsthesisHandler.SearchAndSetupProsthesis(player, arm, false)
+        local Modular = require("TOC/Plus/ModularProsthesis")
+        if Modular.IsHead(arm) then Modular.SetupHead(player, arm, false) else ProsthesisHandler.SearchAndSetupProsthesis(player, arm, false) end
         player:resetModelNextFrame()
         Messages.Say(player, getText("IGUI_TOC_ProsthesisBroke"), true)
     elseif cond <= 3 then

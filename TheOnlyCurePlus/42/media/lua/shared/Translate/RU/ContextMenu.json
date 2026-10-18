@@ -33,5 +33,9 @@
     "ContextMenu_TOC_SawStart": "Дёрнуть шнур стартера",
     "ContextMenu_TOC_SawStop": "Заглушить двигатель",
     "ContextMenu_TOC_SawRefuel": "Заправить из: %1",
-    "ContextMenu_TOC_SawNoPetrol": "Заправить (нет бензина в инвентаре)"
+    "ContextMenu_TOC_SawNoPetrol": "Заправить (нет бензина в инвентаре)",
+    "ContextMenu_TOC_Workbench": "Верстак протезов",
+    "ContextMenu_TOC_Paint": "Покрасить",
+    "ContextMenu_TOC_StripPaint": "Соскоблить краску",
+    "ContextMenu_TOC_NoPaint": "Нет краски"
 }

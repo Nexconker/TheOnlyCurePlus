@@ -6,5 +6,7 @@
     "Tooltip_Surgery_LimbNotFree": "Önce protezi çıkarman gerekiyor",
     "Tooltip_TOC_NoData": "Tıbbi veriler henüz yüklenmedi",
     "Tooltip_TOC_CantSelfHigh": "Kendinde bu kadar yukarıdan kesemezsin. Bunu başka biri yapmalı.",
-    "Tooltip_TOC_NeedDoctor": "İlk Yardım seviyesi %1 ya da Saha Amputasyon Rehberi gerekir"
+    "Tooltip_TOC_NeedDoctor": "İlk Yardım seviyesi %1 ya da Saha Amputasyon Rehberi gerekir",
+    "Tooltip_TOC_NeedBrush": "Fırça gerekir.",
+    "Tooltip_TOC_NeedBench": "Bir protez tezgâhının yanında dur (marangozluk tarifi)."
 }

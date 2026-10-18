@@ -64,6 +64,21 @@ function LegMobility.HasCrutch(player)
     return (p ~= nil and p:getFullType() == CRUTCH_TYPE) or (s ~= nil and s:getFullType() == CRUTCH_TYPE)
 end
 
+---Prótesis de pierna puesta en ese lado (por su ubicación toc:legprost_X), aunque el estado guardado no la tenga
+---@param player IsoPlayer
+---@param side string "L" / "R"
+---@return InventoryItem?
+function LegMobility.FindWornLeg(player, side)
+    local worn = player:getWornItems()
+    local want = "toc:legprost_" .. string.lower(side)
+    for i = 0, (worn and worn:size() or 0) - 1 do
+        local it = worn:get(i):getItem()
+        local bl = it and it:getBodyLocation()
+        if bl and string.lower(bl:toString()) == want then return it end
+    end
+    return nil
+end
+
 ---@param player IsoPlayer
 ---@return string mobility
 function LegMobility.Evaluate(player)
@@ -73,6 +88,13 @@ function LegMobility.Evaluate(player)
     LegMobility.oneLeg = false
     for _, side in ipairs(StaticData.SIDES_STR) do
         if dc:getIsCut("Foot_" .. side) then
+            -- 2026-10-17 (con dos piernas cibernéticas puestas se arrastraba): si la marca guardada de "prótesis puesta"
+            -- se perdió (ponerla desde el modo debug, cambiar de versión con la partida empezada...) pero la pierna está
+            -- puesta, se vuelve a registrar en vez de tratar la pierna como ausente
+            if not dc:getIsProstEquippedGroup("Bottom_" .. side) then
+                local worn = LegMobility.FindWornLeg(player, side)
+                if worn then pcall(function() require("TOC/Handlers/ProsthesisHandler").SearchAndSetupProsthesis(player, worn, true) end) end
+            end
             local t = dc:getProstType("Bottom_" .. side)
             local tier = t and StaticData.GetProsthesisTier(t) or nil
             if not dc:getIsProstEquippedGroup("Bottom_" .. side) then

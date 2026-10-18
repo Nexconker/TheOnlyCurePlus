@@ -1,7 +1,7 @@
 """Lua: variantes de prótesis por nivel (sufijo Wrist/Ankle/Thigh), prótesis sobre el muslo permitida,
 regla de auto-cirugía separada, y FitToStump (cambia el ítem por la variante del muñón al vestirlo)."""
 import os, sys
-MOD = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media"
+MOD = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("TOC_MEDIA", r"C:\Users\nexco\Zomboid\mods\TheOnlyCurePlus\42\media")
 LUA = os.path.join(MOD, "lua")
 
 def patch(rel, pairs):

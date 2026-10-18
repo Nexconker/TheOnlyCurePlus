@@ -64,6 +64,12 @@ function TOC_Compat.isCut(player, limbName)
     return dc and dc:getIsCut(limbName) or false
 end
 
+-- 3.3: bases y cabezales de otros mods (TOC/Plus/ModularAPI, global TOC_Modular; ver API_MODULAR.md)
+local ModularAPI = require("TOC/Plus/ModularAPI")
+TOC_Compat.RegisterHead = ModularAPI.RegisterHead
+TOC_Compat.RegisterBase = ModularAPI.RegisterBase
+TOC_Compat.CombineProsthesis = ModularAPI.Combine
+
 TOC_Compat.version = StaticData.PLUS_VERSION
 
 return TOC_Compat

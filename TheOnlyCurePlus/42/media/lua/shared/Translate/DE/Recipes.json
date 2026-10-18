@@ -14,5 +14,17 @@
     "Recipe_Craft_Tourniquet_Arm_Belt": "Arm-Tourniquet aus einem Gürtel herstellen",
     "Recipe_Craft_Tourniquet_Leg": "Behelfs-Tourniquet für das Bein herstellen",
     "Recipe_Craft_Tourniquet_Leg_Belt": "Bein-Tourniquet aus einem Gürtel herstellen",
-    "Recipe_Craft_Prosthetic_KnifeArm": "Bajonettarm bauen"
+    "Recipe_Craft_Prosthetic_KnifeArm": "Bajonettarm bauen",
+    "Recipe_Craft_Prosthetic_BaseWood": "Baue Holz-Prothesenbasis",
+    "Recipe_Craft_Prosthetic_HeadKnob": "Schnitze Holzknauf-Aufsatz",
+    "Recipe_Craft_Prosthetic_BaseScrap": "Baue Schrott-Prothesenbasis",
+    "Recipe_Craft_Prosthetic_HeadHook": "Baue Hakenaufsatz",
+    "Recipe_Craft_Prosthetic_BaseMech": "Baue mechanischen Prothesenrahmen",
+    "Recipe_Craft_Prosthetic_HeadMechHand": "Baue mechanischen Handaufsatz",
+    "Recipe_Craft_Prosthetic_HeadChainsaw": "Baue Kettensägenaufsatz",
+    "Recipe_Craft_Prosthetic_HeadBayonet": "Baue Bajonettaufsatz",
+    "Recipe_Craft_Prosthetic_BaseCyber": "Kybernetischen Prothesenrahmen bauen",
+    "Recipe_Craft_Prosthetic_HeadCyberHand": "Aufsatz kybernetische Hand bauen",
+    "Recipe_Craft_Prosthetic_CyberLeg": "Kybernetisches Bein bauen",
+    "Recipe_Build_TOC_ProsthesisWorkbench": "Prothesenwerkbank bauen"
 }

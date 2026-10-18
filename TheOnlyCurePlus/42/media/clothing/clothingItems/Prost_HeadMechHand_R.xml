@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+    <m_MaleModel>Prosthesis\headMechHand_R_M</m_MaleModel>
+    <m_FemaleModel>Prosthesis\headMechHand_R_F</m_FemaleModel>
+    <m_GUID>e91c9b85-9b04-44d8-8cce-f474fd438780</m_GUID>
+    <m_Static>false</m_Static>
+    <m_AllowRandomHue>false</m_AllowRandomHue>
+    <m_AllowRandomTint>false</m_AllowRandomTint>
+    <m_MasksFolder>none</m_MasksFolder>
+    <textureChoices>Prosthesis\normalArm</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_black</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_white</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_grey</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_red</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_orange</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_yellow</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_green</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_blue</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_purple</textureChoices>
+    <textureChoices>Prosthesis\Paint\normalArm_pink</textureChoices>
+</clothingItem>
