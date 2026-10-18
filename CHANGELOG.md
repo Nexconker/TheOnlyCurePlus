@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.3.1
+
+- Fixed (multiplayer): the chainsaw and bayonet attachments kept retrying the equip animation and never worked
+  (Workshop report). In Build 42 only the server creates items and equips them (`ISEquipWeaponAction:complete` runs
+  there); the mounted weapon was created on the client, so the server never had it. The client now asks the server
+  (`ServerItemsCommands.MountWeapon` / `UnmountWeapon`), which checks the worn attachment, creates the weapon, puts it in
+  the right hand and calls `sendEquip`.
+- Fixed (multiplayer): a mounted attachment did not reach the client (the server set it in `ISWearClothing:complete`
+  without `apply()`), so bases counted as having no hand: no grip, no two-handed weapons. `Modular.SetupHead` now
+  applies on the server.
+- Fixed: if the saved state lost the right-arm base, the chainsaw/bayonet retried every 3 s. The worn base is registered
+  again; if that fails it stops retrying for a while.
+- Fixed: error with NPC mods (Knox Event Expanded NPC): `SharedIgnoredActions.lua` assumed every character has TOC+ data
+  (reported by ShOvEl42).
+- New: Merle's bayonet can use one-handed pistols and revolvers. In singleplayer the pistol shows in the left hand
+  (`TOC.PistolVisual`, the real gun stays in the right hand with an invisible model) and the blade stays on the right;
+  in multiplayer the pistol shows in the right hand. Rifles and shotguns still need a real hand.
+- New: interactive Player Guide (`docs/TOCPlus_Guide.pdf`) linked from the Workshop description.
+
 ## 3.3.0
 
 - New: modular arm prostheses. An arm prosthesis is now a base (`toc:ArmProst_X`, one model per amputation level) and

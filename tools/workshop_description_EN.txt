@@ -8,7 +8,7 @@ The Only Cure+ is free and will stay free. If you enjoy it and want to help, you
 
 [h1]The Only Cure+ · Field Surgery[/h1]
 [b]Mod ID:[/b] TheOnlyCurePlus · [b]Bug reports:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
-[i]A bite is not the end. A saw, a steady hand and a bit of luck can still save you. Then you learn to live with what is left.[/i]
+[i]A bite is not the end. A saw, a steady hand and a bit of luck can still save you.[/i]
 
 [b]Standalone:[/b] this is the whole mod and needs no other mods. Do [b]not[/b] enable the original The Only Cure at the same time. "Field Surgery" is part of the name, not a separate mod.
 
@@ -25,7 +25,7 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 
 [h2]✚ Cybernetic tier[/h2]
 [list]
-[*]Tier 5: armour plates, cable muscles, segmented fingers. Cybernetic frame, cybernetic hand and a cybernetic leg.
+[*]Tier 5: cybernetic frame, hand and leg.
 [*]Hard to make: Welding 7, Electrical 6-7, Mechanics 5-6 and rare electronics.
 [*]Best action bonus and lowest wear. The cybernetic frame gives [b]+1 Strength[/b] while worn; the cybernetic leg runs [b]10% faster[/b] than a healthy leg.
 [/list]
@@ -59,12 +59,11 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 [h2]✚ Weapon attachments (right arm)[/h2]
 [list]
 [*][b]Groovy[/b]: an Ash-style chainsaw on any metal base (Welding 5, Mechanics 4). Pull the cord, refuel from any petrol can. It cuts zombies and limbs, and every zombie around hears it.
-[*][b]Merle's bayonet[/b]: leather straps, duct tape and a bayonet (Welding 2). It stabs like a hunting knife.
+[*][b]Merle's bayonet[/b]: leather straps, duct tape and a bayonet (Welding 2). It stabs like a hunting knife, and you can still use pistols.
 [/list]
 
 [h2]✚ Legs, crutches and crawling[/h2]
 [list]
-[*]Legs can be amputated at the foot, the calf or the thigh.
 [*]One leg missing: without a [b]crutch[/b] (craftable) or a prosthesis you can only crawl. On a crutch you limp, you cannot run, and your stamina drains.
 [*]Both legs missing with no prosthesis: you [b]crawl[/b], slowly, and you can still fight from the ground. Zombies will still find you down there.
 [*][b]Crawler zombies[/b]: hit a zombie's leg hard enough and it drops and crawls after you (sandbox option).
@@ -85,13 +84,13 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 Using Tomb's Player Body? Enable the included optional mod [b]The Only Cure+ - TombBody fit[/b] and load it after both. Stumps and every prosthesis are refitted to Tomb's body, with your own Tomb texture.
 
 [h2]Changelog[/h2]
-[b]3.3.0[/b]: everything marked New in 3.3 above, plus fixes for hand size, twisted wrists, attacks while crawling and pads floating on amputated limbs.
+[b]3.3.1[/b]: multiplayer: the chainsaw and bayonet no longer get stuck equipping, and attachments count as a hand. Merle's bayonet can use pistols. Fixed an error with NPC mods (Knox Event Expanded NPC).
+[b]3.3.0[/b]: everything marked New in 3.3 above, plus fixes for hands, wrists, crawling attacks and floating pads.
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]
 Enable [b]only one[/b] of The Only Cure or The Only Cure+: they share items and save data. Not compatible with BB First Aid Overhaul. Fancy Handwork and Brutal Handwork have no Build 42 version.
 [list]
-[*]Reported working: Wounds Overhaul, AHS, Viewpoint, Bandits and large modpacks in SP and MP.
 [*]Safe to add to an existing save, also in multiplayer (restart the server). Back up your save before updating from 3.2: worn arms are converted on first load.
 [/list]
 

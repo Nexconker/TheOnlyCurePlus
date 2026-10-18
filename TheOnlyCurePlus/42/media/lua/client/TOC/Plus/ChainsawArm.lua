@@ -172,6 +172,18 @@ local function LeftHandFree(player)
     return CachedDataHandler.GetHandFeasibility("L", player:getUsername()) and player:getSecondaryHandItem() == nil
 end
 
+---3.3.1 (multijugador): la motosierra la crea y la equipa el servidor (ServerItemsCommands.MountWeapon). Creada en el
+---cliente no existía para el servidor y la acción de equipar se repetía cada 3 s sin terminar nunca.
+local function EnforceMP(player, st, arm)
+    local saw = FindSaw(player)
+    if saw then ApplyStats(player, saw, st.running); UpdateName(saw, arm, st.running) end
+    if saw and player:getPrimaryHandItem() == saw then return end
+    local now = getTimestampMs()
+    if now < (st.nextMount or 0) or player:isAiming() or ISTimedActionQueue.isPlayerDoingAction(player) then return end
+    st.nextMount = now + 3000
+    sendClientCommand(CommandsData.modules.TOC_ITEMS, "MountWeapon", {kind = "saw"})
+end
+
 ---Keep the saw in the right hand while the arm is worn; take it away when it is not
 ---@param player IsoPlayer
 function ChainsawArm.Enforce(player)
@@ -179,13 +191,24 @@ function ChainsawArm.Enforce(player)
     local arm = ChainsawArm.GetArm(player)
     if not arm then
         if st.running then ChainsawArm.SetRunning(player, false) end
-        if FindSaw(player) then RemoveSaws(player) end
+        if FindSaw(player) then
+            if isClient() then
+                local now = getTimestampMs()
+                if now >= (st.nextMount or 0) then
+                    st.nextMount = now + 3000
+                    sendClientCommand(CommandsData.modules.TOC_ITEMS, "UnmountWeapon", {kind = "saw"})
+                end
+            else
+                RemoveSaws(player)
+            end
+        end
         return
     end
     if player:isDead() or player:isAsleep() then
         if st.running then ChainsawArm.SetRunning(player, false) end
         return
     end
+    if isClient() then return EnforceMP(player, st, arm) end
     local saw = FindSaw(player)
     if not saw then
         local inv = player:getInventory()
@@ -199,6 +222,15 @@ function ChainsawArm.Enforce(player)
     -- re-attach with the vanilla equip action (syncs in multiplayer) when the hands are not busy
     local now = getTimestampMs()
     if now < st.nextEquip or player:isAiming() or ISTimedActionQueue.isPlayerDoingAction(player) then return end
+    -- 3.3.1: si la mano derecha no cuenta como presente (el estado guardado perdió la base), equipar acaba en la otra
+    -- mano y se repetía cada 3 s. Se vuelve a registrar la base puesta; si aun así no, se deja de insistir un rato.
+    local CachedDataHandler = require("TOC/Handlers/CachedDataHandler")
+    if not CachedDataHandler.GetHandFeasibility("R", player:getUsername()) then
+        local ProsthesisHandler = require("TOC/Handlers/ProsthesisHandler")
+        local base = ProsthesisHandler.FindWornProsthesis(player, "Top_R")
+        if base then pcall(ProsthesisHandler.SearchAndSetupProsthesis, player, base, true) end
+        if not CachedDataHandler.GetHandFeasibility("R", player:getUsername()) then st.nextEquip = now + 30000; return end
+    end
     st.nextEquip = now + 3000
     if saw:getContainer() ~= player:getInventory() then
         ISTimedActionQueue.add(ISInventoryTransferAction:new(player, saw, saw:getContainer(), player:getInventory(), 1))
@@ -293,7 +325,7 @@ local function OnEquipPrimary(player, item)
     if not saw then return end
     local twoHanded = item:isRequiresEquippedBothHands() or (instanceof(item, "HandWeapon") and item:isTwoHandWeapon())
     Messages.Say(player, getText("IGUI_TOC_SawArmBusy"), false)
-    ISTimedActionQueue.add(ISEquipWeaponAction:new(player, saw, 10, true, false))
+    if isClient() then State(player).nextMount = 0 else ISTimedActionQueue.add(ISEquipWeaponAction:new(player, saw, 10, true, false)) end
     if not twoHanded and player:getSecondaryHandItem() ~= item then
         local CachedDataHandler = require("TOC/Handlers/CachedDataHandler")
         if CachedDataHandler.GetHandFeasibility("L", player:getUsername()) then

@@ -25,10 +25,12 @@ function ISEquipWeaponAction:new(character, item, maxTimeInit, primary, twoHands
     -- check if right arm is cut off or not. if it is, penality shall apply
     -- if we got here, the action is valid, so we know that we have a prosthesis.
     local DataController = require("TOC/Controllers/DataController")
-    local dcInst = DataController.GetInstance(character:getUsername())
+    -- 3.3.1 (Workshop, ShOvEl42): los NPC de otros mods (Knox Event Expanded NPC) no tienen datos de TOC+ y esto
+    -- reventaba con "getIsAnyLimbCut of non-table". Sin datos = sin amputaciones: la acción queda como la vanilla.
+    local dcInst = character and character.getUsername and DataController.GetInstance(character:getUsername())
 
     -- Brutal Handwork should be considered. Use the twohands thing
-    if not (dcInst:getIsAnyLimbCut() and twoHands) then
+    if not dcInst or not (dcInst:getIsAnyLimbCut() and twoHands) then
         OverrideAction(action, maxTimeInit)
     end
 

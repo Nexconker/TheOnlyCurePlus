@@ -113,6 +113,9 @@ function Modular.SetupHead(character, item, isEquipping)
     if not dcInst then return end
     local headType = isEquipping and item:getFullType() or nil
     dcInst:setProstHead(group, headType)
+    -- 3.3.1: en multijugador esto corre en el servidor (ISWearClothing:complete) y el cliente no se enteraba del
+    -- cabezal: sin él la base cuenta como "sin mano" (ni armas a dos manos ni agarre). apply() se lo manda.
+    if isServer() then dcInst:apply(character) end
     if isClient() and character:isLocalPlayer() then
         sendClientCommand(CommandsData.modules.TOC_RELAY, CommandsData.server.Relay.RelayProsthesisHead, {group = group, headType = headType})
     end

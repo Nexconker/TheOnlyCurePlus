@@ -48,6 +48,72 @@ function ServerItemsCommands.SetSawFuel(playerObj, args)
     item:getModData().TOC_SawFuel = math.max(0, math.min(0.5, args.fuel))
 end
 
+---3.3.1 (Workshop: "the chainsaw and the bayonet always try to equip and get stuck in the equip animation").
+---En la Build 42 sólo el servidor crea objetos y equipa (ISEquipWeaponAction:complete corre aquí). La motosierra y la
+---hoja montadas se creaban en el cliente: el servidor no las tenía, la acción de equipar fallaba y el cliente la
+---repetía cada 3 s. Ahora el cliente lo pide y el servidor crea el arma, la pone en la mano derecha y lo sincroniza.
+local MOUNTED = {
+    blade = { weapon = "TOC.MountedBlade", arms = { Prost_KnifeArm = true, Prost_HeadBayonet = true } },
+    saw = { weapon = "TOC.MountedChainsaw", arms = { Prost_ChainsawArm = true, Prost_HeadChainsaw = true } },
+}
+
+local function WearsMountArm(playerObj, def)
+    local StaticData = require("TOC/StaticData")
+    local worn = playerObj:getWornItems()
+    for i = 0, (worn and worn:size() or 0) - 1 do
+        local it = worn:get(i):getItem()
+        local base = it and StaticData.GetProsthesisBase(it:getFullType())
+        if base and def.arms[base] then return true end
+    end
+    return false
+end
+
+local function RemoveMounted(playerObj, weapon)
+    local inv = playerObj:getInventory()
+    local changed = false
+    for _ = 1, 5 do
+        local it = inv:getFirstTypeRecurse(weapon)
+        if not it then break end
+        playerObj:removeFromHands(it)
+        local cont = it:getContainer()
+        if not cont then break end
+        cont:Remove(it)
+        sendRemoveItemFromContainer(cont, it)
+        changed = true
+    end
+    if changed then sendEquip(playerObj) end
+end
+
+function ServerItemsCommands.MountWeapon(playerObj, args)
+    local def = playerObj and args and MOUNTED[args.kind]
+    if not def then return end
+    if not WearsMountArm(playerObj, def) then RemoveMounted(playerObj, def.weapon); return end
+    local inv = playerObj:getInventory()
+    local it = inv:getFirstTypeRecurse(def.weapon)
+    if it and it:getContainer() ~= inv then                 -- en una bolsa: al inventario principal
+        local cont = it:getContainer()
+        cont:Remove(it); sendRemoveItemFromContainer(cont, it)
+        inv:AddItem(it); sendAddItemToContainer(inv, it)
+    end
+    if not it then
+        it = inv:AddItem(def.weapon)
+        if not it then return end
+        sendAddItemToContainer(inv, it)
+    end
+    if playerObj:getPrimaryHandItem() == it then return end
+    if playerObj:getSecondaryHandItem() == it then playerObj:setSecondaryHandItem(nil) end
+    local prim = playerObj:getPrimaryHandItem()
+    if prim and prim:isRequiresEquippedBothHands() then playerObj:setSecondaryHandItem(nil) end
+    playerObj:setPrimaryHandItem(it)
+    sendEquip(playerObj)
+end
+
+function ServerItemsCommands.UnmountWeapon(playerObj, args)
+    local def = playerObj and args and MOUNTED[args.kind]
+    if not def or WearsMountArm(playerObj, def) then return end
+    RemoveMounted(playerObj, def.weapon)
+end
+
 local function OnClientItemsCommands(module, command, playerObj, args)
     if module == CommandsData.modules.TOC_ITEMS and ServerItemsCommands[command] then
         local ok, err = pcall(ServerItemsCommands[command], playerObj, args)

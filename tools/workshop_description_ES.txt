@@ -8,7 +8,7 @@ The Only Cure+ es gratis y lo seguirá siendo. Si te gusta y quieres ayudar, pue
 
 [h1]The Only Cure+ · Cirugía de campo[/h1]
 [b]Mod ID:[/b] TheOnlyCurePlus · [b]Fallos:[/b] [url=https://github.com/Nexconker/TheOnlyCurePlus/issues]GitHub issues[/url]
-[i]Un mordisco no es el final. Una sierra, pulso y algo de suerte todavía pueden salvarte. Después aprendes a vivir con lo que queda.[/i]
+[i]Un mordisco no es el final. Una sierra, pulso y algo de suerte todavía pueden salvarte.[/i]
 
 [b]Independiente:[/b] es el mod completo y no necesita ningún otro. [b]No[/b] actives a la vez The Only Cure original. «Field Surgery» es parte del nombre, no otro mod.
 
@@ -25,7 +25,7 @@ La prótesis de brazo ahora son dos piezas: una [b]base[/b] en el muñón y un [
 
 [h2]✚ Tier cibernético[/h2]
 [list]
-[*]Tier 5: placas de blindaje, músculos de cable, dedos segmentados. Armazón cibernético, mano cibernética y pierna cibernética.
+[*]Tier 5: armazón, mano y pierna cibernéticos.
 [*]Difícil de fabricar: Soldadura 7, Electricidad 6-7, Mecánica 5-6 y electrónica rara.
 [*]La mejor bonificación de acciones y el menor desgaste. El armazón cibernético da [b]+1 de Fuerza[/b] mientras lo llevas; con la pierna cibernética corres un [b]10% más rápido[/b] que con una pierna sana.
 [/list]
@@ -44,7 +44,6 @@ La prótesis de brazo ahora son dos piezas: una [b]base[/b] en el muñón y un [
 [*][b]Procedimiento por pasos[/b]: desinfectar, incidir, serrar, suturar, vendar. Cada paso tiene sus herramientas, su tiempo y su riesgo. La lista te dice las probabilidades antes de empezar.
 [*]Los gritos atraen zombis. Un cirujano con mal pulso chapucea.
 [*][b]Postoperatorio[/b]: shock, convalecencia, dolor fantasma y [b]sepsis[/b] si el muñón se deja sucio. Mantenlo vendado y limpio, o perderás más.
-[*]Las profesiones médicas saben hacerlo; los demás leen la [b]Guía de cirugía de campo[/b].
 [/list]
 
 [h2]✚ Prótesis que encajan[/h2]
@@ -59,12 +58,11 @@ La prótesis de brazo ahora son dos piezas: una [b]base[/b] en el muñón y un [
 [h2]✚ Cabezales de arma (brazo derecho)[/h2]
 [list]
 [*][b]Groovy[/b]: motosierra estilo Ash sobre cualquier base de metal (Soldadura 5, Mecánica 4). Tira del arrancador, echa gasolina de cualquier bidón. Corta zombis y extremidades, y la oye todo zombi de la zona.
-[*][b]Bayoneta de Merle[/b]: correas de cuero, cinta americana y una bayoneta (Soldadura 2). Apuñala como un cuchillo de caza.
+[*][b]Bayoneta de Merle[/b]: correas de cuero, cinta americana y una bayoneta (Soldadura 2). Apuñala como un cuchillo de caza, y puedes usar pistolas.
 [/list]
 
 [h2]✚ Piernas, muletas y arrastre[/h2]
 [list]
-[*]Las piernas se amputan por el pie, la pantorrilla o el muslo.
 [*]Sin una pierna, sin [b]muleta[/b] ni prótesis solo puedes arrastrarte. Con muleta cojeas y no corres.
 [*]Sin las dos piernas y sin prótesis te [b]arrastras[/b] por el suelo, despacio, y puedes pelear desde ahí. Los zombis te encontrarán igual ahí abajo.
 [*][b]Zombis rastreros[/b]: golpea fuerte la pierna de un zombi y caerá para arrastrarse tras de ti (opción de sandbox).
@@ -85,13 +83,13 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 ¿Usas Tomb's Player Body? Activa el mod opcional incluido [b]The Only Cure+ - TombBody fit[/b] y cárgalo después de ambos. Muñones y prótesis quedan ajustados al cuerpo de Tomb, con tu propia textura de Tomb.
 
 [h2]Cambios[/h2]
-[b]3.3.0[/b]: todo lo nuevo de la 3.3 de arriba, más arreglos en el tamaño de las manos, muñecas torcidas, golpes desde el suelo y rodilleras flotando en extremidades amputadas.
+[b]3.3.1[/b]: multijugador: la motosierra y la bayoneta ya no se quedan atascadas al equiparse, y los cabezales cuentan como mano. La bayoneta de Merle permite pistolas. Arreglado un error con mods de NPC (Knox Event Expanded NPC).
+[b]3.3.0[/b]: todo lo nuevo de la 3.3 de arriba, más arreglos en manos, muñecas, golpes desde el suelo y rodilleras flotando.
 Historial completo: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG en GitHub[/url].
 
 [h2]Compatibilidad[/h2]
 Activa [b]solo uno[/b] de The Only Cure o The Only Cure+: comparten ítems y datos de partida. No compatible con BB First Aid Overhaul. Fancy Handwork y Brutal Handwork no tienen versión para Build 42.
 [list]
-[*]Funciona según los jugadores: Wounds Overhaul, AHS, Viewpoint, Bandits y modpacks grandes en SP y MP.
 [*]Se puede añadir a una partida empezada, también en multijugador (reinicia el servidor). Haz copia de tu partida antes de actualizar desde la 3.2: los brazos puestos se convierten al cargar.
 [/list]
 

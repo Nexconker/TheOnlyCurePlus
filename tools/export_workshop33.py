@@ -100,7 +100,27 @@ scene("ws_cyber_full", cy, "cyber_full", az=200)
 h = bl(REST["Bip01_R_Hand"][3, :3] * 0.7 + REST["Bip01_R_Forearm"][3, :3] * 0.3)
 jobs["cyber_hand"] = None
 GRIP = clip_w("Bob_AimToIdle_Handgun.X")
-scene("ws_cyber_grip", person(GRIP, "Female", arm=("R", "", "Cyber", "CyberHand"), shirt="TShirt_White.png", hair=("Bob", (34, 26, 22)), lower="trousers"),
+GAME = os.path.dirname(P.ANIMS)
+def held(mesh, tex, W):
+    """Arma en la mano derecha como la pone el juego: el origen del modelo en Bip01_Prop1, sin giro extra
+    (igual que export_grip_scene.held; copiada para no ejecutar aquel script al importarlo)."""
+    root = P.pzx.parse(os.path.join(GAME, "models_X", mesh))
+    vs, fs, uvs = [], [], []
+    def walk(node, parent):
+        for fr in node.all("Frame"):
+            ftm = fr.child("FrameTransformMatrix")
+            m = (np.array(ftm.data[:16], float).reshape(4, 4) if ftm else np.eye(4)) @ parent
+            for me in fr.all("Mesh"):
+                d = P.pzx.read_mesh(me); base = sum(len(v) for v in vs)
+                v = np.hstack([np.array(d["verts"], float), np.ones((len(d["verts"]), 1))]) @ m
+                vs.append(v[:, :3]); uvs.append(np.array(d["uvs"], float)); fs.append(np.array([list(f) for f in d["faces"]], int) + base)
+            walk(fr, m)
+    walk(root, np.eye(4))
+    V = np.vstack(vs); V = (np.hstack([V, np.ones((len(V), 1))]) @ W["Bip01_Prop1"])[:, :3]
+    return {"v": V, "f": np.vstack(fs), "uv": np.vstack(uvs), "tex": os.path.join(GAME, "textures", tex)}
+# 2026-10-18 (pedido): la chica de la tarjeta cyber con una pistola en la mano cibernética
+PISTOL = held("weapons/firearm/M9_Pistol.x", "weapons/firearm/M9_Pistol.png", GRIP)
+scene("ws_cyber_grip", person(GRIP, "Female", arm=("R", "", "Cyber", "CyberHand"), shirt="TShirt_White.png", hair=("Bob", (34, 26, 22)), lower="trousers") + [PISTOL],
       "cyber_grip", az=215, focus=bl(GRIP["Bip01_R_Hand"][3, :3] * 0.6 + GRIP["Bip01_Spine1"][3, :3] * 0.4), zoom=6.0, elev=8)
 # ---- tarjeta modular: el mismo armazón mecánico con cinco cabezales (primer plano del brazo)
 fm = bl(REST["Bip01_R_Hand"][3, :3] * 0.6 + REST["Bip01_R_Forearm"][3, :3] * 0.4, -0.3)

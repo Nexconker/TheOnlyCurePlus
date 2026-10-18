@@ -58,4 +58,17 @@ module TOC
 		WorldStaticModel = prostheticArmKnife,
 		Tags = base:sharpknife;base:cutplant,
 	}
+
+	/* 3.3.1 (pedido): con la bayoneta, la pistola se ve en la mano IZQUIERDA y la hoja sigue en la derecha. El juego solo
+	   dispara con el arma de la mano derecha, asi que la pistola de verdad va alli con el modelo invisible y en la izquierda
+	   se lleva esta copia solo visual (su modelo se cambia por el de la pistola real: TOC/Plus/KnifeArm.lua). */
+	item PistolVisual
+	{
+		DisplayCategory = Prosthesis,
+		ItemType = base:normal,
+		Weight = 0.0,
+		Icon = KnifeArm,
+		StaticModel = Handgun03,
+		WorldStaticModel = Handgun03,
+	}
 }
