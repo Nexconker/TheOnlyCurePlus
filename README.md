@@ -7,6 +7,7 @@ prosthesis workbench to fit and paint them, one-handed actions done with the han
 crutches and crawling, chainsaw and bayonet attachments, crawler zombies and severed limbs as items.
 Other mods can add their own bases and attachments: see [API_MODULAR.md](API_MODULAR.md).
 
+- **Player Guide (interactive PDF):** [docs/TOCPlus_Guide.pdf](docs/TOCPlus_Guide.pdf)
 - **Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=3818733381
 - **Workshop ID:** `3818733381`
 - **Mod ID:** `TheOnlyCurePlus`
