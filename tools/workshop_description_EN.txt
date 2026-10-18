@@ -24,7 +24,7 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 [h2]✚ Cybernetic tier[/h2]
 [list]
 [*]Tier 5: armour plates, cable muscles, segmented fingers. Cybernetic frame, cybernetic hand and a cybernetic leg.
-[*]Hard to make: Welding 7, Electrical 6-7, Mechanics 5-6 and rare electronics (battery charger, amplifier, motion sensor).
+[*]Hard to make: Welding 7, Electrical 6-7, Mechanics 5-6 and rare electronics.
 [*]Best action bonus and lowest wear. The cybernetic frame gives [b]+1 Strength[/b] while worn; the cybernetic leg runs [b]10% faster[/b] than a healthy leg.
 [/list]
 
@@ -37,7 +37,7 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 
 [h2]✚ Field surgery, step by step[/h2]
 [list]
-[*][b]Examine the wound[/b] to see how far the infection has spread. Doctors get a diagnosis; the rest of us get a feeling.
+[*][b]Examine the wound[/b] to see how far the infection has spread.
 [*][b]Cure window[/b]: amputate in time and the infection is gone. Wait too long and it becomes a gamble.
 [*][b]Staged procedure[/b]: disinfect, cut, saw, stitch, bandage. Each step has its tools, its time and its risk. The checklist tells you the odds before you start.
 [*]Screams attract zombies. Shaky surgeons botch the job.
@@ -49,8 +49,6 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 [list]
 [*]Legs: [b]peg leg[/b] (Carpentry 3), [b]mechanical leg[/b] (Welding 4), [b]medical leg[/b] (hospital loot) and the [b]cybernetic leg[/b]. Peg legs never sprint.
 [*]Wood and hooks cannot hold two-handed weapons or anything that needs fingers. With a bare base and no attachment you cannot hold anything.
-[*]Modelled on the real body: sockets hug the stump and fit under trousers and sleeves.
-[*]Each one adapts to the stump: cuff, socket, or a full limb with an articulated knee or elbow.
 [*]Mechanical, medical and cybernetic hands [b]close when gripping[/b]: weapons and tools sit in a fist.
 [*]One-handed actions (pills, drinking, smoking, eating, reading...) use the hand you still have: no more ghost hand.
 [*]They wear out with use. At 0 condition they fall off. Repair them. The [b]Prosthesis Familiarity[/b] skill speeds you up over time.
@@ -85,14 +83,7 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 Using Tomb's Player Body? Enable the included optional mod [b]The Only Cure+ - TombBody fit[/b] and load it after both. Stumps and every prosthesis are refitted to Tomb's body, with your own Tomb texture.
 
 [h2]Changelog[/h2]
-[b]3.3.0[/b]
-[list]
-[*]New: modular arm prostheses (5 bases x 7 attachments). Old arms convert automatically.
-[*]New: cybernetic tier (frame, hand and leg); +1 Strength from the frame, +10% running speed from the leg.
-[*]New: craftable prosthesis workbench with a 3D view and stat comparison; paint prostheses with vanilla paints.
-[*]New: rebuilt peg, mechanical and medical legs; knees bend with the thigh when walking.
-[*]Fixed: hand size and twisted wrists, attacks while crawling, elbow/knee pads floating on amputated limbs.
-[/list]
+[b]3.3.0[/b]: everything marked New in 3.3 above, plus fixes for hand size, twisted wrists, attacks while crawling and pads floating on amputated limbs.
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]
