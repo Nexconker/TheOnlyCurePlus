@@ -93,6 +93,15 @@ local og_wear_perform = ISWearClothing.perform
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISWearClothing:perform()
     pcall(Paint.Normalize, self.item)
+    -- 3.3.5 (revisión): en multijugador el servidor ya cambió la pieza por la de este muñón / este lado; la copia del
+    -- cliente se quedó sin contenedor y el perform del juego daba error y vaciaba la cola de acciones
+    if self.item and not self.item:getContainer() then
+        pcall(function() self:stopSound() end)
+        pcall(function() self.item:setJobDelta(0.0) end)
+        triggerEvent("OnClothingUpdated", self.character)
+        ISInventoryPage.renderDirty = true
+        return ISBaseTimedAction.perform(self)
+    end
     return og_wear_perform(self)
 end
 

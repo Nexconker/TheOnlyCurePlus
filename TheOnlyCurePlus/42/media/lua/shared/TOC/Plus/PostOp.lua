@@ -64,9 +64,15 @@ function PostOp.HourlySepsis(dcInst, player, limbName, dirtyness)
     local speed = sv("SepsisSpeed", 2)
     local antibiotics = 0
     -- sin pcall: un pcall fallido también escribe la traza en la consola. Se comprueba que el método exista.
-    local bd = player and player.getBodyDamage and player:getBodyDamage() or nil
-    if bd and bd.getReduceInfectionPower then
-        local power = bd:getReduceInfectionPower()
+    -- 3.3.5: en B42 los antibióticos se guardan en el personaje (IsoGameCharacter.getReduceInfectionPower); antes se
+    -- preguntaba a BodyDamage y nunca contaban
+    local src = player and player.getReduceInfectionPower and player or nil
+    if not src then
+        local bd = player and player.getBodyDamage and player:getBodyDamage() or nil
+        if bd and bd.getReduceInfectionPower then src = bd end
+    end
+    if src then
+        local power = src:getReduceInfectionPower()
         if power and power > 0 then antibiotics = 4 end
     end
     if dirtyness > 0.45 then

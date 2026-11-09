@@ -45,8 +45,10 @@ end
 
 --* DISABLE WEARING CERTAIN ITEMS WHEN NO LIMB
 
-function LimitActionsController.CheckLimbFeasibility(limbName)
-    local dcInst = DataController.GetReady(getPlayer():getUsername())
+function LimitActionsController.CheckLimbFeasibility(limbName, character)
+    character = character or getPlayer()
+    if not character or not instanceof(character, "IsoPlayer") then return true end
+    local dcInst = DataController.GetReady(character:getUsername())
     if not dcInst or not limbName then return true end
     return (not dcInst:getIsCut(limbName)) or dcInst:getIsProstEquipped(limbName)
 end
@@ -56,7 +58,7 @@ function LimitActionsController.WrapClothingAction(obj, wrappedFunc, item)
     if not isEquippable or not item then return isEquippable end
     local itemBodyLoc = item:getBodyLocation()
     local limbToCheck = StaticData.GetAffectedLimb(itemBodyLoc)            -- antes se buscaba con el objeto y nunca coincidía
-    if limbToCheck and not LimitActionsController.CheckLimbFeasibility(limbToCheck) then return false end
+    if limbToCheck and not LimitActionsController.CheckLimbFeasibility(limbToCheck, obj.character) then return false end
     return isEquippable
 end
 
@@ -73,8 +75,12 @@ local og_ISEquipWeaponAction_isValid = ISEquipWeaponAction.isValid
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISEquipWeaponAction:isValid()
     local isValid = og_ISEquipWeaponAction_isValid(self)
-    if not isValid or not self.character then return isValid end
+    if not isValid or not self.character or not instanceof(self.character, "IsoPlayer") then return isValid end
     local username = self.character:getUsername()
+    -- 3.3.5 (revisión): sólo con amputaciones. Con la caché de un personaje anterior (muerto) se bloqueaba equipar
+    -- cualquier cosa ("can't change weapons")
+    local dcv = DataController.GetReady(username)
+    if not dcv or not dcv:getIsAnyLimbCut() then return isValid end
     local primaryOk = CachedDataHandler.GetHandFeasibility("R", username)
     local secondaryOk = CachedDataHandler.GetHandFeasibility("L", username)
     if not primaryOk and not secondaryOk then return false end
@@ -136,6 +142,7 @@ local og_ISEquipWeaponAction_perform = ISEquipWeaponAction.perform
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISEquipWeaponAction:perform()
     og_ISEquipWeaponAction_perform(self)
+    if not instanceof(self.character, "IsoPlayer") then return end
     local dcInst = DataController.GetReady(self.character:getUsername())
     if dcInst and dcInst:getIsAnyLimbCut() then
         pcall(self.performWithAmputation, self)
@@ -240,7 +247,9 @@ end
 local og_ISClothingExtraAction_isValid = OverridenMethodsArchive.Save("ISClothingExtraAction_isValid", ISClothingExtraAction.isValid)
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISClothingExtraAction:isValid()
-    return LimitActionsController.WrapClothingAction(self, og_ISClothingExtraAction_isValid, instanceItem(self.extra))
+    -- 3.3.5: un solo objeto de prueba por acción (antes se creaba uno nuevo en cada fotograma)
+    if not self._tocExtraItem and self.extra then self._tocExtraItem = instanceItem(self.extra) end
+    return LimitActionsController.WrapClothingAction(self, og_ISClothingExtraAction_isValid, self._tocExtraItem)
 end
 
 --* Book exception for exp

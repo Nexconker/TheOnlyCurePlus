@@ -535,3 +535,41 @@ local function OnFillInventoryObjectContextMenu(playerNum, context, items)
     end
 end
 Events.OnFillInventoryObjectContextMenu.Add(OnFillInventoryObjectContextMenu)
+
+--* Montar el banco sin el cursor de muebles (3.3.4) *--
+-- Workshop: "workbench won't place" (varios). El cursor de colocar muebles depende del ratón sobre el mundo y con mods de
+-- cámara (Viewpoint) o de interfaz puede no dejar colocar. Esta opción lo pone en la casilla de delante, mirando al
+-- jugador, con la misma acción del juego que usa el cursor (ISMoveablesAction "place": en multijugador lo hace el servidor).
+local FACE_TO_PLAYER = { N = "S", S = "N", E = "W", W = "E" }
+local CARDINAL = { N = "N", S = "S", E = "E", W = "W", NE = "N", NW = "N", SE = "S", SW = "S" }
+
+local function placeBenchHere(player, item)
+    local sq = player:getCurrentSquare()
+    local d = CARDINAL[tostring(player:getDir())] or "S"
+    local target = sq and sq:getAdjacentSquare(IsoDirections[d])
+    local face = FACE_TO_PLAYER[d]
+    local props = target and ISMoveableSpriteProps.new(item:getWorldSprite())
+    local faces = props and props:getFaces() or {}
+    local fprops = faces[face] and ISMoveableSpriteProps.new(faces[face]) or props
+    if not target or not fprops or not fprops:canPlaceMoveable(player, target, item) then
+        local Messages = require("TOC/Plus/Messages")
+        Messages.Say(player, getText("IGUI_TOC_BenchNoRoom"), false)
+        return
+    end
+    ISInventoryPaneContextMenu.transferIfNeeded(player, item)
+    ISTimedActionQueue.add(ISMoveablesAction:new(player, target, "place", item:getWorldSprite(), nil, face, item))
+end
+
+local function OnFillBenchItemMenu(playerNum, context, items)
+    local player = getSpecificPlayer(playerNum)
+    if not player or player:getVehicle() then return end
+    for i = 1, #items do
+        local it = items[i]
+        if type(it) == "table" and it.items then it = it.items[1] end
+        if it and it:getFullType() == "TOC.ProsthesisWorkbench" then
+            context:addOption(getText("ContextMenu_TOC_PlaceBench"), player, placeBenchHere, it)
+            return
+        end
+    end
+end
+Events.OnFillInventoryObjectContextMenu.Add(OnFillBenchItemMenu)

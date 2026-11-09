@@ -35,6 +35,8 @@
     "Sandbox_TOC_CarryPenalty": "Kara do udźwigu bez dłoni",
     "Sandbox_TOC_ProsthesisWear": "Zużywanie się protez",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Każda czynność zużywa protezę; napraw ją klejem, taśmą, elektrodami spawalniczymi lub śrubami, zanim się zepsuje.",
+    "Sandbox_TOC_ProsthesisWearMultiplier": "Tempo zużycia protez",
+    "Sandbox_TOC_ProsthesisWearMultiplier_tooltip": "Mnożnik szybkości zużycia protez (1 = normalnie, 0,5 = o połowę wolniej, 2 = dwa razy szybciej). Także piła łańcuchowa i bagnet.",
     "Sandbox_TOC_ZombieCrawlerOnLegHit": "Zombie, które stracą nogę, stają się pełzaczami",
     "Sandbox_TOC_SleepingPillAnesthesia": "Tabletki nasenne jako znieczulenie",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Ile tabletki nasenne mogą liczyć się jako znieczulenie podczas operacji, w procentach (0 = nie liczą się). Leki przeciwbólowe liczą się do 60, alkohol do 50.",

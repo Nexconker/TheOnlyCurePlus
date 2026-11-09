@@ -37,5 +37,6 @@
     "ContextMenu_TOC_Workbench": "Banco de prótesis",
     "ContextMenu_TOC_Paint": "Pintar",
     "ContextMenu_TOC_StripPaint": "Rascar la pintura",
-    "ContextMenu_TOC_NoPaint": "Sin pintura"
+    "ContextMenu_TOC_NoPaint": "Sin pintura",
+    "ContextMenu_TOC_PlaceBench": "Montar el banco aquí"
 }

@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Brazo derecho",
     "IGUI_TOC_WB_ArmLeft": "Brazo izquierdo",
     "IGUI_TOC_WB_Legs": "Piernas",
-    "IGUI_TOC_NoHeadCantHold": "Me falta algo con qué sujetarlo."
+    "IGUI_TOC_NoHeadCantHold": "Me falta algo con qué sujetarlo.",
+    "IGUI_TOC_BenchNoRoom": "Aquí no cabe el banco."
 }

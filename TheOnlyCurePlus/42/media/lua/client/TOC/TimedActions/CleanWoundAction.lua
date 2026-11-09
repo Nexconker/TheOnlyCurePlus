@@ -90,6 +90,10 @@ function CleanWoundAction:consume()
     local item = self.item
     local inv = self.character:getInventory()
     local ft = item:getFullType()
+    if isClient() then          -- 3.3.5: en multijugador lo gasta el servidor (ver SurgeryPrepAction)
+        sendClientCommand(CommandsData.modules.TOC_ITEMS, "ConsumeItem", {itemId = item:getID(), amount = 0.15, dirty = true})
+        return
+    end
     pcall(function()
         if item:hasComponent(ComponentType.FluidContainer) then
             local fc = item:getFluidContainer()
@@ -125,7 +129,15 @@ function CleanWoundAction:perform()
         local dirt = dcInst:getWoundDirtyness(limbName) - 0.6 * power
         dcInst:setWoundDirtyness(limbName, math.max(0, dirt))
         dcInst:setSepsis(limbName, dcInst:getSepsis(limbName) - 10 * power)
-        if self.patient:isLocalPlayer() then dcInst:updateAmputationsFromClient(limbName) end
+        if self.patient:isLocalPlayer() then
+            dcInst:updateAmputationsFromClient(limbName)
+        elseif isClient() then
+            -- 3.3.4 (Workshop, Roderik: "another player cleans it, it looks clean for him, but the dirt comes back"): la
+            -- limpieza hecha por otro jugador sólo cambiaba su copia; el cliente del paciente volvía a mandar su suciedad
+            -- vieja cada hora. El servidor la aplica a los datos del paciente y se los manda (RelayCleanStump).
+            sendClientCommand(CommandsData.modules.TOC_RELAY, "RelayCleanStump",
+                {patientNum = self.patient:getOnlineID(), limbName = limbName, power = power})
+        end
         local bbptEnum = BloodBodyPartType[limbName]
         if bbptEnum then
             local visual = self.patient:getHumanVisual()

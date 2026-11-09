@@ -21,10 +21,34 @@ function CyberStrength.Wanted(player)
     return 0
 end
 
+---3.3.6: nivel de Fuerza que respalda la experiencia (como lo calcula el juego en XpUpdate.checkForLosingLevel)
+---@param player IsoPlayer
+---@return integer?
+local function XpLevel(player)
+    local ok, lvl = pcall(function()
+        local xp = player:getXp():getXP(Perks.Strength)
+        local perk = PerkFactory.getPerk(Perks.Strength)
+        local l = 0
+        for i = 1, 10 do
+            if xp >= perk:getTotalXpForLevel(i) then l = i else break end
+        end
+        return l
+    end)
+    return ok and lvl or nil
+end
+
 ---@param player IsoPlayer
 function CyberStrength.Update(player)
     local md = player:getModData()
     local have = md.TOCCyberStr or 0
+    -- 3.3.6: LevelPerk sube el nivel sin experiencia; cuando el personaje pasa días sin esforzarse el juego le quita
+    -- un nivel de Fuerza "que no respalda la experiencia": justo el +1. El mod seguía creyendo que lo había dado y, al
+    -- quitarse el brazo, restaba otro nivel (uno de verdad). Si el nivel actual ya no está por encima de lo que da la
+    -- experiencia, el +1 se ha perdido: se da por no dado y se vuelve a poner.
+    if have > 0 then
+        local xl = XpLevel(player)
+        if xl and player:getPerkLevel(Perks.Strength) <= xl then have = 0; md.TOCCyberStr = 0 end
+    end
     local want = CyberStrength.Wanted(player)
     if want == have then return end
     if want > have then

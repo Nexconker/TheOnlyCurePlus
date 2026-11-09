@@ -8,38 +8,54 @@ local SurgeryPlan = {}
 
 local function clamp(v, a, b) if v < a then return a elseif v > b then return b else return v end end
 
+local function Usable(item)
+    if instanceof(item, "DrainableComboItem") and item:getCurrentUsesFloat() <= 0 then return false end   -- toallitas / bote vacíos
+    local okc, isEmpty = pcall(function()
+        return item:hasComponent(ComponentType.FluidContainer) and item:getFluidContainer():getAmount() < 0.15
+    end)
+    return not (okc and isEmpty)                                                                          -- whisky vacío
+end
+
+---3.3.5: también dentro de bolsas (FindAndReturn no busca en ellas; QueueSurgery ya pasa los objetos al inventario)
+local function FirstUsable(inv, fullType, exclude)
+    local ok, list = pcall(function() return inv:getAllTypeRecurse(fullType) end)
+    if ok and list then
+        for i = 0, list:size() - 1 do
+            local it = list:get(i)
+            if it ~= exclude and Usable(it) then return it end
+        end
+        return nil
+    end
+    local it = inv:FindAndReturn(fullType)
+    if it and it ~= exclude and Usable(it) then return it end
+    return nil
+end
+
+local function FindAny(inv, fullType)
+    return inv:FindAndReturn(fullType) or inv:getFirstTypeRecurse(fullType)
+end
+
 ---@param inv ItemContainer
 ---@param types table<string, number>
----@return InventoryItem?, number? best item and its tier (lowest tier wins)
-local function FindBestOfTypes(inv, types)
-    local best, bestTier = nil, 99
+---@param highest boolean? true: gana el valor más alto (potencia del desinfectante); si no, el tier más bajo (sierras, hojas)
+---@param exclude InventoryItem? objeto que no se puede usar (la venda que se va a poner)
+---@return InventoryItem?, number?
+local function FindBestOfTypes(inv, types, highest, exclude)
+    local best, bestTier = nil, highest and -1 or 99
     for fullType, tier in pairs(types) do
-        if tier < bestTier then
-            local item = inv:FindAndReturn(fullType)
-            if item then
-                local empty = false
-                if instanceof(item, "DrainableComboItem") and item:getCurrentUsesFloat() <= 0 then
-                    empty = true        -- empty wipes / bottle
-                else
-                    local okc, isEmpty = pcall(function()
-                        return item:hasComponent(ComponentType.FluidContainer) and item:getFluidContainer():getAmount() < 0.15
-                    end)
-                    if okc and isEmpty then empty = true end    -- empty whiskey
-                end
-                if not empty then
-                    best, bestTier = item, tier
-                end
-            end
+        if (highest and tier > bestTier) or (not highest and tier < bestTier) then
+            local item = FirstUsable(inv, fullType, exclude)
+            if item then best, bestTier = item, tier end
         end
     end
-    return best, bestTier
+    return best, best and bestTier or nil
 end
 
 ---@param player IsoPlayer
 ---@return InventoryItem?
 function SurgeryPlan.GetBandageItem(player)
     local inv = player:getInventory()
-    return inv:FindAndReturn("Base.AlcoholBandage") or inv:FindAndReturn("Base.Bandage") or inv:FindAndReturn("Base.AlcoholRippedSheets") or inv:FindAndReturn("Base.RippedSheets")
+    return FindAny(inv, "Base.AlcoholBandage") or FindAny(inv, "Base.Bandage") or FindAny(inv, "Base.AlcoholRippedSheets") or FindAny(inv, "Base.RippedSheets")
 end
 
 ---Suture needle, or thread (only if there is a needle too)
@@ -47,11 +63,11 @@ end
 ---@return InventoryItem?
 function SurgeryPlan.GetStitchesItem(player)
     local inv = player:getInventory()
-    local sutureNeedle = inv:FindAndReturn("Base.SutureNeedle")
+    local sutureNeedle = FindAny(inv, "Base.SutureNeedle")
     if sutureNeedle then return sutureNeedle end
-    local needle = inv:FindAndReturn("Base.Needle")
+    local needle = FindAny(inv, "Base.Needle")
     if not needle then return nil end
-    local thread = inv:FindAndReturn("Base.Thread")
+    local thread = FindAny(inv, "Base.Thread")
     if thread and thread:getUseDelta() > 0 then return thread end
     return nil
 end
@@ -102,10 +118,13 @@ function SurgeryPlan.Gather(surgeon, patient, limbName, toolItem)
     plan.toolTier = plan.toolType and StaticData.SAWS_TYPES[plan.toolType] or nil
     plan.bladeItem, plan.bladeTier = FindBestOfTypes(inv, StaticData.BLADE_TYPES)
     plan.bladeType = plan.bladeItem and plan.bladeItem:getFullType() or nil
-    plan.disinfectItem = FindBestOfTypes(inv, StaticData.DISINFECTANT_TYPES)
-    plan.disinfectType = plan.disinfectItem and plan.disinfectItem:getFullType() or nil
+    -- 3.3.5 (revisión): la venda primero, y el desinfectante nunca es esa misma venda (con una sola venda con alcohol se
+    -- gastaba al desinfectar y luego no había con qué vendar). Y gana el de MÁS potencia: antes ganaba el de menos
+    -- (whisky o trapos con alcohol por delante del desinfectante).
     plan.stitchesItem = SurgeryPlan.GetStitchesItem(surgeon)
     plan.bandageItem = SurgeryPlan.GetBandageItem(surgeon)
+    plan.disinfectItem = FindBestOfTypes(inv, StaticData.DISINFECTANT_TYPES, true, plan.bandageItem)
+    plan.disinfectType = plan.disinfectItem and plan.disinfectItem:getFullType() or nil
     plan.hasTourniquet = TourniquetController.CheckTourniquetOnLimb(patient, limbName)
     plan.anesthesia = SurgeryPlan.GetAnesthesia(patient)
     plan.knows = SurgeryPlan.KnowsSurgery(surgeon)

@@ -112,11 +112,15 @@ function LocalPlayerController.HandleDamage(character)
         local bptEnum = StaticData.LIMBS_TO_BODYLOCS_IND_BPT[limbName]
         local bodyPart = bd:getBodyPart(bptEnum)
         if dcInst:getIsCut(limbName) then
-            if bodyPart:HasInjury() then
+            -- 3.3.3: antes se curaba la parte ANTES de mirar si estaba mordida: ya no lo estaba y la infección general
+            -- se quedaba ("me mordió la mano protésica: sin herida pero infectado")
+            local wasBitten = bodyPart:bitten() or bodyPart:IsInfected()
+            if bodyPart:HasInjury() or wasBitten then
                 LocalPlayerController.HealArea(bodyPart)
             end
-            if bodyPart:bitten() or bodyPart:IsInfected() then
-                LocalPlayerController.HealZombieInfection(bd, limbName, dcInst)
+            if wasBitten then
+                require("TOC/Plus/CutLimbHeal").ClearStrayInfection(bd, dcInst)
+                dcInst:setIsInfected(limbName, false)
                 modDataNeedsUpdate = true
             elseif dcInst:getIsInfected(limbName) then
                 dcInst:setIsInfected(limbName, false)
@@ -184,7 +188,9 @@ function LocalPlayerController.PollCutLimbsForBites(character)
             local bptEnum = StaticData.LIMBS_TO_BODYLOCS_IND_BPT[limbName]
             local bodyPart = bptEnum and bd:getBodyPart(bptEnum) or nil
             if bodyPart and require("TOC/Plus/CutLimbHeal").HasAnything(bodyPart) then
+                local wasBitten = bodyPart:bitten() or bodyPart:IsInfected()
                 LocalPlayerController.HealArea(bodyPart)
+                if wasBitten then require("TOC/Plus/CutLimbHeal").ClearStrayInfection(bd, dcInst) end
                 if isClient() then
                     local lastReq = LocalPlayerController.sanitizeLastRequestTick[limbName] or -LocalPlayerController.sanitizeRequestCooldown
                     if LocalPlayerController.sanitizePollTick - lastReq >= LocalPlayerController.sanitizeRequestCooldown then
@@ -377,24 +383,46 @@ function LocalPlayerController.ApplyCarryPenalty()
     local dcInst = DataController.GetReady(pl:getUsername())
     if not dcInst then return end
     if not sv("CarryPenalty", true) then return end
-    local penalty = 0
+    -- 3.3.2 (Workshop, Gyrgon: "negative carrying capacity, then I can carry an infinite amount"): maxWeightDelta es
+    -- un MULTIPLICADOR de la capacidad (1.0; los rasgos Strong/Stout/Weak/Feeble lo cambian), no kilos. Restarle 2
+    -- lo dejaba en -1: capacidad negativa, que el juego no comprueba. Ahora cada mano que falta sin prótesis es -20%.
+    local factor = 1
     for _, side in ipairs(StaticData.SIDES_STR) do
         if dcInst:getIsCut("Hand_" .. side) and not dcInst:getIsProstEquippedGroup("Top_" .. side) then
-            penalty = penalty + 2
+            factor = factor * 0.8
         end
     end
     local plus = dcInst:plus()
-    if plus.carryApplied == penalty then return end
+    -- 3.3.5 (revisión): la base y el último valor puesto van en el modData del personaje. En los datos del mod el servidor
+    -- los reescribía (no conoce carryLastSet) y en MP la penalización se volvía a aplicar sobre la ya aplicada cada hora.
+    local md = pl:getModData()
+    local cs = md.TOC_carry
+    if type(cs) ~= "table" then
+        cs = { base = plus.carryDelta, last = plus.carryLastSet }
+        md.TOC_carry = cs
+    end
     pcall(function()
-        local base = plus.carryDelta
-        if base == nil then
-            base = pl:getMaxWeightDelta()
-            plus.carryDelta = base
+        local cur = pl:getMaxWeightDelta()
+        local base
+        if cs.last and math.abs(cur - cs.last) < 0.0001 then
+            base = cs.base                               -- lo que pusimos nosotros: la base sigue siendo la guardada
+        else
+            base = cur                                   -- primera vez, o el juego lo cambió (rasgos de fuerza)
         end
-        pl:setMaxWeightDelta(base - penalty)
-        plus.carryApplied = penalty
+        if not base or base <= 0 then                    -- partidas con el fallo anterior (delta negativo)
+            base = (cs.base and cs.base > 0) and cs.base or 1
+        end
+        cs.base = base
+        local want = base * factor
+        if math.abs(cur - want) > 0.0001 then pl:setMaxWeightDelta(want) end
+        cs.last = want
+        plus.carryDelta = base
+        plus.carryLastSet = want
+        plus.carryApplied = nil
     end)
 end
+
+Events.EveryHours.Add(function() pcall(LocalPlayerController.ApplyCarryPenalty) end)
 
 Events.OnTOCCacheUpdated.Add(function(username)
     local pl = getPlayer()

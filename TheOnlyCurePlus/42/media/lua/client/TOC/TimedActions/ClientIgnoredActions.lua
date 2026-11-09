@@ -17,10 +17,11 @@ local StaticData = require("TOC/StaticData")
 ---@param o ISBaseTimedAction
 ---@param maxTime number
 local function OverrideAction(o, maxTime)
-    -- TODO Add forced debuff instead of just relying on the vanilla values?
+    -- 3.3.5 (revisión): ver SharedIgnoredActions: sin pisar el tiempo del juego (acaba con la animación)
     o.skipTOC = true
-    o.maxTime = maxTime
-    o.animSpeed = 1.0
+    if o.maxTime == -1 and maxTime and maxTime > 1 then
+        o.animSpeed = maxTime / o:adjustMaxTime(maxTime)
+    end
 end
 
 

@@ -45,6 +45,16 @@ end
 ---@param risk table
 ---@param previousAction ISBaseTimedAction?
 local function QueueSurgery(surgeon, patient, limbName, plan, risk, previousAction)
+    -- 3.3.2 (Workshop: "pressing Operate does nothing"): la sierra de una mochila se pasaba al inventario al ABRIR la
+    -- ventana; al pulsar Operate ese traspaso ya había terminado y addAfter() no encuentra la acción anterior: no se
+    -- encolaba nada. Ahora los objetos se traen al inventario principal al confirmar, y addAfter sólo se usa si la
+    -- acción anterior sigue en la cola.
+    local queue = ISTimedActionQueue.getTimedActionQueue(surgeon)
+    if previousAction and queue and queue:indexOf(previousAction) == -1 then previousAction = nil end
+    local inv = surgeon:getInventory()
+    for _, it in ipairs({ plan.toolItem, plan.disinfectItem, plan.bladeItem, plan.stitchesItem, plan.bandageItem }) do
+        if it and it:getContainer() ~= inv then ISInventoryPaneContextMenu.transferIfNeeded(surgeon, it) end
+    end
     local function add(action)
         if previousAction then
             ISTimedActionQueue.addAfter(previousAction, action)
@@ -163,11 +173,8 @@ end
 
 function CutLimbInteractionHandler:openWindow(itemType)
     local item = self:getItemOfType(self.items.ITEMS, itemType)
-    local previousAction = nil
-    if item and item:getContainer() ~= self:getDoctor():getInventory() then
-        previousAction = self:toPlayerInventory(item, nil)
-    end
-    OpenWindow(self:getDoctor(), self:getPatient(), self.limbName, item, previousAction)
+    -- la sierra se trae al inventario al confirmar (QueueSurgery), no al abrir la ventana
+    OpenWindow(self:getDoctor(), self:getPatient(), self.limbName, item, nil)
 end
 
 function CutLimbInteractionHandler:dropItems(items)

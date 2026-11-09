@@ -35,6 +35,8 @@
     "Sandbox_TOC_CarryPenalty": "Penalidade de carga sem uma mão",
     "Sandbox_TOC_ProsthesisWear": "Próteses se desgastam",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Cada ação desgasta a prótese; conserte-a com cola, fita, varetas de solda ou parafusos antes que ela quebre.",
+    "Sandbox_TOC_ProsthesisWearMultiplier": "Velocidade de desgaste das próteses",
+    "Sandbox_TOC_ProsthesisWearMultiplier_tooltip": "Multiplica a velocidade de desgaste das próteses (1 = normal, 0,5 = metade, 2 = o dobro). Também a motosserra e a baioneta.",
     "Sandbox_TOC_ZombieCrawlerOnLegHit": "Zumbis que perdem uma perna viram rastejantes",
     "Sandbox_TOC_SleepingPillAnesthesia": "Comprimidos soníferos como anestesia",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Quanto os comprimidos soníferos contam para a anestesia durante a cirurgia, em porcentagem (0 = não contam). Analgésicos contam até 60 e álcool até 50.",

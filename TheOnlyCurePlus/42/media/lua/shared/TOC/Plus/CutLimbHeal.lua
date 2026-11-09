@@ -24,6 +24,39 @@ local CLEAR = {
     { "setBurnTime", 0 }, { "setNeedBurnWash", false },
 }
 
+---3.3.3 (Workshop, Red: "a zombie bit my hand, I didn't get the injury but got the infection"): un mordisco que cae
+---en la parte de un miembro amputado deja también la infección GENERAL del cuerpo (Knox), no sólo la de esa parte.
+---Se quita, salvo que otra parte que sí existe esté mordida o infectada (entonces la infección es de verdad).
+---@param bd BodyDamage
+---@param dcInst DataController
+---@return boolean cleared
+function CutLimbHeal.ClearStrayInfection(bd, dcInst)
+    if not bd or not dcInst then return false end
+    local StaticData = require("TOC/StaticData")
+    local parts = bd:getBodyParts()
+    for i = 0, parts:size() - 1 do
+        local part = parts:get(i)
+        local limbName = StaticData.BODYLOCS_TO_LIMBS_IND_STR[BodyPartType.ToString(part:getType())]
+        local missing = limbName ~= nil and dcInst:getIsCut(limbName)
+        if not missing and (part:bitten() or part:IsInfected()) then return false end
+    end
+    if not bd:IsInfected() then return false end
+    -- una infección que la cirugía ya dio por perdida (tarde, o mordisco en el torso) no se cura con otro mordisco
+    local outcome = dcInst:plus().cureOutcome
+    if outcome == "late" or outcome == "doomed" or dcInst:getIsIgnoredPartInfected() then return false end
+    pcall(function()
+        bd:setInfected(false)
+        bd:setInfectionMortalityDuration(-1)
+        bd:setInfectionTime(-1)
+    end)
+    pcall(function()
+        local st = bd:getParentChar():getStats()
+        st:set(CharacterStat.ZOMBIE_INFECTION, 0)
+        st:set(CharacterStat.ZOMBIE_FEVER, 0)
+    end)
+    return true
+end
+
 ---Clear every injury on a body part that no longer exists
 ---@param bodyPart BodyPart
 function CutLimbHeal.Clear(bodyPart)

@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Права рука",
     "IGUI_TOC_WB_ArmLeft": "Ліва рука",
     "IGUI_TOC_WB_Legs": "Ноги",
-    "IGUI_TOC_NoHeadCantHold": "Мені нема чим це тримати."
+    "IGUI_TOC_NoHeadCantHold": "Мені нема чим це тримати.",
+    "IGUI_TOC_BenchNoRoom": "Тут немає місця для верстата."
 }

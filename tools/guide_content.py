@@ -80,7 +80,7 @@ def p_cover(c, y):
     c.setFillColor(BONE); c.setFont("Title", 42); c.drawString(M + 48, PH - 180, "FIELD SURGERY")
     c.setFillColor(RED); c.rect(M, PH - 196, 360, 4, fill=1, stroke=0)
     c.setFillColor(GOLD); c.setFont("Title", 30); c.drawString(M, PH - 236, "PLAYER GUIDE")
-    c.setFillColor(GREY); c.setFont("Body", 12); c.drawString(M, PH - 256, "Version 3.3  ·  Project Zomboid Build 42  ·  Singleplayer and multiplayer")
+    c.setFillColor(GREY); c.setFont("Body", 12); c.drawString(M, PH - 256, "Version 3.3.6  ·  Project Zomboid Build 42  ·  Singleplayer and multiplayer")
     flow(c, [P("Everything you need to survive a bite, cut the limb off properly, heal, and get back on your feet "
                "(or onto a mechanical one). Every box, tab and line marked like " + link("this", "contents") +
                " is clickable. Use the bookmarks panel of your PDF reader to jump around.", "body")], M - 8, PH - 350, 340, 90)
@@ -310,7 +310,7 @@ def p_postop(c, y):
             Spacer(1, 5), P("HOW TO STOP IT", "h3")] + bullets([
                 "<b>Clean Stump</b>: health panel, on an open dirty stump. Uses a disinfectant (or alcohol bandage). Hurts.",
                 "<b>Antibiotics</b> lower it every hour. Keep a clean bandage on and stay clean.",
-                "Once the stump closes, sepsis fades. Without a hand you carry 2 less (sandbox <i>CarryPenalty</i>)."], "small") +
+                "Once the stump closes, sepsis fades. Each missing hand without a prosthesis: 20% less carry weight (sandbox <i>CarryPenalty</i>)."], "small") +
             [Spacer(1, 4), P("HEALTH PANEL CHEAT SHEET", "h3"),
             table([["You see", "Means"], ["In shock / Convalescence: 2 d 5 h", "Post-op weakness, see the table on the left"],
                    ["Cicatrization 40%", "How far the stump has healed"], ["Wound Dirtyness 12%", "Keep it under 45%"],
@@ -379,7 +379,7 @@ def p_arms2(c, y):
                 "<b>Wear</b>: every action wears it a little; at 0 condition it falls off (<i>The prosthesis broke.</i>). "
                 "At 3 or less you get a warning.",
                 "<b>Cybernetic frame</b>: +1 Strength while worn (only one point, even with two).",
-                "Sandbox <i>ProsthesisWear</i> turns wear off."], "small") +
+                "Sandbox <i>Prosthesis wear speed</i> (0.1 to 5) sets how fast; <i>ProsthesisWear</i> turns it off."], "small") +
         [Spacer(1, 4), P("REPAIR", "h3"), table([["Part", "Repair with"],
             ["Wood, knob, peg leg, crutch", "wood glue or duct tape"], ["Scrap base, hook, bayonet", "welding rods or duct tape"],
             ["Mechanical frame / hand / leg", "welding rods, screws or duct tape"], ["Medical parts", "duct tape or screws"],
@@ -475,7 +475,7 @@ def p_workbench(c, y):
     w1 = 380
     col(c, [P("BUILD IT", "h2"), icon_cell("ProsthesisWorkbench", "<b>Prosthesis Workbench</b>: crafting menu > Carpentry. "
             "Carpentry 3, 8 planks, 20 nails, 1 sheet metal, 8 screws; hammer, saw and screwdriver. It is furniture: "
-            "place it from your inventory like any other (it is not in the build menu).", 30),
+            "place it from your inventory like any other (it is not in the build menu). If the placing cursor does not work, right-click it > <b>Set up the workbench here</b>.", 30),
             Spacer(1, 4), callout("info", "It has a real 3D model, also in 3D / first-person camera mods such as Viewpoint."),
             Spacer(1, 6), P("USE IT", "h2")] + bullets([
                 "Right-click the bench > <b>Prosthesis workbench</b> (you walk to it), or right-click a prosthesis in your "
@@ -554,7 +554,7 @@ def p_options(c, y):
             ["Convalescence days", "5", ""],
             ["Cicatrization speed", "1", "Higher heals faster"],
             ["Phantom pain / Carry penalty", "on / on", ""],
-            ["Prostheses wear out", "on", ""],
+            ["Prostheses wear out / wear speed", "on / 1.0", "0.1 = ten times slower"],
             ["Crutch / crawl stamina drain", "100% / 100%", "Experienced amputees pay 50%"],
             ["Sleeping pills as anaesthesia", "30", ""],
             ["Reveal the outcome after surgery", "off", "Tells you at once if it worked"],
@@ -568,7 +568,7 @@ def p_options(c, y):
 FAQ = [
     ("Do I need the original The Only Cure?", "No. The Only Cure+ is the whole mod. Do <b>not</b> enable both: they share items and save data. \"Field Surgery\" is part of the name, not another mod."),
     ("Where do I find prostheses?", "Most are crafted: see " + link("Recipes", "recipes") + ". Medical ones only spawn in hospitals and clinics. Some scrap and mechanical parts also spawn in clinics."),
-    ("How do I build the prosthesis workbench?", "Crafting menu > Carpentry, needs <b>Carpentry 3</b>. It is not in the build menu. Then place it from your inventory. See " + link("Workbench", "workbench") + "."),
+    ("How do I build the prosthesis workbench?", "Crafting menu > Carpentry, needs <b>Carpentry 3</b>. It is not in the build menu. Then place it from your inventory, or right-click it > <b>Set up the workbench here</b>. See " + link("Workbench", "workbench") + "."),
     ("Why can't I hold two-handed weapons?", "You need a <b>hand attachment</b> (mechanical, medical or cybernetic) mounted on a base. A base alone, a wooden knob, a hook, the chainsaw or the bayonet cannot hold them."),
     ("Does amputating ask before cutting?", "Yes. The surgery window shows the checklist and the risk; nothing happens until you press <b>Operate</b>."),
     ("Can I amputate a friend? Can a friend amputate me?", "Yes, from the health panel of the other player, within 3 tiles. Only someone else can cut your upper arm or thigh (unless the sandbox allows it)."),
@@ -580,6 +580,7 @@ FAQ = [
     ("Why can't I amputate my own upper arm or thigh?", "Too high to do on yourself: someone else has to do it. The sandbox option <i>Self-amputation above the elbow and knee</i> allows it."),
     ("Can I fight while crawling?", "Yes, you can still attack from the ground. Zombies still find you down there."),
     ("How do I paint a prosthesis?", "At the " + link("workbench", "workbench") + ": <b>Paint</b> button, with a vanilla paint can and a paintbrush."),
+    ("I wear two prostheses of the same kind?", "Recipes give the left one; the second goes to the free side by itself (3.3.4)."),
     ("My prosthesis fell off!", "It broke from wear (condition 0). Repair it before it gets there: see " + link("repair", "arms2") + "."),
     ("Build 41?", "No. Build 42 only (42.20 or newer)."),
 ]

@@ -108,7 +108,7 @@ local function EnforceMP(player, st)
     end
     if player:isDead() or player:isAsleep() then return end
     local prim = player:getPrimaryHandItem()
-    if (blade and prim == blade) or KnifeArm.IsPistol(prim) then return end
+    if (prim and prim:getFullType() == KnifeArm.WEAPON) or KnifeArm.IsPistol(prim) then return end     -- 3.3.5: por tipo
     if player:isAiming() or ISTimedActionQueue.isPlayerDoingAction(player) then return end
     st.nextMount = now + 3000
     sendClientCommand(CommandsData.modules.TOC_ITEMS, "MountWeapon", {kind = "blade"})
@@ -245,7 +245,8 @@ end
 local function AddSwingWear(player, arm)
     local md = arm:getModData()
     md.TOC_BladeWear = (tonumber(md.TOC_BladeWear) or 0) + 1
-    if md.TOC_BladeWear < KnifeArm.SWINGS_PER_CONDITION then return end
+    local mult = math.max(0.1, (SandboxVars.TOC and SandboxVars.TOC.ProsthesisWearMultiplier) or 1)     -- 3.3.4
+    if md.TOC_BladeWear < KnifeArm.SWINGS_PER_CONDITION / mult then return end
     md.TOC_BladeWear = 0
     local cond = arm:getCondition() - 1
     arm:setCondition(math.max(0, cond))

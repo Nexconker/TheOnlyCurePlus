@@ -35,6 +35,8 @@
     "Sandbox_TOC_CarryPenalty": "손이 없을 때 소지 무게 페널티",
     "Sandbox_TOC_ProsthesisWear": "의수족 마모",
     "Sandbox_TOC_ProsthesisWear_tooltip": "모든 행동이 의수족을 마모시킵니다. 부서지기 전에 접착제, 테이프, 용접봉, 나사못으로 수리하세요.",
+    "Sandbox_TOC_ProsthesisWearMultiplier": "의수·의족 마모 속도",
+    "Sandbox_TOC_ProsthesisWearMultiplier_tooltip": "의수·의족이 마모되는 속도의 배율 (1 = 보통, 0.5 = 절반, 2 = 두 배). 전기톱과 총검에도 적용됩니다.",
     "Sandbox_TOC_ZombieCrawlerOnLegHit": "다리를 잃은 좀비는 기어다니는 좀비가 됨",
     "Sandbox_TOC_SleepingPillAnesthesia": "수면제를 마취로 사용",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "수술 중 수면제가 마취로 인정되는 최대 비율(퍼센트, 0 = 인정 안 됨). 진통제는 60, 알코올은 50까지 인정된다.",

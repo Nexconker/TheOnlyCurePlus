@@ -19,6 +19,10 @@ end
 function ServerDataHandler.AddTable(key, table)
     -- Check if key is valid
     if not luautils.stringStarts(key, StaticData.MOD_NAME .. "_") then return end
+    -- 3.3.5 (revisión): este evento no dice qué cliente lo manda: cualquiera podía sustituir los datos de otro jugador
+    -- (devolverle los miembros, borrarle los muñones). Sólo se acepta la tabla compartida de zombis; los datos de un
+    -- jugador llegan por comandos con remitente (WipeOwnData, UpdateDataControllerFromClient...).
+    if key ~= CommandsData.GetZombieKey() then return end
 
     TOC_DEBUG.print("Received TOC ModData: " .. tostring(key))
     --TOC_DEBUG.printTable(table)

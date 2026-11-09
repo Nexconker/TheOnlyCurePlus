@@ -35,6 +35,8 @@
     "Sandbox_TOC_CarryPenalty": "Carry weight penalty without a hand",
     "Sandbox_TOC_ProsthesisWear": "Prostheses wear out",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Every action wears the prosthesis; repair it with glue, tape, welding rods or screws before it breaks.",
+    "Sandbox_TOC_ProsthesisWearMultiplier": "Prosthesis wear speed",
+    "Sandbox_TOC_ProsthesisWearMultiplier_tooltip": "Multiplies how fast prostheses wear out (1 = normal, 0.5 = half as fast, 2 = twice as fast). Also the chainsaw and bayonet.",
     "Sandbox_TOC_ZombieCrawlerOnLegHit": "Zombies that lose a leg become crawlers",
     "Sandbox_TOC_SleepingPillAnesthesia": "Sleeping pills as anaesthesia",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "How much sleeping pills can count towards anaesthesia during surgery, in percent (0 = they do not count). Painkillers count up to 60 and alcohol up to 50.",

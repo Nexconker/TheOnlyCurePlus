@@ -35,6 +35,8 @@
     "Sandbox_TOC_CarryPenalty": "Штраф до вантажопідйомності без кисті",
     "Sandbox_TOC_ProsthesisWear": "Протези зношуються",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Кожна дія зношує протез; ремонтуйте його клеєм, скотчем, зварювальними електродами чи гвинтами, поки він не зламався.",
+    "Sandbox_TOC_ProsthesisWearMultiplier": "Швидкість зносу протезів",
+    "Sandbox_TOC_ProsthesisWearMultiplier_tooltip": "Множник швидкості зносу протезів (1 = звичайна, 0,5 = удвічі повільніше, 2 = удвічі швидше). Також бензопила і багнет.",
     "Sandbox_TOC_ZombieCrawlerOnLegHit": "Зомбі, що втратили ногу, стають повзунами",
     "Sandbox_TOC_SleepingPillAnesthesia": "Снодійне як анестезія",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Наскільки снодійне може зараховуватися як анестезія під час операції, у відсотках (0 = не зараховується). Знеболювальне зараховується до 60, алкоголь до 50.",

@@ -106,7 +106,12 @@ function RefuelAction:perform()
     if arm and fc then
         local fuel = CA.GetFuel(arm)
         local take = math.min(fc:getAmount(), CA.TANK - fuel)
-        if take > 0 then
+        if take > 0 and isClient() then
+            -- 3.3.5: en multijugador el servidor vacía el bidón y llena el depósito (antes el bidón no bajaba: gasolina gratis)
+            local CommandsData = require("TOC/CommandsData")
+            sendClientCommand(CommandsData.modules.TOC_ITEMS, "RefuelSaw", {armId = arm:getID(), petrolId = self.petrol:getID()})
+            arm:getModData().TOC_SawFuel = math.min(CA.TANK, fuel + take)
+        elseif take > 0 then
             fc:adjustAmount(fc:getAmount() - take)
             if sendItemStats then pcall(sendItemStats, self.petrol) end
             arm:getModData().TOC_SawFuel = math.min(CA.TANK, fuel + take)

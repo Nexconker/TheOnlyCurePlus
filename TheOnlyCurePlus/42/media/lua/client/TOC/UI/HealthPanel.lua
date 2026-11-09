@@ -4,6 +4,12 @@ local CachedDataHandler = require("TOC/Handlers/CachedDataHandler")
 local Compat = require("TOC/Compat")
 local PostOp = require("TOC/Plus/PostOp")
 
+---3.3.5: la marca de "intento fallido" dura 3 días de juego (antes no se quitaba nunca)
+local function BotchedShown(dc, limbName)
+    local t = dc:plus().botched[limbName]
+    return type(t) == "number" and PostOp.Now() - t < 72
+end
+
 local CutLimbInteractionHandler = require("TOC/UI/Interactions/CutLimbInteractionHandler")
 local WoundCleaningInteractionHandler = require("TOC/UI/Interactions/WoundCleaningInteractionHandler")
 local ExamineWoundInteractionHandler = require("TOC/UI/Interactions/ExamineWoundInteractionHandler")
@@ -13,6 +19,22 @@ local isReady = false
 
 -- B42: the body texture is shifted compared to the panel origin (measured by the original author)
 local xMod, yMod = 5, 13
+
+-- 3.3.1 (Workshop: "when you examine a wound it stays FOREVER"): el resultado de Examine Wound se deja de mostrar a las
+-- 24 h de juego o en cuanto esa parte ya no tiene mordisco, arañazo, corte ni herida profunda.
+local DIAG_HOURS = 24
+---@param bodyPart BodyPart
+local function DiagnosisShown(dcInst, bodyPart, bodyPartTypeStr)
+    local d = dcInst and dcInst:plus().lastDiagnosis[bodyPartTypeStr]
+    if not d or not d.verdict then return nil end
+    if PostOp.Now() - (d.hours or 0) > DIAG_HOURS then return nil end
+    local wounded = true
+    pcall(function()
+        wounded = bodyPart:bitten() or bodyPart:scratched() or bodyPart:isCut() or bodyPart:isDeepWounded()
+    end)
+    if not wounded then return nil end
+    return d
+end
 if not StaticData.COMPAT_42 then xMod, yMod = 0, 0 end
 
 function SetHealthPanelTOC()
@@ -199,14 +221,14 @@ function ISHealthBodyPartListBox:doDrawItem(y, item, alt)
         end
     end
     -- botched attempt on this limb
-    if dcInst and limbName and dcInst:plus().botched[limbName] and not dcInst:getIsCut(limbName) then
+    if dcInst and limbName and BotchedShown(dcInst, limbName) and not dcInst:getIsCut(limbName) then
         self:drawText("- " .. getText("IGUI_TOC_HP_Botched"), x, y, 0.95, 0.4, 0.2, 1, UIFont.Small)
         y = y + fontHgt
     end
     -- diagnosis on this part
     if dcInst then
-        local d = dcInst:plus().lastDiagnosis[bodyPartTypeStr]
-        if d and d.verdict then
+        local d = DiagnosisShown(dcInst, bodyPart, bodyPartTypeStr)
+        if d then
             local ago = math.max(0, math.floor(PostOp.Now() - (d.hours or 0)))
             local col = ({ infected = { 0.95, 0.3, 0.3 }, clean = { 0.3, 0.9, 0.3 }, unsure = { 0.8, 0.8, 0.5 } })[d.verdict] or { 0.8, 0.8, 0.8 }
             self:drawText("- " .. getText("IGUI_TOC_HP_Diag_" .. d.verdict, tostring(ago)), x, y, col[1], col[2], col[3], 1, UIFont.Small)
@@ -222,6 +244,10 @@ function ISHealthPanel:getDamagedParts()
     if isReady == false or (Compat.handlers['iMeds'] and Compat.handlers['iMeds'].isActive) or (Compat.handlers['iMedsFixed'] and Compat.handlers['iMedsFixed'].isActive) then
         return og_ISHealthPanel_getDamagedParts(self)
     end
+    -- 3.3.5 (revisión): se parte de la lista del juego (y de otros mods que la amplíen) y se añaden las partes de TOC+
+    local okOg, ogList = pcall(og_ISHealthPanel_getDamagedParts, self)
+    local inOg = {}
+    if okOg and type(ogList) == "table" then for _, bp in ipairs(ogList) do inOg[bp] = true end end
     local result = {}
     local bodyParts = self:getPatient():getBodyDamage():getBodyParts()
     if isClient() and not self:getPatient():isLocalPlayer() then
@@ -236,12 +262,17 @@ function ISHealthPanel:getDamagedParts()
         local extra = false
         if mdh then
             if limbName and mdh:getIsCut(limbName) and mdh:getIsVisible(limbName) then extra = true end
-            if mdh:plus().lastDiagnosis[bodyPartTypeStr] then extra = true end
-            if limbName and mdh:plus().botched[limbName] then extra = true end
+            if DiagnosisShown(mdh, bodyPart, bodyPartTypeStr) then extra = true end
+            if limbName and BotchedShown(mdh, limbName) then extra = true end
         end
-        if ISHealthPanel.cheat or bodyPart:HasInjury() or bodyPart:bandaged() or bodyPart:stitched() or bodyPart:getSplintFactor() > 0 or bodyPart:getAdditionalPain() > 10 or bodyPart:getStiffness() > 5 or extra then
+        if inOg[bodyPart] then
+            table.insert(result, bodyPart); inOg[bodyPart] = nil
+        elseif ISHealthPanel.cheat or bodyPart:HasInjury() or bodyPart:bandaged() or bodyPart:stitched() or bodyPart:getSplintFactor() > 0 or bodyPart:getAdditionalPain() > 10 or bodyPart:getStiffness() > 5 or extra then
             table.insert(result, bodyPart)
         end
+    end
+    if okOg and type(ogList) == "table" then
+        for _, bp in ipairs(ogList) do if inOg[bp] then table.insert(result, bp) end end
     end
     return result
 end

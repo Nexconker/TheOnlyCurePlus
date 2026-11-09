@@ -177,7 +177,8 @@ end
 local function EnforceMP(player, st, arm)
     local saw = FindSaw(player)
     if saw then ApplyStats(player, saw, st.running); UpdateName(saw, arm, st.running) end
-    if saw and player:getPrimaryHandItem() == saw then return end
+    local held = player:getPrimaryHandItem()
+    if held and held:getFullType() == ChainsawArm.WEAPON then return end      -- 3.3.5: por tipo, no por instancia
     local now = getTimestampMs()
     if now < (st.nextMount or 0) or player:isAiming() or ISTimedActionQueue.isPlayerDoingAction(player) then return end
     st.nextMount = now + 3000
@@ -282,7 +283,8 @@ end
 local function AddSwingWear(player, arm)
     local md = arm:getModData()
     md.TOC_SawWear = (tonumber(md.TOC_SawWear) or 0) + 1
-    if md.TOC_SawWear < ChainsawArm.SWINGS_PER_CONDITION then return end
+    local mult = math.max(0.1, (SandboxVars.TOC and SandboxVars.TOC.ProsthesisWearMultiplier) or 1)     -- 3.3.4
+    if md.TOC_SawWear < ChainsawArm.SWINGS_PER_CONDITION / mult then return end
     md.TOC_SawWear = 0
     local cond = arm:getCondition() - 1
     arm:setCondition(math.max(0, cond))

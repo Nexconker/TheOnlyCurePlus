@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Sağ kol",
     "IGUI_TOC_WB_ArmLeft": "Sol kol",
     "IGUI_TOC_WB_Legs": "Bacaklar",
-    "IGUI_TOC_NoHeadCantHold": "Bunu tutacak bir şeyim yok."
+    "IGUI_TOC_NoHeadCantHold": "Bunu tutacak bir şeyim yok.",
+    "IGUI_TOC_BenchNoRoom": "Burada tezgah için yer yok."
 }

@@ -37,5 +37,6 @@
     "ContextMenu_TOC_Workbench": "Bancada de próteses",
     "ContextMenu_TOC_Paint": "Pintar",
     "ContextMenu_TOC_StripPaint": "Raspar a tinta",
-    "ContextMenu_TOC_NoPaint": "Sem tinta"
+    "ContextMenu_TOC_NoPaint": "Sem tinta",
+    "ContextMenu_TOC_PlaceBench": "Montar a bancada aqui"
 }

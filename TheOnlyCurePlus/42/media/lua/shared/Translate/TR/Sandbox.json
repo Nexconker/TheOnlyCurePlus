@@ -35,6 +35,8 @@
     "Sandbox_TOC_CarryPenalty": "Eli olmayınca taşıma ağırlığı cezası",
     "Sandbox_TOC_ProsthesisWear": "Protezler yıpranır",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Her eylem protezi yıpratır; kırılmadan önce yapıştırıcı, koli bandı, kaynak elektrodu ya da vidayla onar.",
+    "Sandbox_TOC_ProsthesisWearMultiplier": "Protez aşınma hızı",
+    "Sandbox_TOC_ProsthesisWearMultiplier_tooltip": "Protezlerin ne kadar hızlı aşındığının çarpanı (1 = normal, 0,5 = yarı hızda, 2 = iki kat). Motorlu testere ve süngü dahil.",
     "Sandbox_TOC_ZombieCrawlerOnLegHit": "Bacağını kaybeden zombiler sürüngene dönüşür",
     "Sandbox_TOC_SleepingPillAnesthesia": "Uyku hapı anestezi olarak",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Ameliyatta uyku haplarının anesteziye en fazla ne kadar sayılacağı, yüzde olarak (0 = sayılmaz). Ağrı kesiciler 60'a, alkol 50'ye kadar sayılır.",

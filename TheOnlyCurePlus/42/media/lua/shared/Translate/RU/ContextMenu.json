@@ -37,5 +37,6 @@
     "ContextMenu_TOC_Workbench": "Верстак протезов",
     "ContextMenu_TOC_Paint": "Покрасить",
     "ContextMenu_TOC_StripPaint": "Соскоблить краску",
-    "ContextMenu_TOC_NoPaint": "Нет краски"
+    "ContextMenu_TOC_NoPaint": "Нет краски",
+    "ContextMenu_TOC_PlaceBench": "Поставить верстак здесь"
 }

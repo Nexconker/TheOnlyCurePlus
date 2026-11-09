@@ -35,6 +35,8 @@
     "Sandbox_TOC_CarryPenalty": "Pénalité de poids transportable sans main",
     "Sandbox_TOC_ProsthesisWear": "Usure des prothèses",
     "Sandbox_TOC_ProsthesisWear_tooltip": "Chaque action use la prothèse ; réparez-la avec de la colle, du ruban adhésif, des baguettes de soudure ou des vis avant qu'elle ne casse.",
+    "Sandbox_TOC_ProsthesisWearMultiplier": "Vitesse d'usure des prothèses",
+    "Sandbox_TOC_ProsthesisWearMultiplier_tooltip": "Vitesse d'usure des prothèses (1 = normale, 0,5 = deux fois plus lente, 2 = deux fois plus rapide). Aussi la tronçonneuse et la baïonnette.",
     "Sandbox_TOC_ZombieCrawlerOnLegHit": "Les zombies qui perdent une jambe deviennent rampants",
     "Sandbox_TOC_SleepingPillAnesthesia": "Somnifères comme anesthésie",
     "Sandbox_TOC_SleepingPillAnesthesia_tooltip": "Part maximale des somnifères dans l'anesthésie pendant une opération, en pourcentage (0 = ils ne comptent pas). Les antidouleurs comptent jusqu'à 60 et l'alcool jusqu'à 50.",

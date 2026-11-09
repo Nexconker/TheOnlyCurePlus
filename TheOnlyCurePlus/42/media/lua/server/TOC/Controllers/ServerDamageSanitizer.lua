@@ -42,11 +42,13 @@ function ServerDamageSanitizer.SanitizePlayer(playerObj)
     local bd = playerObj:getBodyDamage()
     if not bd then return end
 
+    local bitten = false
     for i = 1, #StaticData.LIMBS_STR do
         local limbName = StaticData.LIMBS_STR[i]
         if dcInst:getIsCut(limbName) then
             local bptEnum = StaticData.LIMBS_TO_BODYLOCS_IND_BPT[limbName]
             local part = bptEnum and bd:getBodyPart(bptEnum) or nil
+            if part and (part:bitten() or part:IsInfected()) then bitten = true end
             if part and CutLimbHeal.HasAnything(part) then
                 -- the SAME list the client clears (glass, cuts, bullets, burns too): if the server kept any of it,
                 -- its next body-damage push brought the wound back on the client, in a loop
@@ -60,6 +62,8 @@ function ServerDamageSanitizer.SanitizePlayer(playerObj)
             end
         end
     end
+    -- 3.3.3: el mordisco en un miembro que no existe tampoco deja la infección general (CutLimbHeal.ClearStrayInfection)
+    if bitten then CutLimbHeal.ClearStrayInfection(bd, dcInst) end
 end
 
 return ServerDamageSanitizer

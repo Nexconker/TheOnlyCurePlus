@@ -37,7 +37,10 @@ end
 ---@return boolean
 function ItemsController.Player.RemoveClothingItem(playerObj, clothingItem)
     if clothingItem and instanceof(clothingItem, "InventoryItem") then
+        local loc = clothingItem:getBodyLocation()
+        local wasWorn = playerObj:isEquippedClothing(clothingItem)
         playerObj:removeWornItem(clothingItem)
+        if isServer() and wasWorn and loc then pcall(function() sendClothing(playerObj, loc, nil) end) end      -- 3.3.5
         playerObj:getInventory():Remove(clothingItem)
         if isServer() then pcall(function() sendRemoveItemFromContainer(playerObj:getInventory(), clothingItem) end) end
         playerObj:resetModelNextFrame()
@@ -83,6 +86,14 @@ function ItemsController.Player.SpawnAmputationItem(playerObj, limbName)
     pcall(function() clothingItem:getVisual():setTextureChoice(texId) end)
     if isServer() then
         pcall(function() sendAddItemToContainer(playerObj:getInventory(), clothingItem) end)
+        -- 3.3.1 (Workshop: "after the cutting we could still see his hand"): en la Build 42 lo que viste el cliente no
+        -- cuenta para el servidor ni para los demás jugadores. El servidor pone el muñón y lo sincroniza; el aviso al
+        -- cliente queda para que lo vea al momento.
+        pcall(function()
+            local loc = clothingItem:getBodyLocation()
+            playerObj:setWornItem(loc, clothingItem)
+            sendClothing(playerObj, loc, clothingItem)
+        end)
         sendServerCommand(playerObj, CommandsData.modules.TOC_RELAY, CommandsData.client.Relay.ReceiveWearAmputation, {itemName = itemName, texId = texId})
     else
         local AmputationHandler = require("TOC/Handlers/AmputationHandler")
@@ -105,16 +116,23 @@ function ItemsController.Player.DropItemsAfterAmputation(playerObj, limbName)
         local wornItem = it and it:getItem()
         if wornItem then
             local bl = wornItem:getBodyLocation()
-            local bls = bl and tostring(bl) or ""
-            if string.contains(limbName, "Hand_") and (string.contains(bls, sideStr .. "_MiddleFinger") or string.contains(bls, sideStr .. "_RingFinger")) then
+            -- 3.3.5: en B42 las ubicaciones van en minúsculas ("base:right_middlefinger", "base:rightwrist"): antes
+            -- no coincidía nada y anillos y relojes se quedaban puestos en la mano cortada
+            local bls = string.lower(bl and tostring(bl) or "")
+            local s = string.lower(sideStr)
+            if string.contains(limbName, "Hand_") and (string.contains(bls, s .. "_middlefinger") or string.contains(bls, s .. "_ringfinger")) then
                 table.insert(toRemove, wornItem)
             end
-            if string.contains(limbName, "ForeArm_") and string.contains(bls, sideStr .. "Wrist") then
+            if string.contains(limbName, "ForeArm_") and string.contains(bls, s .. "wrist") then
                 table.insert(toRemove, wornItem)
             end
         end
     end
-    for _, wi in ipairs(toRemove) do playerObj:removeWornItem(wi) end
+    for _, wi in ipairs(toRemove) do
+        local loc = wi:getBodyLocation()
+        playerObj:removeWornItem(wi)
+        if isServer() and loc then pcall(function() sendClothing(playerObj, loc, nil) end) end
+    end
 
     if StaticData.IsArmLimb(limbName) then
         if side == "R" then
@@ -148,7 +166,8 @@ function ItemsController.Player.OverrideAmputationItemVisuals(playerObj, limbNam
             local texId = ItemsController.Player.GetAmputationTexturesIndex(playerObj, isCicatrized, limbName)
             pcall(function() wornItem:getVisual():setTextureChoice(texId) end)
             playerObj:resetModelNextFrame()
-            if isServer() then pcall(function() sendVisual(playerObj) end) end
+            -- 3.3.5: sendVisual sólo hace algo desde un cliente; en el servidor la prenda se manda con sendClothing
+            if isServer() then pcall(function() sendClothing(playerObj, wornItem:getBodyLocation(), wornItem) end) end
             return
         end
     end

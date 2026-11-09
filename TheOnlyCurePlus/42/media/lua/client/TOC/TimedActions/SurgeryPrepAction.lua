@@ -62,8 +62,11 @@ end
 function SurgeryPrepAction:perform()
     if self.sound then self.character:getEmitter():stopSound(self.sound) end
     local power = StaticData.DISINFECTANT_TYPES[self.item:getFullType()] or 0.5
-    -- consume
-    pcall(function()
+    -- consume. 3.3.5: en multijugador lo gasta el servidor (sendItemStats y sendRemoveItemFromContainer no sirven desde
+    -- el cliente: el whisky no bajaba y quitar una venda podía saltar el antitrampas)
+    if isClient() then
+        sendClientCommand(CommandsData.modules.TOC_ITEMS, "ConsumeItem", {itemId = self.item:getID(), amount = 0.15})
+    else pcall(function()
         if self.item:hasComponent(ComponentType.FluidContainer) then
             local fc = self.item:getFluidContainer()
             if fc:getAmount() > 0.15 then fc:adjustAmount(fc:getAmount() - 0.15) end
@@ -74,12 +77,12 @@ function SurgeryPrepAction:perform()
             self.item:getContainer():Remove(self.item)
             sendRemoveItemFromContainer(self.character:getInventory(), self.item)
         end
-    end)
+    end) end
     -- alcohol on the part that will stay + a little pain
     local fx = { alcohol = power * 2, pain = 5 }
     if isClient() then
         sendClientCommand(CommandsData.modules.TOC_RELAY, CommandsData.server.Relay.RelayPostOpApply,
-            {patientNum = self.patient:getOnlineID(), limbName = self.limbName, fx = fx})
+            {patientNum = self.patient:getOnlineID(), limbName = self.limbName, fx = fx, prep = true})
     else
         PostOp.ApplyEffects(self.patient, self.limbName, fx)
     end

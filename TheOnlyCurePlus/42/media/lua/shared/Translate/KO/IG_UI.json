@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "오른팔",
     "IGUI_TOC_WB_ArmLeft": "왼팔",
     "IGUI_TOC_WB_Legs": "다리",
-    "IGUI_TOC_NoHeadCantHold": "잡을 수 있는 게 없어."
+    "IGUI_TOC_NoHeadCantHold": "잡을 수 있는 게 없어.",
+    "IGUI_TOC_BenchNoRoom": "여기에는 작업대를 놓을 공간이 없습니다."
 }

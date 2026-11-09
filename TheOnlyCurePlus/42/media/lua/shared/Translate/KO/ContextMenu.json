@@ -37,5 +37,6 @@
     "ContextMenu_TOC_Workbench": "의수 작업대",
     "ContextMenu_TOC_Paint": "칠하기",
     "ContextMenu_TOC_StripPaint": "페인트 벗기기",
-    "ContextMenu_TOC_NoPaint": "페인트 없음"
+    "ContextMenu_TOC_NoPaint": "페인트 없음",
+    "ContextMenu_TOC_PlaceBench": "여기에 작업대 설치"
 }

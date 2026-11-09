@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Bras droit",
     "IGUI_TOC_WB_ArmLeft": "Bras gauche",
     "IGUI_TOC_WB_Legs": "Jambes",
-    "IGUI_TOC_NoHeadCantHold": "Il me manque quelque chose pour le tenir."
+    "IGUI_TOC_NoHeadCantHold": "Il me manque quelque chose pour le tenir.",
+    "IGUI_TOC_BenchNoRoom": "Pas de place ici pour l'établi."
 }

@@ -55,6 +55,11 @@ end
 function PaintAction:perform()
     self.item:setJobDelta(0.0)
     Paint.Apply(self.character, self.item, self.idx)
+    -- 3.3.4 (Workshop: "the paint is lost when I drop it or relog"): en multijugador el color y el modData que pone el
+    -- cliente no los guarda el servidor. Se le pide que lo aplique él (ServerItemsCommands.SetPaint).
+    if isClient() then
+        sendClientCommand("TOC_ITEMS", "SetPaint", {itemId = self.item:getID(), idx = self.idx})
+    end
     if self.paint then self.paint:UseAndSync() end
     ISBaseTimedAction.perform(self)
 end

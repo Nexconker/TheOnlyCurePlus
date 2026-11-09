@@ -1,11 +1,14 @@
 --- We're forced to re-run this crap to fix it
 ---@param o ISBaseTimedAction
 ---@param maxTime number
+-- 3.3.5 (revisión): B42 termina estas acciones con el evento de la animación (maxTime = -1) y las hace instantáneas
+-- con el modo instantáneo. Poner un tiempo fijo las cortaba antes de tiempo (el objeto se quedaba en la mano y en el
+-- cinturón a la vez) para todo el mundo. Ahora sólo se quita el castigo de TOC y se recalcula la velocidad como el juego.
 local function OverrideAction(o, maxTime)
-    -- TODO Add forced debuff instead of just relying on the vanilla values?
     o.skipTOC = true
-    o.maxTime = maxTime
-    o.animSpeed = 1.0
+    if o.maxTime == -1 and maxTime and maxTime > 1 then
+        o.animSpeed = maxTime / o:adjustMaxTime(maxTime)
+    end
 end
 
 local og_ISAttachItemHotbar_new = ISAttachItemHotbar.new
@@ -31,7 +34,10 @@ function ISEquipWeaponAction:new(character, item, maxTimeInit, primary, twoHands
 
     -- Brutal Handwork should be considered. Use the twohands thing
     if not dcInst or not (dcInst:getIsAnyLimbCut() and twoHands) then
-        OverrideAction(action, maxTimeInit)
+        action.skipTOC = true
+        if action.maxTime and action.maxTime > 1 and action.fromHotbar then
+            action.animSpeed = action.maxTime / action:adjustMaxTime(action.maxTime)
+        end
     end
 
     return action

@@ -37,5 +37,6 @@
     "ContextMenu_TOC_Workbench": "Prothesenwerkbank",
     "ContextMenu_TOC_Paint": "Lackieren",
     "ContextMenu_TOC_StripPaint": "Lack abkratzen",
-    "ContextMenu_TOC_NoPaint": "Keine Farbe"
+    "ContextMenu_TOC_NoPaint": "Keine Farbe",
+    "ContextMenu_TOC_PlaceBench": "Werkbank hier aufstellen"
 }

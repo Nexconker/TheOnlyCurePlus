@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Правая рука",
     "IGUI_TOC_WB_ArmLeft": "Левая рука",
     "IGUI_TOC_WB_Legs": "Ноги",
-    "IGUI_TOC_NoHeadCantHold": "Мне нечем это держать."
+    "IGUI_TOC_NoHeadCantHold": "Мне нечем это держать.",
+    "IGUI_TOC_BenchNoRoom": "Здесь нет места для верстака."
 }

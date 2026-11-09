@@ -42,7 +42,6 @@ La prótesis de brazo ahora son dos piezas: una [b]base[/b] en el muñón y un [
 [*][b]Examina la herida[/b] para ver cuánto ha avanzado la infección.
 [*][b]Ventana de cura[/b]: amputa a tiempo y la infección desaparece. Espera demasiado y se convierte en una apuesta.
 [*][b]Procedimiento por pasos[/b]: desinfectar, incidir, serrar, suturar, vendar. Cada paso tiene sus herramientas, su tiempo y su riesgo. La lista te dice las probabilidades antes de empezar.
-[*]Los gritos atraen zombis. Un cirujano con mal pulso chapucea.
 [*][b]Postoperatorio[/b]: shock, convalecencia, dolor fantasma y [b]sepsis[/b] si el muñón se deja sucio. Mantenlo vendado y limpio, o perderás más.
 [/list]
 
@@ -72,7 +71,6 @@ La prótesis de brazo ahora son dos piezas: una [b]base[/b] en el muñón y un [
 [list]
 [*]Los cambios en el cuerpo se validan en el servidor. Las partidas del The Only Cure original siguen funcionando.
 [*]Página de sandbox [b]TOC[/b]: ventana de cura, riesgo, radio de gritos, sepsis, convalecencia, desgaste de prótesis y más.
-[*]Para modders: otros mods pueden añadir sus propias bases y cabezales con TOC_Compat.RegisterBase / RegisterHead (ver API_MODULAR.md en GitHub).
 [/list]
 
 [h2]Idiomas[/h2]
@@ -83,8 +81,9 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 ¿Usas Tomb's Player Body? Activa el mod opcional incluido [b]The Only Cure+ - TombBody fit[/b] y cárgalo después de ambos. Muñones y prótesis quedan ajustados al cuerpo de Tomb, con tu propia textura de Tomb.
 
 [h2]Cambios[/h2]
-[b]3.3.1[/b]: multijugador: la motosierra y la bayoneta ya no se quedan atascadas al equiparse, y los cabezales cuentan como mano. La bayoneta de Merle permite pistolas. Arreglado un error con mods de NPC (Knox Event Expanded NPC).
-[b]3.3.0[/b]: todo lo nuevo de la 3.3 de arriba, más arreglos en manos, muñecas, golpes desde el suelo y rodilleras flotando.
+[b]3.3.6[/b]: el +1 de Fuerza cibernético ya no se pierde tras días sin ejercicio, y quitarse el brazo ya no cuesta un nivel de verdad. MP: el servidor convierte los brazos de la 3.2, así que las piezas nuevas siguen al reconectar; más controles del servidor en la cirugía.
+[b]3.3.1-3.3.5[/b]: dos brazos cibernéticos sujetan armas a dos manos; un mordisco en otro miembro ya no se cura; mejor elección de desinfectante; los antibióticos frenan la sepsis; no se corre con muleta; muchos arreglos de MP.
+[b]3.3.0[/b]: prótesis modulares, tier cibernético, banco y pintura.
 Historial completo: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG en GitHub[/url].
 
 [h2]Compatibilidad[/h2]

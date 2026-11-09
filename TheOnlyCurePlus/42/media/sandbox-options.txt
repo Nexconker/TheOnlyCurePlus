@@ -157,6 +157,11 @@ option TOC.ProsthesisWear
     type = boolean, default = true,
     page = TOC, translation = TOC_ProsthesisWear,
 }
+option TOC.ProsthesisWearMultiplier
+{
+    type = double, min = 0.1, max = 5.0, default = 1.0,
+    page = TOC, translation = TOC_ProsthesisWearMultiplier,
+}
 
 /* ---------- TOC+ : zombies ---------- */
 option TOC.ZombieCrawlerOnLegHit

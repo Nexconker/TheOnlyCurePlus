@@ -37,5 +37,6 @@
     "ContextMenu_TOC_Workbench": "Établi de prothèses",
     "ContextMenu_TOC_Paint": "Peindre",
     "ContextMenu_TOC_StripPaint": "Gratter la peinture",
-    "ContextMenu_TOC_NoPaint": "Pas de peinture"
+    "ContextMenu_TOC_NoPaint": "Pas de peinture",
+    "ContextMenu_TOC_PlaceBench": "Installer l'établi ici"
 }

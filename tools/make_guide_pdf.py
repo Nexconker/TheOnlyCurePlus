@@ -34,7 +34,7 @@ def chrome(c, page_no, total, chapter):
     # pie
     c.setFillColor(Color(0.05, 0.045, 0.055, 0.85)); c.rect(0, 0, PW, 22, fill=1, stroke=0)
     c.setFont("Body", 7.8); c.setFillColor(GREY)
-    c.drawString(M, 8, "The Only Cure+ (Field Surgery) 3.3  ·  Player Guide  ·  Build 42")
+    c.drawString(M, 8, "The Only Cure+ (Field Surgery) 3.3.6  ·  Player Guide  ·  Build 42")
     c.drawRightString(PW - M, 8, "%d / %d" % (page_no, total))
     bw = 104; button(c, PW / 2 - bw - 4, 4, bw, 14, "CONTENTS", dest="contents", fill=RED2, size=8.5)
     button(c, PW / 2 + 4, 4, bw, 14, "I GOT BITTEN!", dest="bitten", fill=RED2, size=8.5)

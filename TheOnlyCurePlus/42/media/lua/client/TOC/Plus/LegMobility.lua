@@ -123,6 +123,15 @@ local function setBlocked(player, blocked)
     LegMobility.applied.blocked = blocked
 end
 
+-- 3.3.4 (Workshop: "you can still run and sprint with a crutch", también en servidor dedicado): setRunning(false) en
+-- OnPlayerUpdate llegaba tarde: el juego decide correr en el mismo fotograma con isAllowRun() y la tecla, antes del
+-- evento. setAllowRun / setAllowSprint (los que usa el tutorial del juego) cortan eso de raíz. Sólo se tocan si cambian.
+local function setAllow(player, run, sprint)
+    local a = LegMobility.applied
+    if a.allowRun ~= run then pcall(function() player:setAllowRun(run) end); a.allowRun = run end
+    if a.allowSprint ~= sprint then pcall(function() player:setAllowSprint(sprint) end); a.allowSprint = sprint end
+end
+
 local function setCantSprint(player, cant)
     if LegMobility.applied.cantSprint == cant then return end
     pcall(function() player:setMoodleCantSprint(cant) end)
@@ -165,6 +174,7 @@ function LegMobility.Apply(player)
         -- se arrastra: libre de moverse pero a ras de suelo, sin correr ni sigilo, gastando resistencia
         setBlocked(player, false)
         setCantSprint(player, true)
+        setAllow(player, false, false)
         setCrawl(player, not inVehicle)
         pcall(function()
             if player:isRunning() then player:setRunning(false) end
@@ -180,6 +190,7 @@ function LegMobility.Apply(player)
     elseif m == StaticData.MOBILITY.NONE then
         setBlocked(player, not inVehicle)
         setCantSprint(player, true)
+        setAllow(player, false, false)
         local now = getTimestampMs and getTimestampMs() or 0
         if not inVehicle and now - LegMobility.lastHint > 12000 then
             LegMobility.lastHint = now
@@ -188,6 +199,7 @@ function LegMobility.Apply(player)
     elseif m == StaticData.MOBILITY.CRUTCH then
         setBlocked(player, false)
         setCantSprint(player, true)
+        setAllow(player, inVehicle, false)
         pcall(function()
             if player:isRunning() then player:setRunning(false) end
             if player:isSprinting() then player:setSprinting(false) end
@@ -196,10 +208,12 @@ function LegMobility.Apply(player)
     elseif m == StaticData.MOBILITY.PEG then
         setBlocked(player, false)
         setCantSprint(player, true)
+        setAllow(player, true, false)
         pcall(function() if player:isSprinting() then player:setSprinting(false) end end)
     else
         setBlocked(player, false)
         setCantSprint(player, false)
+        setAllow(player, true, true)
     end
 end
 
@@ -209,6 +223,8 @@ function LegMobility.Reset(player)
     pcall(function()
         if LegMobility.applied.blocked then player:setBlockMovement(false) end
         if LegMobility.applied.cantSprint then player:setMoodleCantSprint(false) end
+        if LegMobility.applied.allowRun == false then player:setAllowRun(true) end
+        if LegMobility.applied.allowSprint == false then player:setAllowSprint(true) end
         if LegMobility.applied.crawl then
             for _, v in ipairs(LegMobility.CRAWL_VARS) do player:setVariable(v, "false") end
         end
@@ -217,10 +233,16 @@ function LegMobility.Reset(player)
         end
     end)
     LegMobility.applied = { blocked = false, cantSprint = false, crawl = false, crutch = false, crutchSide = nil }
+    LegMobility.current = StaticData.MOBILITY.FULL       -- 3.3.5: si no, se seguía sin poder correr hasta el siguiente Apply
 end
 
 local function OnPlayerUpdate(player)
     if not player or not instanceof(player, "IsoPlayer") or not player:isLocalPlayer() then return end
+    -- 3.3.5 (revisión): personaje nuevo (respawn): lo aplicado era del anterior; el nuevo empieza sin nada puesto
+    if LegMobility.obj ~= player then
+        LegMobility.obj = player
+        LegMobility.applied = { blocked = false, cantSprint = false, crawl = false, crutch = false, crutchSide = nil }
+    end
     LegMobility.tick = LegMobility.tick + 1
     local gt = getGameTime and getGameTime()
     if gt and gt.getRealworldSecondsSinceLastUpdate then

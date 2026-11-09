@@ -37,5 +37,6 @@
     "ContextMenu_TOC_Workbench": "Banco protesi",
     "ContextMenu_TOC_Paint": "Dipingi",
     "ContextMenu_TOC_StripPaint": "Raschia la vernice",
-    "ContextMenu_TOC_NoPaint": "Nessuna vernice"
+    "ContextMenu_TOC_NoPaint": "Nessuna vernice",
+    "ContextMenu_TOC_PlaceBench": "Monta il banco qui"
 }

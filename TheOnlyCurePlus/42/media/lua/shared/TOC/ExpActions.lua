@@ -14,6 +14,7 @@ local function IterateTOCXp(action, applyXp)
     if action.skipTOC or action.noExp then return end
 
     local character = action.character
+    if not character or not instanceof(character, "IsoPlayer") then return end      -- 3.3.5: NPC de otros mods
     local username = character:getUsername()
     local dcInst = DataController.GetInstance(username)
     if not dcInst or not dcInst:getIsAnyLimbCut() then return end

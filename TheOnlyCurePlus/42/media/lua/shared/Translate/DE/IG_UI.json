@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Rechter Arm",
     "IGUI_TOC_WB_ArmLeft": "Linker Arm",
     "IGUI_TOC_WB_Legs": "Beine",
-    "IGUI_TOC_NoHeadCantHold": "Mir fehlt etwas, womit ich es halten kann."
+    "IGUI_TOC_NoHeadCantHold": "Mir fehlt etwas, womit ich es halten kann.",
+    "IGUI_TOC_BenchNoRoom": "Hier ist kein Platz für die Werkbank."
 }

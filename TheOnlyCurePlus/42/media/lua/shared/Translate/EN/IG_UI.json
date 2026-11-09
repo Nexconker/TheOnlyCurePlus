@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Right arm",
     "IGUI_TOC_WB_ArmLeft": "Left arm",
     "IGUI_TOC_WB_Legs": "Legs",
-    "IGUI_TOC_NoHeadCantHold": "I need something to hold it with."
+    "IGUI_TOC_NoHeadCantHold": "I need something to hold it with.",
+    "IGUI_TOC_BenchNoRoom": "No room here for the workbench."
 }

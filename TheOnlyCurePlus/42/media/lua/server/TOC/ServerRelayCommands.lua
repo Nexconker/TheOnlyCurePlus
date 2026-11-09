@@ -10,13 +10,16 @@ local PostOp = require("TOC/Plus/PostOp")
 
 local ServerRelayCommands = {}
 
+-- 3.3.5 (revisión): getAccessLevel() devuelve el nombre del rol ("user" para un jugador normal, "none" sin rol), así
+-- que TODOS pasaban por admin y cualquiera podía amputar o borrar los datos de otro. Ahora, como el juego en
+-- server/ClientCommands.lua: el rol tiene que tener la capacidad.
 local function IsAdmin(playerObj)
     if not isServer() then return true end
-    local ok, r = pcall(function() return playerObj:getAccessLevel() end)
-    if ok and r and tostring(r) ~= "None" and tostring(r) ~= "" then return true end
-    ok, r = pcall(function() return playerObj:getRole() and playerObj:getRole():getName() end)
-    if ok and r and string.lower(tostring(r)) ~= "player" then return true end
-    return false
+    local ok, r = pcall(function()
+        local role = playerObj:getRole()
+        return role ~= nil and role:hasCapability(Capability.CanModifyBodyStats)
+    end)
+    return ok and r == true
 end
 
 ---@return boolean
@@ -42,6 +45,18 @@ local function Patient(senderPl, patientNum)
     return patient
 end
 
+---3.3.6: lo que se hace sobre OTRO jugador (daño al empezar a cortar, cirugía fallida) como mucho una vez cada
+---`ms` por remitente y tipo: en una cirugía de verdad llega una sola vez; un cliente modificado no puede repetirlo
+local lastForeign = {}
+local function ForeignRateOk(senderPl, patientPl, kind, ms)
+    if senderPl == patientPl then return true end
+    local key = tostring(senderPl:getUsername()) .. "|" .. kind
+    local now = getTimestampMs()
+    if lastForeign[key] and now - lastForeign[key] < ms then return false end
+    lastForeign[key] = now
+    return true
+end
+
 local function ValidLimb(limbName)
     return type(limbName) == "string" and StaticData.LIMBS_TO_BODYLOCS_IND_BPT[limbName] ~= nil
 end
@@ -50,9 +65,13 @@ end
 function ServerRelayCommands.RelayRequestDataController(playerObj, args)
     if type(args) ~= "table" or type(args.username) ~= "string" then return end
     -- only your own data can be reset; reading someone else's data is fine (medical check)
-    local isForced = args.isForced == true and args.username == playerObj:getUsername()
+    -- 3.3.5: el reinicio forzado devuelve los miembros: sólo admins. Y sólo datos de jugadores conectados o los propios
+    -- (antes cualquier nombre creaba una entrada nueva en la partida del servidor).
+    local isForced = args.isForced == true and args.username == playerObj:getUsername() and IsAdmin(playerObj)
     local ServerDataController = require("TOC/Controllers/ServerDataController")
-    local target = CommonMethods.FindOnlinePlayer(args.username) or playerObj
+    local online = CommonMethods.FindOnlinePlayer(args.username)
+    if not online and args.username ~= playerObj:getUsername() then return end
+    local target = online or playerObj
     ServerDataController.Initialize(args.username, isForced, target)
     if target ~= playerObj then
         local dcInst = require("TOC/Controllers/DataController").GetInstance(args.username)
@@ -101,7 +120,7 @@ end
 function ServerRelayCommands.RelayDamageDuringAmputation(surgeonPl, args)
     if type(args) ~= "table" or not ValidLimb(args.limbName) then return end
     local patientPl = Patient(surgeonPl, args.patientNum)
-    if not patientPl then return end
+    if not patientPl or not ForeignRateOk(surgeonPl, patientPl, "dmg", 5000) then return end
     local AmputationHandler = require("TOC/Handlers/AmputationHandler")
     AmputationHandler.ApplyDamageDuringAmputation(patientPl, args.limbName)
 end
@@ -110,6 +129,9 @@ end
 ---@param args relayExecuteAmputationActionParams
 function ServerRelayCommands.RelayExecuteAmputationAction(surgeonPl, args)
     if type(args) ~= "table" or not ValidLimb(args.limbName) then return end
+    -- 3.3.6: el mod ya no manda este comando (la cirugía va por RelayExecuteSurgery, con sierra y tirada); seguía
+    -- abierto y un paquete fabricado amputaba a quien tuvieras al lado sin sierra ni riesgo. Sólo admins.
+    if not IsAdmin(surgeonPl) then return end
     local patientPl = Patient(surgeonPl, args.patientNum)
     if not patientPl then return end
     local DataController = require("TOC/Controllers/DataController")
@@ -133,9 +155,17 @@ function ServerRelayCommands.RelayExecuteSurgery(surgeonPl, args)
     local SurgeryPlan = require("TOC/Plus/SurgeryPlan")
     local toolItem = nil
     if type(args.plan) == "table" and type(args.plan.toolType) == "string" and StaticData.SAWS_TYPES[args.plan.toolType] then
-        toolItem = surgeonPl:getInventory():FindAndReturn(args.plan.toolType)
+        local inv = surgeonPl:getInventory()
+        toolItem = inv:FindAndReturn(args.plan.toolType) or inv:getFirstTypeRecurse(args.plan.toolType)
     end
     local plan = SurgeryPlan.Gather(surgeonPl, patientPl, args.limbName, toolItem)
+    if not plan.toolItem then return end                -- 3.3.5: sin sierra no hay amputación (paquete fabricado)
+    -- 3.3.5: la preparación ya gastó el desinfectante antes de llegar aquí (el último trapo o las últimas toallitas): si
+    -- el servidor vio desinfectar esa zona hace poco, cuenta como desinfectada
+    local prepped = dcInst and dcInst:plus().preppedAt and dcInst:plus().preppedAt[args.limbName]
+    if not plan.disinfectItem and prepped and math.abs(getGameTime():getWorldAgeHours() - prepped) < 1 then
+        plan.disinfectItem = true
+    end
     local risk = SurgeryPlan.Risk(plan)
     local outcome = SurgeryPlan.Roll(plan, risk)
     TOC_DEBUG.print("Surgery " .. args.limbName .. " by " .. surgeonPl:getUsername() .. " fail=" .. tostring(risk.fail) .. " roll=" .. tostring(outcome.roll) .. " severity=" .. tostring(outcome.severity))
@@ -147,12 +177,24 @@ end
 function ServerRelayCommands.RelaySurgeryBotched(surgeonPl, args)
     if type(args) ~= "table" or not ValidLimb(args.limbName) then return end
     local patientPl = Patient(surgeonPl, args.patientNum)
-    if not patientPl then return end
+    if not patientPl or not ForeignRateOk(surgeonPl, patientPl, "botch", 5000) then return end
     local AmputationHandler = require("TOC/Handlers/AmputationHandler")
     AmputationHandler.ApplyBotchedAttempt(patientPl, args.limbName)
 end
 
+---3.3.5: borrar tus propios datos al morir (antes iba por ModData.transmit, que no dice quién lo manda). Sólo si el
+---personaje está muerto o recién creado, para que no sirva para recuperar miembros.
+function ServerRelayCommands.WipeOwnData(playerObj, args)
+    if not playerObj then return end
+    local fresh = false
+    pcall(function() fresh = playerObj:isDead() or playerObj:getHoursSurvived() < 0.5 end)
+    if not fresh then return end
+    local ServerDataController = require("TOC/Controllers/ServerDataController")
+    ServerDataController.Initialize(playerObj:getUsername(), true, playerObj)
+end
+
 --* POST-OP: the client computes, the server applies to the body it owns
+local lastForeignFx = {}
 
 ---@param args relayPostOpApplyParams
 function ServerRelayCommands.RelayPostOpApply(senderPl, args)
@@ -161,7 +203,37 @@ function ServerRelayCommands.RelayPostOpApply(senderPl, args)
     if not patientPl then return end
     local limbName = ValidLimb(args.limbName) and args.limbName or nil
     local fx = PostOp.SanitizeEffects(args.fx)
+    if patientPl ~= senderPl then
+        -- 3.3.5: sobre otro jugador sólo llega lo de limpiar un muñón (dolor y alcohol), acotado y como mucho cada 2 s
+        local now = getTimestampMs()
+        local key = senderPl:getUsername()
+        if lastForeignFx[key] and now - lastForeignFx[key] < 2000 then return end
+        lastForeignFx[key] = now
+        fx = { pain = math.min(tonumber(fx.pain) or 0, 40), alcohol = math.min(tonumber(fx.alcohol) or 0, 2) }
+    end
+    if limbName and args.prep then                      -- 3.3.5: SurgeryPrepAction avisa de que desinfectó esta zona
+        local DataController = require("TOC/Controllers/DataController")
+        local dc = DataController.GetReady(patientPl:getUsername())
+        if dc then
+            dc:plus().preppedAt = dc:plus().preppedAt or {}
+            dc:plus().preppedAt[limbName] = getGameTime():getWorldAgeHours()
+        end
+    end
     PostOp.ApplyEffects(patientPl, limbName, fx)
+end
+
+---3.3.4: limpiar el muñón de otro jugador (al lado, como las demás acciones sobre un paciente)
+function ServerRelayCommands.RelayCleanStump(senderPl, args)
+    if type(args) ~= "table" or type(args.power) ~= "number" or not ValidLimb(args.limbName) then return end
+    local patientPl = Patient(senderPl, args.patientNum)
+    if not patientPl then return end
+    local DataController = require("TOC/Controllers/DataController")
+    local dcInst = DataController.GetReady(patientPl:getUsername())
+    if not dcInst or not dcInst:getIsCut(args.limbName) then return end
+    local power = math.max(0, math.min(args.power, 1))
+    dcInst:setWoundDirtyness(args.limbName, math.max(0, dcInst:getWoundDirtyness(args.limbName) - 0.6 * power))
+    dcInst:setSepsis(args.limbName, math.max(0, dcInst:getSepsis(args.limbName) - 10 * power))
+    dcInst:apply(patientPl)
 end
 
 --* XP
@@ -283,7 +355,7 @@ function ServerRelayCommands.RelayExecuteInitialization(adminObj, args)
     if type(args) ~= "table" then return end
     local patientPl = CommonMethods.GetPatientForServer(args.patientNum)
     if not patientPl then return end
-    if patientPl ~= adminObj and not IsAdmin(adminObj) then return end
+    if not IsAdmin(adminObj) then return end            -- 3.3.5: borrar los datos (devuelve los miembros) sólo un admin
     local key = CommandsData.GetKey(patientPl:getUsername())
     ModData.remove(key)
     sendServerCommand(patientPl, CommandsData.modules.TOC_RELAY, CommandsData.client.Relay.ReceiveExecuteInitialization, {})

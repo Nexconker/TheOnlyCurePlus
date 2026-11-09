@@ -38,8 +38,12 @@ def write_pack():
     open(p, "wb").write(out); print("pack", p, len(out), "bytes", page.size)
 
 def tile_props(facing):
+    # 3.3.4: Noffset/Soffset/Eoffset/Woffset (distancia en ids al tile de cada orientación) para que el cursor de
+    # colocar muebles pueda girar el banco (ISMoveableSpriteProps:getFaces); sin ellos sólo existía su propia cara
+    idx = {f: i for i, (f, _) in enumerate(FACINGS)}
+    offs = [(k + "offset", str(idx[k] - idx[facing])) for k in ("N", "S", "E", "W") if k != facing]
     return [("BlocksPlacement", ""), ("CanScrap", ""), ("CustomItem", "TOC.ProsthesisWorkbench"), ("CustomName", "Prosthesis Workbench"),
-            ("Facing", facing), ("GroupName", "TOC"), ("IsMoveAble", ""), ("IsTable", ""), ("Material", "Wood"), ("Material2", "MetalScrap"),
+            ("Facing", facing)] + offs + [("GroupName", "TOC"), ("IsMoveAble", ""), ("IsTable", ""), ("Material", "Wood"), ("Material2", "MetalScrap"),
             ("MaterialType", "Wood"), ("PickUpWeight", "300"), ("Surface", "28"), ("solidtrans", "")]
 
 def write_tiles():

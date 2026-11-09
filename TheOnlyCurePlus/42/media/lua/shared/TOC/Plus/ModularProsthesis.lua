@@ -176,6 +176,17 @@ end
 local og_wear_complete = ISWearClothing.complete
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISWearClothing:complete()
+    -- 3.3.4: el segundo cabezal (las recetas dan el izquierdo) va al otro brazo si este ya tiene uno y aquel está libre
+    if Modular.IsHead(self.item) and not self.character:isEquippedClothing(self.item) then
+        local head, side = StaticData.GetHeadTier(self.item:getFullType())
+        local other = side and otherSide(side)
+        local here = side and Modular.GetWornHead(self.character, side)
+        if here and here ~= self.item and other and (head.side == nil or head.side == other)
+            and Modular.GetWornBase(self.character, other) and not Modular.GetWornHead(self.character, other) then
+            local flipped = flippedType(self.item:getFullType())
+            if flipped then self.item = ProsthesisHandler.SwapInInventory(self.character, self.item, flipped) end
+        end
+    end
     local result = og_wear_complete(self)
     if result and Modular.IsHead(self.item) then
         local item = self.item
@@ -203,15 +214,34 @@ function ISUnequipAction:complete()
     return result
 end
 
+local og_extra_isValid = ISClothingExtraAction.isValid
+---@diagnostic disable-next-line: duplicate-set-field
+function ISClothingExtraAction:isValid()
+    local ok = og_extra_isValid(self)
+    if not ok or not Modular.IsHead(self.item) or type(self.extra) ~= "string" then return ok end
+    -- 3.3.5: "Poner en el otro brazo" con un cabezal: las mismas reglas que al ponérselo (base, metal, tier)
+    local _, side = StaticData.GetProsthesisBase(self.extra)
+    local want, why = Modular.ResolveHeadSide(self.character, self.extra)
+    if want ~= side then
+        local Messages = require("TOC/Plus/Messages")
+        Messages.Say(self.character, getText(why or "IGUI_TOC_HeadNeedsBase"), false)
+        return false
+    end
+    return true
+end
+
 local og_extra_complete = ISClothingExtraAction.complete
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISClothingExtraAction:complete()
     -- cambiar de lado un cabezal: el nuevo lado necesita su base (lo comprueba isValid al vestirlo)
     local wasHead = Modular.IsHead(self.item)
     local oldItem = self.item
+    -- 3.3.5 (revisión): un cabezal sacado del inventario no estaba puesto: no se borra el cabezal de su lado (era el del
+    -- otro brazo, que se quedaba sin mano para el mod: "I need something to hold it with")
+    local wasWorn = wasHead and self.character:isEquippedClothing(self.item)
     local result = og_extra_complete(self)
     if wasHead then
-        Modular.SetupHead(self.character, oldItem, false)
+        if wasWorn then Modular.SetupHead(self.character, oldItem, false) end
         local _, side = StaticData.GetProsthesisBase(self.extra)
         local head = side and Modular.GetWornHead(self.character, side)
         if head then Modular.SetupHead(self.character, head, true) end
@@ -253,6 +283,19 @@ local function newPart(inv, fullType, from)
     return it
 end
 
+---3.3.6: ¿lleva o tiene alguna prótesis de brazo antigua (de antes de la 3.3)? No cambia nada.
+---@param character IsoPlayer
+---@return boolean
+function Modular.HasOld(character)
+    for _, side in ipairs({ "L", "R" }) do
+        local old = ProsthesisHandler.FindWornProsthesis(character, "Top_" .. side)
+        if old and Modular.ConvertedTypes(old:getFullType()) then return true end
+    end
+    local found = ArrayList.new()
+    pcall(function() character:getInventory():getAllEvalRecurse(function(it) return Modular.ConvertedTypes(it:getFullType()) ~= nil end, found) end)
+    return found:size() > 0
+end
+
 ---Convierte las prótesis de brazo antiguas del jugador (puestas e inventario). Devuelve cuántas.
 ---@param character IsoPlayer
 function Modular.ConvertOld(character)
@@ -265,7 +308,9 @@ function Modular.ConvertOld(character)
         if bt and ht then
             local base, head
             pcall(function()
+                local oldLoc = old:getBodyLocation()
                 character:removeWornItem(old, false)
+                if isServer() and sendClothing and oldLoc then sendClothing(character, oldLoc, nil) end     -- 3.3.6
                 ProsthesisHandler.SearchAndSetupProsthesis(character, old, false)
                 inv:Remove(old)
                 if sendRemoveItemFromContainer then sendRemoveItemFromContainer(inv, old) end
@@ -309,6 +354,7 @@ end
 
 if not isServer() then
     local pending = {}
+    local notify = {}           -- 3.3.6: en MP el aviso sale cuando el servidor ya cambió las piezas
     Events.OnCreatePlayer.Add(function(playerNum) pending[playerNum] = 0 end)
     local ticks = 0
     Events.OnPlayerUpdate.Add(function(player)
@@ -323,11 +369,31 @@ if not isServer() then
             end)
         end
         local k = player:getPlayerNum()
+        if notify[k] then
+            notify[k] = notify[k] + 1
+            if notify[k] % 120 == 0 then
+                local okH, has = pcall(Modular.HasOld, player)
+                if okH and not has then
+                    notify[k] = nil
+                    local Messages = require("TOC/Plus/Messages")
+                    Messages.Say(player, getText("IGUI_TOC_ProsthesesConverted"), false)
+                elseif notify[k] > 1800 then notify[k] = nil end
+            end
+        end
         if pending[k] == nil then return end
         pending[k] = pending[k] + 1
         if pending[k] < 120 then return end                          -- unos segundos tras cargar: datos de TOC listos
         if not DataController.GetReady(player:getUsername()) then return end
         pending[k] = nil
+        if isClient() then
+            -- 3.3.6: en multijugador las piezas las crea y quita el servidor
+            local okH, has = pcall(Modular.HasOld, player)
+            if okH and has then
+                sendClientCommand(CommandsData.modules.TOC_ITEMS, "ConvertOldProstheses", {})
+                notify[k] = 0
+            end
+            return
+        end
         local ok, n = pcall(Modular.ConvertOld, player)
         if ok and n and n > 0 then
             local Messages = require("TOC/Plus/Messages")

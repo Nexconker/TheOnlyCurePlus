@@ -1,5 +1,40 @@
 # Changelog
 
+## 3.3.6
+
+- Fixed: the cybernetic frame's +1 Strength was given with `LevelPerk`, which adds no XP. After a few lazy days the game's
+  own XP check (`XpUpdate.checkForLosingLevel`) removed that level, the mod still counted it as given, and taking the arm
+  off then removed a second, real level. The bonus is now re-checked against the XP-backed level and re-applied.
+- Multiplayer: old 3.2 arm prostheses are converted on the server (`ConvertOldProstheses`). Converting on the client made
+  parts the server never had: they vanished on reconnect and the conversion repeated on every load.
+- Multiplayer: the unused legacy amputation command (no saw, no roll) is admin-only; the "damage while cutting" and
+  "botched surgery" commands on another player are rate-limited.
+
+## 3.3.5
+
+- Fixed: two cybernetic (or any modular) arms could stop counting as hands ("can't use two-handed weapons with two
+  cybernetic arms"). The worn bases and attachments are compared with the saved data every few seconds and re-registered
+  (`ProsthesisResync.lua`). Installing a spare attachment on the other arm no longer clears the first arm's attachment,
+  and the "install on the other arm" option now checks the attachment rules (base, metal, tier).
+- Fixed: amputating one bitten limb cured the infection even with a second bite on a limb you kept.
+- Fixed: surgery picked the weakest disinfectant first and could use up the only alcohol bandage as disinfectant; items
+  in bags are found too. Antibiotics now count against sepsis (B42 keeps their effect on the character).
+- Fixed: hotbar attach/detach and equip actions no longer replace the Build 42 animation-driven timing for everyone.
+- Fixed: equipping was never blocked for a character without amputations (stale cache after death).
+- Fixed: infection symptoms no longer show when another mod (vaccines) halts the infection at 0.
+- Multiplayer: admin-only relay commands now check the role's capability; the server ignores player data sent through
+  global ModData; surgery requires a saw on the server; wound cleaning, surgery prep and chainsaw refuelling consume
+  the item on the server; the carry penalty no longer stacks; a prosthesis swapped by the server no longer errors in the
+  client and cancels the action queue; healed stumps, rings and watches are sent with `sendClothing`.
+- Compatibility: other mods' `getDamagedParts` additions are kept; NPC characters from other mods are skipped by the
+  time and XP hooks.
+
+## 3.3.2 - 3.3.4
+
+- No running or sprinting on a crutch; the second prosthesis of a pair goes to the free side; paint and stump cleaning
+  work in multiplayer; "Set up the workbench here"; `TOC.ProsthesisWearMultiplier`; negative carry weight fixed;
+  less network traffic while looting.
+
 ## 3.3.1
 
 - Fixed (multiplayer): the chainsaw and bayonet attachments kept retrying the equip animation and never worked

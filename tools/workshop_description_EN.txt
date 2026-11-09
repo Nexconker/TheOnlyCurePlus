@@ -42,7 +42,6 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 [*][b]Examine the wound[/b] to see how far the infection has spread.
 [*][b]Cure window[/b]: amputate in time and the infection is gone. Wait too long and it becomes a gamble.
 [*][b]Staged procedure[/b]: disinfect, cut, saw, stitch, bandage. Each step has its tools, its time and its risk. The checklist tells you the odds before you start.
-[*]Screams attract zombies. Shaky surgeons botch the job.
 [*][b]Post-op[/b]: shock, convalescence, phantom pain and [b]sepsis[/b] if the stump is left dirty. Keep it bandaged and clean, or lose more.
 [*]Medical professions know how; everyone else reads the [b]Field Surgery Guide[/b].
 [/list]
@@ -73,7 +72,6 @@ An arm prosthesis is now two pieces: a [b]base[/b] on the stump and an [b]attach
 [list]
 [*]Body changes are validated on the server. Saves from the original The Only Cure keep working.
 [*]Sandbox page [b]TOC[/b]: cure window, risk, scream radius, sepsis, convalescence, prosthesis wear and more.
-[*]Modders: other mods can add their own bases and attachments with TOC_Compat.RegisterBase / RegisterHead (see API_MODULAR.md on GitHub).
 [/list]
 
 [h2]Languages[/h2]
@@ -84,8 +82,9 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 Using Tomb's Player Body? Enable the included optional mod [b]The Only Cure+ - TombBody fit[/b] and load it after both. Stumps and every prosthesis are refitted to Tomb's body, with your own Tomb texture.
 
 [h2]Changelog[/h2]
-[b]3.3.1[/b]: multiplayer: the chainsaw and bayonet no longer get stuck equipping, and attachments count as a hand. Merle's bayonet can use pistols. Fixed an error with NPC mods (Knox Event Expanded NPC).
-[b]3.3.0[/b]: everything marked New in 3.3 above, plus fixes for hands, wrists, crawling attacks and floating pads.
+[b]3.3.6[/b]: the cybernetic +1 Strength is no longer lost after days without exercise, and taking the arm off no longer costs a real level. MP: old 3.2 arms are converted by the server, so the new parts stay after reconnecting; stricter server checks on surgery commands.
+[b]3.3.1-3.3.5[/b]: two cybernetic arms hold two-handed weapons; a bite on another limb is no longer cured; better disinfectant choice; antibiotics slow sepsis; no running on a crutch; many MP fixes.
+[b]3.3.0[/b]: modular prostheses, cybernetic tier, workbench and paint.
 Full history: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG on GitHub[/url].
 
 [h2]Compatibility[/h2]

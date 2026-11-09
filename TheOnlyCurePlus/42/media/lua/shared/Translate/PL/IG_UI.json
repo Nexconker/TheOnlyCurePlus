@@ -140,5 +140,6 @@
     "IGUI_TOC_WB_ArmRight": "Prawa ręka",
     "IGUI_TOC_WB_ArmLeft": "Lewa ręka",
     "IGUI_TOC_WB_Legs": "Nogi",
-    "IGUI_TOC_NoHeadCantHold": "Brakuje mi czegoś, czym mógłbym to trzymać."
+    "IGUI_TOC_NoHeadCantHold": "Brakuje mi czegoś, czym mógłbym to trzymać.",
+    "IGUI_TOC_BenchNoRoom": "Nie ma tu miejsca na stół."
 }

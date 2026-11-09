@@ -141,6 +141,7 @@ module TOC
 		MinRange = 0.61,
 		MinimumSwingtime = 2.5,
 		PushBackMod = 0.4,
+		IdleAnim = Idle_Weapon2,
 		RunAnim = Run_Weapon2,
 		SubCategory = Swinging,
 		SwingAmountBeforeImpact = 0.02,

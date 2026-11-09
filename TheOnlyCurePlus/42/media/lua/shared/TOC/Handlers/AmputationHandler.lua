@@ -122,6 +122,16 @@ function AmputationHandler:healArea()
         bodyPart:setFractureTime(0)
     end)
     if isServer() then pcall(function() syncBodyPart(bodyPart, 0xFFFFFFFFFFF) end) end
+    -- 3.3.5: también lo que cuelga de él (cortar el antebrazo se lleva la mano: su mordisco ya no existe)
+    local CutLimbHeal = require("TOC/Plus/CutLimbHeal")
+    for _, dep in ipairs(StaticData.LIMBS_DEPENDENCIES_IND_STR[self.limbName] or {}) do
+        local bpt = BodyPartType[dep]
+        local p = bpt and bd:getBodyPart(bpt)
+        if p then
+            pcall(CutLimbHeal.Clear, p)
+            if isServer() then pcall(function() syncBodyPart(p, 0xFFFFFFFFFFF) end) end
+        end
+    end
 end
 
 ---The whole point of the mod. TOC+: configurable window and a late gamble.
@@ -132,6 +142,17 @@ function AmputationHandler:healInfection(isPartInfected)
     local bd = self.patientPl:getBodyDamage()
     if isPartInfected then return "doomed" end
     if not bd:isInfected() then return "none" end
+    -- 3.3.5 (revisión): con un mordisco en otro miembro que sigue en su sitio (mordido en las dos manos, cortada una) la
+    -- infección no se va. Los datos ya marcan como cortados este miembro y los que dependen de él.
+    local DataController = require("TOC/Controllers/DataController")
+    local dc = DataController.GetInstance(self.patientPl:getUsername())
+    local parts = bd:getBodyParts()
+    for i = 0, parts:size() - 1 do
+        local part = parts:get(i)
+        local limb = StaticData.BODYLOCS_TO_LIMBS_IND_STR[BodyPartType.ToString(part:getType())]
+        local gone = limb ~= nil and (limb == self.limbName or (dc and dc:getIsCut(limb)))
+        if not gone and (part:bitten() or part:IsInfected()) then return "doomed" end
+    end
 
     local infectionLevel = plStats:get(CharacterStat.ZOMBIE_INFECTION) or 0
     local window = sv("CureWindow", 20)

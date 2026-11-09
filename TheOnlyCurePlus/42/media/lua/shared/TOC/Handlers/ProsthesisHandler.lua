@@ -206,7 +206,8 @@ function ProsthesisHandler.AddWearForAction(character)
         local group = StaticData.AMP_GROUPS_STR[i]
         if dcInst:getIsProstEquippedGroup(group) then
             local tier = ProsthesisHandler.GetEquippedTier(username, group)
-            local per = tier and tier.wearPerAction or 0.5
+            -- 3.3.4 (Workshop: "the wear is too fast"): multiplicador de sandbox
+            local per = (tier and tier.wearPerAction or 0.5) * ((SandboxVars.TOC and SandboxVars.TOC.ProsthesisWearMultiplier) or 1)
             local wear = dcInst:getProstWear(group) + per
             if wear >= StaticData.PROSTHESIS_WEAR_PER_CONDITION then
                 wear = wear - StaticData.PROSTHESIS_WEAR_PER_CONDITION
@@ -260,9 +261,57 @@ function ISWearClothing:isValid()
     return ProsthesisHandler.Validate(self.item, isEquippable)
 end
 
+---3.3.4 (Workshop, Mr Beehead: dos manos cibernéticas y "I need something to hold this"): las recetas dan siempre la
+---pieza IZQUIERDA. Con los dos lados amputados, la segunda se ponía también a la izquierda: el juego quitaba la primera
+---y el lado derecho se quedaba sin nada. Antes de vestirla se cambia en el inventario por la del lado libre.
+---@param character IsoPlayer
+---@param item InventoryItem
+---@param wantType string
+---@return InventoryItem
+function ProsthesisHandler.SwapInInventory(character, item, wantType)
+    local newItem = instanceItem(wantType)
+    if not newItem then return item end
+    local ok = pcall(function()
+        if copyClothingItem then copyClothingItem(item, newItem) else newItem:setCondition(item:getCondition()) end
+        local cont = item:getContainer()
+        if cont then
+            cont:Remove(item)
+            if sendRemoveItemFromContainer then sendRemoveItemFromContainer(cont, item) end
+        end
+        local inv = character:getInventory()
+        inv:AddItem(newItem)
+        if sendAddItemToContainer then sendAddItemToContainer(inv, newItem) end
+    end)
+    return ok and newItem or item
+end
+
+---Tipo del lado libre si el lado de la pieza ya tiene una puesta y el otro está amputado y vacío (o nil)
+---@param character IsoPlayer
+---@param item InventoryItem
+---@return string?
+function ProsthesisHandler.FreeSideType(character, item)
+    local fullType = item:getFullType()
+    local tier = ProsthesisHandler.GetTier(fullType)
+    if not tier then return nil end
+    local side = CommonMethods.GetSide(fullType)
+    local other = side == "L" and "R" or "L"
+    local here = ProsthesisHandler.FindWornProsthesis(character, tier.group .. "_" .. side)
+    if not here or here == item then return nil end
+    local highest = CachedDataHandler.GetHighestAmputatedLimbs(character:getUsername())
+    if not highest or not highest[tier.group .. "_" .. other] then return nil end
+    if ProsthesisHandler.FindWornProsthesis(character, tier.group .. "_" .. other) then return nil end
+    local flipped = string.gsub(fullType, "_" .. side .. "$", "_" .. other)
+    if flipped ~= fullType and getScriptManager():FindItem(flipped) then return flipped end
+    return nil
+end
+
 local og_ISWearClothing_complete = ISWearClothing.complete
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISWearClothing:complete()
+    if ProsthesisHandler.CheckIfProst(self.item) and not self.character:isEquippedClothing(self.item) then
+        local want = ProsthesisHandler.FreeSideType(self.character, self.item)
+        if want then self.item = ProsthesisHandler.SwapInInventory(self.character, self.item, want) end
+    end
     local result = og_ISWearClothing_complete(self)
     if result and ProsthesisHandler.CheckIfProst(self.item) then
         -- the variant modelled for this stump (foot / calf / thigh, hand / forearm)
@@ -277,8 +326,8 @@ local og_ISClothingExtraAction_isValid = OverridenMethodsArchive.Save("ISClothin
 ---@diagnostic disable-next-line: duplicate-set-field
 function ISClothingExtraAction:isValid()
     local isEquippable = og_ISClothingExtraAction_isValid(self)
-    local testItem = instanceItem(self.extra)
-    return ProsthesisHandler.Validate(testItem, isEquippable)
+    if not self._tocExtraItem and self.extra then self._tocExtraItem = instanceItem(self.extra) end     -- 3.3.5: uno por acción
+    return ProsthesisHandler.Validate(self._tocExtraItem, isEquippable)
 end
 
 local og_ISClothingExtraAction_complete = OverridenMethodsArchive.Save("ISClothingExtraAction_complete", ISClothingExtraAction.complete)
