@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.9
+
+- Stumps no longer have a `BloodLocation` (`TOC_amputation_items.txt`): blood landed on the stump item, which cannot be
+  taken off, while the skin stayed clean, so the game never offered "Wash yourself". Old blood on worn stumps is cleaned
+  automatically (server in MP, locally in SP), and washing yourself also cleans them.
+
 ## 3.3.8
 
 - Multiplayer: the cybernetic +1 Strength flickered (the server owns XP and kept resetting a level raised with

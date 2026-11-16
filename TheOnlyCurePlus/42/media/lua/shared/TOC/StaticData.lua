@@ -22,7 +22,7 @@ local StaticData = {}
 ---Mod name, used to setup Global Mod Data and various stuff. Kept as "TOC" so that
 ---saves made with the original mod keep working after switching to TOC+.
 StaticData.MOD_NAME = "TOC"
-StaticData.PLUS_VERSION = "3.3.8"
+StaticData.PLUS_VERSION = "3.3.9"
 
 StaticData.COMPAT_42 = luautils.stringStarts(getGameVersion(), "42")
 

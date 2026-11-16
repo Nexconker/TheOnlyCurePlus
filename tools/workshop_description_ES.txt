@@ -81,7 +81,7 @@ English, Español, Deutsch, Français, Italiano, Polski, Русский, Укр�
 ¿Usas Tomb's Player Body? Activa el mod opcional incluido [b]The Only Cure+ - TombBody fit[/b] y cárgalo después de ambos. Muñones y prótesis quedan ajustados al cuerpo de Tomb, con tu propia textura de Tomb.
 
 [h2]Cambios[/h2]
-[b]3.3.8[/b]: el +1 de Fuerza cibernético ya no parpadea en MP (ahora lo da el servidor como experiencia); quitarse una pierna protésica en MP la quita de verdad; lavarse también limpia la sangre de los muñones.
+[b]3.3.8-3.3.9[/b]: el +1 de Fuerza cibernético ya no parpadea en MP (ahora lo da el servidor como experiencia); quitarse una pierna protésica en MP la quita de verdad; los muñones ya no se quedan con sangre que no se puede lavar.
 [b]3.3.1-3.3.7[/b]: dos brazos cibernéticos sujetan armas a dos manos; un mordisco en otro miembro ya no se cura; los antibióticos frenan la sepsis; no se corre con muleta; sin errores de TOC+ por el fallo de recarga de la 42.22; muchos arreglos de MP.
 [b]3.3.0[/b]: prótesis modulares, tier cibernético, banco y pintura.
 Historial completo: [url=https://github.com/Nexconker/TheOnlyCurePlus/blob/main/CHANGELOG.md]CHANGELOG en GitHub[/url].
