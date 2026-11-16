@@ -151,6 +151,9 @@ function ProsthesisHandler.SearchAndSetupProsthesis(character, item, isEquipping
     dcInst:apply(character)
     if not isClient() then
         CachedDataHandler.CalculateCacheableValues(username)
+        -- 3.3.8: en multijugador ponerse o quitarse una prótesis lo termina el servidor (complete); sin esto la caché del
+        -- cliente (manos, piernas) no se enteraba hasta el siguiente cambio
+        if isServer() then pcall(CachedDataHandler.SendCache, character, username, false) end
     end
     if isEquipping then triggerEvent("OnProsthesisEquipped", character, group, fullType) end
     return true

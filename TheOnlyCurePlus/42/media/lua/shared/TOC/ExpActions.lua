@@ -126,7 +126,18 @@ local function WrapUpdate(actionClass)
 end
 
 --* Firearms
-WrapUpdate(ISReloadWeaponAction)
+-- 3.3.7 (Workshop, 42.22.2: "unable to reload"): el juego cuenta la munición también dentro de cinturones y bolsas
+-- (getItemCountRecurse) pero sólo coge balas del inventario principal (getSomeType). Sin balas a mano no fija
+-- self.ammoCount y su update() falla en cada tick ("__sub not defined", ISReloadWeaponAction.lua:13). Es del juego
+-- (pasa también sin mods), pero como envolvemos update() el error salía con nuestro nombre. Sin ammoCount nos saltamos
+-- su update(), que sólo mueve la barra; la recarga se comporta igual que en vanilla.
+if ISReloadWeaponAction then
+    local og_ISReloadWeaponAction_update = ISReloadWeaponAction.update
+    function ISReloadWeaponAction:update()
+        if self.ammoCount ~= nil then og_ISReloadWeaponAction_update(self) end
+        AddTOCXp(self)
+    end
+end
 WrapUpdate(ISInsertMagazine)
 WrapUpdate(ISLoadBulletsInMagazine)
 WrapUpdate(ISUnloadBulletsFromFirearm)

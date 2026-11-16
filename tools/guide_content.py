@@ -80,7 +80,7 @@ def p_cover(c, y):
     c.setFillColor(BONE); c.setFont("Title", 42); c.drawString(M + 48, PH - 180, "FIELD SURGERY")
     c.setFillColor(RED); c.rect(M, PH - 196, 360, 4, fill=1, stroke=0)
     c.setFillColor(GOLD); c.setFont("Title", 30); c.drawString(M, PH - 236, "PLAYER GUIDE")
-    c.setFillColor(GREY); c.setFont("Body", 12); c.drawString(M, PH - 256, "Version 3.3.6  ·  Project Zomboid Build 42  ·  Singleplayer and multiplayer")
+    c.setFillColor(GREY); c.setFont("Body", 12); c.drawString(M, PH - 256, "Version 3.3.8  ·  Project Zomboid Build 42  ·  Singleplayer and multiplayer")
     flow(c, [P("Everything you need to survive a bite, cut the limb off properly, heal, and get back on your feet "
                "(or onto a mechanical one). Every box, tab and line marked like " + link("this", "contents") +
                " is clickable. Use the bookmarks panel of your PDF reader to jump around.", "body")], M - 8, PH - 350, 340, 90)

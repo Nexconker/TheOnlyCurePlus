@@ -158,7 +158,18 @@ end
 -- copia visual (TOC.PistolVisual) con el modelo de la pistola. Si la mano izquierda esta ocupada con otra cosa no se
 -- esconde nada: la pistola se ve en la derecha como siempre. El modelo original se guarda en el modData del arma.
 
+local nextVisualRemove = 0
 local function RemoveVisuals(player)
+    -- 3.3.7: en multijugador lo quita el servidor (quitar objetos desde el cliente lo echa el antitrampas:
+    -- "SyncItemDelete: no capability"). La copia sólo existe si la partida viene de un jugador.
+    if isClient() then
+        local now = getTimestampMs()
+        if now >= nextVisualRemove then
+            nextVisualRemove = now + 3000
+            sendClientCommand(CommandsData.modules.TOC_ITEMS, "RemovePistolVisual", {})
+        end
+        return
+    end
     local inv = player:getInventory()
     for _ = 1, 10 do
         local v = inv:getFirstTypeRecurse(KnifeArm.VISUAL)

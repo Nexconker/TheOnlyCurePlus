@@ -169,6 +169,12 @@ function ServerItemsCommands.MountWeapon(playerObj, args)
     sendEquip(playerObj)
 end
 
+---3.3.7: la copia visual de la pistola de la bayoneta (sólo se crea en partidas de un jugador): en MP la quita el servidor
+function ServerItemsCommands.RemovePistolVisual(playerObj, args)
+    if not playerObj then return end
+    RemoveMounted(playerObj, "TOC.PistolVisual")
+end
+
 function ServerItemsCommands.UnmountWeapon(playerObj, args)
     local def = playerObj and args and MOUNTED[args.kind]
     if not def or WearsMountArm(playerObj, def) then return end

@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.3.8
+
+- Multiplayer: the cybernetic +1 Strength flickered (the server owns XP and kept resetting a level raised with
+  `LevelPerk` on the client). It is now granted as Strength XP worth one level (`addXpNoMultiplier`), on the server in
+  MP and locally in SP, and exactly that XP is removed when the frame comes off. The amount lives in the TOC data
+  (`plus().cyberStrXp`); levels given by older versions are removed once. `CyberStrength.lua` moved to `shared/`.
+- Multiplayer: putting on or taking off a prosthesis finishes on the server, which now sends the cache to the client;
+  a leg prosthesis that is no longer worn is unregistered (you could take the legs off and keep walking).
+- Washing yourself also cleans blood and dirt from the stumps (`StumpWash.lua`).
+
+## 3.3.7
+
+- Build 42.22: `ISReloadWeaponAction` counts ammo inside belts and bags but only takes rounds from the main inventory, so
+  `ammoCount` stays nil and vanilla `update()` errors every tick. It is a base-game bug, but our XP wrapper put TOC+ in
+  the stack trace; the wrapper now skips vanilla `update()` (progress bar only) when `ammoCount` is nil.
+- Infection symptoms only show while the infection level is rising (vaccine mods can hold it above 0).
+- Multiplayer: the bayonet's visual pistol copy is removed by the server (`RemovePistolVisual`); a client-side removal
+  trips the anticheat ("SyncItemDelete: no capability").
+- TombBody fit 1.1.1: no longer lists Tomb's texture packs in `loadModAfter`.
+
 ## 3.3.6
 
 - Fixed: the cybernetic frame's +1 Strength was given with `LevelPerk`, which adds no XP. After a few lazy days the game's

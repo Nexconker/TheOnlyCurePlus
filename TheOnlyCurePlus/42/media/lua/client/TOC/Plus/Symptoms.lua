@@ -26,7 +26,12 @@ function Symptoms.Hourly()
         local level = 0
         pcall(function() level = stats:get(CharacterStat.ZOMBIE_INFECTION) or 0 end)
         -- 3.3.5 (Workshop: síntomas sin parar con un mod de vacunas que deja la infección detenida en 0): sólo si avanza
-        if infected and level > 0 then
+        -- 3.3.7 (Workshop: síntomas sin parar sin heridas, tomando vacunas): un mod de vacunas puede dejarla detenida
+        -- en un valor mayor que 0. Sólo hay síntomas si ha subido desde la hora anterior.
+        local md = pl:getModData()
+        local prev = md.TOC_SymLast
+        md.TOC_SymLast = level
+        if infected and level > 0 and prev ~= nil and level > prev then
             local window = sv("CureWindow", 20)
             local chance, key
             if level < window * 0.5 then

@@ -91,9 +91,22 @@ function LegMobility.Evaluate(player)
             -- 2026-10-17 (con dos piernas cibernéticas puestas se arrastraba): si la marca guardada de "prótesis puesta"
             -- se perdió (ponerla desde el modo debug, cambiar de versión con la partida empezada...) pero la pierna está
             -- puesta, se vuelve a registrar en vez de tratar la pierna como ausente
-            if not dc:getIsProstEquippedGroup("Bottom_" .. side) then
-                local worn = LegMobility.FindWornLeg(player, side)
+            local group = "Bottom_" .. side
+            local worn = LegMobility.FindWornLeg(player, side)
+            if not dc:getIsProstEquippedGroup(group) then
                 if worn then pcall(function() require("TOC/Handlers/ProsthesisHandler").SearchAndSetupProsthesis(player, worn, true) end) end
+            elseif not worn then
+                -- 3.3.8 (Workshop: "when having no legs ... you can remove them and still walk normal"): al revés, la
+                -- prótesis se quitó (en multijugador lo termina el servidor) pero el estado seguía diciendo "puesta"
+                local ProsthesisHandler = require("TOC/Handlers/ProsthesisHandler")
+                if not ProsthesisHandler.FindWornProsthesis(player, group) then
+                    dc:setIsProstEquipped(group, false)
+                    dc:setProstType(group, nil)
+                    if isClient() then
+                        local CommandsData = require("TOC/CommandsData")
+                        sendClientCommand(CommandsData.modules.TOC_RELAY, CommandsData.server.Relay.RelayProsthesisState, {group = group, isEquipped = false})
+                    end
+                end
             end
             local t = dc:getProstType("Bottom_" .. side)
             local tier = t and StaticData.GetProsthesisTier(t) or nil
